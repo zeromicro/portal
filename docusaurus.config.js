@@ -334,7 +334,9 @@ const config = {
           remarkPlugins: [variable, math],
           rehypePlugins: [katex],
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: 'https://github.com/anqiansong/zeromicro/blob/main/',
+          editUrl: ({locale, docPath}) => {
+            return locale==='en'?`https://github.com/zeromicro/portal/edit/main/docs/${docPath}`:`https://github.com/zeromicro/portal/edit/main/i18n/cn/docusaurus-plugin-content-docs/current/${docPath}`
+          },
           showLastUpdateTime: true,
         },
         sitemap: {
