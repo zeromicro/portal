@@ -6,8 +6,8 @@ module.exports = {
   domain: "doc.go-zero.dev",
   baseUrl,
   // 部署时变更
-  organizationName: "anqiansong",
-  projectName: "website",
+  organizationName: "zeromicro",
+  projectName: "portal",
   discord: "discord",
   getImageUrl(label) {
     switch (label) {
