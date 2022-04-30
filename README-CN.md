@@ -43,7 +43,7 @@ $ npm run serve
 本文档支持多语言环境（en | zh-cn），在贡献前请先阅读 [国际化](https://docusaurus.io/zh-CN/docs/i18n/introduction) 支持,
 对应 `Page`,`Route`,`Sidebars`,`Markdown` 更新请不要忘记同步变更对应的 i18n 内容。
 
-pr 前请确保本地本地测试已通过，`Page`, `Maekdown` 等内容中的超链接如果不能访问将会阻碍网页应用的启动。
+pr 前请确保本地本地测试已通过，`Page`, `Markdown` 等内容中的超链接如果不能访问将会阻碍网页应用的启动。
 
 本网页默认为英文，对于中文支持的相关内容在 `i18n/cn` 目录下，更多细节可阅读 [docusaurus](https://docusaurus.io) 了解详情。
 
