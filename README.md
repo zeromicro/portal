@@ -4,7 +4,7 @@ English | [中文简体](README-CN.md)
 
 ----
 
-[This website](https://go-zero.dev) is built using
+[This website](https://doc.go-zero.dev) is built using
 [Docusaurus 2](https://v2.docusaurus.io/). Pages & components are written in
 TypeScript, the styles in vanilla CSS with variables using
 [CSS Modules](https://github.com/css-modules/css-modules).

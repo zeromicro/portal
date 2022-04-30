@@ -4,7 +4,7 @@
 
 ----
 
-该[网站](https://go-zero.dev) 是用
+该 [网站](https://doc.go-zero.dev/cn) 是用
 [Docusaurus 2](https://v2.docusaurus.io/)构建的. 页面和组件是用 TypeScript 编写的，样式采用的
 [CSS Modules](https://github.com/css-modules/css-modules).
 
