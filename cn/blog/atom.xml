@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://zero.keson.dev/blog</id>
+    <id>https://doc.go-zero.dev/blog</id>
     <title>go-zero Blog</title>
     <updated>2015-10-25T23:29:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://zero.keson.dev/blog"/>
+    <link rel="alternate" href="https://doc.go-zero.dev/blog"/>
     <subtitle>go-zero Blog</subtitle>
-    <icon>https://zero.keson.dev/img/favicon.png</icon>
+    <icon>https://doc.go-zero.dev/img/favicon.png</icon>
 </feed>
