@@ -9,7 +9,6 @@ plugins/*/compiled
 .docusaurus
 .netlify
 .cache-loader
-*.lock
 
 # Misc
 .DS_Store
