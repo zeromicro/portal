@@ -188,7 +188,7 @@ const Footer = () => {
             <li className={footerStyles.footer__item}>
               <a
                 className={footerStyles.footer__link}
-                href="https://github.com/zeromicro/go-zero/blob/master/LICENSE"
+                href="https://github.com/zeromicro/portal/blob/main/LICENSE"
               >
                 License
               </a>
