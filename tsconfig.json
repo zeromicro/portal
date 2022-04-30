@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["esnext", "DOM", "dom", "dom.iterable"],
+    "declaration": true,
+    "declarationMap": true,
+    "downlevelIteration": true,
+
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "noEmit": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@theme/Banner": ["src/theme/Banner"],
+      "@theme/Button": ["src/theme/Button"],
+      "@theme/Chevron": ["src/theme/Chevron"],
+      "@theme/CareerEmailUs": ["src/theme/CareerEmailUs"],
+      "@theme/Input": ["src/theme/Input"],
+      "@theme/DocSidebar": ["src/theme/DocSidebar"],
+      "@theme/Screenshot": ["src/theme/Screenshot"],
+      "@theme/useMetadataContext": ["src/theme/useMetadataContext"],
+      "@theme/useResizeObserver": ["src/theme/useResizeObserver"],
+      "@theme/useWindowWidth": ["src/theme/useWindowWidth"]
+    }
+  },
+  "include": ["src/", "types/"]
+}

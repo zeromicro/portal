@@ -1,0 +1,114 @@
+{
+  "title": {
+    "message": " ",
+    "description": "The title in the navbar"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Discord": {
+    "message": "Discord",
+    "description": "Navbar item with label Discord"
+  },
+  "item.label.FAQ": {
+    "message": "FAQ",
+    "description": "Navbar item with label FAQ"
+  },
+  "item.label.Docs": {
+    "message": "文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Tool": {
+    "message": "生态",
+    "description": "Navbar item with label Tool"
+  },
+  "item.label.Community": {
+    "message": "社区",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Blog": {
+    "message": "博客",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.More": {
+    "message": "更多",
+    "description": "Navbar item with label More"
+  },
+  "item.label.Preparation": {
+    "message": "环境准备",
+    "description": "Navbar item with label Preparation"
+  },
+  "item.label.Getting Started": {
+    "message": "快速开始",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Guides": {
+    "message": "进阶指南",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.Installation": {
+    "message": "安装",
+    "description": "Navbar item with label Installation"
+  },
+  "item.label.API Command": {
+    "message": "API 指令",
+    "description": "Navbar item with label API Command"
+  },
+  "item.label.RPC Command": {
+    "message": "RPC 指令",
+    "description": "Navbar item with label RPC Command"
+  },
+  "item.label.Model Command": {
+    "message": "Model 指令",
+    "description": "Navbar item with label Model Command"
+  },
+  "item.label.Completion": {
+    "message": "自动补全",
+    "description": "Navbar item with label Completion"
+  },
+  "item.label.Goctl Plugin": {
+    "message": "Goctl 插件",
+    "description": "Navbar item with label Goctl Plugin"
+  },
+  "item.label.Editor Plugin": {
+    "message": "编辑器插件",
+    "description": "Navbar item with label Editor Plugin"
+  },
+  "item.label.About us": {
+    "message": "关于我们",
+    "description": "Navbar item with label About us"
+  },
+  "item.label.Showcase": {
+    "message": "案例展示",
+    "description": "Navbar item with label Showcase"
+  },
+  "item.label.Contributing": {
+    "message": "参与贡献",
+    "description": "Navbar item with label Contributing"
+  },
+  "item.label.Contributor": {
+    "message": "贡献人员",
+    "description": "Navbar item with label Contributor"
+  },
+  "item.label.Resource Center": {
+    "message": "资源中心",
+    "description": "Navbar item with label Resource Center"
+  },
+  "item.label.Video Tutorial": {
+    "message": "视频教程",
+    "description": "Navbar item with label Video Tutorial"
+  },
+  "item.label.Development Roadmap": {
+    "message": "开发路线图",
+    "description": "Navbar item with label Development Roadmap"
+  },
+  "item.label.Design Docs": {
+    "message": "设计文档",
+    "description": "Navbar item with label Design Docs"
+  },
+  "item.label.Goctl": {
+    "message": "Goctl",
+    "description": "Navbar item with label Goctl"
+  }
+}

@@ -1,0 +1,41 @@
+.logo {
+  filter: brightness(0) invert(0.9);
+  display: flex;
+  height: auto;
+  width: 100%;
+  margin-top: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px;
+  flex-direction: row;
+  align-content: center;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.logo__item {
+  min-height: 10px;
+  padding: 6px;
+  font-size: var(--font-size-big-2);
+  transform: scale(0.8);
+  margin: 0 4px 12px;
+}
+
+@media (max-width: 996px) {
+  .logo {
+    margin-top: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+  }
+
+  .logo__item {
+    min-height: 80px;
+    min-width: 150px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.8);
+    font-size: var(--font-size-big-1);
+  }
+}
