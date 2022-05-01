@@ -127,7 +127,7 @@ return allowed
 ## 函数分析
 
 
-![](https://cdn.nlark.com/yuque/0/2020/png/261626/1606107337223-7756ecdf-acb6-48c2-9ff5-959de01a1a03.png#align=left&display=inline&height=896&margin=%5Bobject%20Object%5D&originHeight=896&originWidth=2038&status=done&style=none&width=2038)
+![](../../resource/tokenlimit_func.png)
 
 
 从上述流程中看出：

@@ -302,7 +302,7 @@ const config = {
             },
             {
               label: "Blog",
-              to: "/blog/blog",
+              to: "/docs/blog/blog",
             },
             {
               label: "Roadmap",

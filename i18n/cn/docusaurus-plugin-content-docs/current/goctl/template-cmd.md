@@ -51,7 +51,7 @@ OPTIONS:
 
 ## 回滚指定分类模板
 ```shell
-$ octl template update -h
+$ goctl template update -h
 NAME:
    goctl template update - update template of the target category to the latest
 
@@ -65,7 +65,7 @@ OPTIONS:
 
 ## 回滚模板
 ```shell
-$ octl template revert -h
+$ goctl template revert -h
 NAME:
    goctl template revert - revert the target template to the latest
 

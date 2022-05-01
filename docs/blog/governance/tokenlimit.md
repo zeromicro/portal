@@ -121,7 +121,7 @@ It can be seen from the above that the `lua script`: only involves the operation
 
 
 ## Function analysis
-![](https://cdn.nlark.com/yuque/0/2020/png/261626/1606107337223-7756ecdf-acb6-48c2-9ff5-959de01a1a03.png#align=left&display=inline&height=896&margin=%5Bobject%20Object%5D&originHeight=896&originWidth=2038&status=done&style=none&width=2038)
+![](../../resource/tokenlimit_func.png)
 
 
 Seen from the above flow:
