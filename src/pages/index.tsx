@@ -16,7 +16,7 @@ import usCss from "../css/index/usp.module.css"
 import seCss from "../css/section.module.css"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 import GithubLogo from "../assets/img/github.svg"
-import Translate from "@docusaurus/Translate"
+import Translate, { translate } from "@docusaurus/Translate"
 
 const Top = () => {
   return (
@@ -81,12 +81,14 @@ const Top = () => {
       </div>
 
       <div className={doCss.docker}>
-        <pre className={doCss.docker__inner}>
-          <code className={doCss.docker__code}>
-            {`$ goctl api new greet
-$ cd greet && go mod tidy && go run main.go`}
-          </code>
-        </pre>
+        <img
+          src={useBaseUrl(
+            translate({
+              message: "/img/pages/index/arch.svg",
+            }),
+          )}
+          alt="arch"
+        />
       </div>
     </section>
   )

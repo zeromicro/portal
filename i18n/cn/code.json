@@ -310,5 +310,8 @@
   "theme.PwaReloadPopup.closeButtonAriaLabel": {
     "message": "关闭",
     "description": "The ARIA label for close button of PWA reload popup"
+  },
+  "/img/pages/index/arch.svg": {
+    "message": "/img/pages/index/arch-cn.svg"
   }
 }
