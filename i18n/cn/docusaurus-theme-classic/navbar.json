@@ -108,7 +108,7 @@
     "description": "Navbar item with label Design Docs"
   },
   "item.label.Goctl": {
-    "message": "Goctl",
+    "message": "goctl",
     "description": "Navbar item with label Goctl"
   }
 }

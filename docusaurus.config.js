@@ -153,7 +153,7 @@ const config = {
           ],
         },
         {
-          label: "Goctl",
+          label: "goctl",
           position: "left",
           sidebarId: 'goctl',
           items: [

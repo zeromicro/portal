@@ -31,7 +31,7 @@ const Top = () => {
             seCss["section__title--accent"],
           )}
         >
-          <Translate>Made development easy</Translate>
+          <Translate>Make development easy</Translate>
         </h1>
 
         <p
