@@ -23,11 +23,11 @@ const AnnouncementBar = () => {
         <Translate>Welcome to the latest document of go-zero, click</Translate>
         <a
           className={styles.announcement__link}
-          href={customFields.githubUrl}
+          href={customFields.oldDocUrl}
           rel="noopener noreferrer"
           target="_blank"
         >
-          <Translate>https://legacy.go-zero.dev/en</Translate>
+          <Translate>https://legacy.go-zero.dev</Translate>
         </a>
         <Translate>to visit the old document!</Translate>
       </p>

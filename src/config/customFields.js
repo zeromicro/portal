@@ -5,7 +5,7 @@ module.exports = {
   title: "go-zero",
   description:
     "go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。",
-  oldDocUrl: "https://go-zero.dev/cn",
+  oldDocUrl: "https://legacy.go-zero.dev",
   githubOrgUrl: consts.githubOrgUrl,
   githubUrl: `${consts.githubOrgUrl}/go-zero`,
   zeroApiUrl: `${consts.githubOrgUrl}/zero-api`,

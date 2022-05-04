@@ -317,8 +317,8 @@
   "Welcome to the latest document of go-zero, click": {
     "message": "欢迎使用 go-zero 新文档，旧文档地址现已变更为"
   },
-  "https://legacy.go-zero.dev/en": {
-    "message": "https://legacy.go-zero.dev/cn"
+  "https://legacy.go-zero.dev": {
+    "message": "https://legacy.go-zero.dev"
   },
   "to visit the old document!": {
     "message": ""
