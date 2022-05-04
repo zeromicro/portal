@@ -3,7 +3,7 @@ const discord = "discord"
 const baseUrl = "/"
 module.exports = {
   githubOrgUrl: "https://github.com/zeromicro",
-  domain: "doc.go-zero.dev",
+  domain: "go-zero.dev",
   baseUrl,
   // 部署时变更
   organizationName: "zeromicro",
