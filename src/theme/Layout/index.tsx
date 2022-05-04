@@ -10,6 +10,7 @@ import Navbar from "@theme/Navbar"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
 import styles from "./styles.module.css"
+import AnnouncementBar from "@theme/AnnouncementBar"
 
 export type Props = {
   altFooter: boolean
@@ -106,6 +107,7 @@ const Layout = ({
             />
           )}
         </Head>
+        <AnnouncementBar />
         <Navbar />
         <div
           className={clsx(styles.wrapper, wrapperClassName, {
