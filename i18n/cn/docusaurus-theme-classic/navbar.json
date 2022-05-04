@@ -110,5 +110,9 @@
   "item.label.Goctl": {
     "message": "goctl",
     "description": "Navbar item with label Goctl"
+  },
+  "item.label.goctl": {
+    "message": "goctl",
+    "description": "Navbar item with label goctl"
   }
 }

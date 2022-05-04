@@ -92,12 +92,10 @@ const config = {
   ],
   themeConfig: {
     announcementBar: {
-      id: 'document tips',
-      content:
-        '欢迎使用 go-zero 新文档，旧文档地址现变更为 <a target="_blank" rel="noopener noreferrer" href="https://legacy.go-zero.dev">https://legacy.go-zero.dev</a>',
+      id: 'document tip',
       backgroundColor: '#d14671', // 默认为 `#fff`.
       textColor: '#ffffff', // 默认为 `#000`.
-      isCloseable: false, // 默认为 `true`.
+      isCloseable: true, // 默认为 `true`.
     },
     gtag: {
       trackingID: 'G-XZD0YKV3XQ',

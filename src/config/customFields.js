@@ -1,5 +1,4 @@
 const consts = require("./consts")
-
 module.exports = {
   copyright: `Copyright © ${new Date().getFullYear()} zeromicro`,
   demoUrl: "/docs/introduction",

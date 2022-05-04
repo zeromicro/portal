@@ -313,5 +313,14 @@
   },
   "/img/pages/index/arch.svg": {
     "message": "/img/pages/index/arch-cn.svg"
+  },
+  "Welcome to the latest document of go-zero, click": {
+    "message": "欢迎使用 go-zero 新文档，旧文档地址现已变更为"
+  },
+  "https://legacy.go-zero.dev/en": {
+    "message": "https://legacy.go-zero.dev/cn"
+  },
+  "to visit the old document!": {
+    "message": ""
   }
 }

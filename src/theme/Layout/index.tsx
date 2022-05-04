@@ -10,7 +10,7 @@ import Navbar from "@theme/Navbar"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
 import styles from "./styles.module.css"
-import AnnouncementBar from "@theme/AnnouncementBar"
+import AnnouncementBar from "../AnnouncementBar"
 
 export type Props = {
   altFooter: boolean
