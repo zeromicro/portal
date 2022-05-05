@@ -8,12 +8,14 @@ import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize"
 
 import styles from "./styles.module.css"
 import NavbarItem from "@theme/NavbarItem"
+import LocaleDropdownNavbarItem from "../NavbarItem"
 
 import { useThemeConfig } from "@docusaurus/theme-common"
 import useThemeContext from "@theme/hooks/useThemeContext"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 
 const DefaultNavItemPosition = "right"
+const DefaultNavItemType = "none"
 
 function useColorModeToggle() {
   const {
@@ -28,25 +30,30 @@ function useColorModeToggle() {
   return { isDarkTheme, toggle, disabled: disableSwitch }
 }
 
+function isItem(position, item) {
+  return (
+    (item.position ?? DefaultNavItemPosition) === position &&
+    item.type !== "localeDropdown"
+  )
+}
 function splitNavItemsByPosition(
   items: Array<ComponentProps<typeof NavbarItem>>,
 ): {
   leftItems: Array<ComponentProps<typeof NavbarItem>>
   rightItems: Array<ComponentProps<typeof NavbarItem>>
+  localItems: Array<ComponentProps<typeof NavbarItem>>
 } {
-  const leftItems = items.filter(
+  const leftItems = items.filter((item) => isItem("left", item))
+  const rightItems = items.filter((item) => isItem("right", item))
+  const localItems = items.filter(
     (item) =>
       // @ts-expect-error: temporary, will be fixed in Docusaurus TODO remove soon
-      (item.position ?? DefaultNavItemPosition) === "left",
-  )
-  const rightItems = items.filter(
-    (item) =>
-      // @ts-expect-error: temporary, will be fixed in Docusaurus TODO remove soon
-      (item.position ?? DefaultNavItemPosition) === "right",
+      (item.type ?? DefaultNavItemType) === "localeDropdown",
   )
   return {
     leftItems,
     rightItems,
+    localItems,
   }
 }
 
@@ -79,7 +86,7 @@ function Navbar(): JSX.Element {
     }
   }, [windowSize])
 
-  const { leftItems, rightItems } = splitNavItemsByPosition(items)
+  const { leftItems, rightItems, localItems } = splitNavItemsByPosition(items)
 
   return (
     <nav
@@ -137,6 +144,10 @@ function Navbar(): JSX.Element {
           {rightItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
           ))}
+          {localItems.map((item, i) => (
+            <LocaleDropdownNavbarItem type {...item} key={i} />
+          ))}
+
           <a
             href="https://github.com/zeromicro/go-zero"
             className="navbar__items navbar__items--right"
