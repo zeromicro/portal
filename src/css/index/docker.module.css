@@ -2,21 +2,17 @@
   position: relative;
   display: flex;
   margin-left: 4rem;
-  margin-top: 1.75rem;
   min-height: 381px;
   flex-direction: column;
-  align-items: end;
+  align-items: start;
   flex: 1 1 auto;
 }
 
 .docker__inner {
   position: absolute;
-  bottom: 95px;
-  right: 16px;
-  max-width: 568px;
   width: 100%;
   margin: 0;
-  padding: 2rem 3.5rem;
+  bottom: 10px;
   font-size: var(--font-size-large);
   overflow: initial;
 }

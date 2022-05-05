@@ -88,6 +88,7 @@ const Top = () => {
             }),
           )}
           alt="arch"
+          className={doCss.docker__inner}
         />
       </div>
     </section>
