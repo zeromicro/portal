@@ -2,7 +2,7 @@ import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { ComponentProps, useCallback, useState, useEffect } from "react"
 
-import Toggle from "@theme/Toggle"
+import Toggle from "../Toggle"
 import useLockBodyScroll from "@theme/hooks/useLockBodyScroll"
 import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize"
 

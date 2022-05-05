@@ -6,7 +6,7 @@
  */
 import React from "react"
 
-const IconLanguage = ({ width = 25, height = 25, ...props }) => {
+const IconLanguage = ({ width = 24, height = 24, ...props }) => {
   return (
     <svg
       t="1651714104711"
