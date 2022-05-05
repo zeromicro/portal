@@ -164,7 +164,7 @@ const config = {
           items: [
             {
               label: "Installation",
-              to: "/docs/goctl/installation",
+              to: "/docs/goctl/goctl",
             },
             {
               label: "API Command",
