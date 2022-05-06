@@ -22,7 +22,7 @@ service StreamGreeter {
   rpc greet(StreamReq) returns (StreamResp);
 }
 ```
-### goctl rpc proto
+### goctl rpc protoc
 ```shell
 $ goctl rpc protoc greet.proto --go_out=. --go-grpc_out=. --zrpc_out=. --verbose                                                                                               
 [goctl-env]: preparing to check env

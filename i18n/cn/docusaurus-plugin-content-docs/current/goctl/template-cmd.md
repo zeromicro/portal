@@ -90,7 +90,7 @@ OPTIONS:
 - `goctl docker` 详情可以通过`goctl docker --help`查看帮助
 - `goctl kube` 详情可以通过`goctl kube --help`查看帮助
 - `goctl rpc new` 详情可以通过`goctl rpc new --help`查看帮助
-- `goctl rpc proto` 详情可以通过`goctl rpc proto --help`查看帮助
+- `goctl rpc protoc` 详情可以通过`goctl rpc protoc --help`查看帮助
 - `goctl model mysql ddl` 详情可以通过`goctl model mysql ddl --help`查看帮助
 - `goctl model mysql datasource` 详情可以通过`goctl model mysql datasource --help`查看帮助
 - `goctl model pg datasource` 详情可以通过`goctl model pg datasource --help`查看帮助

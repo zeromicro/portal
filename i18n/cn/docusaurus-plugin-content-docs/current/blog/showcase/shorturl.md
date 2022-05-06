@@ -242,6 +242,8 @@ authors: kevwan
   
   package transform;
   
+  option go_package = "./pb";
+  
   message expandReq {
       string shorten = 1;
   }
@@ -267,7 +269,7 @@ authors: kevwan
 * 用 `goctl` 生成 rpc 代码，在 `rpc/transform` 目录下执行命令
 
   ```shell
-  $ goctl rpc proto -src transform.proto -dir .
+  $ goctl rpc protoc transform.proto --go_out=. --go-grpc_out=. --zrpc_out=.
   ```
 
   **注意：不能在 GOPATH 目录下执行以上命令**
@@ -289,7 +291,8 @@ authors: kevwan
   │   └── svc
   │       └── servicecontext.go       // 定义 ServiceContext，传递依赖
   ├── pb
-  │   └── transform.pb.go
+  │   ├── transform.pb.go
+  │   └── transform_grpc.pb.go
   ├── transform.go                    // rpc 服务 main 函数
   ├── transform.proto
   └── transformer

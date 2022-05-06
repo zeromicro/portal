@@ -227,6 +227,8 @@ And now, let’s walk through the complete flow of quickly create a microservice
   
   package transform;
   
+  option go_package = "./pb";
+  
   message expandReq {
       string shorten = 1;
   }
@@ -252,7 +254,7 @@ And now, let’s walk through the complete flow of quickly create a microservice
 * use goctl to generate the rpc code, execute the following command in `rpc/transofrm`
 
   ```shell
-  goctl rpc proto -src transform.proto -dir .
+  $ goctl rpc protoc transform.proto --go_out=. --go-grpc_out=. --zrpc_out=.
   ```
 
   the generated file structure looks like:
@@ -272,7 +274,8 @@ And now, let’s walk through the complete flow of quickly create a microservice
   │   └── svc
   │       └── servicecontext.go       // defines service context, like dependencies
   ├── pb
-  │   └── transform.pb.go
+  │   ├── transform.pb.go
+  │   └── transform_grpc.pb.go
   ├── transform.go                    // rpc main entrance
   ├── transform.proto
   └── transformer

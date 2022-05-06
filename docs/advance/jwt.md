@@ -25,7 +25,7 @@ All the above content quote from [jwt.io](https://jwt.io/introduction)
 Jwt authentication is generally used at the api layer. In this demonstration project, we generate jwt token when user api logs in, and verify the user jwt token when searching api for books.
 
 ### user api generates jwt token
-Following the content of the [Business Coding](business-coding.md) chapter, we perfect the `getJwtToken` method left over from the previous section, that is, generate the jwt token logic
+Following the content of the [Business Coding](business-coding) chapter, we perfect the `getJwtToken` method left over from the previous section, that is, generate the jwt token logic
 
 #### Add configuration definition and yaml configuration items
 ```shell

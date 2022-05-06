@@ -692,6 +692,12 @@ protoc  -I=/Users/jackluo/works/blogs/datacenter/common/rpc common.proto --go_ou
 Done.
 ```
 
+:::tip
+
+该文档的 rpc 代码生成命令已废弃，最新版本 goctl 请使用 `goctl rpc protoc `。
+
+:::
+
 
 ```
 ➜ rpc tree

@@ -13,7 +13,7 @@
 
 > ——[Continuous integration](https://www.redhat.com/en/topics/devops/what-is-ci-cd)
 
-From a conceptual point of view, CI/CD includes the deployment process. Here, we will put the deployment (CD) in a separate section [Service Deployment](service-deployment.md),
+From a conceptual point of view, CI/CD includes the deployment process. Here, we will put the deployment (CD) in a separate section [Service Deployment](service-deployment),
 This section uses gitlab to do a simple CI (Run Unit Test) demonstration.
 
 ## Gitlab CI

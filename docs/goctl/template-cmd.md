@@ -92,7 +92,7 @@ You can specify the folder where the template is located by `--home` during code
 - `goctl docker` Details can be viewed with `goctl docker --help`
 - `goctl kube` Details can be viewed with `goctl kube --help`
 - `goctl rpc new` Details can be viewed with `goctl rpc new --help`
-- `goctl rpc proto` Details can be viewed with `goctl rpc proto --help`
+- `goctl rpc protoc` Details can be viewed with `goctl rpc protoc --help`
 - `goctl model mysql ddl` Details can be viewed with `goctl model mysql ddl --help`
 - `goctl model mysql datasource` Details can be viewed with `goctl model mysql datasource --help`
 - `goctl model postgresql datasource` Details can be viewed with `goctl model mysql datasource --help`
