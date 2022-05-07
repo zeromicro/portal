@@ -6,8 +6,9 @@ Define routing, add logic files, this series of operations, if calculated accord
 This does not consider the various errors that may occur during the writing process. With the increase of services and the increase of agreements, the time for this part of the preparation work will increase proportionally.
 The goctl api can completely replace you to do this part of the work, no matter how many agreements you have, in the end, it only takes less than 10 seconds to complete.
 
-> [!TIP]
-> The structure is written, and the route definition is replaced by api, so in general, it saves you the time of creating folders, adding various files and resource dependencies.
+:::tip
+The structure is written, and the route definition is replaced by api, so in general, it saves you the time of creating folders, adding various files and resource dependencies.
+:::
 
 ## API command description
 ```shell

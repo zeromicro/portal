@@ -44,13 +44,14 @@ type Plugin struct {
     Dir   string
 }
 ```
-> [!TIP]
-> Api: defines the structure data of the api file
->
-> Style: optional, it is used to control file naming conventions
->
-> Dir: workDir
 
+:::tip
+Api: defines the structure data of the api file
+
+Style: optional, it is used to control file naming conventions
+
+Dir: workDir
+:::
 
 Complete android plugin demo project based on plugin
 [https://github.com/zeromicro/goctl-android](https://github.com/zeromicro/goctl-android)
