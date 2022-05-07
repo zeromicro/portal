@@ -134,11 +134,12 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro
 
     ```http
     HTTP/1.1 200 OK
-    Content-Type: application/json
-	Date: Thu, 22 Oct 2020 14:03:18 GMT
+    Content-Type: application/json; charset=utf-8
+    Traceparent: 00-45fa9e7a7c505bad3a53a024e425ace9-eb5787234cf3e308-00
+    Date: Thu, 22 Oct 2020 14:03:18 GMT
 	Content-Length: 14
 
-	{"message":""}
+	null
     ```
 
    编写业务代码：

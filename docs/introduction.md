@@ -179,8 +179,12 @@ go get -u github.com/zeromicro/go-zero
 
    ```http
    HTTP/1.1 200 OK
+   Content-Type: application/json; charset=utf-8
+   Traceparent: 00-45fa9e7a7c505bad3a53a024e425ace9-eb5787234cf3e308-00
    Date: Sun, 30 Aug 2020 15:32:35 GMT
    Content-Length: 0
+   
+   null
    ```
 
 4. Write the business logic code
