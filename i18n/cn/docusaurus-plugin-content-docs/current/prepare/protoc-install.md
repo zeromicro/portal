@@ -43,8 +43,11 @@ $ goctl env check -i -f --verbose
     ```shell
     $ mv protoc $GOPATH/bin
     ```
-    > [!TIP]
-    > $GOPATH为你本机的实际文件夹地址
+    
+    :::tip
+    $GOPATH为你本机的实际文件夹地址
+    :::
+
 * 验证安装结果
     ```shell
     $ protoc --version

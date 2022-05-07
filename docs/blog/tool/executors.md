@@ -76,8 +76,9 @@ This shows the dependency between:
 - `chunkexecutor`：`periodicalexecutor` + `chunkContainer`
 
 
-> [!TIP]
-> So if you want to complete your own `executor`, you can implement these three interfaces of `container`, and then combine with `periodicalexecutor`.
+:::tip
+So if you want to complete your own `executor`, you can implement these three interfaces of `container`, and then combine with `periodicalexecutor`.
+:::
 
 So back to the picture 👆, our focus is on the `periodicalexecutor`, and see how it is designed?
 
@@ -112,8 +113,9 @@ func (dts *DailyTask) Init() {
 }
 ```
 
-> [!TIP]
-> An additional introduction: `clickhouse` is suitable for mass insertion, because the insert speed is very fast, mass insert can make full use of clickhouse
+:::tip
+An additional introduction: `clickhouse` is suitable for mass insertion, because the insert speed is very fast, mass insert can make full use of clickhouse
+:::
 
 
 Main business logic preparation:
@@ -146,8 +148,9 @@ func (dts *DailyTask) insertNewData(ch chan interface{}, sqlFromDb *model.Task) 
 }
 ```
 
-> [!TIP]
-> You may be wondering why `Flush(), Wait()` is needed, and I will analyze it through the source code later.
+:::tip
+You may be wondering why `Flush(), Wait()` is needed, and I will analyze it through the source code later.
+:::
 
 There are 3 steps to use as a whole:
 
@@ -160,8 +163,9 @@ There are 3 steps to use as a whole:
 
 ## Source code analysis
 
-> [!TIP]
-> The main analysis here is `periodicalexecutor`, because the other two commonly used `executors` rely on it.
+:::tip
+The main analysis here is `periodicalexecutor`, because the other two commonly used `executors` rely on it.
+:::
 
 
 
@@ -303,8 +307,9 @@ In looking at the source code, I thought about some other design ideas, do you h
 
 - In the analysis of `executors`, you will find that there are `lock` in many places
 
-> [!TIP]
-> There is a race condition in `go test`, use locking to avoid this situation
+:::tip
+There is a race condition in `go test`, use locking to avoid this situation
+:::
 
 - After analyzing `confirmChan`, it was found that this [submit](https://github.com/zeromicro/go-zero/commit/9d9399ad1014c171cc9bd9c87f78b5d2ac238ce4) only appeared, why is it designed like this?
 

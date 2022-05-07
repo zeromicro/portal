@@ -81,8 +81,9 @@ TaskContainer interface {
 - `chunkexecutor`：`periodicalexecutor` + `chunkContainer`
 
 
-> [!TIP]
-> 所以你想完成自己的 `executor`，可以实现 `container` 的这 3 个接口，再结合 `periodicalexecutor` 就行
+:::tip
+所以你想完成自己的 `executor`，可以实现 `container` 的这 3 个接口，再结合 `periodicalexecutor` 就行
+:::
 
 所以回到👆那张图，我们的重点就放在 `periodicalexecutor`，看看它是怎么设计的？
 
@@ -117,8 +118,9 @@ func (dts *DailyTask) Init() {
 }
 ```
 
-> [!TIP]
-> 额外介绍一下：`clickhouse`  适合大批量的插入，因为 insert 速度很快，大批量 insert 更能充分利用 clickhouse
+:::tip
+额外介绍一下：`clickhouse`  适合大批量的插入，因为 insert 速度很快，大批量 insert 更能充分利用 clickhouse
+:::
 
 
 主体业务逻辑编写：
@@ -151,8 +153,9 @@ func (dts *DailyTask) insertNewData(ch chan interface{}, sqlFromDb *model.Task) 
 }
 ```
 
-> [!TIP]
-> 可能会疑惑为什么要 `Flush(), Wait()` ，后面会通过源码解析一下
+:::tip
+可能会疑惑为什么要 `Flush(), Wait()` ，后面会通过源码解析一下
+:::
 
 使用上总体分为 3 步：
 
@@ -165,8 +168,9 @@ func (dts *DailyTask) insertNewData(ch chan interface{}, sqlFromDb *model.Task) 
 
 ## 源码分析
 
-> [!TIP]
-> 此处主要分析 `periodicalexecutor`，因为其他两个常用的 `executor` 都依赖它
+:::tip
+此处主要分析 `periodicalexecutor`，因为其他两个常用的 `executor` 都依赖它
+:::
 
 
 
@@ -308,8 +312,9 @@ func (pe *PeriodicalExecutor) Wait() {
 
 - 在分析 `executors` 中，会发现很多地方都有 `lock`
 
-> [!TIP]
-> `go test` 存在竞态，使用加锁来避免这种情况
+:::tip
+`go test` 存在竞态，使用加锁来避免这种情况
+:::
 
 - 在分析 `confirmChan` 时发现，`confirmChan` 在此次[提交](https://github.com/zeromicro/go-zero/commit/9d9399ad1014c171cc9bd9c87f78b5d2ac238ce4)才出现，为什么会这么设计？
 
