@@ -322,5 +322,8 @@
   },
   "to visit the old document!": {
     "message": ""
+  },
+  "locale-en": {
+    "message": "locale-cn"
   }
 }

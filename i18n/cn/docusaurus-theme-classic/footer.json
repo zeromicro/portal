@@ -41,7 +41,7 @@
   },
   "link.item.label.Older Doc": {
     "message": "旧文档",
-    "description": "The label of footer link with label=Older Doc linking to https://go-zero.dev/cn"
+    "description": "The label of footer link with label=Older Doc linking to https://legacy.go-zero.dev"
   },
   "link.item.label.Blog": {
     "message": "博客",
