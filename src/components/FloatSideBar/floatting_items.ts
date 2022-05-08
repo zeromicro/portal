@@ -1,6 +1,7 @@
 import { FloatingItem } from "./types"
 
-export const items: FloatingItem[] = [
+export const enItems: FloatingItem[] = []
+export const cnItems: FloatingItem[] = [
   {
     items: [
       {
@@ -11,9 +12,9 @@ export const items: FloatingItem[] = [
         height: 100,
       },
       {
-        label: "微信公众号2",
-        url: require("@site/static/img/pages/index/floating/qrcode.png")
-          .default,
+        label: "扫码进群",
+        url:
+          "https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/wechat.jpg",
         width: 100,
         height: 100,
       },
@@ -26,9 +27,11 @@ export const items: FloatingItem[] = [
         label: "",
         url: require("@site/static/img/pages/index/floating/live.png").default,
         width: 300,
-        height: 600,
+        height: 520,
       },
     ],
     label: "直播预告",
+    style: { background: "#4446f4" },
+    visible: false,
   },
 ]
