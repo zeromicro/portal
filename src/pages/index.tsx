@@ -7,6 +7,7 @@ import customFields from "../config/customFields"
 import Button from "@theme/Button"
 import Layout from "../theme/Layout"
 import SvgImage from "../components/SvgImage"
+import FloatSideBar from "../components/FloatSideBar"
 
 import doCss from "../css/index/docker.module.css"
 import feCss from "../css/index/feature.module.css"
@@ -23,6 +24,7 @@ const Top = () => {
     <section
       className={clsx(seCss["section--inner"], seCss["section--slim--accent"])}
     >
+      <FloatSideBar />
       <div className={juCss.jumbotron}>
         <h1
           className={clsx(
