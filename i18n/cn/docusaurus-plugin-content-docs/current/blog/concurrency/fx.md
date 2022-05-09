@@ -3,313 +3,132 @@ title: 数据的流处理利器
 authors: kevwan
 ---
 
-# 数据的流处理利器
+# fx
 
-流处理(Stream processing)是一种计算机编程范式，其允许给定一个数据序列(流处理数据源)，一系列数据操作(函数)被应用到流中的每个元素。同时流处理工具可以显著提高程序员的开发效率，允许他们编写有效、干净和简洁的代码。
+`fx`是一个完整的流处理组件。
+它与 `MapReduce` 类似，`fx` 也有一个并发处理函数：`Parallel(fn, options)`。但同时，它又不仅仅是并发处理。`From(chan)`, `Map(fn)`, `Filter(fn)`, `Reduce(fn)`等，从数据源读入流，处理流数据，最后聚合流数据。这是不是有点像Java Lambda？如果你以前是个Java开发者，看到这个就能明白基本的设计。
 
-流数据处理在我们的日常工作中非常常见，举个例子，我们在业务开发中往往会记录许多业务日志，这些日志一般是先发送到Kafka，然后再由Job消费Kafaka写到elasticsearch，在进行日志流处理的过程中，往往还会对日志做一些处理，比如过滤无效的日志，做一些计算以及重新组合日志等等，示意图如下:
+##整体API
+让我们来了解一下 `fx` 是如何整体构建的。
+![dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png](../../resource/dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png)
 
-![fx_log](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/fx_log.png)
+标记的部分是整个`fx`中最重要的部分。
 
-### 流处理工具fx
-
-[gozero](https://github.com/zeromicro/go-zero)是一个功能完备的微服务框架，框架中内置了很多非常实用的工具，其中就包含流数据处理工具[fx](https://github.com/zeromicro/go-zero/tree/master/core/fx)，下面我们通过一个简单的例子来认识下该工具：
-
-```go
-package main
-
-import (
-	"fmt"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
-
-	"github.com/zeromicro/go-zero/core/fx"
-)
-
-func main() {
-	ch := make(chan int)
-
-	go inputStream(ch)
-	go outputStream(ch)
-
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, syscall.SIGTERM, syscall.SIGINT)
-	<-c
-}
-
-func inputStream(ch chan int) {
-	count := 0
-	for {
-		ch <- count
-		time.Sleep(time.Millisecond * 500)
-		count++
-	}
-}
-
-func outputStream(ch chan int) {
-	fx.From(func(source chan<- interface{}) {
-		for c := range ch {
-			source <- c
-		}
-	}).Walk(func(item interface{}, pipe chan<- interface{}) {
-		count := item.(int)
-		pipe <- count
-	}).Filter(func(item interface{}) bool {
-		itemInt := item.(int)
-		if itemInt%2 == 0 {
-			return true
-		}
-		return false
-	}).ForEach(func(item interface{}) {
-		fmt.Println(item)
-	})
-}
-```
-
-inputStream函数模拟了流数据的产生，outputStream函数模拟了流数据的处理过程，其中From函数为流的输入，Walk函数并发的作用在每一个item上，Filter函数对item进行过滤为true保留为false不保留，ForEach函数遍历输出每一个item元素。
+1. 从诸如 `From(fn)` 等API中，产生一个数据流 `Stream` 。
+2. 一个用于转换、聚合和评估 `Stream` 的API集合
 
 
+所以列出目前支持的`Stream API`。
 
-### 流数据处理中间操作
-
-一个流的数据处理可能存在许多的中间操作，每个中间操作都可以作用在流上。就像流水线上的工人一样，每个工人操作完零件后都会返回处理完成的新零件，同理流处理中间操作完成后也会返回一个新的流。
-
-![fx_middle](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/fx_middle.png)
-
-fx的流处理中间操作:
-
-| 操作函数 | 功能                                      | 输入                         |
-| -------- | ----------------------------------------- | ---------------------------- |
-| Distinct | 去除重复的item                            | KeyFunc，返回需要去重的key   |
-| Filter   | 过滤不满足条件的item                      | FilterFunc，Option控制并发量 |
-| Group    | 对item进行分组                            | KeyFunc，以key进行分组       |
-| Head     | 取出前n个item，返回新stream               | int64保留数量                |
-| Map      | 对象转换                                  | MapFunc，Option控制并发量    |
-| Merge    | 合并item到slice并生成新stream             |                              |
-| Reverse  | 反转item                                  |                              |
-| Sort     | 对item进行排序                            | LessFunc实现排序算法         |
-| Tail     | 与Head功能类似，取出后n个item组成新stream | int64保留数量                |
-| Walk     | 作用在每个item上                          | WalkFunc，Option控制并发量   |
-
-下图展示了每个步骤和每个步骤的结果:
-
-![fx_step_result](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/fx_step_result.png)
+| API | 函数 |
+|---|---|
+| `Distinct(fn)` | 在fn中选择一个特定的项目类型，并将其去掉。|
+| `Filter(fn, option)` | fn指定特定的规则，符合规则的 `element` 被传递到下一个 `stream`。|
+| `Group(fn)` | 根据fn，`stream` 中的元素被分为不同的组。|
+| `Head(num)` | 取出 `stream` 中的前n个元素，生成一个新的 `stream`。|
+| `Map(fn, option)` | 将每个元素转换为另一个对应的元素，并将其传递给下一个 `stream`。|
+| `Merge()` | 将所有的ele合并成一个 `slice`，并生成一个新的 `stream`。|
+| `Reverse()` | 反转 `stream` 中的元素。[使用双指针] | 
+| `Sort(fn)` | 根据 fn 对 `stream` 中的元素进行排序。
+| `Tail(num)` | 取出 `stream` 的最后 n 个元素，生成一个新的 `stream`。[使用一个双链表] | 
+| `Walk(fn, option)` | 将fn应用于 `source` 的每个元素。生成一个新的 `stream` |
 
 
-### 用法与原理分析
+不再生成一个新的`stream`，做最后的评估操作。
 
-#### From
+| API | 函数 |
+|---|---|
+| `ForAll(fn)` | 根据fn处理`stream`，不再生成 `stream` [评估操作] |
+| `ForEach(fn)` | 对 `stream` 中的所有元素进行fn[求值操作] !
+| `Parallel(fn, option)` | 同时对每个 `element` 应用给定的fn和给定数量的worker[求值操作] |
+| `Reduce(fn)` | 直接处理 `stream` [评估操作] |
+| `Done()` | 不做任何事情，等待所有操作完成 |
 
-通过From函数构建流并返回Stream，流数据通过channel进行存储：
+## 用法
 
 ```go
-// 例子
-s := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
+result := make(map[string]string)
 fx.From(func(source chan<- interface{}) {
-  for _, v := range s {
-    source <- v
+  for _, item := range data {
+    source <- item
   }
-})
+}).Walk(func(item interface{}, pipe chan<- interface{}) {
+  each := item.(*model.ClassData)
 
-// 源码
-func From(generate GenerateFunc) Stream {
-	source := make(chan interface{})
-
-	go func() {
-		defer close(source)
-    // 构造流数据写入channel
-		generate(source)
-	}()
-
-	return Range(source)
-}
-```
-
-#### Filter
-
-Filter函数提供过滤item的功能，FilterFunc定义过滤逻辑true保留item，false则不保留:
-
-```go
-// 例子 保留偶数
-s := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
-fx.From(func(source chan<- interface{}) {
-  for _, v := range s {
-    source <- v
+  class, err := l.rpcLogic.GetClassInfo()
+  if err != nil {
+    l.Errorf("get class %s failed: %s", each.ClassId, err.Error())
+    return
   }
-}).Filter(func(item interface{}) bool {
-  if item.(int)%2 == 0 {
-    return true
+  
+  students, err := l.rpcLogic.GetUsersInfo(class.ClassId)
+  if err != nil {
+    l.Errorf("get students %s failed: %s", each.ClassId, err.Error())
+    return
   }
-  return false
-})
 
-// 源码
-func (p Stream) Filter(fn FilterFunc, opts ...Option) Stream {
-	return p.Walk(func(item interface{}, pipe chan<- interface{}) {
-    // 执行过滤函数true保留，false丢弃
-		if fn(item) {
-			pipe <- item
-		}
-	}, opts...)
-}
-```
-
-#### Group
-
-Group对流数据进行分组，需定义分组的key，数据分组后以slice存入channel:
-
-```go
-// 例子 按照首字符"g"或者"p"分组，没有则分到另一组
-	ss := []string{"golang", "google", "php", "python", "java", "c++"}
-	fx.From(func(source chan<- interface{}) {
-		for _, s := range ss {
-			source <- s
-		}
-	}).Group(func(item interface{}) interface{} {
-		if strings.HasPrefix(item.(string), "g") {
-			return "g"
-		} else if strings.HasPrefix(item.(string), "p") {
-			return "p"
-		}
-		return ""
-	}).ForEach(func(item interface{}) {
-		fmt.Println(item)
-	})
-}
-
-// 源码
-func (p Stream) Group(fn KeyFunc) Stream {
-  // 定义分组存储map
-	groups := make(map[interface{}][]interface{})
-	for item := range p.source {
-    // 用户自定义分组key
-		key := fn(item)
-    // key相同分到一组
-		groups[key] = append(groups[key], item)
-	}
-
-	source := make(chan interface{})
-	go func() {
-		for _, group := range groups {
-      // 相同key的一组数据写入到channel
-			source <- group
-		}
-		close(source)
-	}()
-
-	return Range(source)
-}
-```
-
-#### Reverse
-
-reverse可以对流中元素进行反转处理:
-
-![](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/fx_reverse.png)
-
-```go
-// 例子
-fx.Just(1, 2, 3, 4, 5).Reverse().ForEach(func(item interface{}) {
-  fmt.Println(item)
-})
-
-// 源码
-func (p Stream) Reverse() Stream {
-	var items []interface{}
-  // 获取流中数据
-	for item := range p.source {
-		items = append(items, item)
-	}
-	// 反转算法
-	for i := len(items)/2 - 1; i >= 0; i-- {
-		opp := len(items) - 1 - i
-		items[i], items[opp] = items[opp], items[i]
-	}
-	
-  // 写入流
-	return Just(items...)
-}
-```
-
-#### Distinct
-
-distinct对流中元素进行去重，去重在业务开发中比较常用，经常需要对用户id等做去重操作:
-
-```go
-// 例子
-fx.Just(1, 2, 2, 2, 3, 3, 4, 5, 6).Distinct(func(item interface{}) interface{} {
-  return item
+  pipe <- &classObj{
+    classId: each.ClassId
+    studentIds: students
+  }
 }).ForEach(func(item interface{}) {
-  fmt.Println(item)
+    o := item.(*classObj)
+    result[o.classId] = o.studentIds
 })
-// 结果为 1，2，3，4，5，6
-
-// 源码
-func (p Stream) Distinct(fn KeyFunc) Stream {
-	source := make(chan interface{})
-
-	threading.GoSafe(func() {
-		defer close(source)
-		// 通过key进行去重，相同key只保留一个
-		keys := make(map[interface{}]lang.PlaceholderType)
-		for item := range p.source {
-			key := fn(item)
-      // key存在则不保留
-			if _, ok := keys[key]; !ok {
-				source <- item
-				keys[key] = lang.Placeholder
-			}
-		}
-	})
-
-	return Range(source)
-}
 ```
 
-#### Walk
+1. `From()`从一个 `slice` 生成 `stream`。
+2. `Walk()` 接收一个 `stream`，对流中的每个 `ele` 进行转换和重组，生成一个新的 `stream`。
+3. 最后，`stream` 的输出（`fmt.Println`），存储（`map,slice`）和持久化（`db操作`）由 `evaluation operation` 完成。
 
-Walk函数并发的作用在流中每一个item上，可以通过WithWorkers设置并发数，默认并发数为16，最小并发数为1，如设置unlimitedWorkers为true则并发数无限制，但并发写入流中的数据由defaultWorkers限制，WalkFunc中用户可以自定义后续写入流中的元素，可以不写入也可以写入多个元素:
+
+
+## 简单分析一下
+
+`fx` 中的函数命名是有语义的。开发人员只需要知道业务逻辑需要什么样的转换，并调用匹配的函数。
+
+
+因此，下面是对几个比较典型的函数的简要分析。
+
+### Walk()
+
+`Walk()` 是由整个 `fx` 的多个函数作为底层实现的，如 `Map()`、`Filter()` 等。
+
+所以本质是：`Walk()` 负责将传递的函数同时应用于 **输入流** 的每一个 `ele'，并生成一个新的 `stream`。
+
+按照源代码，它被分为两个子函数：按 `worker` 自定义计数，默认计数为 `worker`。
 
 ```go
-// 例子
-fx.Just("aaa", "bbb", "ccc").Walk(func(item interface{}, pipe chan<- interface{}) {
-  newItem := strings.ToUpper(item.(string))
-  pipe <- newItem
-}).ForEach(func(item interface{}) {
-  fmt.Println(item)
-})
-
-// 源码
+// Custom workers
 func (p Stream) walkLimited(fn WalkFunc, option *rxOptions) Stream {
 	pipe := make(chan interface{}, option.workers)
 
 	go func() {
 		var wg sync.WaitGroup
+    // channel<- If the set number of workers is reached, the channel is blocked, so as to control the number of concurrency.
+    // Simple goroutine pool
 		pool := make(chan lang.PlaceholderType, option.workers)
 
 		for {
-      // 控制并发数量
+      // Each for loop will open a goroutine. If it reaches the number of workers, it blocks
 			pool <- lang.Placeholder
 			item, ok := <-p.source
 			if !ok {
 				<-pool
 				break
 			}
-
+			// Use WaitGroup to ensure the integrity of task completion
 			wg.Add(1)
-			go func() {
+			threading.GoSafe(func() {
 				defer func() {
 					wg.Done()
 					<-pool
 				}()
-				// 作用在每个元素上
+
 				fn(item, pipe)
-			}()
+			})
 		}
 
-    // 等待处理完成
 		wg.Wait()
 		close(pipe)
 	}()
@@ -318,25 +137,99 @@ func (p Stream) walkLimited(fn WalkFunc, option *rxOptions) Stream {
 }
 ```
 
-### 并发处理
+- 使用 `buffered channel` 作为并发队列，限制并发的数量。
+- `waitgroup`来保证任务完成的完整性
 
-fx工具除了进行流数据处理以外还提供了函数并发功能，在微服务中实现某个功能往往需要依赖多个服务，并发的处理依赖可以有效的降低依赖耗时，提升服务的性能。
+另一个`walkUnlimited()`：也使用`waitgroup`进行并发控制，因为没有自定义的并发限制，所以没有其他 `channel` 进行并发控制。
 
-![concurrent_denpendency](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/concurrent_denpendency.png)
+
+### Tail()
+
+介绍这个主要是因为`ring`是一个双链表，简单的算法还是很有意思的。
 
 ```go
-fx.Parallel(func() {
-  userRPC() // 依赖1
-}, func() {
-  accountRPC() // 依赖2
-}, func() {
-  orderRPC() // 依赖3
-})
+func (p Stream) Tail(n int64) Stream {
+	source := make(chan interface{})
+
+	go func() {
+		ring := collection.NewRing(int(n))
+    // Sequence insertion, the order of the source is consistent with the order of the ring
+		for item := range p.source {
+			ring.Add(item)
+		}
+    // Take out all the items in the ring
+		for _, item := range ring.Take() {
+			source <- item
+		}
+		close(source)
+	}()
+
+	return Range(source)
+}
 ```
 
-注意fx.Parallel进行依赖并行处理的时候不会有error返回，如需有error返回或者有一个依赖报错需要立马结束依赖请求请使用[MapReduce](https://gocn.vip/topics/10941)工具进行处理。
+至于为什么 `Tail()` 可以取出源头的最后n个，这就留给大家去微调了。下面是我的理解。
+![f93c621571074e44a2d403aa25e7db6f_tplv-k3u1fbpfcp-zoom-1.png](../../resource/f93c621571074e44a2d403aa25e7db6f_tplv-k3u1fbpfcp-zoom-1.png)
 
-### 总结
+:::tip
 
-本篇文章介绍了流处理的基本概念和gozero中的流处理工具fx，在实际的生产中流处理场景应用也非常多，希望本篇文章能给大家带来一定的启发，更好的应对工作中的流处理场景。
+假设有以下情况，`Tail(5)`。
+- `水流大小` ：7
+- `环的大小`：5
+
+:::
+
+
+
+这里你可以使用拉开环形链表的方法，此时，用对称轴除以全长，翻转多余的元素，以下元素就是 `Tail(5)` 需要的部分。
+
+
+:::tip
+这里使用图表是为了更清晰的表现，但大家也应该看一下代码。要测试的算法 
+:::
+
+
+
+### 流变换设计
+
+
+分析整个 `fx`，你会发现，整体设计遵循一个设计模板。
+
+```go
+func (p Stream) Transform(fn func(item interface{}) interface{}) Stream {
+	// make channel
+	source := make(chan interface{})
+    // goroutine worker
+	go func() {
+		// transform
+        for item := range p.source {
+			...
+			source <- item
+			...
+		}
+		...
+		// Close the input, but still can output from this stream. Prevent memory leaks
+		close(source)
+	}()
+	// channel -> stream
+	return Range(source)
+}
+```
+
+- `channel` 作为流的容器
+- 开启 `goroutine` 来转换 `source`，聚合，并发送至 `channel`。
+- 已处理，`close(outputStream)`。
+- `channel -> stream`。
+
+
+
+## 总结
+
+这就结束了对 `fx` 的基本介绍。如果你对其他的API源代码感兴趣，你可以按照上面的API列表逐一阅读。
+
+同时，也建议你看一下`java stream`的API，你可以对这个 `stream call` 有更深的了解。
+
+同时，在`go-zero`中还有许多有用的组件工具。良好的使用工具将大大有助于提高服务性能和开发效率。希望这篇文章能给你带来一些收获。
+
+
 
