@@ -46,4 +46,7 @@ logx.DisableStat()
 // client, _ := zrpc.NewClientWithTarget("127.0.0.1:8888")
 ```
 
+### 10. go-zero缓存默认是用db0? 可以redis配置一下用其它db吗?
+
+
 faq会不定期更新大家遇到的问题，也欢迎大家把常见问题通过pr写在这里。
