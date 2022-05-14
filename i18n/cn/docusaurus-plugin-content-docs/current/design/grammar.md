@@ -517,7 +517,7 @@ eg1：不规范写法
   jwt: Auth
   group: foo
   middleware: AuthMiddleware
-  prefix api
+  prefix: api
 )
 service foo-api{
   @doc(
