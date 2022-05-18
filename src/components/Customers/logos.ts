@@ -271,4 +271,11 @@ const logos: CustomerLogo[] = [
     height: 60,
     filter: false,
   },
+  {
+    src: require("@site/static/img/pages/customers/gaodeer.png").default,
+    alt: "高小鹿",
+    width: 200,
+    height: 60,
+    filter: false,
+  },
 ]
