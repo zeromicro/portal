@@ -185,4 +185,4 @@ As in the above example, developers only need to wrap all operations in **transa
 
 ## Distributed transactions
 
-go-zero has deeply cooperated with [dtm](https://github.com/dtm-labs/dtm) and has natively supported distributed transactions, see [distributed-transaction](../../community/distributed-transaction) for details
+go-zero has deeply cooperated with [dtm](https://github.com/dtm-labs/dtm) and has natively supported distributed transactions, see [distributed-transaction](../../eco/distributed-transaction) for details

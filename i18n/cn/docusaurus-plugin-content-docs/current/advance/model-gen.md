@@ -54,5 +54,5 @@ $ tree
 ## 更多
 对于持久化数据，如果需要更灵活的数据库能力，包括事务能力，可以参考 [Mysql](../blog/showcase/mysql)
 
-如果需要分布式事务的能力，可以参考 [分布式事务支持](../community/distributed-transaction.md)
+如果需要分布式事务的能力，可以参考 [分布式事务支持](../eco/distributed-transaction)
 

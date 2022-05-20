@@ -60,4 +60,4 @@ $ tree
 ## More
 For persisting data, if more flexible database capabilities are required, including transactional capabilities, see [Mysql](../blog/showcase/mysql)
 
-For distributed transaction capabilities, see [distributed-transaction.md](../community/distributed-transaction)
+For distributed transaction capabilities, see [distributed-transaction.md](../eco/distributed-transaction)

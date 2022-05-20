@@ -190,4 +190,4 @@ err := usermodel.conn.Transact(func(session sqlx.Session) error {
 
 ## 分布式事务
 
-go-zero 与 [dtm](https://github.com/dtm-labs/dtm) 深度合作，原生的支持了分布式事务，详情参见 [分布式事务支持](../../community/distributed-transaction.md)
+go-zero 与 [dtm](https://github.com/dtm-labs/dtm) 深度合作，原生的支持了分布式事务，详情参见 [分布式事务支持](../../eco/distributed-transaction)
