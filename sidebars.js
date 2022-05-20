@@ -145,6 +145,10 @@ module.exports = {
     },
     {
       type: "doc",
+      id: "eco/distributed-transaction",
+    },
+    {
+      type: "doc",
       id: "eco/showcase",
     },
   ].filter(Boolean),

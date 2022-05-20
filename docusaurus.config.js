@@ -197,6 +197,10 @@ const config = {
               to: "/docs/eco/editor",
             },
             {
+              label: "Distributed Transaction (DTM)",
+              to: "/docs/eco/distributed-transaction",
+            },
+            {
               label: "Showcase",
               to: "/docs/eco/showcase",
             },

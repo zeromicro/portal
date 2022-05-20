@@ -114,5 +114,9 @@
   "item.label.goctl": {
     "message": "goctl",
     "description": "Navbar item with label goctl"
+  },
+  "item.label.Distributed Transaction (DTM)": {
+    "message": "分布式事务 (DTM)",
+    "description": "Navbar item with label Distributed Transaction (DTM)"
   }
 }
