@@ -278,4 +278,11 @@ const logos: CustomerLogo[] = [
     height: 60,
     filter: false,
   },
+  {
+    src: require("@site/static/img/pages/customers/open-dapper.png").default,
+    alt: "飞视（苏州）数字技术",
+    width: 200,
+    height: 60,
+    filter: false,
+  },
 ]
