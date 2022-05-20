@@ -185,7 +185,7 @@ const config = {
           ],
         },
         {
-          label: "Tool",
+          label: "Eco",
           position: "left",
           items: [
             {
@@ -196,6 +196,10 @@ const config = {
               label: "Editor Plugin",
               to: "/docs/eco/editor",
             },
+            {
+              label: "Showcase",
+              to: "/docs/eco/showcase",
+            },
           ],
         },
         {
@@ -205,10 +209,6 @@ const config = {
             {
               label: "About us",
               to: "/docs/community/about-us",
-            },
-            {
-              label: "Showcase",
-              to: "/docs/community/showcase",
             },
             {
               label: "Contributing",

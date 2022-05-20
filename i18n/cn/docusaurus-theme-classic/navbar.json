@@ -19,9 +19,9 @@
     "message": "文档",
     "description": "Navbar item with label Docs"
   },
-  "item.label.Tool": {
+  "item.label.Eco": {
     "message": "生态",
-    "description": "Navbar item with label Tool"
+    "description": "Navbar item with label Eco"
   },
   "item.label.Community": {
     "message": "社区",

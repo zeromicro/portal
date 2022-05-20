@@ -143,6 +143,10 @@ module.exports = {
       type: "doc",
       id: "eco/vscode",
     },
+    {
+      type: "doc",
+      id: "eco/showcase",
+    },
   ].filter(Boolean),
   community: [
     {
@@ -156,10 +160,6 @@ module.exports = {
     {
       type: "doc",
       id: "community/contributor",
-    },
-    {
-      type: "doc",
-      id: "community/showcase",
     },
   ].filter(Boolean),
   design: [
