@@ -32,6 +32,6 @@ export const cnItems: FloatingItem[] = [
     ],
     label: "直播预告",
     style: { background: "#4446f4" },
-    visible: false,
+    visible: true,
   },
 ]
