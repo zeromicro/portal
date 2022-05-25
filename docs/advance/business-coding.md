@@ -83,7 +83,7 @@ func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginReply, error) {
         return nil, errors.New("Invalid parameter")
     }
     
-    userInfo, err := l.svcCtx.UserModel.FindOneByNumber(req.Username)
+    userInfo, err := l.svcCtx.UserModel.FindOneByNumber(l.ctx, req.Username)
     switch err {
     case nil:
     case model.ErrNotFound:
