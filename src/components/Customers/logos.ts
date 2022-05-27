@@ -285,4 +285,11 @@ const logos: CustomerLogo[] = [
     height: 60,
     filter: false,
   },
+  {
+    src: require("@site/static/img/pages/customers/uniontech.jpeg").default,
+    alt: "统信软件",
+    width: 200,
+    height: 60,
+    filter: false,
+  },
 ]
