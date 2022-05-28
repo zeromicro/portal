@@ -75,6 +75,13 @@ const logos: CustomerLogo[] = [
     filter: false,
   },
   {
+    src: require("@site/static/img/pages/customers/dewu.png").default,
+    alt: "得物",
+    width: 200,
+    height: 40,
+    filter: false,
+  },
+  {
     src: require("@site/static/img/pages/customers/laoyuegou.png").default,
     alt: "捞月狗",
     width: 200,
