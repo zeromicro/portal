@@ -49,7 +49,7 @@ Content-Length: 19
 * 首先在common中添加一个`baseerror.go`文件，并填入代码
     ```shell
     $ cd common
-    $ mkdir errorx&&cd errorx
+    $ mkdir errorx && cd errorx
     $ vim baseerror.go
     ```
     ```go
