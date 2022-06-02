@@ -1,6 +1,6 @@
 # 插件中心
 
-goctl api提供了对plugin命令来支持对api进行功能扩展，当goctl api中的功能不满足你的使用，
+goctl api提供了plugin命令来支持对api进行功能扩展，当goctl api中的功能不满足你的使用，
 或者需要对goctl api进行功能自定义的扩展，那么插件功能将非常适合开发人员进行自给自足，详情见
 [goctl plugin](../goctl/plugin)
 
