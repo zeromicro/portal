@@ -80,6 +80,7 @@
     }
     
     func (m *ExampleMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
+    	logx.Info("example middle")
         return func(w http.ResponseWriter, r *http.Request) {
             // TODO generate middleware implement function, delete after code implementation
     

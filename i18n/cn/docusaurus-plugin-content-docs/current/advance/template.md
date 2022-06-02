@@ -56,7 +56,7 @@ func Response(w http.ResponseWriter, resp interface{}, err error) {
 
 ## 修改`handler`模板
 ```shell
-$ vim ~/.goctl/api/handler.tpl
+$ vim ~/.goctl/${goctl版本号}/api/handler.tpl
 ```
 将模板替换为以下内容
 ```go
@@ -93,7 +93,7 @@ func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
 ② 自定义模板内容
 
 :::tip
-1.如果本地没有`~/.goctl/api/handler.tpl`文件，可以通过模板初始化命令`goctl template init`进行初始化
+1.如果本地没有`~/.goctl/${goctl版本号}/api/handler.tpl`文件，可以通过模板初始化命令`goctl template init`进行初始化
 :::
 
 ## 修改模板前后对比
