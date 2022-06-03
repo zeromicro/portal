@@ -26,12 +26,12 @@ export const cnItems: FloatingItem[] = [
       {
         label: "",
         url: require("@site/static/img/pages/index/floating/live.png").default,
-        width: 300,
+        width: 257,
         height: 520,
       },
     ],
     label: "直播预告",
-    style: { background: "#4446f4" },
-    visible: false,
+    style: { background: "#050a5c" },
+    visible: true,
   },
 ]
