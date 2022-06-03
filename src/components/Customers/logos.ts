@@ -299,4 +299,18 @@ const logos: CustomerLogo[] = [
     height: 60,
     filter: false,
   },
+  {
+    src: require("@site/static/img/pages/customers/csdh.png").default,
+    alt: "鼎翰文化股份有限公司",
+    width: 200,
+    height: 60,
+    filter: true,
+  },
+  {
+    src: require("@site/static/img/pages/customers/puerhub.png").default,
+    alt: "茶码纹化",
+    width: 200,
+    height: 60,
+    filter: false,
+  },
 ]

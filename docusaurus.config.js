@@ -152,6 +152,10 @@ const config = {
               to: "/docs/quick-start/quick-start",
             },
             {
+              label: "Components",
+              to: "/docs/component/components"
+            },
+            {
               label: "Guides",
               to: "/docs/advance/advance",
             }
@@ -344,7 +348,7 @@ const config = {
           rehypePlugins: [katex],
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: ({locale, docPath}) => {
-            return locale==='en'?`https://github.com/zeromicro/portal/edit/main/docs/${docPath}`:`https://github.com/zeromicro/portal/edit/main/i18n/cn/docusaurus-plugin-content-docs/current/${docPath}`
+            return locale === 'en' ? `https://github.com/zeromicro/portal/edit/main/docs/${docPath}` : `https://github.com/zeromicro/portal/edit/main/i18n/cn/docusaurus-plugin-content-docs/current/${docPath}`
           },
           showLastUpdateTime: true,
         },

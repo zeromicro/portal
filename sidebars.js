@@ -48,6 +48,14 @@ module.exports = {
       ],
     },
     {
+      label: "Components",
+      type: "category",
+      items:[
+        "component/components",
+        "component/logx"
+      ]
+    },
+    {
       label: "Guides",
       type: "category",
       items: [

@@ -118,5 +118,9 @@
   "item.label.Distributed Transaction (DTM)": {
     "message": "分布式事务 (DTM)",
     "description": "Navbar item with label Distributed Transaction (DTM)"
+  },
+  "item.label.Components": {
+    "message": "组件剖析",
+    "description": "Navbar item with label Components"
   }
 }
