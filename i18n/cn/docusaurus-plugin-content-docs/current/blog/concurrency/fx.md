@@ -8,7 +8,7 @@ authors: kevwan
 `fx`是一个完整的流处理组件。
 它与 `MapReduce` 类似，`fx` 也有一个并发处理函数：`Parallel(fn, options)`。但同时，它又不仅仅是并发处理。`From(chan)`, `Map(fn)`, `Filter(fn)`, `Reduce(fn)`等，从数据源读入流，处理流数据，最后聚合流数据。这是不是有点像Java Lambda？如果你以前是个Java开发者，看到这个就能明白基本的设计。
 
-##整体API
+## 整体API
 让我们来了解一下 `fx` 是如何整体构建的。
 ![dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png](../../resource/dc500acd526d40aabfe4f53cf5bd180a_tplv-k3u1fbpfcp-zoom-1.png)
 
@@ -94,7 +94,7 @@ fx.From(func(source chan<- interface{}) {
 
 `Walk()` 是由整个 `fx` 的多个函数作为底层实现的，如 `Map()`、`Filter()` 等。
 
-所以本质是：`Walk()` 负责将传递的函数同时应用于 **输入流** 的每一个 `ele'，并生成一个新的 `stream`。
+所以本质是：`Walk()` 负责将传递的函数同时应用于 **输入流** 的每一个 `ele`，并生成一个新的 `stream`。
 
 按照源代码，它被分为两个子函数：按 `worker` 自定义计数，默认计数为 `worker`。
 
