@@ -550,7 +550,7 @@ authors: kevwan
 * shorten api 调用
 
   ```shell
-  curl -i "http://localhost:8888/shorten?url=http://www.xiaoheiban.cn"
+  $ curl -i "http://localhost:8888/shorten?url=http://www.xiaoheiban.cn"
   ```
 
   返回如下：
