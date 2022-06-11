@@ -27,7 +27,7 @@ Let's use an example to briefly explain how to create a `mysql` connected model:
 // datasource: mysql dsn
 heraMysql := sqlx.NewMysql(datasource)
 
-// 2. Call in the `servicecontext`, understand the logic layer call of the model upper layer
+// 2. Call in the `servicecontext`, for the logic layer above the model
 model.NewMysqlModel(heraMysql, tablename),
 
 // 3. model layer mysql operation

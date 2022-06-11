@@ -31,7 +31,7 @@ authors: kevwan
 // datasource: mysql dsn
 heraMysql := sqlx.NewMysql(datasource)
 
-// 2. 在 servicecontext 中调用，懂model上层的logic层调用
+// 2. 在 servicecontext 中调用，供model上层的logic层调用
 model.NewMysqlModel(heraMysql, tablename),
 
 // 3. model层 mysql operation
