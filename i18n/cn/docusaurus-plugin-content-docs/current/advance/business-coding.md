@@ -81,7 +81,7 @@ $ vim service/user/api/internal/logic/loginlogic.go
 ```
 
 ```go
-func (l *LoginLogic) Login(req types.LoginReq) (*types.LoginReply, error) {
+func (l *LoginLogic) Login(req *types.LoginReq) (*types.LoginReply, error) {
     if len(strings.TrimSpace(req.Username)) == 0 || len(strings.TrimSpace(req.Password)) == 0 {
         return nil, errors.New("参数错误")
     }
