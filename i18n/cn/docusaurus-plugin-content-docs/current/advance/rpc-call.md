@@ -122,7 +122,7 @@ $ service/user/rpc/internal/logic/getuserlogic.go
 ```
 ```go
 func (l *GetUserLogic) GetUser(in *user.IdReq) (*user.UserInfoReply, error) {
-    one, err := l.svcCtx.UserModel.FindOne(in.Id)
+    one, err := l.svcCtx.UserModel.FindOne(l.ctx, in.Id)
     if err != nil {
         return nil, err
     }
