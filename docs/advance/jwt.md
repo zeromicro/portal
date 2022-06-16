@@ -1,4 +1,4 @@
-# JWT
+# JSON Web Token (JWT)
 
 ## Summary
 > JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and independent method for securely transmitting information as JSON objects between parties. Since this information is digitally signed, it can be verified and trusted. The JWT can be signed using a secret (using the HMAC algorithm) or using a public/private key pair of RSA or ECDSA.
