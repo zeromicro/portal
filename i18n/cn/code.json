@@ -2,7 +2,7 @@
   "Make development easy": {
     "message": "缩短从需求到上线的距离"
   },
-  "go-zero is a web and rpc framework that with lots of engineering practices builtin": {
+  "go-zero is a web and rpc framework with many built-in engineering best practices.": {
     "message": "go-zero 是一个集成了各种工程实践的 web 和 rpc 框架"
   },
   "GETTING STARTED": {
@@ -131,7 +131,7 @@
   "resilience design, failure-oriented programming": {
     "message": "弹性设计，面向故障编程"
   },
-  "try best to be friendly to the business logic development, encapsulate the complexity": {
+  "business logic development friendly": {
     "message": "对业务开发友好，封装复杂度"
   },
   "one thing, one way": {
