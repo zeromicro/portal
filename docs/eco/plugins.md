@@ -6,7 +6,7 @@ Or you need to extend goctl api function customization, then the plug-in functio
 
 ## Plugin resources
 * [goctl-go-compact](https://github.com/zeromicro/goctl-go-compact)
-  Goctl's default route merges one file into one file
+  Goctl's default route merge all the routes in one file
 * [goctl-swagger](https://github.com/zeromicro/goctl-swagger)
   Generate swagger documents through api files
 * [goctl-php](https://github.com/zeromicro/goctl-php)
