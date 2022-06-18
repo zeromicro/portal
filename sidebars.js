@@ -295,6 +295,7 @@ module.exports = {
       items: [
         "blog/share/online-exchange",
         "blog/share/goctl-share-part-one",
+        "blog/share/goctl-share-part-two",
       ],
     },
   ].filter(Boolean),

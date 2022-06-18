@@ -1,3 +1,3 @@
 # goctl share part 1
 
-TODO
+Just for Chinese

@@ -1,9 +1,10 @@
 import { FloatingItem } from "./types"
 
 function showLive(){
-  const now = new Date().getTime()
-  const target = Date.parse("2022-06-18 20:00:00")
-  return now < target
+  // const now = new Date().getTime()
+  // const target = Date.parse("2022-06-18 20:00:00")
+  // return now < target
+  return false
 }
 
 export const enItems: FloatingItem[] = []
