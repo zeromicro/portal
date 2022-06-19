@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import clsx from "clsx"
 import { User } from "./types"
 import cuCss from "../../css/index/contributor.module.css"
@@ -14,9 +14,13 @@ const Slideshow = ({ nbElements }: Props) => {
   const [data, setData] = React.useState({
     contributors: initValue,
   })
-  React.useEffect(() => {
+  useEffect(() => {
     const contributors = getContributors()
-    setData({ contributors })
+    setData((old) => {
+      const newData = { ...old }
+      newData.contributors = contributors
+      return newData
+    })
   }, [data])
 
   const nbPanels = Math.ceil(data.contributors.length / nbElements)

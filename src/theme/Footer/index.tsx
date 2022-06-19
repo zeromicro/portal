@@ -134,8 +134,8 @@ const Footer = () => {
           </div>
           <p className={footerStyles.footer__tagline}>
             <Translate>
-              go-zero is a web and rpc framework with many built-in engineering best
-              practices.
+              go-zero is a web and rpc framework with many built-in engineering
+              best practices.
             </Translate>
           </p>
 
