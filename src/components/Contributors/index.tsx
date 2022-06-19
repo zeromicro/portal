@@ -17,7 +17,7 @@ const Slideshow = ({ nbElements }: Props) => {
   React.useEffect(() => {
     const contributors = getContributors()
     setData({ contributors })
-  }, [])
+  }, [data])
 
   const nbPanels = Math.ceil(data.contributors.length / nbElements)
   const panels = Array.from({ length: nbPanels }, (_, index) => index + 1)
