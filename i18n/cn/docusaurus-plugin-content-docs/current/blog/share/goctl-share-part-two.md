@@ -23,7 +23,7 @@
 **流程图**
 ![api](../../resource/bfca4b7b-4601-4a4d-abec-e0bd4b248dd2.png)
 
-### goctl model
+### goctl migrate
 
 **流程图**
 ![api](../../resource/19be3691-7a4a-4d49-adfa-a90551b4e51c.png)
@@ -64,7 +64,7 @@ $ github-compare urfave/cli spf13/cobra
 
 ### 3. 领域特定语言选择（DSL, optional）
 
-领域特定语言的选择，像 goctl 中的 api 和 rpc 功能一样，如果你的脚手架需要选择一套 DSL，那么 DSL 的选择也是必须要考虑的，自研还是选择成熟的 DSL，这都是要总和考虑的。
+领域特定语言的选择，像 goctl 中的 api 和 rpc 功能一样，如果你的脚手架需要选择一套 DSL，那么 DSL 的选择也是必须要考虑的，自研还是选择成熟的 DSL，这都是要综合考虑的。
 
 #### 3.1 自研 DSL
 1. 调研主流语言的 DSL 规范，如 Golang、yaml
