@@ -22,6 +22,25 @@
 在 `sqlc.NewNodeConn` 的时候可以通过可选参数 `cache.WithExpiry` 传递，如缓存时间控制为1天，代码如下:
 ```go
 sqlc.NewNodeConn(conn,redis,cache.WithExpiry(24*time.Hour))  
+
+// 默认生成的
+func NewMembersModel(conn sqlx.SqlConn, c cache.CacheConf) MembersModel {
+	return &customMembersModel{
+		defaultMembersModel: newMembersModel(conn, c),
+	}
+}
+
+
+// 修改后的
+func NewMembersModel(conn sqlx.SqlConn, c cache.CacheConf) MembersModel {
+	return &customMembersModel{
+		defaultMembersModel: &defaultMembersModel{
+			// 这里设置命中缓存和未命中缓存的过期时间
+			CachedConn: sqlc.NewConn(conn, c, cache.WithExpiry(time.Minute*2), cache.WithNotFoundExpiry(time.Minute)),
+			table:      "`members`",
+		},
+	}
+}
 ```
 
 ### 6. jwt鉴权怎么实现
@@ -44,6 +63,20 @@ logx.DisableStat()
 
 // mode3: ip直连mode
 // client, _ := zrpc.NewClientWithTarget("127.0.0.1:8888")
+```
+
+### 10. rpc 服务互相依赖启动挂掉问题 
+错误详情: rpc dial: discov://127.0.0.1:2379/user.rpc, error: context deadline exceeded, make sure rpc service "user.r
+pc" is already started
+
+解决方法: 在`yaml`配置文件配置增加`NonBlock`
+```
+UserRpc:
+  NonBlock: true
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
 ```
 
 faq会不定期更新大家遇到的问题，也欢迎大家把常见问题通过pr写在这里。
