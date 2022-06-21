@@ -19,10 +19,8 @@
 来生成，那么就失去了集中管理这些proto的意义。
 
 ### 5. model怎么控制缓存时间
-在 `sqlc.NewNodeConn` 的时候可以通过可选参数 `cache.WithExpiry` 传递，如缓存时间控制为1天，代码如下:
+在 `sqlc.NewConn` 的时候可以通过可选参数 `cache.WithExpiry` 传递，如缓存时间控制为1天，代码如下:
 ```go
-sqlc.NewNodeConn(conn,redis,cache.WithExpiry(24*time.Hour))  
-
 // 默认生成的
 func NewMembersModel(conn sqlx.SqlConn, c cache.CacheConf) MembersModel {
 	return &customMembersModel{
@@ -36,7 +34,7 @@ func NewMembersModel(conn sqlx.SqlConn, c cache.CacheConf) MembersModel {
 	return &customMembersModel{
 		defaultMembersModel: &defaultMembersModel{
 			// 这里设置命中缓存和未命中缓存的过期时间
-			CachedConn: sqlc.NewConn(conn, c, cache.WithExpiry(time.Minute*2), cache.WithNotFoundExpiry(time.Minute)),
+			CachedConn: sqlc.NewConn(conn, c, cache.WithExpiry(24*time.Hour), cache.WithNotFoundExpiry(time.Minute)),
 			table:      "`members`",
 		},
 	}
