@@ -70,7 +70,7 @@ type User struct {
 ```
 // 一个实际的insert model层操作
 func (um *UserModel) Insert(user *User) (int64, error) {
-    const insertsql = `insert into `+um.table+` (`+userBuilderQueryRows+`) values(?, ?, ?)`
+    const insertsql = `insert into `+um.table+` (`+userBuilderQueryRows+`) values(?, ?, ?, ?)`
     // insert op
     res, err := um.conn.Exec(insertsql, user.Avatar, user.UserName, user.Sex, user.MobilePhone)
     if err != nil {
@@ -129,12 +129,12 @@ func (um *UserModel) FindOne(uid int64) (*User, error) {
 
 上述是查询一条记录，如果需要查询多条记录时，可以使用 `conn.QueryRows()`
 ```go
-func (um *UserModel) FindOne(sex int) ([]*User, error) {
+func (um *UserModel) FindMany(sex int) ([]*User, error) {
     users := make([]*User, 0)
     const querysql = `select `+userBuilderQueryRows+` from `+um.table+` where sex=?`
     err := um.conn.QueryRows(&users, querysql, sex)
     if err != nil {
-        logx.Errorf("usersSex.findOne error, sex=%d, err=%s", uid, err.Error())
+        logx.Errorf("usersSex.findMany error, sex=%d, err=%s", uid, err.Error())
         if err == sqlx.ErrNotFound {
             return nil, ErrNotFound
         }
