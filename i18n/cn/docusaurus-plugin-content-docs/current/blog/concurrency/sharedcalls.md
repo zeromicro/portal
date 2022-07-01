@@ -21,7 +21,7 @@ go-zero微服务框架中提供了许多开箱即用的工具，好的工具不�
 func main() {
   const round = 5
   var wg sync.WaitGroup
-  barrier := syncx.NewSharedCalls()
+  barrier := syncx.NewSingleFlight()
 
   wg.Add(round)
   for i := 0; i < round; i++ {
