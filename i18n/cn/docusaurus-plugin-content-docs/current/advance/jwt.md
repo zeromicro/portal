@@ -227,7 +227,7 @@ $ vim /service/search/api/internal/logic/searchlogic.go
 ```
 添加一个log来输出从jwt解析出来的userId。
 ```go
-func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
+func (l *SearchLogic) Search(req *types.SearchReq) (*types.SearchReply, error) {
 	logx.Infof("userId: %v",l.ctx.Value("userId"))// 这里的key和生成jwt token时传入的key一致
 	return &types.SearchReply{}, nil
 }
