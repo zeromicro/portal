@@ -204,7 +204,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 $ vim /service/search/api/internal/logic/searchlogic.go
 ```
 ```go
-func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
+func (l *SearchLogic) Search(req *types.SearchReq) (*types.SearchReply, error) {
     userIdNumber := json.Number(fmt.Sprintf("%v", l.ctx.Value("userId")))
     logx.Infof("userId: %s", userIdNumber)
     userId, err := userIdNumber.Int64()
