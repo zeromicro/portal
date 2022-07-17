@@ -122,5 +122,9 @@
   "item.label.Components": {
     "message": "组件剖析",
     "description": "Navbar item with label Components"
+  },
+  "item.label.Tutorial": {
+    "message": "视频教程",
+    "description": "Navbar item with label Tutorial"
   }
 }

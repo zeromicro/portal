@@ -186,6 +186,10 @@ const config = {
               label: "Completion",
               to: "/docs/goctl/completion",
             },
+            {
+              label: "Tutorial",
+              to: "/docs/goctl/tutorial/tutorial",
+            },
           ],
         },
         {
