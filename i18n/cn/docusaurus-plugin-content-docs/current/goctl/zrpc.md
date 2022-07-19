@@ -57,7 +57,7 @@ cd greet && tree
 * 生成proto模板
 
   ```shell
-  $ goctl rpc template -o=user.proto
+  $ goctl rpc template --o=user.proto
   ```
 
   ```protobuf
