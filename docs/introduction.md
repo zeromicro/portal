@@ -37,7 +37,7 @@ At the beginning of 2018, we decided to re-design our system, from a monolithic 
   * less server resource consumption
 * Self-designed microservice architecture
   * I have rich experience on designing microservice architectures
-  * easy to location the problems
+  * easy to locate the problems
   * easy to extend the features
 
 ## 2. Design considerations
@@ -78,8 +78,8 @@ As shown below, go-zero implements layers of protection mechanisms:
 
 ## 4. Future development plans of go-zero
 
-* automatic generate API mock server code, make the client debugging easier
-* automacit generate simple integration tests for the server side from the .api files
+* automatic generation of API mock server code, make the client debugging easier
+* automatic generation of simple integration tests for the server side from the .api files
 
 ## 5. Installation
 
