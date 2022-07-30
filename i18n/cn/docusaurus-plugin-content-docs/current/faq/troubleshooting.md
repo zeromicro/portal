@@ -46,4 +46,14 @@ logx.DisableStat()
 // client, _ := zrpc.NewClientWithTarget("127.0.0.1:8888")
 ```
 
+### 10. 跨域
+```go
+srv := rest.MustNewServer(c, rest.WithCors())
+```
+ 
+单个域名的情况： 
+```go
+srv := rest.MustNewServer(c, rest.WithCors("http://example.com"))
+```
+
 faq会不定期更新大家遇到的问题，也欢迎大家把常见问题通过pr写在这里。
