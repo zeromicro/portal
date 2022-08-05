@@ -35,7 +35,7 @@ authors: anqiansong
 ![redis-cache-05](../../resource/redis-cache-05.png)
 
 从图以及上一篇文章[go-zero缓存设计之持久层缓存](redis-cache)中我们可以知道，内容列表的获取是没办法依赖缓存的，
-如果我们在业务层添加一层缓存用来存储列表中的关键信息（甚至完整信息），那么多行记录的访问不在是一个问题，这就是biz redis要做的事情。 接下来我们来看一下设计方案，假设内容系统中单行记录包含以下字段
+如果我们在业务层添加一层缓存用来存储列表中的关键信息（甚至完整信息），那么多行记录的访问不再是一个问题，这就是biz redis要做的事情。 接下来我们来看一下设计方案，假设内容系统中单行记录包含以下字段
 
 |字段名称|字段类型|备注|
 |---|---|---|
@@ -121,7 +121,7 @@ func ListByRangeTime(r redis.Redis, start, end time.Time) ([]*Content, error) {
 或者说不会再访问了，如果面对这种场景，我又该如何考虑缓存的设计呢？在go-zero内容实践中，有两种方案可以解决这种问题：
 
 * 增加内存缓存：通过内存缓存来存储当前可能突发访问量比较大的数据，常用的存储方案采用map数据结构来存储，map数据存储实现比较简单，但缓存过期处理则需要增加
-  定时器来处理，另一宗方案是通过go-zero库中的 [Cache](https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go) ，其是专门
+  定时器来处理，另一种方案是通过go-zero库中的 [Cache](https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go) ，其是专门
   用于内存管理.
 * 采用biz redis,并设置合理的过期时间
 
