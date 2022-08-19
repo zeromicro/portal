@@ -40,6 +40,13 @@ const logos: CustomerLogo[] = [
     filter: false,
   },
   {
+    src: require("@site/static/img/pages/customers/keep.png").default,
+    alt: "keep",
+    width: 200,
+    height: 50,
+    filter: true,
+  },
+  {
     src: require("@site/static/img/pages/customers/tianyi.png").default,
     alt: "天翼云",
     width: 200,

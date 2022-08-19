@@ -227,10 +227,6 @@ const config = {
               to: "/docs/community/contribute",
             },
             {
-              label: "Contributor",
-              to: "/docs/community/contributor",
-            },
-            {
               label: "GitHub",
               to: customFields.githubUrl,
             },
