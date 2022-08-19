@@ -343,10 +343,6 @@ module.exports = {
             type: "doc",
             id: "community/contribute",
         },
-        {
-            type: "doc",
-            id: "community/contributor",
-        },
     ].filter(Boolean),
     design: [
         {
