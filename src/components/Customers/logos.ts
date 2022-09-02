@@ -320,4 +320,32 @@ const logos: CustomerLogo[] = [
     height: 60,
     filter: false,
   },
+  {
+    src: require("@site/static/img/pages/customers/eiwq.png").default,
+    alt: "武汉沃柒科技有限公司",
+    width: 200,
+    height: 40,
+    filter: false,
+  },
+  {
+    src: require("@site/static/img/pages/customers/tinkdance.png").default,
+    alt: "叮当跳动",
+    width: 200,
+    height: 40,
+    filter: false,
+  },
+  {
+    src: require("@site/static/img/pages/customers/simbam.png").default,
+    alt: "simba innovation",
+    width: 200,
+    height: 40,
+    filter: false,
+  },
+  {
+    src: require("@site/static/img/pages/customers/xm.png").default,
+    alt: "安徽寻梦投资发展集团",
+    width: 200,
+    height: 60,
+    filter: false,
+  },
 ]
