@@ -188,14 +188,14 @@ etcd中的`Key`必须要和user rpc服务配置中Key一致
 type ServiceContext struct {
     Config  config.Config
     Example rest.Middleware
-    UserRpc user.User
+    UserRpc userclient.User
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
     return &ServiceContext{
         Config:  c,
         Example: middleware.NewExampleMiddleware().Handle,
-        UserRpc: user.NewUser(zrpc.MustNewClient(c.UserRpc)),
+        UserRpc: userclient.NewUser(zrpc.MustNewClient(c.UserRpc)),
     }
 }
 ```
