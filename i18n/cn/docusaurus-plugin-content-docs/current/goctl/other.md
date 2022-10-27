@@ -84,7 +84,7 @@ COPY --from=builder /app/hello /app/hello
 COPY --from=builder /app/etc /app/etc
 CMD ["./hello", "-f", "etc/hello-api.yaml"]
 ```
-* 在 `hello` 目录下 `build` 镜像
+* 在 `greet` 目录下 `build` 镜像
 ```shell
 $ docker build -t hello:v1 -f service/hello/Dockerfile .
 ```
