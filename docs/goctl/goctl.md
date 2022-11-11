@@ -43,13 +43,20 @@ Version number description
 
 ## Install goctl
 
-### The way one（go get）
+### The way one（go get/install）
 
 ```shell
 $ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro/go-zero/tools/goctl
 ```
+Use this command to install the goctl tool into the `GOPATH/bin` directory
+For newer golang environment, command may hit warning *go: go.mod file not found in current directory or any parent directory.*  
+Use command instead.
 
-Use this command to install the goctl tool into the `GOPATHbin` directory
+```shell
+$ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go install github.com/zeromicro/go-zero/tools/goctl@latest
+```
+
+
 
 ### The way two （fork and build）
 
