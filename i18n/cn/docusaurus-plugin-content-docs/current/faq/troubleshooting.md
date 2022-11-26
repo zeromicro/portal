@@ -50,6 +50,11 @@ logx.DisableStat()
 ```go
 srv := rest.MustNewServer(c, rest.WithCors())
 ```
+
+### 11. yaml配置文件中使用环境变量
+```
+	conf.MustLoad(*configFile, &c, conf.UseEnv())
+```
  
 单个域名的情况： 
 ```go
