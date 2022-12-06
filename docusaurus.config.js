@@ -20,11 +20,20 @@ module.exports = {
     },
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/meta/favicon-96x96.png',
+    favicon: 'img/meta/favicon.ico',
     organizationName: 'zeromicro',
     projectName: 'go-zero',
     themeConfig: {
-        metadata: [],
+        metadata: [
+            {
+                name: "keywords",
+                content: 'go-zero,gozero,go-zero doc,go-zero 文档,gozero 文档,goctl,goctl 文档',
+            },
+            {
+                name: "description",
+                content: "go-zero is a web and rpc framework with lots of builtin engineering practices. It’s born to ensure the stability of the busy services with resilience design and has been serving sites with tens of millions of users for years."
+            }
+        ],
         colorMode: {
             defaultMode: 'light',
         },
@@ -118,13 +127,24 @@ module.exports = {
         },
         prism: {
             theme: {plain: {}, styles: []},
+            magicComments: [
+                {
+                    className: 'theme-code-block-highlighted-line',
+                    line: 'highlight-next-line',
+                    block: {start: 'highlight-start', end: 'highlight-end'},
+                },
+                {
+                    className: 'code-block-error-line',
+                    line: 'This will error',
+                },
+            ],
             // https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js
             additionalLanguages: ['shell-session', 'http'],
         },
         algolia: {
-            appId: 'O9QSL985BS',
-            apiKey: 'ceb5366064b8fbf70959827cf9f69227',
-            indexName: 'ionicframework',
+            appId: 'foo',
+            apiKey: 'foo',
+            indexName: 'foo',
             contextualSearch: true,
         },
     },
@@ -146,7 +166,7 @@ module.exports = {
             {
                 routeBasePath: '/',
                 sidebarPath: require.resolve('./sidebars.js'),
-                editUrl: ({versionDocsDirPath,docPath, locale}) => {
+                editUrl: ({versionDocsDirPath, docPath, locale}) => {
                     if ((match = docPath.match(/concepts\/(.*)\.md/)) != null) {
                         return `https://github.com/zeromicro/portal/tree/main/docs/concepts/${match[1]}.md`;
                     }

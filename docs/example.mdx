@@ -1,0 +1,73 @@
+---
+title: md 写法示例
+sidebar_label: md 写法示例
+slug: /example
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 标题示例
+# 标题 H1
+## 标题 H2
+### 标题 H3
+#### 标题 H4
+##### 标题 H5
+###### 标题 H6
+
+# 正文示例
+正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例
+正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例
+正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例
+
+# 超链接示例
+[超链接](https://go-zero.dev)
+
+# 代码块示例
+1. 不含标题的代码块
+```go
+func main(){
+    fmt.Println("Hello world!")
+}
+```
+1. 含标题的代码块
+```go title="main.go"
+func main(){
+    fmt.Println("Hello world!")
+}
+```
+
+1. 显式行号
+```go showLineNumbers
+func main(){
+    fmt.Println("Hello world!")
+}
+```
+
+# 选项卡示例
+:::note
+文件名后缀必须为 `mdx`
+:::
+
+
+<Tabs>
+<TabItem value="linux" label="Linux" default>
+linux
+</TabItem>
+<TabItem value="macOS" label="MacOS">
+macOS
+</TabItem>
+<TabItem value="windows" label="Windows">
+Windows
+</TabItem>
+</Tabs>
+
+# 引用示例
+> 这是一段引用文本
+
+# TIPS 示例
+:::note
+这是一段 note 文本.
+:::
+
