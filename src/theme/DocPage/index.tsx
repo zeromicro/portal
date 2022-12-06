@@ -1,93 +1,87 @@
-import clsx from "clsx"
-import { matchPath } from "@docusaurus/router"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import React, { TransitionEvent, useCallback, useState } from "react"
-import { renderRoutes } from "react-router-config"
-import { MDXProvider } from "@mdx-js/react"
-import customFields from "../../config/customFields"
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-import type { Props } from "@theme/DocPage"
-import DocSidebar from "@theme/DocSidebar"
-import MDXComponents from "@theme/MDXComponents"
-import NotFound from "@theme/NotFound"
-import Layout from "@theme/Layout"
+import React, {ReactNode, useState, useCallback} from 'react';
+import {MDXProvider} from '@mdx-js/react';
 
-import styles from "./styles.module.css"
+import renderRoutes from '@docusaurus/renderRoutes';
+import type {PropVersionMetadata} from '@docusaurus/plugin-content-docs-types';
+import Layout from '@theme/Layout';
+import DocSidebar from '@theme/DocSidebar';
+import MDXComponents from '@theme/MDXComponents';
+import NotFound from '@theme/NotFound';
+import type {DocumentRoute} from '@theme/DocItem';
+import type {Props} from '@theme/DocPage';
+import IconArrow from '@theme/IconArrow';
+import BackToTopButton from '@theme/BackToTopButton';
+import {matchPath} from '@docusaurus/router';
+import {translate} from '@docusaurus/Translate';
+import Navbar from '@theme/Navbar';
 
-type Routes = Props["route"]["routes"]
+import clsx from 'clsx';
+import styles from './styles.module.css';
+import {ThemeClassNames, docVersionSearchTag} from '@docusaurus/theme-common';
+import Head from '@docusaurus/Head';
 
-const DocPage = ({
-  location,
-  route: { routes },
+type DocPageContentProps = {
+  readonly currentDocRoute: DocumentRoute;
+  readonly versionMetadata: PropVersionMetadata;
+  readonly children: ReactNode;
+};
+
+function DocPageContent({
+  currentDocRoute,
   versionMetadata,
-  ...rest
-}: Props) => {
-  const { siteConfig, isClient } = useDocusaurusContext()
-  const { permalinkToSidebar, docsSidebars } = versionMetadata ?? {}
-  const docRoutes = (routes as unknown) as Routes[]
-  const currentDocRoute = routes.find((docRoute) =>
-    matchPath(location.pathname, docRoute),
-  )
+  children,
+}: DocPageContentProps): JSX.Element {
+  const {pluginId, version} = versionMetadata;
 
-  const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false)
-  const [hiddenSidebar, setHiddenSidebar] = useState(false)
+  const sidebarName = currentDocRoute.sidebar;
+  const sidebar = sidebarName
+    ? versionMetadata.docsSidebars[sidebarName]
+    : undefined;
+
+  const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false);
+  const [hiddenSidebar, setHiddenSidebar] = useState(false);
   const toggleSidebar = useCallback(() => {
     if (hiddenSidebar) {
-      setHiddenSidebar(false)
+      setHiddenSidebar(false);
     }
 
-    setHiddenSidebarContainer(!hiddenSidebarContainer)
-
-    if (
-      !hiddenSidebar &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setHiddenSidebar(true)
-    }
-  }, [
-    hiddenSidebar,
-    hiddenSidebarContainer,
-    setHiddenSidebar,
-    setHiddenSidebarContainer,
-  ])
-
-  const handleTransitionEnd = useCallback(
-    (event: TransitionEvent<HTMLDivElement>) => {
-      if (!event.currentTarget.classList.contains(styles.docSidebarContainer)) {
-        return
-      }
-
-      if (hiddenSidebarContainer) {
-        setHiddenSidebar(true)
-      }
-    },
-    [hiddenSidebarContainer, setHiddenSidebar],
-  )
-
-  if (currentDocRoute == null) {
-    return <NotFound location={location} {...rest} />
-  }
-
-  const sidebarName = permalinkToSidebar[currentDocRoute.path] as
-    | string
-    | undefined
-  const sidebar = sidebarName != null ? docsSidebars[sidebarName] : []
+    setHiddenSidebarContainer((value) => !value);
+  }, [hiddenSidebar]);
 
   return (
     <Layout
-      description={customFields.description}
-      key={isClient.toString()}
-      title="Introduction"
-    >
-      <div className={styles.doc}>
-        {sidebarName != null && (
-          <div
-            className={clsx(styles.doc__sidebar, {
-              [styles["doc__sidebar--hidden"]]: hiddenSidebarContainer,
+      wrapperClassName={ThemeClassNames.wrapper.docsPages}
+      pageClassName={ThemeClassNames.page.docsDocPage}
+      searchMetadata={{
+        version,
+        tag: docVersionSearchTag(pluginId, version),
+      }}>
+      <div className={clsx(styles.docPage)}>
+        <BackToTopButton />
+
+        {sidebar && (
+          <aside
+            className={clsx(styles.docSidebarContainer, {
+              [styles.docSidebarContainerHidden]: hiddenSidebarContainer,
             })}
-            onTransitionEnd={handleTransitionEnd}
-            role="complementary"
-          >
+            onTransitionEnd={(e) => {
+              if (
+                !e.currentTarget.classList.contains(styles.docSidebarContainer)
+              ) {
+                return;
+              }
+
+              if (hiddenSidebarContainer) {
+                setHiddenSidebar(true);
+              }
+            }}>
             <DocSidebar
               key={
                 // Reset sidebar state on sidebar changes
@@ -96,46 +90,85 @@ const DocPage = ({
               }
               sidebar={sidebar}
               path={currentDocRoute.path}
-              sidebarCollapsible={
-                siteConfig.themeConfig?.sidebarCollapsible ?? true
-              }
               onCollapse={toggleSidebar}
               isHidden={hiddenSidebar}
             />
 
             {hiddenSidebar && (
               <div
-                className={styles.doc__expand}
-                title="Expand sidebar"
-                aria-label="Expand sidebar"
+                className={styles.collapsedDocSidebar}
+                title={translate({
+                  id: 'theme.docs.sidebar.expandButtonTitle',
+                  message: 'Expand sidebar',
+                  description:
+                    'The ARIA label and title attribute for expand button of doc sidebar',
+                })}
+                aria-label={translate({
+                  id: 'theme.docs.sidebar.expandButtonAriaLabel',
+                  message: 'Expand sidebar',
+                  description:
+                    'The ARIA label and title attribute for expand button of doc sidebar',
+                })}
                 tabIndex={0}
                 role="button"
                 onKeyDown={toggleSidebar}
-                onClick={toggleSidebar}
-              />
+                onClick={toggleSidebar}>
+                <IconArrow className={styles.expandSidebarButtonIcon} />
+              </div>
             )}
-          </div>
+          </aside>
         )}
-
-        <main className={styles.doc__main}>
-          <div
-            className={clsx(
-              "padding-vert--lg",
-              "container",
-              styles["doc__item-wrapper"],
-              {
-                [styles["doc__item-wrapper--enhanced"]]: hiddenSidebarContainer,
-              },
-            )}
-          >
-            <MDXProvider components={MDXComponents}>
-              {renderRoutes(docRoutes)}
-            </MDXProvider>
-          </div>
-        </main>
+        {/* CUSTOM CODE - wrapper div */}
+        <div>
+          {/* CUSTOM CODE - navbar placement */}
+          <Navbar />
+          <main
+            className={clsx(styles.docMainContainer, {
+              [styles.docMainContainerEnhanced]:
+                hiddenSidebarContainer || !sidebar,
+            })}>
+            <div
+              className={clsx(
+                'container padding-top--md padding-bottom--lg',
+                styles.docItemWrapper,
+                {
+                  [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,
+                },
+              )}>
+              <MDXProvider components={MDXComponents}>{children}</MDXProvider>
+            </div>
+          </main>
+        </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default DocPage
+function DocPage(props: Props): JSX.Element {
+  const {
+    route: {routes: docRoutes},
+    versionMetadata,
+    location,
+  } = props;
+  const currentDocRoute = docRoutes.find((docRoute) =>
+    matchPath(location.pathname, docRoute),
+  );
+  if (!currentDocRoute) {
+    return <NotFound />;
+  }
+  return (
+    <>
+      <Head>
+        {/* TODO we should add a core addRoute({htmlClassName}) generic plugin option */}
+        <html className={versionMetadata.className} />
+      </Head>
+      <DocPageContent
+        currentDocRoute={currentDocRoute}
+        versionMetadata={versionMetadata}>
+        {renderRoutes(docRoutes, {versionMetadata})}
+      </DocPageContent>
+    </>
+  );
+}
+
+export default DocPage;

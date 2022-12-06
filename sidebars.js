@@ -1,472 +1,398 @@
 module.exports = {
     docs: [
+        'index',
+        'concepts/components',
+        'concepts/architecture-evolution',
+        'concepts/service-governance',
+        'concepts/ops'
+    ],
+    tasks: [
+        'tasks',
+        'tasks/dsl',
+        'tasks/cli',
+        'tasks/create-project',
+        'tasks/run-program',
+        'tasks/debug-program',
+        'tasks/static-configuration-file',
+        'tasks/http',
+        'tasks/grpc-server',
+        'tasks/grpc-client',
+        'tasks/mysql',
+        'tasks/mongo',
+        'tasks/redis',
+        'tasks/memory-cache',
+        'tasks/timer-task',
+        'tasks/message-queue',
+        'tasks/delay-queue',
+    ],
+    tutorials: [
         {
-            id: "introduction",
-            type: "doc",
-        },
-        {
-            id: "concept",
-            type: "doc",
-        },
-        {
-            label: "Preparation",
-            type: "category",
+            type: 'category',
+            label: 'API 定义',
+            collapsed: false,
             items: [
-                "prepare/prepare",
-                "prepare/dev-flow",
-                "prepare/golang-install",
-                "prepare/gomod-config",
-                "prepare/goctl-install",
-                "prepare/protoc-install",
-                "prepare/prepare-other",
+                'tutorials',
+                'tutorials/api/route-prefix',
+                'tutorials/api/route-group',
+                'tutorials/api/signature',
+                'tutorials/api/route-rule',
+                'tutorials/api/parameter',
+                'tutorials/api/middleware',
+                'tutorials/api/import',
             ],
         },
         {
-            label: "Development Specification",
-            type: "category",
+            type: 'category',
+            label: 'Proto 定义',
+            collapsed: false,
             items: [
-                "develop/dev-specification",
-                "develop/naming-spec",
-                "develop/coding-spec",
+                'tutorials/proto/spec',
+                'tutorials/proto/services-group',
             ],
         },
         {
-            label: "Configuration",
-            type: "category",
+            type: 'category',
+            label: 'CLI 工具',
+            collapsed: false,
             items: [
-                "configuration/api",
-                "configuration/rpc",
+                'tutorials/cli/overview',
+                'tutorials/cli/api',
+                'tutorials/cli/bug',
+                'tutorials/cli/completion',
+                'tutorials/cli/docker',
+                'tutorials/cli/env',
+                'tutorials/cli/kube',
+                'tutorials/cli/migrate',
+                'tutorials/cli/model',
+                'tutorials/cli/quickstart',
+                'tutorials/cli/template',
+                'tutorials/cli/upgrade',
             ],
         },
         {
-            label: "Getting Started",
-            type: "category",
+            type: 'category',
+            label: 'go-zero 配置',
+            collapsed: false,
             items: [
-                "quick-start/quick-start",
-                "quick-start/monolithic-service",
-                "quick-start/micro-service",
+                'tutorials/go-zero-configuration/overview',
+                'tutorials/go-zero-configuration/service',
+                'tutorials/go-zero-configuration/log',
+                'tutorials/go-zero-configuration/etcd',
+                'tutorials/go-zero-configuration/redis',
+                'tutorials/go-zero-configuration/mysql',
+                'tutorials/go-zero-configuration/postgresql',
+                'tutorials/go-zero-configuration/mongo',
+                'tutorials/go-zero-configuration/prometheus',
+                'tutorials/go-zero-configuration/trace',
             ],
         },
         {
-            label: "Components",
-            type: "category",
+            type: 'category',
+            label: 'HTTP Server',
+            collapsed: false,
             items: [
-                "component/components",
-                "component/logx"
-            ]
-        },
-        {
-            label: "Guides",
-            type: "category",
-            items: [
-                "advance/advance",
-                "advance/business-dev",
-                "advance/service-design",
-                "advance/model-gen",
-                "advance/api-coding",
-                "advance/business-coding",
-                "advance/jwt",
-                "advance/middleware",
-                "advance/rpc-call",
-                "advance/error-handle",
-                "advance/template",
+                {
+                    type: 'category',
+                    label: '配置',
+                    collapsed: false,
+                    items: [
+                        'tutorials/http/server/configuration/service',
+                        'tutorials/http/server/configuration/redis',
+                        'tutorials/http/server/configuration/mysql',
+                        'tutorials/http/server/configuration/rpc-client',
+                        'tutorials/http/server/configuration/log',
+                    ]
+                },
+                'tutorials/http/server/request-body',
+                'tutorials/http/server/response-body',
+                'tutorials/http/server/header',
+                'tutorials/http/server/jwt',
+                'tutorials/http/server/error',
+                'tutorials/http/server/route-rule',
+                'tutorials/http/server/signature',
+                'tutorials/http/server/cros',
+                'tutorials/http/server/context',
+                'tutorials/http/server/security',
+                'tutorials/http/server/mock',
             ],
         },
         {
-            label: "Deployment",
-            type: "category",
+            type: 'category',
+            label: 'HTTP Client',
+            collapsed: false,
             items: [
-                "deployment/ci-cd",
-                "deployment/log-collection",
-                "deployment/service-deployment",
-                "deployment/service-monitor",
-                "deployment/trace",
+                'tutorials/http/client/get',
+                'tutorials/http/client/post-form',
+                'tutorials/http/client/post-json',
+                'tutorials/http/client/timeout',
+                'tutorials/http/client/header',
             ],
         },
         {
-            label: "FAQ",
-            type: "category",
+            type: 'category',
+            label: 'gRPC Server',
+            collapsed: false,
             items: [
-                "faq/troubleshooting",
-                "faq/error"
-            ],
-        },
-    ].filter(Boolean),
-    goctl: [
-        {
-            id: "goctl/goctl",
-            type: "doc",
-        },
-        {
-            id: "goctl/installation",
-            type: "doc",
-        },
-        {
-            id: "goctl/api",
-            type: "doc",
-        },
-        {
-            id: "goctl/zrpc",
-            type: "doc",
-        },
-        {
-            id: "goctl/model",
-            type: "doc",
-        },
-        {
-            id: "goctl/plugin",
-            type: "doc",
-        },
-        {
-            id: "goctl/template-cmd",
-            type: "doc",
-        },
-        {
-            id: "goctl/other",
-            type: "doc",
-        },
-        {
-            id: "goctl/commands",
-            type: "doc",
-        },
-        {
-            id: "goctl/completion",
-            type: "doc",
-        },
-    ].filter(Boolean),
-    tutorial: [
-        {
-            type: "doc",
-            id: "goctl/tutorial/tutorial"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/install"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/overview"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/quickstart"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/upgrade"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/completion"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/apifile"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-grammar"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/ide-plugin"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-validate"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-format"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-doc"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/dart-ts"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-new"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-overview"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-init"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-clean"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-revert"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-update"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-custom-one"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/template-custom-two"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-go"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/style"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/prefix-group"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/api-tag"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/java-kotlin"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/goctl-swagger"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/bug"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/env-one"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/env-two"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/migrate"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/proto"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/rpc-new"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/rpc-generation"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/rpc-dir-structure"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/rpc-group"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/mongo"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/mysql-datasource"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/mysql-ddl"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/postgresql"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/dockerfile"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/k8s"
-        },
-        {
-            type: "doc",
-            id: "goctl/tutorial/end"
-        }
-    ].filter(Boolean),
-    eco: [
-        {
-            type: "doc",
-            id: "eco/plugins",
-        },
-        {
-            type: "doc",
-            id: "eco/editor",
-        },
-        {
-            type: "doc",
-            id: "eco/intellij",
-        },
-        {
-            type: "doc",
-            id: "eco/vscode",
-        },
-        {
-            type: "doc",
-            id: "eco/distributed-transaction",
-        },
-        {
-            type: "doc",
-            id: "eco/showcase",
-        },
-    ].filter(Boolean),
-    community: [
-        {
-            type: "doc",
-            id: "community/about-us",
-        },
-        {
-            type: "doc",
-            id: "community/contribute",
-        },
-    ].filter(Boolean),
-    design: [
-        {
-            type: "doc",
-            id: "design/design",
-        },
-        {
-            type: "doc",
-            id: "design/go-zero-design",
-        },
-        {
-            type: "doc",
-            id: "design/go-zero-features",
-        },
-        {
-            type: "doc",
-            id: "design/grammar",
-        },
-        {
-            type: "doc",
-            id: "design/api-dir",
-        },
-        {
-            type: "doc",
-            id: "design/rpc-dir",
-        },
-    ].filter(Boolean),
-    resource: [
-        {
-            type: "doc",
-            id: "resource-center/learning-resource",
-        },
-        {
-            type: "doc",
-            id: "resource-center/wechat",
-        },
-        {
-            type: "doc",
-            id: "resource-center/gotalk",
-        },
-        {
-            type: "doc",
-            id: "resource-center/goreading",
-        },
-        {
-            type: "doc",
-            id: "resource-center/source",
-        },
-    ].filter(Boolean),
-    blog: [
-        {
-            type: "doc",
-            id: "blog/blog",
-        },
-        {
-            type: "category",
-            label: "Governance",
-            items: [
-                "blog/governance/bloom",
-                "blog/governance/breaker-algorithms",
-                "blog/governance/loadshedding",
-                "blog/governance/periodlimit",
-                "blog/governance/tokenlimit",
+                {
+                    type: 'category',
+                    label: '配置',
+                    collapsed: false,
+                    items: [
+                        'tutorials/grpc/server/configuration/service',
+                        'tutorials/grpc/server/configuration/redis',
+                        'tutorials/grpc/server/configuration/mysql',
+                        'tutorials/grpc/server/configuration/log',
+                    ]
+                },
+                'tutorials/grpc/server/debug',
+                {
+                    type: 'category',
+                    label: '服务注册',
+                    collapsed: false,
+                    items: [
+                        'tutorials/grpc/server/service-register/direct',
+                        'tutorials/grpc/server/service-register/etcd',
+                        'tutorials/grpc/server/service-register/nacos',
+                        'tutorials/grpc/server/service-register/consul',
+                        'tutorials/grpc/server/service-register/dns',
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: '中间件',
+                    collapsed: false,
+                    items: [
+                        'tutorials/grpc/server/middleware/auth',
+                        'tutorials/grpc/server/middleware/breaker',
+                        'tutorials/grpc/server/middleware/recover',
+                        'tutorials/grpc/server/middleware/prometheus',
+                        'tutorials/grpc/server/middleware/timeout',
+                    ]
+                },
+                'tutorials/grpc/server/security',
+                'tutorials/grpc/server/error',
+                'tutorials/grpc/server/options',
+                'tutorials/grpc/server/mock',
             ],
         },
         {
-            type: "category",
-            label: "Cache",
+            type: 'category',
+            label: 'gRPC Client',
+            collapsed: false,
             items: [
-                "blog/cache/cache",
-                "blog/cache/redis-cache",
-                "blog/cache/business-cache",
-                "blog/cache/collection",
+                {
+                    type: 'category',
+                    label: '配置',
+                    collapsed: false,
+                    items: [
+                        'tutorials/grpc/client/configuration/service',
+                        'tutorials/grpc/client/configuration/redis',
+                        'tutorials/grpc/client/configuration/mysql',
+                        'tutorials/grpc/client/configuration/log',
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: '服务发现',
+                    collapsed: false,
+                    items: [
+                        'tutorials/grpc/client/service-discover/direct',
+                        'tutorials/grpc/client/service-discover/etcd',
+                        'tutorials/grpc/client/service-discover/nacos',
+                        'tutorials/grpc/client/service-discover/consul',
+                        'tutorials/grpc/client/service-discover/dns',
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: '中间件',
+                    collapsed: false,
+                    items: [
+                        'tutorials/grpc/client/middleware/breaker',
+                        'tutorials/grpc/client/middleware/duration',
+                        'tutorials/grpc/client/middleware/timeout',
+                        'tutorials/grpc/client/middleware/trace',
+                    ]
+                },
+                'tutorials/grpc/client/security',
+                'tutorials/grpc/client/error',
+                'tutorials/grpc/client/options',
+                'tutorials/grpc/client/mock',
             ],
         },
         {
-            type: "category",
-            label: "Components",
+            type: 'category',
+            label: 'Cron job',
+            collapsed: false,
             items: [
-                "blog/tool/executors",
-                "blog/tool/keywords",
-                "blog/tool/logx",
+                'tutorials/cron-job/k8s',
+                'tutorials/cron-job/process',
             ],
         },
         {
-            type: "category",
-            label: "Concurrency",
+            type: 'category',
+            label: '消息队列',
+            collapsed: false,
             items: [
-                "blog/concurrency/fx",
-                "blog/concurrency/mapreduce",
-                "blog/concurrency/stream",
-                "blog/concurrency/redis-lock",
-                "blog/concurrency/sharedcalls",
+                'tutorials/message-queue/kafka',
+                'tutorials/message-queue/rabbitmq',
             ],
         },
         {
-            type: "category",
-            label: "Principle",
+            type: 'category',
+            label: '延时队列',
+            collapsed: false,
             items: [
-                "blog/principle/timing-wheel",
+                'tutorials/delay-queue/beanstalkd',
             ],
         },
         {
-            type: "category",
-            label: "Showcase",
+            type: 'category',
+            label: 'MySQL',
+            collapsed: false,
             items: [
-                "blog/showcase/shorturl",
-                "blog/showcase/zrpc",
-                "blog/showcase/mysql",
-                "blog/showcase/mapping",
-                "blog/showcase/datacenter",
-                "blog/showcase/go-queue",
-                "blog/showcase/go-zero-looklook",
-                "blog/showcase/metric",
+                'tutorials/mysql/configuration',
+                'tutorials/mysql/connection',
+                'tutorials/mysql/curd',
+                'tutorials/mysql/timeout',
+                'tutorials/mysql/cache',
+                'tutorials/mysql/page-query',
+                'tutorials/mysql/bulk-insert',
+                'tutorials/mysql/bulk-update',
+                'tutorials/mysql/partition-query',
+                'tutorials/mysql/local-transaction',
+                'tutorials/mysql/distribute-transaction',
             ],
         },
         {
-            type: "category",
-            label: "Exchange",
+            type: 'category',
+            label: 'PostgreSQL',
+            collapsed: false,
             items: [
-                "blog/share/online-exchange",
-                "blog/share/goctl-share-part-one",
-                "blog/share/goctl-share-part-two",
+                'tutorials/postgresql/configuration',
+                'tutorials/postgresql/connection',
+                'tutorials/postgresql/curd',
+                'tutorials/postgresql/timeout',
+                'tutorials/postgresql/cache',
+                'tutorials/postgresql/page-query',
+                'tutorials/postgresql/bulk-insert',
+                'tutorials/postgresql/bulk-update',
+                'tutorials/postgresql/partition-query',
             ],
         },
-    ].filter(Boolean),
-}
+        {
+            type: 'category',
+            label: 'Mongo',
+            collapsed: false,
+            items: [
+                'tutorials/mongo/configuration',
+                'tutorials/mongo/connection',
+                'tutorials/mongo/curd',
+                'tutorials/mongo/timeout',
+                'tutorials/mongo/cache',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'ElasticSearch',
+            collapsed: false,
+            items: [
+                'tutorials/elasticsearch/configuration',
+                'tutorials/elasticsearch/connection',
+                'tutorials/elasticsearch/curd',
+                'tutorials/elasticsearch/statistics',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Redis',
+            collapsed: false,
+            items: [
+                'tutorials/redis/single-node',
+                'tutorials/redis/multi-nodes',
+                'tutorials/redis/cluster',
+                'tutorials/redis/db-selection',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Gateway',
+            collapsed: false,
+            items: [
+                'tutorials/gateway/grpc',
+            ],
+        },
+        {
+            type: 'category',
+            label: '流量治理',
+            collapsed: false,
+            items: [
+                'tutorials/service-governance/limiter',
+                'tutorials/service-governance/breaker',
+                'tutorials/service-governance/loadbalance',
+            ],
+        },
+        {
+            type: 'category',
+            label: '运维部署',
+            collapsed: false,
+            items: [
+                'tutorials/ops/machine',
+                'tutorials/ops/docker-compose',
+                'tutorials/ops/k8s',
+            ],
+        },
+        {
+            type: 'category',
+            label: '监控',
+            collapsed: false,
+            items: [
+                'tutorials/monitor/health-check',
+                'tutorials/monitor/log-collection',
+                'tutorials/monitor/trace',
+                'tutorials/monitor/metrics',
+                'tutorials/monitor/alert',
+            ],
+        },
+        {
+            type: 'category',
+            label: '定制化',
+            collapsed: false,
+            items: [
+                'tutorials/customization/template',
+                'tutorials/customization/http',
+            ],
+        },
+    ],
+    components: [
+        'components',
+        'components/mr',
+        'components/fx',
+        {
+            type: 'category',
+            label: '限流器',
+            collapsed: false,
+            items: [
+                'components/limiter/token',
+                'components/limiter/peroid',
+            ],
+        },
+        {
+            type: 'category',
+            label: '日志',
+            collapsed: false,
+            items: [
+                'components/log/logx',
+                'components/log/logc',
+            ],
+        },
+    ],
+    reference: [
+        'reference',
+        'reference/proto',
+    ],
+    contributing: [
+        'contributing',
+        'contributing/doc',
+    ],
+};

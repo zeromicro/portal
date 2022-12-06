@@ -1,0 +1,15 @@
+{
+  "name": "go-zero Documentation",
+  "short_name": "go-zero Docs",
+  "start_url": "/docs/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/docs/assets/img/meta/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
