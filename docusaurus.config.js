@@ -177,7 +177,7 @@ module.exports = {
             ],
         },
         tagManager: {
-            trackingID: 'GTM-TKMGCBC',
+            trackingID: 'gozero',
         },
         tableOfContents: {
             minHeadingLevel: 2,
