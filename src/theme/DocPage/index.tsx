@@ -121,7 +121,7 @@ function DocPageContent({
         {/* CUSTOM CODE - wrapper div */}
         <div>
           {/* CUSTOM CODE - navbar placement */}
-          <Navbar />
+          {/* <Navbar /> */}
           <main
             className={clsx(styles.docMainContainer, {
               [styles.docMainContainerEnhanced]:

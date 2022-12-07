@@ -30,9 +30,9 @@ html[data-theme='dark'] {
 
 //overrides
 #__docusaurus {
-  > .navbar {
-    display: none;
-  }
+  // > .navbar {
+  //   display: none;
+  // }
 
   .navbar {
     &__inner {
@@ -225,14 +225,6 @@ html[data-theme='dark'] {
       line-height: 17px;
 
       color: var(--navbar-link-c);
-    }
-
-    &__brand {
-      display: none;
-    }
-
-    &__logo {
-      display: none;
     }
 
     .separator {
