@@ -2,7 +2,6 @@
 title: md 写法示例
 sidebar_label: md 写法示例
 slug: /example
-hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';
@@ -31,15 +30,15 @@ func main(){
     fmt.Println("Hello world!")
 }
 ```
-1. 含标题的代码块
+2. 含标题的代码块
 ```go title="main.go"
 func main(){
     fmt.Println("Hello world!")
 }
 ```
 
-1. 显式行号
-```go showLineNumbers
+3. 行高亮
+```go {2} title="main.go"
 func main(){
     fmt.Println("Hello world!")
 }
@@ -68,6 +67,27 @@ Windows
 
 # TIPS 示例
 :::note
-这是一段 note 文本.
+这是一段 note 类型提示.
 :::
+
+:::tip
+这是一段 tip 类型提示.
+:::
+
+:::info
+这是一段 info 类型提示.
+:::
+
+:::caution
+这是一段 caution 类型提示.
+:::
+
+:::danger
+这是一段 danger 类型提示.
+:::
+
+:::note 你的标题名称
+这是一个带标题的 note 类型提示.
+:::
+
 

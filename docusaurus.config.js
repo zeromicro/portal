@@ -1,6 +1,5 @@
 const path = require('path');
-const prismic = require('@prismicio/client');
-const fetch = require('node-fetch');
+const adJSON = require('./scripts/data/ad.json');
 
 const BASE_URL = '/docs';
 
@@ -125,6 +124,10 @@ module.exports = {
         tagManager: {
             trackingID: 'GTM-TKMGCBC',
         },
+        tableOfContents: {
+            minHeadingLevel: 2,
+            maxHeadingLevel: 5,
+        },
         prism: {
             theme: {plain: {}, styles: []},
             magicComments: [
@@ -195,6 +198,14 @@ module.exports = {
         '@docusaurus/plugin-debug',
         '@docusaurus/plugin-sitemap',
         '@ionic-internal/docusaurus-plugin-tag-manager',
+        function (context, options) {
+            return {
+                name: 'zeromicro-docs-ads',
+                contentLoaded({ content, actions: { setGlobalData, addRoute } }) {
+                    return setGlobalData({ prismicAds: adJSON });
+                },
+            };
+        },
     ],
     themes: [
         [

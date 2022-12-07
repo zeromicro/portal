@@ -1,0 +1,73 @@
+{
+  "enable": true,
+  "list": [
+    {
+      "data": {
+        "disable": false,
+        "ad_copy": [
+          {
+            "type": "paragraph",
+            "text": "扫码关注微信公众号",
+            "spans": []
+          }
+        ],
+        "ad_url": {
+          "link_type": "Web",
+          "url": "https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png",
+          "target": "_blank"
+        },
+        "ad_image": {
+          "dimensions": {
+            "width": 280
+          },
+          "alt": "",
+          "copyright": "",
+          "url": "https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png",
+          "1x": {
+            "dimensions": {
+              "width": 140
+            },
+            "alt": "",
+            "copyright": "",
+            "url": "https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "disable": true,
+        "ad_copy": [
+          {
+            "type": "paragraph",
+            "text": "微信公众号",
+            "spans": []
+          }
+        ],
+        "ad_url": {
+          "link_type": "Web",
+          "url": "https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/wechat.jpg",
+          "target": "_blank"
+        },
+        "ad_image": {
+          "dimensions": {
+            "width": 280,
+            "height": 300
+          },
+          "alt": "",
+          "copyright": "",
+          "url": "https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/wechat.jpg",
+          "1x": {
+            "dimensions": {
+              "width": 140,
+              "height": 150
+            },
+            "alt": "",
+            "copyright": "",
+            "url": "https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/wechat.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

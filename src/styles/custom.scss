@@ -82,6 +82,11 @@ html[data-theme='dark'] {
   --ifm-menu-link-sublist-icon-filter: invert(100%);
 }
 
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  /* Color which works with dark mode syntax highlighting theme */
+  background-color: rgb(100, 100, 100);
+}
+
 html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -175,4 +180,11 @@ iframe {
 
 .cordova-ee-card p {
   margin: 1rem 0 0;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: #e1e1e1;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
 }
