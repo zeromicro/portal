@@ -36,6 +36,61 @@ module.exports = {
         colorMode: {
             defaultMode: 'light',
         },
+        footer: {
+            links: [
+                {
+                    title: 'ZEROMICRO',
+                    items: [
+                        {
+                            label: 'go-queue',
+                            href: 'https://github.com/zeromicro/go-queue',
+                        },
+                        {
+                            label: "awesome-zero",
+                            href: "https://github.com/zeromicro/awesome-zero",
+                        },
+                        {
+                            label: "zero-example",
+                            href: "https://github.com/zeromicro/zero-example",
+                        },
+                    ],
+                },
+                {
+                    title: "友情链接",
+                    items: [
+                        {
+                            label: "旧文档",
+                            href: "https://legacy.go-zero.dev",
+                        },
+                        {
+                            label: "开发路线图",
+                            href: "https://github.com/zeromicro/go-zero/blob/master/ROADMAP.md",
+                        },
+                        {
+                            html: `
+                <a href="https://landscape.cncf.io/?selected=go-zero" target="_blank" rel="noreferrer noopener" aria-label="CNCF">
+                  <img src="https://landscape.cncf.io/images/left-logo.svg" alt="CNCF" width="100" height="50" />
+                </a>
+              `,
+                        },
+                    ],
+                },
+                {
+                    title: '社区',
+                    items: [
+                        {
+                            label: 'GitHub',
+                            href: 'https://github.com/zeromicro/go-zero',
+                        },
+                        {
+                            label: 'Discord',
+                            href: 'https://discord.gg/4JQvC5A4Fe',
+                        }
+                    ],
+                }
+            ],
+            copyright: `Copyright © ${new Date().getFullYear()} zeromicro.`,
+        },
         navbar: {
             hideOnScroll: true,
             logo: {

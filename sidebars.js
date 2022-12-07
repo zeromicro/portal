@@ -7,23 +7,144 @@ module.exports = {
         'concepts/ops'
     ],
     tasks: [
-        'tasks',
-        'tasks/dsl',
-        'tasks/cli',
-        'tasks/create-project',
-        'tasks/run-program',
-        'tasks/debug-program',
-        'tasks/static-configuration-file',
-        'tasks/http',
-        'tasks/grpc-server',
-        'tasks/grpc-client',
-        'tasks/mysql',
-        'tasks/mongo',
-        'tasks/redis',
+        {
+            type: 'category',
+            label: '安装',
+            collapsed: false,
+            items: [
+                'tasks',
+                'tasks/installation/protoc',
+                'tasks/installation/goctl',
+                'tasks/installation/go-zero',
+                'tasks/installation/goctl-intellij',
+                'tasks/installation/goctl-vscode',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'DSL 介绍',
+            collapsed: false,
+            items: [
+                'tasks/dsl/api',
+                'tasks/dsl/proto',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'CLI 代码生成',
+            collapsed: false,
+            items: [
+                'tasks/cli/api-demo',
+                'tasks/cli/grpc-demo',
+                'tasks/cli/mongo',
+                'tasks/cli/mysql',
+                'tasks/cli/api-format',
+            ],
+        },
+        {
+            type: 'category',
+            label: '创建项目',
+            collapsed: false,
+            items: [
+                'tasks/create/goland',
+                'tasks/create/vscode',
+                'tasks/create/command',
+            ],
+        },
+        {
+            type: 'category',
+            label: '程序调试',
+            collapsed: false,
+            items: [
+                'tasks/run/goland',
+                'tasks/run/vscode',
+            ],
+        },
+        {
+            type: 'category',
+            label: '静态配置文件管理',
+            collapsed: false,
+            items: [
+                'tasks/static-configuration/create',
+                'tasks/static-configuration/update',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'HTTP 开发',
+            collapsed: false,
+            items: [
+                'tasks/http/helloworld',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'gRPC Server 开发',
+            collapsed: false,
+            items: [
+                'tasks/grpc/server/helloworld',
+                'tasks/grpc/server/debug',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'gRPC Client 开发',
+            collapsed: false,
+            items: [
+                'tasks/grpc/client/helloworld',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'MySQL 数据库操作',
+            collapsed: false,
+            items: [
+                'tasks/mysql/conn',
+                'tasks/mysql/curd',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Mongo 数据库操作',
+            collapsed: false,
+            items: [
+                'tasks/mongo/conn',
+                'tasks/mongo/curd',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Redis 使用',
+            collapsed: false,
+            items: [
+                'tasks/redis/redis',
+            ],
+        },
         'tasks/memory-cache',
-        'tasks/timer-task',
-        'tasks/message-queue',
-        'tasks/delay-queue',
+        {
+            type: 'category',
+            label: 'Redis 使用',
+            collapsed: false,
+            items: [
+                'tasks/timer-task/process',
+            ],
+        },
+        {
+            type: 'category',
+            label: '消息队列',
+            collapsed: false,
+            items: [
+                'tasks/message-queue/kafka',
+            ],
+        },
+        {
+            type: 'category',
+            label: '延时队列',
+            collapsed: false,
+            items: [
+                'tasks/delay-queue/beanstalkd',
+            ],
+        }
     ],
     tutorials: [
         {
