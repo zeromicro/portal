@@ -1,7 +1,6 @@
 ---
 title: goctl template
 sidebar_label: goctl template
-slug: /tutorials/cli/template
-hide_table_of_contents: true
+slug: /docs/tutorials/cli/template
 ---
 balala...

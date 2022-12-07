@@ -1,7 +1,7 @@
 ---
 title: golang 安装
 sidebar_label: golang 安装
-slug: /tasks
+slug: /docs/tasks
 ---
 
 import Tabs from '@theme/Tabs';

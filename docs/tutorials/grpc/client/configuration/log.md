@@ -1,7 +1,6 @@
 ---
 title: 日志配置
 sidebar_label: 日志配置
-slug: /tutorials/grpc/client/configuration/log
-hide_table_of_contents: true
+slug: /docs/tutorials/grpc/client/configuration/log
 ---
 balala...

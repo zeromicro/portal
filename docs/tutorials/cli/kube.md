@@ -1,7 +1,6 @@
 ---
 title: goctl kube
 sidebar_label: goctl kube
-slug: /tutorials/cli/kube
-hide_table_of_contents: true
+slug: /docs/tutorials/cli/kube
 ---
 balala...

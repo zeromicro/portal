@@ -1,7 +1,6 @@
 ---
 title: Nacos
 sidebar_label: Nacos
-slug: /tutorials/grpc/server/service-register/nacos
-hide_table_of_contents: true
+slug: /docs/tutorials/grpc/server/service-register/nacos
 ---
 balala...

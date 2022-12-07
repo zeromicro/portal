@@ -1,7 +1,6 @@
 ---
 title: Etcd
 sidebar_label: Etcd
-slug: /tutorials/grpc/server/service-register/etcd
-hide_table_of_contents: true
+slug: /docs/tutorials/grpc/server/service-register/etcd
 ---
 balala...

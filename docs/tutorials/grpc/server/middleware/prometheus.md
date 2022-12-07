@@ -1,7 +1,6 @@
 ---
 title: Prometheus
 sidebar_label: Prometheus
-slug: /tutorials/grpc/server/middleware/prometheus
-hide_table_of_contents: true
+slug: /docs/tutorials/grpc/server/middleware/prometheus
 ---
 balala...

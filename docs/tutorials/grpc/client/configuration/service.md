@@ -1,7 +1,6 @@
 ---
 title: 服务配置
 sidebar_label: 服务配置
-slug: /tutorials/grpc/client/configuration/service
-hide_table_of_contents: true
+slug: /docs/tutorials/grpc/client/configuration/service
 ---
 balala...

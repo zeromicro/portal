@@ -1,7 +1,6 @@
 ---
 title: goctl env
 sidebar_label: goctl env
-slug: /tutorials/cli/env
-hide_table_of_contents: true
+slug: /docs/tutorials/cli/env
 ---
 balala...

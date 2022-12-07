@@ -1,7 +1,6 @@
 ---
 title: proto 语法
 sidebar_label: proto 语法
-slug: /tasks/dsl/proto
-hide_table_of_contents: true
+slug: /docs/tasks/dsl/proto
 ---
 balala...

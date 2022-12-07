@@ -1,7 +1,6 @@
 ---
 title: Post json
 sidebar_label: Post json
-slug: /tutorials/http/client/post-json
-hide_table_of_contents: true
+slug: /docs/tutorials/http/client/post-json
 ---
 balala...

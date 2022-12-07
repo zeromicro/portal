@@ -1,6 +1,6 @@
 module.exports = {
-    docs: [
-        'index',
+    concepts: [
+        'concepts',
         'concepts/components',
         'concepts/architecture-evolution',
         'concepts/service-governance',

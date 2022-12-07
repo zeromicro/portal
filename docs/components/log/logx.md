@@ -1,7 +1,6 @@
 ---
 title: logx
 sidebar_label: logx
-slug: /components/logx
-hide_table_of_contents: true
+slug: /docs/components/logx
 ---
 balala...

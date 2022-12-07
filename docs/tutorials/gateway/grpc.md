@@ -1,7 +1,6 @@
 ---
 title: gRPC gateway
 sidebar_label: gRPC gateway
-slug: /tutorials/gateway/grpc
-hide_table_of_contents: true
+slug: /docs/tutorials/gateway/grpc
 ---
 balala...

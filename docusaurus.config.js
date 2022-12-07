@@ -1,14 +1,13 @@
 const path = require('path');
 const adJSON = require('./scripts/data/ad.json');
 
-const BASE_URL = '/docs';
 
 module.exports = {
     title: 'go-zero Documentation',
     tagline:
         'go-zero is a web and rpc framework with lots of builtin engineering practices. It’s born to ensure the stability of the busy services with resilience design and has been serving sites with tens of millions of users for years.',
     url: 'https://go-zero.dev',
-    baseUrl: `${BASE_URL}/`,
+    baseUrl: `/`,
     i18n: {
         defaultLocale: 'zh',
         locales: ['zh', 'en'],
@@ -92,7 +91,7 @@ module.exports = {
             copyright: `Copyright © ${new Date().getFullYear()} zeromicro.`,
         },
         navbar: {
-            hideOnScroll: true,
+            hideOnScroll: false,
             logo: {
                 alt: 'Site Logo',
                 src: `/logos/go-zero-docs-dark.svg`,
@@ -105,7 +104,7 @@ module.exports = {
             items: [
                 {
                     type: 'doc',
-                    docId: 'index',
+                    docId: 'concepts',
                     label: '概念',
                     position: 'left',
                 },

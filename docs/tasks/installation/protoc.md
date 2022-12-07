@@ -1,11 +1,12 @@
 ---
 title: protoc 安装
 sidebar_label: protoc 安装
-slug: /tasks/installation/protoc
+slug: /docs/tasks/installation/protoc
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
 
 ## 使用 goctl 一键安装 
 

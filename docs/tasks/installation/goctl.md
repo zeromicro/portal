@@ -1,7 +1,7 @@
 ---
 title: goctl 安装
 sidebar_label: goctl 安装
-slug: /tasks/installation/goctl
+slug: /docs/tasks/installation/goctl
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,7 +1,6 @@
 ---
 title: 基本 CURD 
 sidebar_label: 基本 CURD
-slug: /tutorials/mysql/curd
-hide_table_of_contents: true
+slug: /docs/tutorials/mysql/curd
 ---
 balala...
