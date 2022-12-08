@@ -37,18 +37,18 @@ hoverIcon="/icons/guide-installation-icon-hover.svg">
 </DocsCard>
 
 <DocsCard 
-header="基础任务" 
+header="基础教程" 
 href="/docs/tasks" 
-icon="/icons/guide-installation-icon.svg" 
-hoverIcon="/icons/guide-installation-icon-hover.svg">
-    <p>基础任务是快速了解和使用框架的最佳方式</p>
+icon="/icons/guide-task-icon.svg" 
+hoverIcon="/icons/guide-task-icon-hover.svg">
+    <p>基础教程是快速了解和使用框架的最佳方式</p>
 </DocsCard>
 
 <DocsCard
   header="框架指南"
   href="/docs/components"
-  icon="/icons/guide-components-icon.svg"
-  hoverIcon="/icons/guide-components-icon-hover.svg"
+  icon="/icons/guide-tutorial-icon.svg"
+  hoverIcon="/icons/guide-tutorial-icon-hover.svg"
 >
   <p>这里拥有比基础任务更高级和全面的用法</p>
 </DocsCard>
