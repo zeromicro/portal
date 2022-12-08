@@ -9,216 +9,223 @@
 ## rpc服务编写
 
 * 编译proto文件
-    ```shell
-    $ vim service/user/rpc/user.proto
-    ```
-    ```protobuf
-    syntax = "proto3";
-    
-    package user;
-    
-    option go_package = "./user";
-  
-    message IdReq{
-      int64 id = 1;
-    }
-    
-    message UserInfoReply{
-      int64 id = 1;
-      string name = 2;
-      string number = 3;
-      string gender = 4;
-    }
-    
-    service user {
-      rpc getUser(IdReq) returns(UserInfoReply);
-    }
-    ```
-    * 生成rpc服务代码
-    ```shell
-    $ cd service/user/rpc
-    $ goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=.
-    ```
+```shell
+$ vim service/user/rpc/user.proto
+```
+```protobuf
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user";
+
+message IdReq{
+  int64 id = 1;
+}
+
+message UserInfoReply{
+  int64 id = 1;
+  string name = 2;
+  string number = 3;
+  string gender = 4;
+}
+
+service user {
+  rpc getUser(IdReq) returns(UserInfoReply);
+}
+```
+* 生成rpc服务代码
+```shell
+$ cd service/user/rpc
+$ goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=.
+```
+
 :::tip
 如果安装的 `protoc-gen-go` 版大于1.4.0, proto文件建议加上`go_package`
 :::
 
 * 添加配置及完善yaml配置项
-    ```shell
-    $ vim service/user/rpc/internal/config/config.go
-    ```
-    ```go
-    type Config struct {
-        zrpc.RpcServerConf
-        Mysql struct {
-            DataSource string
-        }
-        CacheRedis cache.CacheConf
+```shell
+$ vim service/user/rpc/internal/config/config.go
+```
+```go
+type Config struct {
+    zrpc.RpcServerConf
+    Mysql struct {
+        DataSource string
     }
-    ```
-    ```shell
-    $ vim /service/user/rpc/etc/user.yaml
-    ```
-    ```yaml
-    Name: user.rpc
-    ListenOn: 127.0.0.1:8080
-    Etcd:
-      Hosts:
-        - $etcdHost
-      Key: user.rpc
-    Mysql:
-      DataSource: $user:$password@tcp($url)/$db?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
-    CacheRedis:
-      - Host: $host
-        Pass: $pass
-        Type: node  
-    ```
-    :::tip
-    $user: mysql数据库user
-    
-    $password: mysql数据库密码
-    
-    $url: mysql数据库连接地址
-    
-    $db: mysql数据库db名称，即user表所在database
-    
-    $host: redis连接地址 格式：ip:port，如:127.0.0.1:6379
-    
-    $pass: redis密码
-    
-    $etcdHost: etcd连接地址，格式：ip:port，如： 127.0.0.1:2379
-    
-    更多配置信息，请参考[rpc配置介绍](../configuration/rpc)
-    :::
+    CacheRedis cache.CacheConf
+}
+```
+
+```shell
+$ vim /service/user/rpc/etc/user.yaml
+```
+
+```yml
+Name: user.rpc
+ListenOn: 127.0.0.1:8080
+Etcd:
+  Hosts:
+    - $etcdHost
+  Key: user.rpc
+Mysql:
+  DataSource: $user:$password@tcp($url)/$db?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: $host
+    Pass: $pass
+    Type: node  
+```
+  
+:::tip
+
+$user: mysql数据库user
+
+$password: mysql数据库密码
+
+$url: mysql数据库连接地址
+
+$db: mysql数据库db名称，即user表所在database
+
+$host: redis连接地址 格式：ip:port，如:127.0.0.1:6379
+
+$pass: redis密码
+
+$etcdHost: etcd连接地址，格式：ip:port，如： 127.0.0.1:2379
+
+更多配置信息，请参考[rpc配置介绍](../configuration/rpc)
+
+:::
 
 * 添加资源依赖
-    ```shell
-    $ vim service/user/rpc/internal/svc/servicecontext.go  
-    ```
-    ```go
-    type ServiceContext struct {
-        Config    config.Config
-        UserModel model.UserModel
+```shell
+$ vim service/user/rpc/internal/svc/servicecontext.go  
+```
+```go
+type ServiceContext struct {
+    Config    config.Config
+    UserModel model.UserModel
+}
+
+func NewServiceContext(c config.Config) *ServiceContext {
+    conn := sqlx.NewMysql(c.Mysql.DataSource)
+    return &ServiceContext{
+        Config: c,
+        UserModel: model.NewUserModel(conn, c.CacheRedis),
+    }
+}
+```
+
+* 添加rpc逻辑
+```shell
+$ service/user/rpc/internal/logic/getuserlogic.go
+```
+```go
+func (l *GetUserLogic) GetUser(in *user.IdReq) (*user.UserInfoReply, error) {
+    one, err := l.svcCtx.UserModel.FindOne(l.ctx, in.Id)
+    if err != nil {
+        return nil, err
     }
     
-    func NewServiceContext(c config.Config) *ServiceContext {
-        conn := sqlx.NewMysql(c.Mysql.DataSource)
-        return &ServiceContext{
-            Config: c,
-            UserModel: model.NewUserModel(conn, c.CacheRedis),
-        }
-    }
-    ```
-* 添加rpc逻辑
-    ```shell
-    $ service/user/rpc/internal/logic/getuserlogic.go
-    ```
-    ```go
-    func (l *GetUserLogic) GetUser(in *user.IdReq) (*user.UserInfoReply, error) {
-        one, err := l.svcCtx.UserModel.FindOne(in.Id)
-        if err != nil {
-            return nil, err
-        }
-        
-        return &user.UserInfoReply{
-            Id:     one.Id,
-            Name:   one.Name,
-            Number: one.Number,
-            Gender: one.Gender,
-        }, nil
-    }
-    ```
+    return &user.UserInfoReply{
+        Id:     one.Id,
+        Name:   one.Name,
+        Number: one.Number,
+        Gender: one.Gender,
+    }, nil
+}
+```
 
 ## 使用rpc
 接下来我们在search服务中调用user rpc
 
 * 添加UserRpc配置及yaml配置项
-    ```shell
-    $ vim service/search/api/internal/config/config.go
-    ```
-    ```go
-    type Config struct {
-        rest.RestConf
-        Auth struct {
-            AccessSecret string
-            AccessExpire int64
-        }
-        UserRpc zrpc.RpcClientConf
+```shell
+$ vim service/search/api/internal/config/config.go
+```
+```go
+type Config struct {
+    rest.RestConf
+    Auth struct {
+        AccessSecret string
+        AccessExpire int64
     }
-    ```
-    ```shell
-    $ vim service/search/api/etc/search-api.yaml
-    ```
-    ```yaml
-    Name: search-api
-    Host: 0.0.0.0
-    Port: 8889
-    Auth:
-      AccessSecret: $AccessSecret
-      AccessExpire: $AccessExpire
-    UserRpc:
-      Etcd:
-        Hosts:
-          - $etcdHost
-        Key: user.rpc
-    ```
-    
-    :::tip
-    $AccessSecret：这个值必须要和user api中声明的一致。
-    
-    $AccessExpire: 有效期
-    
-    $etcdHost： etcd连接地址
-    
-    etcd中的`Key`必须要和user rpc服务配置中Key一致
-    :::
+    UserRpc zrpc.RpcClientConf
+}
+```
+```shell
+$ vim service/search/api/etc/search-api.yaml
+```
+```yaml
+Name: search-api
+Host: 0.0.0.0
+Port: 8889
+Auth:
+  AccessSecret: $AccessSecret
+  AccessExpire: $AccessExpire
+UserRpc:
+  Etcd:
+    Hosts:
+      - $etcdHost
+    Key: user.rpc
+```
+
+:::tip
+$AccessSecret：这个值必须要和user api中声明的一致。
+
+$AccessExpire: 有效期
+
+$etcdHost： etcd连接地址
+
+etcd中的`Key`必须要和user rpc服务配置中Key一致
+:::
   
 * 添加依赖
-    ```shell
-    $ vim service/search/api/internal/svc/servicecontext.go
-    ```
-    ```go
-    type ServiceContext struct {
-        Config  config.Config
-        Example rest.Middleware
-        UserRpc user.User
+```shell
+  $ vim service/search/api/internal/svc/servicecontext.go
+```
+```go
+type ServiceContext struct {
+    Config  config.Config
+    Example rest.Middleware
+    UserRpc user.User
+}
+
+func NewServiceContext(c config.Config) *ServiceContext {
+    return &ServiceContext{
+        Config:  c,
+        Example: middleware.NewExampleMiddleware().Handle,
+        UserRpc: user.NewUser(zrpc.MustNewClient(c.UserRpc)),
     }
-    
-    func NewServiceContext(c config.Config) *ServiceContext {
-        return &ServiceContext{
-            Config:  c,
-            Example: middleware.NewExampleMiddleware().Handle,
-            UserRpc: user.NewUser(zrpc.MustNewClient(c.UserRpc)),
-        }
-    }
-    ```
+}
+```
 * 补充逻辑
-    ```shell
-    $ vim /service/search/api/internal/logic/searchlogic.go
-    ```
-    ```go
-    func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
-        userIdNumber := json.Number(fmt.Sprintf("%v", l.ctx.Value("userId")))
-        logx.Infof("userId: %s", userIdNumber)
-        userId, err := userIdNumber.Int64()
-        if err != nil {
-            return nil, err
-        }
-        
-        // 使用user rpc
-        _, err = l.svcCtx.UserRpc.GetUser(l.ctx, &user.IdReq{
-            Id: userId,
-        })
-        if err != nil {
-            return nil, err
-        }
-    
-        return &types.SearchReply{
-            Name:  req.Name,
-            Count: 100,
-        }, nil
+```shell
+$ vim /service/search/api/internal/logic/searchlogic.go
+```
+```go
+func (l *SearchLogic) Search(req *types.SearchReq) (*types.SearchReply, error) {
+    userIdNumber := json.Number(fmt.Sprintf("%v", l.ctx.Value("userId")))
+    logx.Infof("userId: %s", userIdNumber)
+    userId, err := userIdNumber.Int64()
+    if err != nil {
+        return nil, err
     }
-    ```
+    
+    // 使用user rpc
+    _, err = l.svcCtx.UserRpc.GetUser(l.ctx, &user.IdReq{
+        Id: userId,
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    return &types.SearchReply{
+        Name:  req.Name,
+        Count: 100,
+    }, nil
+}
+```
 ## 启动并验证服务
 * 启动etcd、redis、mysql
 * 启动user rpc

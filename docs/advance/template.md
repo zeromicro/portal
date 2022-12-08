@@ -67,13 +67,10 @@ import (
 	"net/http"
 	"greet/response"// ①
 
-	{% raw %}
 	{{.ImportPackages}}
-	{% endraw %}
 )
 
-{% raw %}
-func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
+func {{.HandlerName}}(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		{{if .HasRequest}}var req types.{{.RequestType}}
 		if err := httpx.Parse(r, &req); err != nil {
@@ -81,13 +78,12 @@ func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}{{end}}
 
-		l := logic.New{{.LogicType}}(r.Context(), ctx)
-		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}req{{end}})
+		l := logic.New{{.LogicType}}(r.Context(), svcCtx)
+		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}&req{{end}})
 		{{if .HasResp}}response.Response(w, resp, err){{else}}response.Response(w, nil, err){{end}}//②
 			
 	}
 }
-{% endraw %}
 ```
 
 ① Replace with your real `response` package name, for reference only
@@ -103,7 +99,7 @@ If there is no local `~/.goctl/api/handler.tpl` file, you can initialize it with
 ## Comparison
 * Before
 ```go
-func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.Request
 		if err := httpx.Parse(r, &req); err != nil {
@@ -111,8 +107,8 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := logic.NewGreetLogic(r.Context(), ctx)
-		resp, err := l.Greet(req)
+		l := logic.NewGreetLogic(r.Context(), svcCtx)
+		resp, err := l.Greet(&req)
 		// The following content will be replaced by custom templates
 		if err != nil {
 			httpx.Error(w, err)
@@ -124,7 +120,7 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 ```  
 * After
 ```go
-func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.Request
 		if err := httpx.Parse(r, &req); err != nil {
@@ -132,8 +128,8 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := logic.NewGreetLogic(r.Context(), ctx)
-		resp, err := l.Greet(req)
+		l := logic.NewGreetLogic(r.Context(), svcCtx)
+		resp, err := l.Greet(&req)
 		response.Response(w, resp, err)
 	}
 }

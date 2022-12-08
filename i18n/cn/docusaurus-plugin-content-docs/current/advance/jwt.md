@@ -1,7 +1,7 @@
 # jwt鉴权
 
 ## 概述
-> JSON Web令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑而独立的方法，用于在各方之间安全地将信息作为JSON对象传输。由于此信息是经过数字签名的，因此可以被验证和信任。可以使用秘密（使用HMAC算法）或使用RSA或ECDSA的公钥/私钥对对JWT进行签名。
+> JSON Web令牌（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑而独立的方法，用于在各方之间安全地将信息作为JSON对象传输。由于此信息是经过数字签名的，因此可以被验证和信任。可以使用秘钥（使用HMAC算法）或使用RSA或ECDSA的公钥/私钥对对JWT进行签名。
 
 ## 什么时候应该使用JWT
 * 授权：这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单一登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用。
@@ -213,9 +213,9 @@ $AccessExpire: 有效期
     {"name":"","count":0}
     ```
 
-    :::tip
-    服务启动错误，请查看[常见错误处理](../faq/error)
-    :::
+:::tip
+服务启动错误，请查看[常见错误处理](../faq/error)
+:::
 
 
 至此，jwt从生成到使用就演示完成了，jwt token的鉴权是go-zero内部已经封装了，你只需在api文件中定义服务时简单的声明一下即可。
@@ -227,7 +227,7 @@ $ vim /service/search/api/internal/logic/searchlogic.go
 ```
 添加一个log来输出从jwt解析出来的userId。
 ```go
-func (l *SearchLogic) Search(req types.SearchReq) (*types.SearchReply, error) {
+func (l *SearchLogic) Search(req *types.SearchReq) (*types.SearchReply, error) {
 	logx.Infof("userId: %v",l.ctx.Value("userId"))// 这里的key和生成jwt token时传入的key一致
 	return &types.SearchReply{}, nil
 }

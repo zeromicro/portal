@@ -152,6 +152,10 @@ const config = {
               to: "/docs/quick-start/quick-start",
             },
             {
+              label: "Components",
+              to: "/docs/component/components"
+            },
+            {
               label: "Guides",
               to: "/docs/advance/advance",
             }
@@ -182,10 +186,14 @@ const config = {
               label: "Completion",
               to: "/docs/goctl/completion",
             },
+            {
+              label: "Tutorial",
+              to: "/docs/goctl/tutorial/tutorial",
+            },
           ],
         },
         {
-          label: "Tool",
+          label: "Eco",
           position: "left",
           items: [
             {
@@ -195,6 +203,14 @@ const config = {
             {
               label: "Editor Plugin",
               to: "/docs/eco/editor",
+            },
+            {
+              label: "Distributed Transaction (DTM)",
+              to: "/docs/eco/distributed-transaction",
+            },
+            {
+              label: "Showcase",
+              to: "/docs/eco/showcase",
             },
           ],
         },
@@ -207,16 +223,8 @@ const config = {
               to: "/docs/community/about-us",
             },
             {
-              label: "Showcase",
-              to: "/docs/community/showcase",
-            },
-            {
               label: "Contributing",
               to: "/docs/community/contribute",
-            },
-            {
-              label: "Contributor",
-              to: "/docs/community/contributor",
             },
             {
               label: "GitHub",
@@ -340,7 +348,7 @@ const config = {
           rehypePlugins: [katex],
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: ({locale, docPath}) => {
-            return locale==='en'?`https://github.com/zeromicro/portal/edit/main/docs/${docPath}`:`https://github.com/zeromicro/portal/edit/main/i18n/cn/docusaurus-plugin-content-docs/current/${docPath}`
+            return locale === 'en' ? `https://github.com/zeromicro/portal/edit/main/docs/${docPath}` : `https://github.com/zeromicro/portal/edit/main/i18n/cn/docusaurus-plugin-content-docs/current/${docPath}`
           },
           showLastUpdateTime: true,
         },

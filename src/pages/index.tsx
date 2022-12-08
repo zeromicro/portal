@@ -7,6 +7,7 @@ import customFields from "../config/customFields"
 import Button from "@theme/Button"
 import Layout from "../theme/Layout"
 import SvgImage from "../components/SvgImage"
+import FloatSideBar from "../components/FloatSideBar"
 
 import doCss from "../css/index/docker.module.css"
 import feCss from "../css/index/feature.module.css"
@@ -23,6 +24,7 @@ const Top = () => {
     <section
       className={clsx(seCss["section--inner"], seCss["section--slim--accent"])}
     >
+      <FloatSideBar />
       <div className={juCss.jumbotron}>
         <h1
           className={clsx(
@@ -42,8 +44,8 @@ const Top = () => {
           )}
         >
           <Translate>
-            go-zero is a web and rpc framework that with lots of engineering
-            practices builtin
+            go-zero is a web and rpc framework with many built-in engineering
+            best practices.
           </Translate>
         </p>
 
@@ -332,10 +334,7 @@ const Cards = () => (
                 </Translate>
               </li>
               <li>
-                <Translate>
-                  try best to be friendly to the business logic development,
-                  encapsulate the complexity
-                </Translate>
+                <Translate>business logic development friendly</Translate>
               </li>
               <li>
                 <Translate>one thing, one way</Translate>

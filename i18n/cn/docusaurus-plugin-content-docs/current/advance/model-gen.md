@@ -23,8 +23,10 @@ Done.
 $ goctl model mysql datasource -url="$datasource" -table="user" -c -dir .
 Done.
 ```
-> [!TIP]
-> $datasource为数据库连接地址
+
+:::tip
+$datasource为数据库连接地址
+:::
 
 ### 方式三(intellij 插件)
 在Goland中，右键`user.sql`，依次进入并点击`New`->`Go Zero`->`Model Code`即可生成，或者打开`user.sql`文件，
@@ -52,5 +54,5 @@ $ tree
 ## 更多
 对于持久化数据，如果需要更灵活的数据库能力，包括事务能力，可以参考 [Mysql](../blog/showcase/mysql)
 
-如果需要分布式事务的能力，可以参考 [分布式事务支持](../community/distributed-transaction.md)
+如果需要分布式事务的能力，可以参考 [分布式事务支持](../eco/distributed-transaction)
 

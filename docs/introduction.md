@@ -8,9 +8,9 @@
 [![Release](https://img.shields.io/github/v/release/zeromicro/go-zero.svg?style=flat-square)](https://github.com/zeromicro/go-zero)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 0. what is go-zero
+## 0. What is go-zero?
 
-go-zero is a web and rpc framework that with lots of engineering practices builtin. It’s born to ensure the stability of the busy services with resilience design, and has been serving sites with tens of millions users for years.
+go-zero is a web and rpc framework with lots of engineering best practices builtin. It’s born to ensure the stability of the busy services with resilience design, and has been serving sites with tens of millions users for years.
 
 go-zero contains simple API description syntax and code generation tool called `goctl`. You can generate Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript from .api files with `goctl`.
 
@@ -20,43 +20,43 @@ Advantages of go-zero:
 * builtin chained timeout control, concurrency control, rate limit, adaptive circuit breaker, adaptive load shedding, even no configuration needed
 * builtin middlewares also can be integrated into your frameworks
 * simple API syntax, one command to generate couple of different languages
-* auto validate the request parameters from clients
+* automatically validate the request parameters from clients
 * plenty of builtin microservice management and concurrent toolkits
 
 <img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture-en.png" alt="Architecture" width="1500" />
 
 ## 1. Backgrounds of go-zero
 
-At the beginning of 2018, we decided to re-design our system, from monolithic architecture with Java+MongoDB to microservice architecture. After researches and comparison, we chose to:
+At the beginning of 2018, we decided to re-design our system, from a monolithic architecture with Java+MongoDB to a microservice architecture. After researches and comparisons, we chose to:
 
 * Golang based
-    * great performance
-    * simple syntax
-    * proven engineering efficiency
-    * extreme deployment experience
-    * less server resource consumption
+  * great performance
+  * simple syntax
+  * proven engineering efficiency
+  * extreme deployment experience
+  * less server resource consumption
 * Self-designed microservice architecture
-    * I have rich experience on designing microservice architectures
-    * easy to location the problems
-    * easy to extend the features
+  * I have rich experience on designing microservice architectures
+  * easy to locate the problems
+  * easy to extend the features
 
-## 2. Design considerations on go-zero
+## 2. Design considerations
 
-By designing the microservice architecture, we expected to ensure the stability, as well as the productivity. And from just the beginning, we have the following design principles:
+Stability and productivity are two major goals that we wanted to archive. From the very beginning, we set the following design principles:
 
 * keep it simple
 * high availability
 * stable on high concurrency
 * easy to extend
 * resilience design, failure-oriented programming
-* try best to be friendly to the business logic development, encapsulate the complexity
+* business logic development friendly while encapsulating the complexity as possible
 * one thing, one way
 
-After almost half a year, we finished the transfer from monolithic system to microservice system, and deployed on August 2018. The new system guaranteed the business growth, and the system stability.
+After almost half a year, we finished the transfer from a monolithic system to a microservice system, and deployed on August 2018. The new system guaranteed the business growth, and the system stability.
 
-## 3. The implementation and features of go-zero
+## 3. The features of go-zero
 
-go-zero is a web and rpc framework that integrates lots of engineering practices. The features are mainly listed below:
+go-zero is a web and rpc framework that integrates lots of engineering practices. The highlights of the features are listed below:
 
 * powerful tool included, less code to write
 * simple interfaces
@@ -66,20 +66,20 @@ go-zero is a web and rpc framework that integrates lots of engineering practices
 * failure-oriented programming, resilience design
 * builtin service discovery, load balancing
 * builtin concurrency control, adaptive circuit breaker, adaptive load shedding, auto trigger, auto recover
-* auto validation of API request parameters
+* automatic validation of API request parameters
 * chained timeout control
-* auto management of data caching
+* automatic management of data caching
 * call tracing, metrics and monitoring
 * high concurrency protected
 
-As below, go-zero protects the system with couple layers and mechanisms:
+As shown below, go-zero implements layers of protection mechanisms:
 
 ![Resilience](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/resilience-en.png)
 
 ## 4. Future development plans of go-zero
 
-* auto generate API mock server, make the client debugging easier
-* auto generate the simple integration test for the server side just from the .api files
+* automatic generation of API mock server code, make the client debugging easier
+* automatic generation of simple integration tests for the server side from the .api files
 
 ## 5. Installation
 
@@ -91,23 +91,21 @@ go get -u github.com/zeromicro/go-zero
 
 ## 6. Quick Start
 
-0. full examples can be checked out from below:
+0. Full examples can be checked out from below:
 
    [Rapid development of microservice systems](https://github.com/zeromicro/zero-doc/blob/main/doc/shorturl-en.md)
 
    [Rapid development of microservice systems - multiple RPCs](https://github.com/zeromicro/zero-doc/blob/main/doc/bookstore-en.md)
+1. Install goctl
 
-1. install goctl
-
-   `goctl`can be read as `go control`. `goctl` means not to be controlled by code, instead, we control it. The inside `go` is not `golang`. At the very beginning, I was expecting it to help us improve the productivity, and make our lives easier.
+   `goctl` can be read as `go control`. `goctl` means not to be controlled by code, instead, we control it. The inside `go` is not `golang`. At the very beginning, the tool was aimed to help us improve the productivity, and make our lives easier.
 
    ```shell
    GO111MODULE=on go get -u github.com/zeromicro/go-zero/tools/goctl
    ```
 
    make sure goctl is executable.
-
-2. create the API file, like greet.api, you can install the plugin of goctl in vs code, api syntax is supported.
+2. Create an API file, like greet.api, you can install the plugin of goctl in vs code, api syntax is supported.
 
    ```go
    type Request struct {
@@ -124,19 +122,18 @@ go get -u github.com/zeromicro/go-zero
    }
    ```
 
-   the .api files also can be generate by goctl, like below:
+   The .api files also can be generate by goctl, like below:
 
    ```shell
    goctl api -o greet.api
    ```
-
-3. generate the go server side code
+3. Generate the go server side code
 
    ```shell
    goctl api go -api greet.api -dir greet
    ```
 
-   the generated files look like:
+   The generated files look like:
 
    ```
    ├── greet
@@ -158,7 +155,7 @@ go get -u github.com/zeromicro/go-zero
    └── greet.api                     // api description file
    ```
 
-   the generated code can be run directly:
+   The generated code can be run directly:
 
    ```shell
    cd greet
@@ -167,27 +164,29 @@ go get -u github.com/zeromicro/go-zero
    go run greet.go -f etc/greet-api.yaml
    ```
 
-   by default, it’s listening on port 8888, while it can be changed in configuration file.
+   By default, it is listening on port 8888. The port can be changed in the configuration file.
 
-   you can check it by curl:
+   You can check it by curl:
 
    ```shell
    curl -i http://localhost:8888/greet/from/you
    ```
 
-   the response looks like:
+   The response looks like:
 
    ```http
    HTTP/1.1 200 OK
+   Content-Type: application/json; charset=utf-8
+   Traceparent: 00-45fa9e7a7c505bad3a53a024e425ace9-eb5787234cf3e308-00
    Date: Sun, 30 Aug 2020 15:32:35 GMT
    Content-Length: 0
-   ```
 
+   null
+   ```
 4. Write the business logic code
 
-    * the dependencies can be passed into the logic within servicecontext.go, like mysql, reds etc.
-    * add the logic code in logic package according to .api file
-
+   * the dependencies can be passed into the logic within servicecontext.go, like mysql, reds etc.
+   * add the logic code in logic package according to .api file
 5. Generate code like Java, TypeScript, Dart, JavaScript etc. just from the api file
 
    ```shell
@@ -213,7 +212,6 @@ go get -u github.com/zeromicro/go-zero
 * Use grpc 1.29.1, because etcd lib doesn’t support latter versions.
 
   `google.golang.org/grpc v1.29.1`
-
 * For protobuf compatibility, use `protocol-gen@v1.3.2`.
 
   ` go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.2`

@@ -1,12 +1,12 @@
 # Middleware
 
-In the previous section, we demonstrated how to use jwt authentication. I believe you have mastered the basic use of jwt. In this section, let’s take a look at how to use api service middleware.
+In the previous section, we demonstrated how to use jwt authentication. In this section, let’s take a look at how to use API service middleware.
 
-## Middleware classification
-In go-zero, middleware can be divided into routing middleware and global middleware. Routing middleware refers to certain specific routes that need to implement middleware logic, which is similar to jwt and does not place the routes under `jwt:xxx` Does not use middleware functions,
-The service scope of global middleware is the entire service.
+## Two types of middlewares
+In go-zero, middlewares can be categorized into two groups: routing middlewares and global middlewares. A routing middleware refers to certain routes that need to implement middleware logic, which is similar to jwt and does not place the routes under `jwt:xxx` Does not use middleware functions,
+The scope of a global middleware is the entire service.
 
-## Middleware use
+## An example to demostrate how to use middlewares 
 Here we take the `search` service as an example to demonstrate the use of middleware
 
 ### Routing middleware

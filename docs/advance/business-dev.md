@@ -1,26 +1,30 @@
-# Business Developing
+# A Business Scenerio
 
-## Demo project download
-Before officially entering the follow-up document description, you can pay attention to the source code here, and we will perform a progressive demonstration of the function based on this source code.
-Instead of starting from 0 completely, if you come from the [Quick Start](../quick-start/quick-start) chapter, this source code structure is not a problem for you.
+## Download the demo project
 
-[Click Here](../resource/book.zip) to download Demo project
+If you come from the [Quick Start](../quick-start/quick-start) chapter, you should be familiar with the structure of the source code.
+
+[Click Here](../resource/book.zip) to download the demo project
 
 ## Demonstration project description
 
-### Scenes
-The programmer Xiao Ming needs to borrow a copy of "Journey to the West". When there is no online library management system, he goes to the front desk of the library to consult with the librarian every day.
+### A demo scenerio
+
+The programmer Xiao Ming needs to borrow a copy of a book entitled "Journey to the West". When there is no online library management system, he goes to the front desk of the library to consult with library staff every day.
+
 * Xiao Ming: Hello, do you still have the book "Journey to the West" today?
-* Administrator: No more, let's check again tomorrow.
+* Staff: No more, let's check again tomorrow.
 
 One day later, Xiao Ming came to the library again and asked:
-* Xiao Ming: Hello, do you still have the book "Journey to the West" today?
-* Administrator: No, you can check again in two days.
 
-After many repetitions in this way, Xiao Ming was also in vain and wasted a lot of time on the way back and forth, so he finally couldn't stand the backward library management system.
+* Xiao Ming: Hello, do you still have the book "Journey to the West" today?
+* Staff: No, you can check again in two days.
+
+After many times in this way, Xiao Ming was also in vain and wasted a lot of time on the way back and forth, so he finally couldn't stand the backward library management system.
 He decided to build a book review system by himself.
 
 ### Expected achievement
+
 * User login:
   Rely on existing student system data to log in
 * Book search:
@@ -29,6 +33,7 @@ He decided to build a book review system by himself.
 ### System analysis
 
 #### Service design
+
 * user
   * api: provides user login protocol
   * rpc: for search service to access user data
@@ -51,6 +56,7 @@ Add some preset user data to the database for later use. For the sake of space, 
 :::
 
 # Reference preset data
+
 ```sql
 INSERT INTO `user` (number,name,password,gender)values ('666','xiaoming','123456','male');
 ```

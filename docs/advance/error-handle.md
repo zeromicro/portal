@@ -1,13 +1,12 @@
 # Error Handling
 
+Error handling is an indispensable part of services. Normally, if a http status code is not in the `2xx` series, it can be considered as an http request error.
 
-Error handling is an indispensable part of service. In normal business development, we can think that the http status code is not in the `2xx` series, it can be regarded as an http request error.
-It is accompanied by error messages in response, but these error messages are all returned in plain text. In addition, I will define some business errors in the business, and the common practice is to pass
-The two fields `code` and `msg` are used to describe the business processing results, and it is hoped that the response can be made with the json response body.
+The error message of a response is returned in plain text. In addition, some other types of errors were defined and retured. Common practice is to pass two fields: `code` and `msg` that are used to describe the business processing results, and the response body can be formatted as json.
 
 ## Business error response format
 
-* Business processing is normal
+* Normal business processing
     ```json
     {
       "code": 0,
@@ -18,7 +17,7 @@ The two fields `code` and `msg` are used to describe the business processing res
     }
     ```
 
-* Business processing exception
+* An error occurred in the business processing 
     ```json
     {
       "code": 10001,
@@ -26,8 +25,8 @@ The two fields `code` and `msg` are used to describe the business processing res
     }
     ```
 
-## Login of user api
-Previously, when we handled the login logic when the username did not exist, an error was directly returned. Let's log in and pass a username that does not exist to see the effect.
+## Login of the user APIs 
+Previously, when we handled the login logic if the username did not exist, an error was directly returned. Let's try the `login` and pass a username that does not exist to see the result.
 
 ```shell
 curl -X POST \

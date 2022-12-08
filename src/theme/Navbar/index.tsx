@@ -155,7 +155,11 @@ function Navbar(): JSX.Element {
             <img
               alt="forks"
               height={30}
-              src={useBaseUrl("img/navbar/github.svg")}
+              src={useBaseUrl(
+                colorModeToggle.isDarkTheme
+                  ? "img/navbar/github-dark.svg"
+                  : "img/navbar/github.svg",
+              )}
               className={styles.star__fork}
             />
             <div className={styles.star_fork_layout}>

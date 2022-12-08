@@ -10,6 +10,8 @@ import useMetadataContext from "@theme/useMetadataContext"
 import sectionCss from "../../css/section.module.css"
 import footerStyles from "./styles.module.css"
 import Translate from "@docusaurus/Translate"
+import Zoom from "react-medium-image-zoom"
+import "react-medium-image-zoom/dist/styles.css"
 
 type Props = Readonly<{
   href?: string
@@ -41,21 +43,25 @@ const FooterLink = ({ to, href, label, ...props }: Props) => {
   }
   if (imageUrl !== "") {
     return (
-      <img
-        alt={label}
-        width={80}
-        src={imageUrl}
-        className={clsx(footerStyles.footer__img)}
-      />
+      <Zoom overlayBgColorEnd="rgba(0, 0, 0, 0.3)" zoomMargin={150}>
+        <img
+          alt={label}
+          width={80}
+          src={imageUrl}
+          className={clsx(footerStyles.footer__img)}
+        />
+      </Zoom>
     )
   } else if (imageHref !== "") {
     return (
-      <img
-        alt={label}
-        width={80}
-        src={imageHref}
-        className={clsx(footerStyles.footer__img)}
-      />
+      <Zoom overlayBgColorEnd="rgba(0, 0, 0, 0.3)" zoomMargin={150}>
+        <img
+          alt={label}
+          width={80}
+          src={imageHref}
+          className={clsx(footerStyles.footer__img)}
+        />
+      </Zoom>
     )
   } else {
     return (
@@ -128,8 +134,8 @@ const Footer = () => {
           </div>
           <p className={footerStyles.footer__tagline}>
             <Translate>
-              go-zero is a web and rpc framework that with lots of engineering
-              practices builtin
+              go-zero is a web and rpc framework with many built-in engineering
+              best practices.
             </Translate>
           </p>
 

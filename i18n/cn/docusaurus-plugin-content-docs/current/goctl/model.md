@@ -211,14 +211,14 @@ func NewUserModel(conn sqlx.SqlConn, c cache.CacheConf) UserModel {
 ```shell
 $ goctl model mysql -h
 NAME:
-   goctl model mysql - generate mysql model"
+   goctl model mysql - generate mysql model
 
 USAGE:
    goctl model mysql command [command options] [arguments...]
 
 COMMANDS:
-   ddl         generate mysql model from ddl"
-   datasource  generate model from datasource"
+   ddl         generate mysql model from ddl
+   datasource  generate model from datasource
 
 OPTIONS:
    --help, -h  show help
@@ -255,7 +255,7 @@ OPTIONS:
 * datasource
 
   ```shell
-  $ goctl model mysql datasource -h                        13:40:46  羽106ms
+  $ goctl model mysql datasource -h
   NAME:
      goctl model mysql datasource - generate model from datasource
     

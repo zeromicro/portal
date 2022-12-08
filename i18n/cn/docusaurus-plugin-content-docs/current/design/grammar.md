@@ -316,6 +316,13 @@ type(
         FooBar int `json:"fooBar"`
     }
 )
+
+type(
+    // service handler返回[]fooBar
+    fooBar struct{
+        FooBar int `json:"fooBar"`
+    }
+)
 ```
 
 eg2：规范写法（推荐）
@@ -333,6 +340,13 @@ type Bar{
 type(
     FooBar{
         FooBar int `json:"fooBar"`
+    }
+)
+
+type(
+    // service handler返回FooBarList
+    FooBarList{
+        FooBarList []FooBar `json:"fooBarList"`
     }
 )
 ```
@@ -517,7 +531,7 @@ eg1：不规范写法
   jwt: Auth
   group: foo
   middleware: AuthMiddleware
-  prefix api
+  prefix: api
 )
 service foo-api{
   @doc(

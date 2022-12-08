@@ -40,7 +40,7 @@ OPTIONS:
    --help, -h      show help
 ```
 
-从上文中可以看到，根据功能的不同，api包含了很多的自命令和flag，我们这里重点说明一下
+从上文中可以看到，根据功能的不同，api包含了很多的子命令和flag，我们这里重点说明一下
 `go`子命令，其功能是生成golang api服务，我们通过`goctl api go -h`看一下使用帮助：
 
 ```shell

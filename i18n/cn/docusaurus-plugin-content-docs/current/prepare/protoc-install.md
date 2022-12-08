@@ -30,7 +30,15 @@ $ goctl env check -i -f --verbose
 [goctl-env]: congratulations! your goctl environment is ready!
 ```
 
-## 方式二： 源文件安装
+## 方式二： Homebrew（macOS）
+
+```shell
+$ brew install protobuf protoc-gen-go protoc-gen-go-grpc
+$ protoc --version
+libprotoc x.x.x
+```
+
+## 方式三： 源文件安装
 
 ### protoc安装
 
@@ -43,8 +51,11 @@ $ goctl env check -i -f --verbose
     ```shell
     $ mv protoc $GOPATH/bin
     ```
-    > [!TIP]
-    > $GOPATH为你本机的实际文件夹地址
+    
+    :::tip
+    $GOPATH为你本机的实际文件夹地址
+    :::
+
 * 验证安装结果
     ```shell
     $ protoc --version

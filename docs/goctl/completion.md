@@ -1,5 +1,5 @@
-# Goctl Complation
-Goctl Complation only supports unix-like operating systems
+# Goctl Completion
+Goctl Completion only supports unix-like operating systems
 
 ## Usage
 ```shell

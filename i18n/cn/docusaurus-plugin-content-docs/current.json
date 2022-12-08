@@ -58,5 +58,9 @@
   "sidebar.docs.category.FAQ": {
     "message": "FAQ",
     "description": "The label for category FAQ in sidebar docs"
+  },
+  "sidebar.docs.category.Components": {
+    "message": "组件剖析",
+    "description": "The label for category Components in sidebar docs"
   }
 }

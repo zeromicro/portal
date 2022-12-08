@@ -29,17 +29,20 @@ $ goctl model mysql datasource -url="$datasource" -table="user" -c -dir .
 ```text
 Done.
 ```
-> [!TIP]
-> `$datasource` is the database connection address
+
+:::tip
+`$datasource` is the database connection address
+:::
 
 ### The way three(intellij plugin)
 In Goland, right-click `user.sql`, enter and click `New`->`Go Zero`->`Model Code` to generate it, or open the `user.sql` file,
-Enter the editing area, use the shortcut key `Command+N` (for macOS) or `alt+insert` (for windows), select `Mode Code`.
+Enter the editing area, use the shortcut key `Command+N` (for macOS) or `alt+insert` (for windows), select `Model Code`.
 
 ![model generation](https://zeromicro.github.io/go-zero-pages/resource/intellij-model.png)
 
-> [!TIP]
-> The intellij plug-in generation needs to install the goctl plug-in, see [intellij plugin](../eco/intellij) for details
+:::tip
+The intellij plug-in generation needs to install the goctl plug-in, see [intellij plugin](../eco/intellij) for details
+:::
 
 ## Verify the generated model file
 view tree
@@ -57,4 +60,4 @@ $ tree
 ## More
 For persisting data, if more flexible database capabilities are required, including transactional capabilities, see [Mysql](../blog/showcase/mysql)
 
-For distributed transaction capabilities, see [distributed-transaction.md](../community/distributed-transaction)
+For distributed transaction capabilities, see [distributed-transaction.md](../eco/distributed-transaction)

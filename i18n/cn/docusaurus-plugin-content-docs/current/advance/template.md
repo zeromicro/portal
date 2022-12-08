@@ -56,7 +56,7 @@ func Response(w http.ResponseWriter, resp interface{}, err error) {
 
 ## 修改`handler`模板
 ```shell
-$ vim ~/.goctl/api/handler.tpl
+$ vim ~/.goctl/${goctl版本号}/api/handler.tpl
 ```
 将模板替换为以下内容
 ```go
@@ -65,13 +65,10 @@ package handler
 import (
 	"net/http"
 	"greet/response"// ①
-	{% raw %}
 	{{.ImportPackages}}
-	{% endraw %}
 )
 
-{% raw %}
-func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
+func {{.HandlerName}}(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		{{if .HasRequest}}var req types.{{.RequestType}}
 		if err := httpx.Parse(r, &req); err != nil {
@@ -79,13 +76,12 @@ func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}{{end}}
 
-		l := logic.New{{.LogicType}}(r.Context(), ctx)
-		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}req{{end}})
+		l := logic.New{{.LogicType}}(r.Context(), svcCtx)
+		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}&req{{end}})
 		{{if .HasResp}}response.Response(w, resp, err){{else}}response.Response(w, nil, err){{end}}//②
 			
 	}
 }
-{% endraw %}
 ```
 
 ① 替换为你真实的`response`包名，仅供参考
@@ -93,13 +89,13 @@ func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
 ② 自定义模板内容
 
 :::tip
-1.如果本地没有`~/.goctl/api/handler.tpl`文件，可以通过模板初始化命令`goctl template init`进行初始化
+1.如果本地没有`~/.goctl/${goctl版本号}/api/handler.tpl`文件，可以通过模板初始化命令`goctl template init`进行初始化
 :::
 
 ## 修改模板前后对比
 * 修改前
 ```go
-func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.Request
 		if err := httpx.Parse(r, &req); err != nil {
@@ -107,8 +103,8 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := logic.NewGreetLogic(r.Context(), ctx)
-		resp, err := l.Greet(req)
+		l := logic.NewGreetLogic(r.Context(), svcCtx)
+		resp, err := l.Greet(&req)
 		// 以下内容将被自定义模板替换
 		if err != nil {
 			httpx.Error(w, err)
@@ -120,7 +116,7 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 ```  
 * 修改后
 ```go
-func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.Request
 		if err := httpx.Parse(r, &req); err != nil {
@@ -128,8 +124,8 @@ func GreetHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := logic.NewGreetLogic(r.Context(), ctx)
-		resp, err := l.Greet(req)
+		l := logic.NewGreetLogic(r.Context(), svcCtx)
+		resp, err := l.Greet(&req)
 		response.Response(w, resp, err)
 	}
 }

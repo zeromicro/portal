@@ -35,9 +35,8 @@ $ cat ~/.ssh/id_rsa.pub
 $ ssh-keygen -t rsa -b 2048 -C "email@example.com"
 ```
 
-> "email@example.com" 可以替换为自己的邮箱
->
-After completing the generation, repeat the first step
+> Replace "email@example.com" with your own email  
+> After completing the generation, repeat the first step
 
 * 3、Add the public key to gitlab
 
