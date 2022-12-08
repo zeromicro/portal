@@ -1,384 +1,279 @@
-const visit = require("unist-util-visit")
-const ssrTemplate = require("./src/internals/ssr.template")
-const consts = require("./src/config/consts")
-const customFields = require("./src/config/customFields")
-const math = require("remark-math")
-const katex = require("rehype-katex")
+const path = require('path');
+const adJSON = require('./scripts/data/ad.json');
 
-function variable() {
-  const RE_VAR = /{@([\w-_]+)@}/g
-  const getVariable = (full, partial) =>
-    partial ? customFields[partial] : full
-
-  function textVisitor(node) {
-    node.value = node.value.replace(RE_VAR, getVariable)
-  }
-
-  function linkVisitor(node) {
-    node.url = node.url.replace(RE_VAR, getVariable)
-
-    if (node.title) {
-      node.title = node.title.replace(RE_VAR, getVariable)
-    }
-  }
-
-  function transformer(ast) {
-    visit(ast, "text", textVisitor)
-    visit(ast, "code", textVisitor)
-    visit(ast, "link", linkVisitor)
-  }
-
-  return transformer
-}
-
-const config = {
-  title: "go-zero",
-  tagline: "go-zero 是一个集成了各种工程实践的 web 和 rpc 框架",
-  url: `https://${consts.domain}`,
-  baseUrl: `${consts.baseUrl}`,
-  baseUrlIssueBanner: false,
-  favicon: `/img/favicon.png`,
-  organizationName: `${consts.organizationName}`,
-  projectName: `${consts.projectName}`,
-  customFields: customFields,
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'cn'],
-    localeConfigs: {
-      en: {
-        label: 'English',
-        direction: 'ltr',
-      },
-      cn: {
-        label: '中文简体',
-        direction: 'ltr',
-      },
-    },
-  },
-  plugins: [
-    require.resolve("./plugins/webpack-ts/index"),
-    require.resolve("./plugins/optimize/index"),
-    require.resolve("./plugins/manifest/index"),
-    require.resolve("./plugins/delay-code-block-appearance"),
-    [
-      "@docusaurus/plugin-pwa",
-      {
-        pwaHead: [
-          {
-            tagName: "link",
-            rel: "manifest",
-            href: `${consts.baseUrl}/manifest.webmanifest`,
-          },
-          {
-            tagName: "meta",
-            name: "theme-color",
-            content: "#d14671",
-          },
-          {
-            tagName: "meta",
-            name: "apple-mobile-web-app-capable",
-            content: "yes",
-          },
-          {
-            tagName: "meta",
-            name: "apple-mobile-web-app-status-bar-style",
-            content: "#21222c",
-          },
-        ],
-      },
-    ],
-  ],
-  themeConfig: {
-    announcementBar: {
-      id: 'document tip',
-      backgroundColor: '#d14671', // 默认为 `#fff`.
-      textColor: '#ffffff', // 默认为 `#000`.
-      isCloseable: true, // 默认为 `true`.
-    },
-    gtag: {
-      trackingID: 'G-XZD0YKV3XQ',
-      anonymizeIP: true,
-    },
-    autoCollapseSidebarCategories: true,
-    colorMode: {
-      defaultMode: "dark",
-      disableSwitch: false, // 主题控制开关
-      respectPrefersColorScheme: true,
-      switchConfig: {
-        darkIcon: '🌙',
-        lightIcon: '\u2600',
-        darkIconStyle: {
-          marginLeft: '2px',
-        },
-        lightIconStyle: {
-          marginLeft: '1px',
-        },
-      },
-    },
-    prism: {
-      defaultLanguage: "go-zero",
-      additionalLanguages: [
-        "rust", "csharp", "julia", "cpp", "java", "ebnf", "ini", "toml", "go", "bash", "protobuf"],
-      theme: require("./src/internals/prism-github"),
-      darkTheme: require("./src/internals/prism-dracula"),
-    },
-    navbar: {
-      title: " ",
-      logo: {
-        alt: "go-zero",
-        src: `/img/navbar/go-zero.svg`,
-      },
-      items: [
-        {
-          type: 'search',
-          position: 'right',
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
-        {
-          label: "Docs",
-          position: "left",
-          items: [
-            {
-              label: "Preparation",
-              to: "/docs/prepare/prepare",
-            },
-            {
-              label: "Getting Started",
-              to: "/docs/quick-start/quick-start",
-            },
-            {
-              label: "Components",
-              to: "/docs/component/components"
-            },
-            {
-              label: "Guides",
-              to: "/docs/advance/advance",
-            }
-          ],
-        },
-        {
-          label: "goctl",
-          position: "left",
-          sidebarId: 'goctl',
-          items: [
-            {
-              label: "Installation",
-              to: "/docs/goctl/goctl",
-            },
-            {
-              label: "API Command",
-              to: "/docs/goctl/api",
-            },
-            {
-              label: "RPC Command",
-              to: "/docs/goctl/zrpc",
-            },
-            {
-              label: "Model Command",
-              to: "/docs/goctl/model",
-            },
-            {
-              label: "Completion",
-              to: "/docs/goctl/completion",
-            },
-            {
-              label: "Tutorial",
-              to: "/docs/goctl/tutorial/tutorial",
-            },
-          ],
-        },
-        {
-          label: "Eco",
-          position: "left",
-          items: [
-            {
-              label: "Goctl Plugin",
-              to: "/docs/eco/plugins",
-            },
-            {
-              label: "Editor Plugin",
-              to: "/docs/eco/editor",
-            },
-            {
-              label: "Distributed Transaction (DTM)",
-              to: "/docs/eco/distributed-transaction",
-            },
-            {
-              label: "Showcase",
-              to: "/docs/eco/showcase",
-            },
-          ],
-        },
-        {
-          label: "Community",
-          position: "left",
-          items: [
-            {
-              label: "About us",
-              to: "/docs/community/about-us",
-            },
-            {
-              label: "Contributing",
-              to: "/docs/community/contribute",
-            },
-            {
-              label: "GitHub",
-              to: customFields.githubUrl,
-            },
-            {
-              label: "Discord",
-              to: customFields.discordUrl,
-            },
-          ],
-        },
-        {
-          label: "Blog",
-          position: "left",
-          sidebarId: 'blog',
-          to: '/docs/blog/blog',
-        },
-        {
-          label: "More",
-          position: "left",
-          items: [
-            {
-              label: "Resource Center",
-              to: "/docs/resource-center/learning-resource",
-            },
-            {
-              label: "Video Tutorial",
-              to: customFields.videosUrl,
-            },
-            {
-              label: "Development Roadmap",
-              to: customFields.roadMapUrl,
-            },
-            {
-              label: "Design Docs",
-              to: "/docs/design/design",
-            },
-            {
-              label: "FAQ",
-              to: "/docs/faq/troubleshooting",
-            },
-          ],
-        },
-      ],
-    },
-    footer: {
-      links: [
-        {
-          title: "zeromicro",
-          items: [
-            {
-              label: "zero-api",
-              href: customFields.zeroApiUrl,
-            },
-            {
-              label: "go-queue",
-              href: customFields.goQueueUrl,
-            },
-            {
-              label: "awesome-zero",
-              href: customFields.awesomeZeroUrl,
-            },
-            {
-              label: "zero-example",
-              href: customFields.zeroExamplesUrl,
-            },
-          ],
-        },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "GitHub",
-              href: customFields.githubUrl,
-            },
-            {
-              label: "Discord",
-              href: customFields.discordUrl,
-            },
-          ],
-        },
-        {
-          title: "Links",
-          items: [
-            {
-              label: "Older Doc",
-              href: customFields.oldDocUrl,
-            },
-            {
-              label: "Blog",
-              to: "/docs/blog/blog",
-            },
-            {
-              label: "Roadmap",
-              href: customFields.roadMapUrl,
-            },
-            {
-              label: "CNCF",
-              href: customFields.cncfUrl,
-            },
-          ],
-        },
-        {
-          title: "Chat",
-          items: [
-            {
-              label: `${consts.discord}`,
-              href: `image//:`,
-            },
-          ],
-        },
-      ],
-    },
-  },
-  presets: [
-    [
-      "@docusaurus/preset-classic",
-      {
-        docs: {
-          remarkPlugins: [variable, math],
-          rehypePlugins: [katex],
-          sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: ({locale, docPath}) => {
-            return locale === 'en' ? `https://github.com/zeromicro/portal/edit/main/docs/${docPath}` : `https://github.com/zeromicro/portal/edit/main/i18n/cn/docusaurus-plugin-content-docs/current/${docPath}`
-          },
-          showLastUpdateTime: true,
-        },
-        sitemap: {
-          changefreq: "daily",
-          priority: 0.7,
-          trailingSlash: false,
-        },
-        theme: {
-          customCss: [
-            require.resolve("./src/css/katex.min.css"),
-            require.resolve("./src/css/_global.css"),
-          ],
-        },
-      },
-    ],
-  ],
-  themes: [
-    [
-      "@easyops-cn/docusaurus-search-local",
-      {
-        hashed: true,
-        language: ["en", "zh"],
-        highlightSearchTermsOnTargetPage: true
-      }
-    ]
-  ]
-}
 
 module.exports = {
-  ...config,
-  ssrTemplate: ssrTemplate(config),
-}
+    title: 'go-zero Documentation',
+    tagline:
+        'go-zero is a web and rpc framework with lots of builtin engineering practices. It’s born to ensure the stability of the busy services with resilience design and has been serving sites with tens of millions of users for years.',
+    url: 'https://go-zero.dev',
+    baseUrl: `/`,
+    i18n: {
+        defaultLocale: 'zh',
+        locales: ['zh', 'en'],
+        localeConfigs: {
+            zh: {label: '简体中文'},
+            en: {label: 'English'},
+        },
+    },
+    onBrokenLinks: 'warn',
+    onBrokenMarkdownLinks: 'warn',
+    favicon: 'img/meta/favicon.ico',
+    organizationName: 'zeromicro',
+    projectName: 'go-zero',
+    themeConfig: {
+        metadata: [
+            {
+                name: "keywords",
+                content: 'go-zero,gozero,go-zero doc,go-zero 文档,gozero 文档,goctl,goctl 文档',
+            },
+            {
+                name: "description",
+                content: "go-zero is a web and rpc framework with lots of builtin engineering practices. It’s born to ensure the stability of the busy services with resilience design and has been serving sites with tens of millions of users for years."
+            }
+        ],
+        colorMode: {
+            defaultMode: 'light',
+        },
+        footer: {
+            links: [
+                {
+                    title: 'ZEROMICRO',
+                    items: [
+                        {
+                            label: 'go-queue',
+                            href: 'https://github.com/zeromicro/go-queue',
+                        },
+                        {
+                            label: "awesome-zero",
+                            href: "https://github.com/zeromicro/awesome-zero",
+                        },
+                        {
+                            label: "zero-example",
+                            href: "https://github.com/zeromicro/zero-example",
+                        },
+                    ],
+                },
+                {
+                    title: "友情链接",
+                    items: [
+                        {
+                            label: "旧文档",
+                            href: "https://legacy.go-zero.dev",
+                        },
+                        {
+                            label: "开发路线图",
+                            href: "https://github.com/zeromicro/go-zero/blob/master/ROADMAP.md",
+                        },
+                        {
+                            html: `
+                <a href="https://landscape.cncf.io/?selected=go-zero" target="_blank" rel="noreferrer noopener" aria-label="CNCF">
+                  <img src="https://landscape.cncf.io/images/left-logo.svg" alt="CNCF" width="100" height="50" />
+                </a>
+              `,
+                        },
+                    ],
+                },
+                {
+                    title: '社区',
+                    items: [
+                        {
+                            label: 'GitHub',
+                            href: 'https://github.com/zeromicro/go-zero',
+                        },
+                        {
+                            label: 'Discord',
+                            href: 'https://discord.gg/4JQvC5A4Fe',
+                        }
+                    ],
+                }
+            ],
+            copyright: `Copyright © ${new Date().getFullYear()} zeromicro.`,
+        },
+        navbar: {
+            hideOnScroll: false,
+            logo: {
+                alt: 'Site Logo',
+                src: `/logos/go-zero-docs-dark.svg`,
+                srcDark: `/logos/go-zero-docs-light.svg`,
+                href: '/',
+                target: '_self',
+                width: 200,
+                height: 60,
+            },
+            items: [
+                {
+                    type: 'doc',
+                    docId: 'concepts',
+                    label: '概念',
+                    position: 'left',
+                },
+                {
+                    type: 'doc',
+                    docId: 'tasks',
+                    label: ' 任务',
+                    position: 'left',
+                },
+                {
+                    type: 'doc',
+                    docId: 'tutorials',
+                    label: ' 指南',
+                    position: 'left',
+                },
+                {
+                    type: 'doc',
+                    docId: 'components',
+                    label: '组件',
+                    position: 'left',
+                },
+                {
+                    type: 'doc',
+                    docId: 'reference',
+                    label: '参考',
+                    position: 'left',
+                },
+                {
+                    type: 'doc',
+                    docId: 'contributing',
+                    label: '贡献',
+                    position: 'left',
+                },
+                {
+                    type: 'search',
+                    position: 'right',
+                },
+                {
+                    type: 'separator',
+                    position: 'right',
+                },
+                {
+                    type: 'localeDropdown',
+                    position: 'right',
+                    dropdownItemsBefore: [],
+                    dropdownItemsAfter: [],
+                    className: 'icon-link language navbar__item',
+                },
+                {
+                    type: 'iconLink',
+                    position: 'right',
+                    icon: {
+                        alt: 'github logo',
+                        src: `/logos/github.svg`,
+                        href: 'https://github.com/zeromicro/go-zero',
+                        target: '_blank',
+                    },
+                },
+                {
+                    type: 'iconLink',
+                    position: 'right',
+                    icon: {
+                        alt: 'discord logo',
+                        src: `/logos/discord.svg`,
+                        href: 'https://discord.com/invite/4JQvC5A4Fe',
+                        target: '_blank',
+                    },
+                },
+            ],
+        },
+        tagManager: {
+            trackingID: 'gozero',
+        },
+        tableOfContents: {
+            minHeadingLevel: 2,
+            maxHeadingLevel: 5,
+        },
+        prism: {
+            theme: {plain: {}, styles: []},
+            magicComments: [
+                {
+                    className: 'theme-code-block-highlighted-line',
+                    line: 'highlight-next-line',
+                    block: {start: 'highlight-start', end: 'highlight-end'},
+                },
+                {
+                    className: 'code-block-error-line',
+                    line: 'This will error',
+                },
+            ],
+            // https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js
+            additionalLanguages: ['shell-session', 'http'],
+        },
+        algolia: {
+            appId: 'foo',
+            apiKey: 'foo',
+            indexName: 'foo',
+            contextualSearch: true,
+        },
+    },
+    plugins: [
+        'docusaurus-plugin-sass',
+        [
+            'docusaurus-plugin-module-alias',
+            {
+                alias: {
+                    'styled-components': path.resolve(__dirname, './node_modules/styled-components'),
+                    react: path.resolve(__dirname, './node_modules/react'),
+                    'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+                    '@components': path.resolve(__dirname, './src/components'),
+                },
+            },
+        ],
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                routeBasePath: '/',
+                sidebarPath: require.resolve('./sidebars.js'),
+                editUrl: ({versionDocsDirPath, docPath, locale}) => {
+                    if ((match = docPath.match(/concepts\/(.*)\.md/)) != null) {
+                        return `https://github.com/zeromicro/portal/tree/main/docs/concepts/${match[1]}.md`;
+                    }
+                    if ((match = docPath.match(/tasks\/(.*)\.md/)) != null) {
+                        return `https://github.com/zeromicro/portal/tree/main/docs/tasks/${match[1]}.md`;
+                    }
+                    if ((match = docPath.match(/components\/(.*)\.md/)) != null) {
+                        return `https://github.com/zeromicro/portal/tree/main/docs/components/${match[1]}.md`;
+                    }
+                    if ((match = docPath.match(/contributing\/(.*)\.md/)) != null) {
+                        return `https://github.com/zeromicro/portal/tree/main/docs/contributing/${match[1]}.md`;
+                    }
+                    if ((match = docPath.match(/reference\/(.*)\.md/)) != null) {
+                        return `https://github.com/zeromicro/portal/tree/main/docs/reference/${match[1]}.md`;
+                    }
+                    if ((match = docPath.match(/tutorials\/(.*)\.md/)) != null) {
+                        return `https://github.com/zeromicro/portal/tree/main/docs/tutorials/${match[1]}.md`;
+                    }
+                    return `https://github.com/zeromicro/portal/tree/main/docs/${versionDocsDirPath}/${docPath}`;
+                },
+                exclude: ['README.md'],
+                lastVersion: 'current',
+            },
+        ],
+        '@docusaurus/plugin-content-pages',
+        '@docusaurus/plugin-debug',
+        '@docusaurus/plugin-sitemap',
+        '@ionic-internal/docusaurus-plugin-tag-manager',
+        function (context, options) {
+            return {
+                name: 'zeromicro-docs-ads',
+                contentLoaded({ content, actions: { setGlobalData, addRoute } }) {
+                    return setGlobalData({ prismicAds: adJSON });
+                },
+            };
+        },
+    ],
+    themes: [
+        [
+            //overriding the standard docusaurus-theme-classic to provide custom schema
+            path.resolve(__dirname, 'docusaurus-theme-classic'),
+            {
+                customCss: [
+                    require.resolve('./node_modules/modern-normalize/modern-normalize.css'),
+                    require.resolve('./node_modules/@ionic-internal/ionic-ds/dist/tokens/tokens.css'),
+                    require.resolve('./src/styles/custom.scss'),
+                ],
+            },
+        ],
+        path.resolve(__dirname, './node_modules/@docusaurus/theme-search-algolia'),
+    ],
+    customFields: {},
+};
