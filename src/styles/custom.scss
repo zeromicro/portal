@@ -188,3 +188,15 @@ iframe {
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+
+.customers{
+  background-color: aqua;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.customers-card{
+  flex: 1;
+  border: 0;
+}
