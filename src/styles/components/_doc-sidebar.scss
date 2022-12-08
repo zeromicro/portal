@@ -33,7 +33,7 @@ html[data-theme='dark'] {
 
     position: sticky;
     top: 0;
-    margin-block-start: 0;
+    //margin-block-start: 0;
     will-change: initial;
 
     height: 100vh;
@@ -51,19 +51,23 @@ html[data-theme='dark'] {
   }
 
   [class^='sidebar_'] {
-    max-height: calc(100vh - var(--ifm-navbar-height));
-    position: static;
+    //max-height: calc(100vh - var(--ifm-navbar-height));
+    //position: static;
 
-    overflow-y: auto;
+    //overflow-y: auto;
 
     padding-inline-start: var(--sidebar-spacing-horizontal);
     padding-inline-end: var(--sidebar-spacing-horizontal);
-    padding-block-start: 1rem;
+    //padding-block-start: 1rem;
 
     > .menu {
       overflow-x: initial;
-      padding-block-end: 2rem;
-      padding: 0;
+      //padding-block-end: 2rem;
+      //padding: 0;
+      overflow-y: scroll;
+      padding-top: 1rem;
+      padding-bottom: 0;
+      margin-top: 1px;
     }
   }
 
