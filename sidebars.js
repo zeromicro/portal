@@ -4,7 +4,7 @@ module.exports = {
         'concepts/components',
         'concepts/architecture-evolution',
         'concepts/service-governance',
-        'concepts/ops'
+        'concepts/layout'
     ],
     tasks: [
         {
@@ -511,6 +511,7 @@ module.exports = {
     reference: [
         'reference',
         'reference/proto',
+        'reference/examples',
     ],
     contributing: [
         'contributing',
