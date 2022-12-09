@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="49px" viewBox="0 0 48 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>awesome-icon-hover</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="awesome-icon-hover" transform="translate(1.000000, 1.117647)" fill-rule="nonzero">
+            <circle id="椭圆形" stroke="#CDDFFF" stroke-width="2" fill="#FFFFFF" cx="23" cy="23" r="23"></circle>
+            <g id="编组" transform="translate(11.000000, 11.000000)" fill="#1B6DFF">
+                <path d="M20.4545455,9.09090909 L21.875,5.96590909 L25,4.54545455 L21.875,3.125 L20.4545455,0 L19.0340909,3.125 L15.9090909,4.54545455 L19.0340909,5.96590909 L20.4545455,9.09090909 Z M11.9318182,9.65909091 L9.09090909,3.40909091 L6.25,9.65909091 L0,12.5 L6.25,15.3409091 L9.09090909,21.5909091 L11.9318182,15.3409091 L18.1818182,12.5 L11.9318182,9.65909091 Z M20.4545455,15.9090909 L19.0340909,19.0340909 L15.9090909,20.4545455 L19.0340909,21.875 L20.4545455,25 L21.875,21.875 L25,20.4545455 L21.875,19.0340909 L20.4545455,15.9090909 Z" id="形状"></path>
+            </g>
+        </g>
+    </g>
+</svg>
