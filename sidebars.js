@@ -516,5 +516,6 @@ module.exports = {
     contributing: [
         'contributing',
         'contributing/doc',
+        'contributing/contributors',
     ],
 };

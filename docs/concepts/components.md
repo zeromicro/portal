@@ -4,27 +4,38 @@ sidebar_label: 组件介绍
 slug: /docs/concepts/components
 ---
 
-## 多客户端支持
+## 并发利器
+ - [x] mr
+ - [x] fx
 
-- 通讯
+## 服务编排
+ - [x] ServiceGroup
 
-  - [x] gRPC
-  - [x] http
-  - [x] http client
+## groutines 编程
+- [x] RoutineGroup
+- [x] GoSafe
+- [x] RunSafe
+- [x] TaskRunner
+- [x] WorkerGroup
 
-- 存储
 
-  - [x] MySQL
-  - [x] PosgreSQL
-  - [x] Mongo
-  - [x] Redis
+## 通讯
+- [x] gRPC
+- [x] http
+- [x] gRPC Gateway
+- [x] http client
 
-- 消息队列
+## 存储
+- [x] MySQL
+- [x] PosgreSQL
+- [x] Mongo
+- [x] Redis
 
-  - [x] kafka
+## 消息队列
+- [x] kafka
 
-- 延时队列
-  - [x] beanstalk
+## 延时队列
+- [x] beanstalk
 
 ## 服务注册与发现
 
@@ -58,3 +69,6 @@ slug: /docs/concepts/components
 ## 插件资源
 
 - [x] goctl-swagger 插件
+- [x] goctl-go-compact 插件
+- [x] goctl-php 插件
+- [x] goctl-android 插件
