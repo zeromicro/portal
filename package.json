@@ -28,6 +28,7 @@
     ]
   },
   "dependencies": {
+    "@arco-design/web-react": "^2.42.2",
     "@docusaurus/core": "0.0.0-4192",
     "@docusaurus/mdx-loader": "0.0.0-4192",
     "@docusaurus/plugin-client-redirects": "0.0.0-4192",
