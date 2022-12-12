@@ -14,3 +14,7 @@ import Contributor from '@components/global/Contributor';
 ## 文档贡献者
 
 <Contributor />
+
+## go-zero贡献者
+
+<Contributor type='go-zero' />

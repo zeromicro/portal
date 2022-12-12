@@ -40,7 +40,7 @@ function Maintainer(props): JSX.Element {
                 {data.map((item, index) => {
                     return (
                         <Popover position='tl' title='' content={item.name} key={item.name}>
-                            <a href={"https://github.com/" + item.name}>
+                            <a href={"https://github.com/" + item.name} target="_blank">
                                 <Avatar>
                                     <img src={item.img} alt={item.name} />
                                 </Avatar>
