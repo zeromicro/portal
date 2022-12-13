@@ -8,7 +8,7 @@ go-zero 有自己的项目结构，一般都是通过 `goctl` 工具生成。
 
 ## 工程维度
 
-```
+```text
 .
 ├── consumer
 ├── go.mod
@@ -31,7 +31,7 @@ go-zero 有自己的项目结构，一般都是通过 `goctl` 工具生成。
 
 ## 服务维度
 
-```
+```text
 example
 ├── etc
 │   └── example.yaml
