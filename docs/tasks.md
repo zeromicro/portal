@@ -40,7 +40,7 @@ href="https://go.dev/dl/go1.19.4.darwin-amd64.pkg" >
 header="Linux" 
 href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
     <p>支持 Linux 2.6.32 及以后，Intel 64 位处理器</p>
-    <a>go1.19.4.linux-amd64.tar.gz</a>
+    <a>go1.19.4.linux-amd64.tar.gz（142MB）</a>
 </DocsCard>
 
 </DocsCards>
