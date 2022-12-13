@@ -9,7 +9,6 @@ import DocsCards from '@components/global/DocsCards';
 import DocsButton from '@components/page/native/DocsButton';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import { Button } from '@arco-design/web-react';
 
 
 ## 1. 下载
