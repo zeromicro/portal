@@ -12,7 +12,7 @@ import AppWizard from '@components/page/intro/AppWizard';
 import Customers from "@components/global/Customers"
 
 <head>
-  <title>Open-Source UI Toolkit to Create Your Own Mobile Apps</title>
+  <title>go-zero 缩短从需求到上线的距离</title>
   <meta
     name="description"
     content="go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。"
