@@ -13,8 +13,8 @@ module.exports = {
             collapsed: false,
             items: [
                 'tasks',
-                'tasks/installation/protoc',
                 'tasks/installation/goctl',
+                'tasks/installation/protoc',
                 'tasks/installation/go-zero',
                 'tasks/installation/goctl-intellij',
                 'tasks/installation/goctl-vscode',

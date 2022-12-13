@@ -4,69 +4,97 @@ sidebar_label: protoc 安装
 slug: /docs/tasks/installation/protoc
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import DocsCard from '@components/global/DocsCard';
+import DocsCards from '@components/global/DocsCards';
 
+## 1. 一键安装
 
-## 使用 goctl 一键安装 
+通过 `goctl` 可以一键安装 `protoc`，`protoc-gen-go`，`protoc-gen-go-grpc` 相关组件，你可以执行如下命令：
 
-```shell
-$ goctl env check -i -f
+```bash
+$ goctl env check --install --verbose --force
 ```
 
-## 独立安装
+## 2. 手动安装
 
-### protoc
+### 2.1 下载
 
-<Tabs>
-<TabItem value="linux" label="Linux" default>
+<DocsCards>
 
-linux 64 : [protoc-21.10-linux-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-linux-x86_64.zip)
+<DocsCard 
+header="Microsoft Windows" 
+href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-win64.zip" >
+    <p>Windows Intel 64 位处理器</p>
+    <a>protoc-21.11-win64.zip（2.17MB）</a>
+</DocsCard>
 
-</TabItem>
-<TabItem value="mac" label="MacOS" default>
+<DocsCard 
+header="Microsoft Windows" 
+href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-win32.zip" >
+    <p>Windows Intel 32 位处理器</p>
+    <a>protoc-21.11-win32.zip（2.2MB）</a>
+</DocsCard>
 
-mac intel : [protoc-21.10-osx-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-osx-x86_64.zip)
+<DocsCard 
+header="Apple macOS（ARM64）" 
+href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-osx-aarch_64.zip" >
+    <p>支持 macOS Apple 64 位处理器</p>
+    <a>protoc-21.11-osx-aarch_64.zip（1.3MB）</a>
+</DocsCard>
 
-</TabItem>
-<TabItem value="windows" label="Windows" default>
+<DocsCard 
+header="Apple macOS（x86-64）" 
+href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-osx-x86_64.zip" >
+    <p>支持 macOS 64 位处理器</p>
+    <a>protoc-21.11-osx-x86_64.zip（1.42MB）</a>
+</DocsCard>
 
-windows 64: [protoc-21.10-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-win64.zip)
+<DocsCard 
+header="Linux" 
+href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-linux-x86_64.zip" >
+    <p>支持 Linux 64 位处理器</p>
+    <a>protoc-21.11-linux-x86_64.zip（1.51MB）</a>
+</DocsCard>
 
-</TabItem>
-<TabItem value="other" label=" 其他" default>
+<DocsCard 
+header="Linux" 
+href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-linux-x86_32.zip" >
+    <p>支持 Linux 32 位处理器</p>
+    <a>protoc-21.11-linux-x86_32.zip（1.61MB）</a>
+</DocsCard>
 
-其他操作系统请来官方github自行查找： https://github.com/protocolbuffers/protobuf/releases
+</DocsCards>
 
-</TabItem>
-</Tabs>
+###
 
+其他版本及操作系统可 [前往 Github](https://github.com/protocolbuffers/protobuf/releases) 查看更多。
 
-下载解压到$GOPATH/bin下即可，前提是$GOPATH/bin已经加入$PATH中 或者直接放到$PATH下也可以
+### 2.2 安装
 
+解压下载的压缩包，并将其移动到 `$GOBIN` 目录，查看 `$GOBIN` 目录：
 
-
-### protoc-gen-go
-
-  ```shell
-  $ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-  ```
-
-### protoc-gen-go-grpc
-
-  ```shell
-  $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-  ```
-
-
-
-验证protoc安装成功:
-
-```shell
-$ protoc --version
-libprotoc 3.21.10
+```bash
+$ go env GOPATH
 ```
 
-:::note 
-**MAC OS X ** 系统第一次在cmd中运行了protoc，会提示自动kill，需要去“系统偏好设置”->“通用”->"允许从以下位置下载App"，可以看到protoc，点击“仍要打开”即可
-:::
+`GOBIN` 为 `$GOPATH/bin`，如果你的 `$GOPATH` 不在 `$PATH` 中，你需要将其添加到 `$PATH` 中。
+
+## 3. 验证
+
+安装完毕后，你可以执行如下指令来验证是否安装成功：
+
+```bash
+$ goctl env check --verbose
+[goctl-env]: preparing to check env
+
+[goctl-env]: looking up "protoc"
+[goctl-env]: "protoc" is installed
+
+[goctl-env]: looking up "protoc-gen-go"
+[goctl-env]: "protoc-gen-go" is installed
+
+[goctl-env]: looking up "protoc-gen-go-grpc"
+[goctl-env]: "protoc-gen-go-grpc" is installed
+
+[goctl-env]: congratulations! your goctl environment is ready!
+```
