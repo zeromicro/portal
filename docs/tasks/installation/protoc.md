@@ -19,6 +19,10 @@ $ goctl env check --install --verbose --force
 
 ### 2.1 下载
 
+:::note 注意
+这里以 `21.11` 版本为例子，并 **不推荐** 安装具体版本，开发者可根据需要自行选择，更多版本可前往 [前往 Github](https://github.com/protocolbuffers/protobuf/releases) 自行选择。
+:::
+
 <DocsCards>
 
 <DocsCard 
@@ -67,7 +71,7 @@ href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/proto
 
 ###
 
-其他版本及操作系统可 [前往 Github](https://github.com/protocolbuffers/protobuf/releases) 查看更多。
+其他版本及操作系统可 [前往 Github](https://github.com/protocolbuffers/protobuf/releases) 自行选择。
 
 ### 2.2 安装
 

@@ -12,6 +12,10 @@ import TabItem from '@theme/TabItem';
 
 ## 1. 下载
 
+:::note 注意
+这里以 `1.19.4` 版本为例子，并 **不推荐** 安装具体版本，开发者可根据需要自行选择，更多版本可前往 [前往官网](https://go.dev/dl/) 自行选择。
+:::
+
 <DocsCards>
 
 <DocsCard 
@@ -46,7 +50,7 @@ href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
 
 ###
 
-其他版本及操作系统可 [前往官网](https://go.dev/dl/) 查看更多。
+其他版本及操作系统可 [前往官网](https://go.dev/dl/) 自行选择。
 
 ## 2. 安装
 
