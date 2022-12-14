@@ -1,6 +1,5 @@
 ---
 title: protoc 安装
-sidebar_label: protoc 安装
 slug: /docs/tasks/installation/protoc
 ---
 

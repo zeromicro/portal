@@ -118,3 +118,28 @@ href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
 
 </TabItem>
 </Tabs>
+
+## 3. 配置
+
+### 3.1 GO111MODULE 开启
+
+在 go 1.11 以后建议将 `GO111MODULE` 值显式设置为 `on`，以免后续拉取依赖出现一些不必要的错误。
+
+```bash
+$ go env -w GO111MODULE=on
+```
+
+### 3.2 配置 Proxy
+
+```bash
+$ go env -w GOPROXY=https://goproxy.cn,direct
+```
+
+### 3.3 查看配置
+
+```bash
+$ go env GO111MODULE
+on
+$ go env GOPROXY
+https://goproxy.cn,direct
+```

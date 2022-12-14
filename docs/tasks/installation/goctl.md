@@ -60,6 +60,7 @@ $ goctl --version
 <DocsCard 
 header="Microsoft Windows" 
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-windows-amd64.zip" >
+
 <p>Windows Intel x86-64 位处理器</p>
 <a>goctl-v1.4.3-windows-amd64.zip（14.7MB）</a>
 </DocsCard>
@@ -67,6 +68,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 <DocsCard 
 header="Microsoft Windows" 
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-windows-386.zip" >
+
 <p>Windows Intel x86-32 位处理器</p>
 <a>goctl-v1.4.3-windows-386.zip（14MB）</a>
 </DocsCard>
@@ -74,6 +76,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 <DocsCard 
 header="Apple macOS（ARM64）" 
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-darwin-arm64.tar.gz" >
+
 <p>支持 macOS Apple 64 位处理器</p>
 <a>goctl-v1.4.3-darwin-arm64.tar.gz（14.5MB）</a>
 </DocsCard>
@@ -81,6 +84,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 <DocsCard 
 header="Apple macOS（x86-64）" 
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-darwin-amd64.tar.gz" >
+
 <p>支持 macOS 64 位处理器</p>
 <a>goctl-v1.4.3-darwin-amd64.tar.gz（14.7MB）</a>
 </DocsCard>
@@ -88,6 +92,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 <DocsCard 
 header="Linux" 
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-linux-amd64.tar.gz" >
+
 <p>支持 Linux 64 位处理器</p>
 <a>goctl-v1.4.3-linux-amd64.tar.gz（14.8MB）</a>
 </DocsCard>
@@ -95,6 +100,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 <DocsCard 
 header="Linux" 
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-linux-386.tar.gz" >
+
 <p>支持 Linux 32 位处理器</p>
 <a>goctl-v1.4.3-linux-386.tar.gz（13.9MB）</a>
 </DocsCard>
@@ -144,6 +150,7 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl goctl --help
 $ docker pull kevinwan/goctl:latest-arm64
 $ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --help
 ```
+
 </TabItem>
 
 </Tabs>
@@ -167,6 +174,7 @@ $ goctl  docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
 ```bash
 $ goctl  docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --version
 ```
+
 </TabItem>
 
 </Tabs>
