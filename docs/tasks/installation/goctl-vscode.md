@@ -19,4 +19,4 @@ slug: /docs/tasks/installation/goctl-vscode
 
 打开 `Visual Studio Code` | `Extensions`，搜索 `goctl`，点击 `install` 安装。
 
-![goland plugin goctl](.././../resource/tasks/vscode-goctl.png)
+![goland plugin goctl](.././../resource/tasks/installation/vscode-goctl.png)

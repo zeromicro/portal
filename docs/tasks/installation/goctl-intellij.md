@@ -43,10 +43,10 @@ goctl-intellij 安装方式有 2 种
 
 下载的 zip 文件无需解压，然后打开 `Goland` | `Preferences...` | `Plugins`，找到更多图标 <IconMoreVertical />，选择 `Install Plugin from Disk...`
 
-![goland plugin center](.././../resource/tasks/goland-plugin.png)
+![goland plugin center](.././../resource/tasks/installation/goland-plugin.png)
 
 ### 2. 从插件中心安装
 
 打开 `Goland` | `Preferences...` | `Plugins`，选中 `Marketplace` 选项栏，在搜索框输入 `Goctl` 进行搜索安装
 
-![goland plugin goctl](.././../resource/tasks/goland-plugin-goctl.png)
+![goland plugin goctl](.././../resource/tasks/installation/goland-plugin-goctl.png)
