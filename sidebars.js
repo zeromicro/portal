@@ -1,6 +1,7 @@
 module.exports = {
     concepts: [
         'concepts',
+        'concepts/keywords',
         'concepts/components',
         'concepts/architecture-evolution',
         'concepts/service-governance',
