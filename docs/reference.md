@@ -6,7 +6,7 @@ slug: /docs/reference
 
 ## api 示例
 
-下文仅展示 api 文件的完整写法和对应语法块的存在意义，如需查看 api 规范定义，可参考 [《API 规范》](/docs/tutorials)
+下文仅展示 api 文件的完整写法和对应语法块的功能说明，如需查看 api 规范定义，可参考 [《API 规范》](/docs/tutorials)
 
 ```go
 // 我是单行注释写法
