@@ -172,4 +172,4 @@ grpcui 是一个gRPC UI 调试工具，用于访问 gRPC 服务，详情可参�
 </Tabs>
 
 
-当你按照文档步骤走到这里，恭喜你 🎉 🎉 🎉 ，你已经完成了最简单的 go-zero gRPC 服务的创建和启动了，如需了解 `goctl` 工具的使用说明请参阅 <a href="/docs/tutorials/cli/overview" target="_blank">《CLI 工具》</a>，如需了解完整 go-zero gRPC Server 服务的使用说明请参阅 <a href="/docs/tutorials/grpc/server/configuration/service" target="_blank">gRPC Server》</a>。
+当你按照文档步骤走到这里，恭喜你 🎉 🎉 🎉 ，你已经完成了最简单的 go-zero gRPC 服务的创建和启动了，如需了解 `goctl` 工具的使用说明请参阅 <a href="/docs/tutorials/cli/overview" target="_blank">《CLI 工具》</a>，如需了解完整 go-zero gRPC Server 服务的使用说明请参阅 <a href="/docs/tutorials/grpc/server/configuration/service" target="_blank">《gRPC Server》</a>。
