@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="49px" viewBox="0 0 48 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>queue-icon</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="queue-icon" transform="translate(1.000000, 1.647059)" fill-rule="nonzero">
+            <circle id="椭圆形" stroke="#E9EDF3" stroke-width="2" fill="#FFFFFF" cx="23" cy="23" r="23"></circle>
+            <g id="编组备份" transform="translate(8.000000, 11.000000)">
+                <path d="M27.8571429,23.2258065 L2.14285714,23.2258065 C0.959879439,23.2245871 0.00118120678,22.2349632 0,21.0138249 L0,15.483871 L2.14285714,15.483871 L2.14285714,21.0138249 L27.8571429,21.0138249 L27.8571429,15.483871 L30,15.483871 L30,21.0138249 C29.9988188,22.2349632 29.0401206,23.2245871 27.8571429,23.2258065 Z" id="路径" fill="#92A0B3"></path>
+                <polygon id="路径" fill="#2D4665" points="4.83870968 15.483871 24.1935484 15.483871 24.1935484 17.4193548 4.83870968 17.4193548"></polygon>
+                <polygon id="路径" fill="#2D4665" points="4.83870968 10.6451613 24.1935484 10.6451613 24.1935484 12.5806452 4.83870968 12.5806452"></polygon>
+                <polygon id="路径" fill="#2D4665" points="4.83870968 5.80645161 24.1935484 5.80645161 24.1935484 7.74193548 4.83870968 7.74193548"></polygon>
+                <polygon id="路径" fill="#2D4665" points="4.83870968 0 24.1935484 0 24.1935484 1.93548387 4.83870968 1.93548387"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

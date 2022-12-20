@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="49px" viewBox="0 0 48 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>vue-icon</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vue-icon" transform="translate(1.000000, 1.705882)" fill-rule="nonzero">
+            <circle id="椭圆形" stroke="#E9EDF3" stroke-width="2" fill="#FFFFFF" cx="23" cy="23" r="23"></circle>
+            <g id="编组" transform="translate(8.000000, 11.000000)" fill="#2D4665">
+                <path d="M23.8995536,0 L18.75,0 L15,5.77273912 L11.7857143,0 L0,0 L15,25 L30,0 L23.8995536,0 Z M3.72991071,2.08496221 L7.33258929,2.08496221 L15,14.9986969 L22.6607143,2.08496221 L26.2633929,2.08496221 L15,20.8626531 L3.72991071,2.08496221 Z" id="形状"></path>
+            </g>
+        </g>
+    </g>
+</svg>

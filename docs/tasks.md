@@ -4,124 +4,142 @@ sidebar_label: golang 安装
 slug: /docs/tasks
 ---
 
+import DocsCard from '@components/global/DocsCard';
+import DocsCards from '@components/global/DocsCards';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-安装包下载地址为：https://golang.org/dl/。
 
-如果打不开可以使用这个地址：https://golang.google.cn/dl/。
+## 1. 下载
+
+:::note 注意
+这里以 `1.19.4` 版本为例子，并 **不推荐** 安装具体版本，开发者可根据需要自行选择，更多版本可前往 [前往官网](https://go.dev/dl/) 自行选择。
+:::
+
+<DocsCards>
+
+<DocsCard 
+header="Microsoft Windows" 
+href="https://go.dev/dl/go1.19.4.windows-amd64.msi" >
+    <p>支持 Windows 7 及以后，Intel 64 位处理器</p>
+    <a>go1.19.4.windows-amd64.msi（135MB）</a>
+</DocsCard>
+
+<DocsCard 
+header="Apple macOS（ARM64）" 
+href="https://go.dev/dl/go1.19.4.darwin-arm64.pkg" >
+    <p>支持 macOS 11 及以后，Apple 64 位处理器</p>
+    <a>go1.19.4.darwin-arm64.pkg（139MB）</a>
+</DocsCard>
+
+<DocsCard 
+header="Apple macOS（x86-64）" 
+href="https://go.dev/dl/go1.19.4.darwin-amd64.pkg" >
+    <p>支持 macOS 10.13 及以后，64 位处理器</p>
+    <a>go1.19.4.darwin-amd64.pkg（145MB）</a>
+</DocsCard>
+
+<DocsCard 
+header="Linux" 
+href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
+    <p>支持 Linux 2.6.32 及以后，Intel 64 位处理器</p>
+    <a>go1.19.4.linux-amd64.tar.gz（142MB）</a>
+</DocsCard>
+
+</DocsCards>
+
+###
+
+其他版本及操作系统可 [前往官网](https://go.dev/dl/) 自行选择。
+
+## 2. 安装
 
 <Tabs>
 <TabItem value="linux" label="Linux" default>
 
-1、下载二进制包 go1.19.3.linux-amd64.tar.gz
+1. 删除 `/usr/local/go` 文件夹（如果存在）来删除任何以前的 Go 安装，然后将刚刚下载的存档解压缩到 `/usr/local`，在 `/usr/local/go` 中创建一个新的 Go 目录：
 
-2、将下载的二进制包解压至 /usr/local 目录。
+  ```bash
+  $ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
+  ```
 
-```shell
-$ tar -C /usr/local go1.19.3.linux-amd64.tar.gz
-```
+  :::note 注意
+  您可能需要以 root 身份或通过 sudo 运行命令
+  不要将存档解压到现有的 `/usr/local/go` 目录中。众所周知，这会产生损坏的 Go 安装。
+  :::
 
-3、将 /usr/local/go/bin 目录添加至 PATH 环境变量,编辑 ~/.bash_profile 或者 /etc/profile，并将以下命令添加该文件的末尾：
+2. 将 `/usr/local/go/bin` 添加到 `PATH` 环境变量。您可以通过将以下行添加到 `$HOME/.profile` 或 `/etc/profile`（对于系统范围的安装）来执行此操作：
 
-```shell
-$ export PATH=$PATH:/usr/local/go/bin
-```
+  ```bash
+  $ export PATH=$PATH:/usr/local/go/bin
+  ```
 
-添加保存之后，在命令行还需要执行如下命令才能生效
+  :::note 注意
+  在您下次登录计算机之前，对配置文件所做的更改可能不会应用。要立即应用更改，只需直接运行 shell 命令或使用诸如 `source $HOME/.profile` 之类的命令从配置文件中执行它们。
+  :::
 
-```shell
-$ source ~/.bash_profile
-或
-$ source /etc/profile
-```
+3. 打开终端并键入以下命令来验证您是否已安装：
+
+  ```bash
+  $ go version
+  ```
+
+4. 确认该指令已经打印了已安装的 Go 版本。
 
 </TabItem>
-<TabItem value="macOS" label="MacOS">
-macOS
+
+<TabItem value="mac" label="Mac" default>
+
+1. 打开你下载的包文件，按照提示安装Go。该软件包将 Go 发行版安装到 `/usr/local/go`。该软件包应将 `/usr/local/go/bin` 目录放入您的 `PATH` 环境变量中。您可能需要重新启动所有打开的终端会话才能使更改生效。
+
+2. 打开终端并键入以下命令来验证您是否已安装：
+
+  ```bash
+  $ go version
+  ```
+
+3. 确认该指令已经打印了已安装的 Go 版本。
+
 </TabItem>
-<TabItem value="windows" label="Windows">
-Windows 下可以使用 .msi 后缀(在下载列表中可以找到该文件，如go1.19.3.windows-amd64.msi)的安装包来安装。
 
-默认情况下 **.msi** 文件会安装在 **c:\Go** 目录下。你可以将 **c:\Go\bin** 目录添加到 **Path** 环境变量中。添加后你需要重启命令窗口才能生效。
+<TabItem value="windows" label="Windows" default>
 
-验证安装成功:
+1. 打开您下载的 MSI 文件并按照提示安装 Go。默认情况下，安装程序将安装 Go 到 `Program Files` 或 `Program Files (x86)` 目录。您可以根据需要更改位置。安装后，您需要关闭并重新打开所有打开的命令提示符，以便安装程序对环境所做的更改反映在命令提示符中。
 
-```go
-$ go version
-go version go1.19.2 darwin/amd64
-```
+2. 确认您已安装 Go。
+- 在 Windows 中，单击“开始”菜单。
+- 在菜单的搜索框中，键入 cmd，然后按 Enter 键。
+- 在出现的命令提示符窗口中，键入以下命令：
+
+  ```bash
+  $ go version
+  ```
+3. 确认该指令已经打印了已安装的 Go 版本。
 
 </TabItem>
 </Tabs>
 
-:::note
-**MAC OS X 系统下你可以使用 **.pkg** _结尾的安装包直接双击来完成安装，安装目录在_ **/usr/local/go/** _下。_
-:::
+## 3. 配置
 
-### 3、protoc、protoc-gen-go、protoc-gen-go-grpc 安装
+### 3.1 GO111MODULE 开启
 
-go-zero 的 rpc 是基于 grpc 的，grpc 本身使用的 protobuf 协议进行编码，所以如果我们是用 go-zero 做微服务开发（**_如果只是做 api 单体开发可以不需要安装_**），就要安装 protoc、protoc-gen-go、protoc-gen-go-grpc
+在 go 1.11 以后建议将 `GO111MODULE` 值显式设置为 `on`，以免后续拉取依赖出现一些不必要的错误。
 
-- （推荐）使用 goctl 一键安装 protoc、protoc-gen-go、protoc-gen-go-grpc
-
-  ```shell
-  $ goctl env check -i -f
-  ```
-
-- 独立安装
-
-  - protoc
-
-    linux 64 : [protoc-21.10-linux-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-linux-x86_64.zip)
-
-    mac intel : [protoc-21.10-osx-x86_64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-osx-x86_64.zip)
-
-    windows 64: [protoc-21.10-win64.zip](https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protoc-21.10-win64.zip)
-
-    其他操作系统请来官方 github 自行查找： https://github.com/protocolbuffers/protobuf/releases
-
-    下载解压到$GOPATH/bin下即可，前提是$GOPATH/bin 已经加入$PATH中 或者直接放到$PATH 下也可以
-
-- protoc-gen-go
-
-  ```shell
-  $ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-  ```
-
-- protoc-gen-go-grpc
-
-  ```shell
-  $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-  ```
-
-验证 protoc 安装成功:
-
-```shell
-$ protoc --version
-libprotoc 3.21.10
+```bash
+$ go env -w GO111MODULE=on
 ```
 
-**Tips : **MAC OS X 系统第一次在 cmd 中运行了 protoc，会提示自动 kill，需要去“系统偏好设置”->“通用”->"允许从以下位置下载 App"，可以看到 protoc，点击“仍要打开”即可
+### 3.2 配置 Proxy
 
-### 4、go-zero 安装
-
-一般我们不会直接去安装 go-zero，都是使用 goctl 生成好项目代码（具体可见“创建项目”->"goctl 生成"一节）或者基于现有代码，通过 go mod tidy 会自动帮我们安装 go-zero 依赖。
-
-当然也可以通过如下命令直接安装 go-zero 依赖：
-
-```shell
-$ go get -u github.com/zeromicro/go-zero@latest
+```bash
+$ go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
-### 5、goctl intellij 安装
+### 3.3 查看配置
 
-首先打开 intellij -> 设置 -> 插件（Plugin）, 搜索 goctl ,可以看到”一只肚皮上有一个 Zero 标识的地鼠“Goctl 插件 ，直接安装，重启 intellij 即可。
-
-再次打开 intellij ，在项目上右键，可以看到 goctl 插件，查看 .api 文件可以自动高亮了。
-
-### 6、goctl vscode 安装
-
-首先打开 vscode，点击 vscode 窗口最左方像俄罗斯方块一样的插件图标，在搜索中输入“goctl ”，可以看到”一只肚皮上有一个 Zero 标识的地鼠“Goctl 插件, 直接点击安装，重启 vscode。
-
-再次打开 intellij ，查看 .api 文件可以自动高亮了。
+```bash
+$ go env GO111MODULE
+on
+$ go env GOPROXY
+https://goproxy.cn,direct
+```

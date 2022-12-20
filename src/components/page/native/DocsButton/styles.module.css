@@ -1,3 +1,6 @@
+.linkButton{
+  cursor: pointer;
+}
 .docsButton {
   background-color: var(--ifm-link-color);
   color: white;
@@ -30,6 +33,7 @@ button.docsButton {
 
 @media (hover: hover) {
   .docsButton:hover {
+    cursor: pointer;
     background-color: var(--ifm-link-hover-color);
   }
 

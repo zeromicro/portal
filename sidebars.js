@@ -1,10 +1,11 @@
 module.exports = {
     concepts: [
         'concepts',
+        'concepts/keywords',
         'concepts/components',
         'concepts/architecture-evolution',
         'concepts/service-governance',
-        'concepts/ops'
+        'concepts/layout'
     ],
     tasks: [
         {
@@ -13,8 +14,8 @@ module.exports = {
             collapsed: false,
             items: [
                 'tasks',
-                'tasks/installation/protoc',
                 'tasks/installation/goctl',
+                'tasks/installation/protoc',
                 'tasks/installation/go-zero',
                 'tasks/installation/goctl-intellij',
                 'tasks/installation/goctl-vscode',
@@ -511,9 +512,11 @@ module.exports = {
     reference: [
         'reference',
         'reference/proto',
+        'reference/examples',
     ],
     contributing: [
         'contributing',
         'contributing/doc',
+        'contributing/contributors',
     ],
 };

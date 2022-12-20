@@ -15,8 +15,10 @@ export default function DocsButton({ href, round = false, ...props }) {
   });
 
   return href ? (
-    <a href={href} className="docsButton" {...props}>
-      {props.children}
+    <a href={href} className="linkButton">
+      <button className="docsButton" {...props}>
+        {props.children}
+      </button>
     </a>
   ) : (
     <button className="docsButton" {...props}>
