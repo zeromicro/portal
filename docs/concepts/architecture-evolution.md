@@ -154,8 +154,8 @@ slug: /docs/concepts/architecture-evolution
 
 ## 参考文献
 
-- [《维基百科-软件架构》](https://zh.wikipedia.org/zh-sg/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84)
-- [《维基百科-架构模式》](https://zh.m.wikipedia.org/zh-sg/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F)
-- [《维基百科-微服务》](https://zh.m.wikipedia.org/zh-sg/%E5%BE%AE%E6%9C%8D%E5%8B%99)
-- [《凤凰架构-服务架构演进史》](http://icyfenix.cn/architecture/architect-history/)
-- [《Software architecture patterns》](https://www.oreilly.com/content/software-architecture-patterns/)
+- <a href="https://zh.wikipedia.org/zh-sg/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84" target="_blank">《软件架构•维基百科》</a>
+- <a href="https://zh.m.wikipedia.org/zh-sg/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F" target="_blank">《架构模式•维基百科》</a>
+- <a href="https://zh.m.wikipedia.org/zh-sg/%E5%BE%AE%E6%9C%8D%E5%8B%99" target="_blank">《微服务•维基百科》</a>
+- <a href="http://icyfenix.cn/architecture/architect-history/" target="_blank">《凤凰架构-服务架构演进史》</a>
+- <a href="https://www.oreilly.com/content/software-architecture-patterns/" target="_blank">《Software architecture patterns》</a>
