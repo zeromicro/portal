@@ -1,5 +1,5 @@
 ---
-title: api demo 生成代码
+title: api demo 代码生成
 slug: /docs/tasks/cli/api-demo
 ---
 

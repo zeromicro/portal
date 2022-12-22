@@ -37,8 +37,8 @@ module.exports = {
             items: [
                 'tasks/cli/api-demo',
                 'tasks/cli/grpc-demo',
-                'tasks/cli/mongo',
                 'tasks/cli/mysql',
+                'tasks/cli/mongo',
                 'tasks/cli/api-format',
             ],
         },
