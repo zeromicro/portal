@@ -82,6 +82,8 @@ service Greet {
 
 ### 示例 3. 编写 rpc 分组示例
 
+rpc 分组主要通过 service 名称来区分。
+
 ```jsx
 // 声明 proto 语法版本，固定值
 syntax = "proto3";
@@ -122,7 +124,7 @@ service Greet {
   rpc SayHello(SayHelloReq) returns (SayHelloResp);
 }
 
-// 定义 Greet 服务
+// 定义 Message 服务
 service Message {
   // 定义客户端流式 rpc
   rpc SendMessage(stream SendMessageReq) returns (SendMessageResp);
