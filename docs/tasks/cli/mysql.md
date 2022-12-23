@@ -10,13 +10,13 @@ import TabItem from '@theme/TabItem';
 
 mysql 代码生成支持从 sql 文件和数据库链接生成， 且支持生成带缓存逻辑代码。
 
-mysql 生成的代码内容有数据表对应的 golang 结构体、CURD 操作方法，缓存逻辑等信息。
+mysql 生成的代码内容有数据表对应的 golang 结构体、CURD 操作方法，缓存逻辑等信息，更多详细的数据库代码生成可参考指南 <a href="/docs/tutorials/cli/model" target="_blank">goctl model</a>
 
 ## 任务目标
 
-1. 熟悉 goctl 生成 model 代码的命令使用，了解目前支持的指令和功能
-1. 初步了解 goctl 生成 model 代码的格式
-1. 初步掌握从 sql 文件编写到 model 代码的生成流程
+1. 熟悉 goctl 生成 mysql 代码的命令使用，了解目前支持的指令和功能
+1. 初步了解 goctl 生成 mysql 代码的格式
+1. 初步掌握从 sql 文件编写到 mysql 代码的生成流程
 
 ## 准备条件
 
