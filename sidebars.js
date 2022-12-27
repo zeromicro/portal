@@ -54,15 +54,6 @@ module.exports = {
         },
         {
             type: 'category',
-            label: '程序调试',
-            collapsed: false,
-            items: [
-                'tasks/run/goland',
-                'tasks/run/vscode',
-            ],
-        },
-        {
-            type: 'category',
             label: '静态配置文件管理',
             collapsed: false,
             items: [
