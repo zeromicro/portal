@@ -53,7 +53,7 @@ type PathExampleResp {
 
 @server (
     jwt: Auth // 对当前 Foo 语法块下的所有路由，开启 jwt 认证，不需要则请删除此行
-    prefix: "/v1" // 对当前 Foo 语法块下的所有路由，新增 /v1 路由前缀，不需要则请删除此行
+    prefix: /v1 // 对当前 Foo 语法块下的所有路由，新增 /v1 路由前缀，不需要则请删除此行
     group: g1 // 对当前 Foo 语法块下的所有路由，路由归并到 g1 目录下，不需要则请删除此行
     timeout: 3s // 对当前 Foo 语法块下的所有路由进行超时配置，不需要则请删除此行
     middleware: AuthInterceptor // 对当前 Foo 语法块下的所有路由添加中间件，不需要则请删除此行
