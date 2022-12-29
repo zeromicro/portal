@@ -98,7 +98,7 @@ service user-api {
     @handler UserRoleDelete
     get /user/role/delete (UserRoleDeleteReq) returns (UserRoleDeleteResp)
 
-    @handler UsersClassList
+    @handler UserClassList
     get /user/class/list returns ([]UserClassResp)
 
     @handler UserClassUpdate
@@ -245,7 +245,7 @@ service user-api {
     group: class
 )
 service user-api {
-    @handler UsersClassList
+    @handler UserClassList
     get /user/class/list returns ([]UserClassResp)
 
     @handler UserClassUpdate
