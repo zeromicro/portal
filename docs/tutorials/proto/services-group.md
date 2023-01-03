@@ -79,6 +79,8 @@ service UserService{
 我们来看一下不分组的情况下，goctl 生成的代码结构：
 
 ```bash
+$ goctl rpc protoc user.proto --go_out=. --go-grpc_out=. --zrpc_out=.
+$ tree
 .
 ├── etc
 │   └── user.yaml
@@ -188,6 +190,9 @@ service UserClassService{
 我们来看一下带分组的情况下，goctl 生成的代码结构：
 
 ```bash
+# 通过 -m 指定 goctl 生成分组的代码
+$ goctl rpc protoc user.proto --go_out=. --go-grpc_out=. --zrpc_out=. -m
+$ tree
 .
 ├── client
 │   ├── userclassservice
