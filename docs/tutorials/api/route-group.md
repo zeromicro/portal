@@ -28,7 +28,7 @@ https://example.com/v1/user/role/delete
 https://example.com/v1/user/class/list
 https://example.com/v1/user/class/update
 https://example.com/v1/user/class/info
-https://example.com/v1/user/class/join
+https://example.com/v1/user/class/add
 https://example.com/v1/user/class/delete
 ```
 

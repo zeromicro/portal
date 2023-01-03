@@ -8,7 +8,7 @@ slug: /docs/reference/proto
 
 以下示例来自 <a href="https://developers.google.com/protocol-buffers/docs/proto3">Language Guide (proto3)</a>
 
-```go
+```protobuf
 // 声明 proto 使用的语法版本
 syntax = "proto3";
 

@@ -16,7 +16,7 @@ Protocol buffers 是 Google 的语言中立、平台中立、可扩展的结构�
 
 ### 示例 1. 编写最简单的 rpc 服务
 
-```jsx
+```protobuf
 // 声明 proto 语法版本，固定值
 syntax = "proto3";
 
@@ -40,7 +40,7 @@ service Greet {
 
 ### 示例 2. 编写流式请求服务示例
 
-```jsx
+```protobuf
 // 声明 proto 语法版本，固定值
 syntax = "proto3";
 
@@ -84,7 +84,7 @@ service Greet {
 
 rpc 分组主要通过 service 名称来区分。
 
-```jsx
+```protobuf
 // 声明 proto 语法版本，固定值
 syntax = "proto3";
 
