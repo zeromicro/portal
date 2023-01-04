@@ -4,6 +4,8 @@ sidebar_label: 框架概述
 slug: /docs/concepts/overview
 ---
 
+import { Image } from '@arco-design/web-react';
+
 ## go-zero
 
 > **_缩短从需求到上线的距离_**
@@ -21,7 +23,12 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 - 自动校验客户端请求参数合法性
 - 大量微服务治理和并发工具包
 
-<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture.png" alt="架构图" width="1500" />
+<Image
+      width={1500}
+      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture.png"
+      alt='架构图'
+/>
+
 
 ## 1. go-zero 框架背景
 
@@ -73,7 +80,10 @@ go-zero 是一个集成了各种工程实践的包含 web 和 rpc 框架，有�
 
 如下图，我们从多个层面保障了整体服务的高可用：
 
-![弹性设计](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/resilience.jpg)
+<Image
+      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/resilience.jpg"
+      alt="弹性设计"
+/>
 
 觉得不错的话，别忘 **star** 👏
 
@@ -155,7 +165,10 @@ null
 
 ## 6. Benchmark
 
-![benchmark](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/benchmark.png)
+<Image
+      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/benchmark.png"
+      alt='benchmark'
+/>
 
 [测试代码见这里](https://github.com/smallnest/go-web-framework-benchmark)
 
@@ -183,7 +196,12 @@ null
 
 `go-zero` 相关文章都会在 `微服务实践` 公众号整理呈现，欢迎扫码关注，也可以通过公众号私信我 👏
 
-<img src="https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png" alt="wechat" width="300" />
+<Image
+      width={300}
+      src="https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png"
+      alt='wechat'
+/>
+
 
 ## 9. 微信交流群
 

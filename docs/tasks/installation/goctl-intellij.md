@@ -4,6 +4,7 @@ sidebar_label: goctl-intellij 安装
 slug: /docs/tasks/installation/goctl-intellij
 ---
 
+import { Image } from '@arco-design/web-react';
 import DocsCard from '@components/global/DocsCard';
 import DocsButton from '@components/page/native/DocsButton';
 import { IconMoreVertical } from '@arco-design/web-react/icon';
@@ -43,10 +44,16 @@ goctl-intellij 安装方式有 2 种
 
 下载的 zip 文件无需解压，然后打开 `Goland` | `Preferences...` | `Plugins`，找到更多图标 <IconMoreVertical />，选择 `Install Plugin from Disk...`
 
-![goland plugin center](.././../resource/tasks/installation/goland-plugin.png)
+<Image
+      src={require('.././../resource/tasks/installation/goland-plugin.png').default}
+      alt='goland plugin center'
+/>
 
 ### 2. 从插件中心安装
 
 打开 `Goland` | `Preferences...` | `Plugins`，选中 `Marketplace` 选项栏，在搜索框输入 `Goctl` 进行搜索安装
 
-![goland plugin goctl](.././../resource/tasks/installation/goland-plugin-goctl.png)
+<Image
+      src={require('.././../resource/tasks/installation/goland-plugin-goctl.png').default}
+      alt='goland plugin goctl'
+/>
