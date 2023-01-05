@@ -168,7 +168,7 @@ service user-api {
 
 由于我们没有进行分组，所以生成的代码中handler 和 logic 目录下的文件是全部揉在一起的，这样的目录结构在项目中不太好管理和阅读，接下来我们按照 `user`，`role`，`class` 来进行分组，在 api 语言中，我们可以通过在 `@server` 语句块中使用 `group` 关键字来进行分组，分组的语法如下：
 
-```go
+```go {35,53,74}
 syntax = "v1"
 
 type (

@@ -44,7 +44,7 @@ type Base {
 
 <TabItem value="user.api" label="user.api" default>
 
-```go
+```go {4}
 syntax =  "v1"
 
 // 引入 base.api 文件

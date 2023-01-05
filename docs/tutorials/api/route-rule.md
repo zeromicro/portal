@@ -26,7 +26,7 @@ slug: /docs/tutorials/api/route/rule
 
 路由示例：
 
-```go
+```go {27,31,35,39,43,47,51}
 type DemoPath3Req {
     Id int64 `path:"id"`
 }

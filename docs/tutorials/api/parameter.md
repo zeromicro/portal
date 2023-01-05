@@ -13,7 +13,7 @@ slug: /docs/tutorials/api/parameter
 
 在 api 描述语言中，我们可以通过在 tag 中来声明参数接收规则，目前 go-zero 支持的参数接收规则如下：
 
-| 接收规则 | 说明 | 生效范围 | 示例 |
+| <img width={100}/>接收规则 | 说明 | <img width={150}/>生效范围 | 示例 |
 | --- | --- | --- | --- |
 | json | json 序列化 | 请求体&响应体 | \`json:"foo"\` |
 | path | 路由参数 | 请求体 | \`path:"id"\` |
@@ -34,7 +34,7 @@ type Foo {
 
 在 api 描述语言中，我们可以通过在 tag 中来声明参数接收规则，除此之外，还支持参数的校验，参数校验的规则仅对 **请求体** 有效，参数校验的规则写在 tag value中，目前 go-zero 支持的参数校验规则如下：
 
-| 接收规则 | 说明 | 示例 |
+| <img width={100}/>接收规则 | 说明 | 示例 |
 | --- | --- | --- |
 | optional | 当前字段是可选参数，允许为零值(zero value) | \`json:"foo,optional"\` |
 | options | 当前参数仅可接收的枚举值 | **写法1**：竖线\|分割，\`json:"gender,options=foo\|bar"\` <br/>**写法2**：数组风格，\`json:"gender,[foo,bar]"\` |

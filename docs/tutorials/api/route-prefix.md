@@ -20,7 +20,7 @@ https://example.com/v2/users
 
 在上文路由中，我们通过版本 `v1` 和 `v2` 来区分了 `/users` 路由，我们可以通过 api 语言来声明路由前缀：
 
-```go
+```go {12,20}
 syntax = "v1"
 
 type UserV1 {
@@ -52,7 +52,7 @@ service user-api {
 
 下面简单看一下生成的路由代码：
 
-```go
+```go {10,21}
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
     server.AddRoutes(
         []rest.Route{
