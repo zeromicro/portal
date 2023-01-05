@@ -3,6 +3,7 @@ title: goctl-vscode 安装
 sidebar_label: goctl-vscode 安装
 slug: /docs/tasks/installation/goctl-vscode
 ---
+import { Image } from '@arco-design/web-react';
 
 ## 概述
 
@@ -19,4 +20,8 @@ slug: /docs/tasks/installation/goctl-vscode
 
 打开 `Visual Studio Code` | `Extensions`，搜索 `goctl`，点击 `install` 安装。
 
-![goland plugin goctl](.././../resource/tasks/installation/vscode-goctl.png)
+
+<Image
+      src={require('.././../resource/tasks/installation/vscode-goctl.png').default}
+      alt='vscode plugin goctl'
+/>

@@ -141,6 +141,6 @@ gRPC 网关是 gRPC 的一种实现，它通过 gRPC 网关来管理 gRPC 服务
  
 ## 参考文献
 
-- <a href="https://weread.qq.com/web/bookDetail/42932ba07195510b429d842" target="_blank">《Sservice Mesh 微服务架构设计》</a>
+- <a href="https://weread.qq.com/web/bookDetail/42932ba07195510b429d842" target="_blank">《Service Mesh 微服务架构设计》</a>
 - <a href="https://zh.wikipedia.org/zh-sg/%E5%BE%AE%E6%9C%8D%E5%8B%99" target="_blank">《微服务•维基百科》</a>
 - <a href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3" target="_blank">《应用程序接口•维基百科》</a>

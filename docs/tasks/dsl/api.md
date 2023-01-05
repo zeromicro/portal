@@ -116,7 +116,7 @@ type (
     group: login
 
     // 定义路由前缀为 "/v1"
-    prefix: "/v1"
+    prefix: /v1
 )
 // 微服务名称为 user，生成的代码目录和配置文件将和 user 值相关
 service user {
@@ -148,8 +148,8 @@ service user {
     // 代表当前 service 代码块下的路由生成代码时都会被放到 user 目录下
     group: user
 
-        // 定义路由前缀为 "/v1"
-    prefix: "/v1"
+    // 定义路由前缀为 "/v1"
+    prefix: /v1
 )
 // 注意，定义多个 service 代码块时，服务名称必须一致，因此这里的服务名称必须
 // 和上文的 service 名称一样，为 user 服务。

@@ -64,4 +64,4 @@ slug: /docs/concepts/service-governance
 
 ## 参考文献
 
-- 《[微服务流量治理的总结与探索——字节跳动的流量治理体系](https://bbs.huaweicloud.com/blogs/252132)》
+- <a href="https://bbs.huaweicloud.com/blogs/252132" target="_blank">《微服务流量治理的总结与探索——字节跳动的流量治理体系》</a>

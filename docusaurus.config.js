@@ -196,7 +196,7 @@ module.exports = {
                 },
             ],
             // https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js
-            additionalLanguages: ['shell-session', 'http'],
+            additionalLanguages: ['shell-session', 'http', 'protobuf'],
         },
         algolia: {
             appId: 'foo',

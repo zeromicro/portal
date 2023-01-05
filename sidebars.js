@@ -37,8 +37,8 @@ module.exports = {
             items: [
                 'tasks/cli/api-demo',
                 'tasks/cli/grpc-demo',
-                'tasks/cli/mongo',
                 'tasks/cli/mysql',
+                'tasks/cli/mongo',
                 'tasks/cli/api-format',
             ],
         },
@@ -50,15 +50,6 @@ module.exports = {
                 'tasks/create/goland',
                 'tasks/create/vscode',
                 'tasks/create/command',
-            ],
-        },
-        {
-            type: 'category',
-            label: '程序调试',
-            collapsed: false,
-            items: [
-                'tasks/run/goland',
-                'tasks/run/vscode',
             ],
         },
         {

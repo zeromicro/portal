@@ -539,7 +539,7 @@ PathLit          = `"` { "/" { identifier | "-" identifier} } `"` .
     // 路由前缀
     // 如果 key 固定为 “prefix:”
     // 则代表路由前缀声明，value 则为具体的路由前缀值，字符串中没让必须以 / 开头
-    prefix: "/v1"
+    prefix: /v1
 
     // 路由分组
     // 如果 key 固定为 “group:”，则代表路由分组声明
@@ -646,7 +646,7 @@ service 写法示例
 ```go
 // 带 @server 的写法
 @server (
-    prefix: "/v1"
+    prefix: /v1
     group: Login
 )
 service user {
@@ -658,7 +658,7 @@ service user {
     get /user/info/:id (GetUserInfoReq) returns (GetUserInfoResp)
 }
 @server (
-    prefix: "/v1"
+    prefix: /v1
     middleware: AuthInterceptor
 )
 service user {

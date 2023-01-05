@@ -1,6 +1,5 @@
 ---
-title: gRPC demo 生成代码
-sidebar_label: gRPC demo 生成代码
+title: gRPC demo 代码生成
 slug: /docs/tasks/cli/grpc-demo
 ---
 

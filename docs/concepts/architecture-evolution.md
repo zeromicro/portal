@@ -4,6 +4,8 @@ sidebar_label: 架构演进
 slug: /docs/concepts/architecture-evolution
 ---
 
+import { Image } from '@arco-design/web-react';
+
 ## 架构演进史
 
 软件架构是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计。软件架构会包括软件组件、组件之间的关系，组件特性以及组件间关系的特性。软件架构可以和建筑物的架构相比拟。软件架构是构建电脑软件，开发系统以及计划进行的基础，可以列出开发团队需要完成的任务。
@@ -29,7 +31,11 @@ slug: /docs/concepts/architecture-evolution
 
 分层架构模式的每一层在应用程序中都有特定的角色和职责。例如，表示层将负责处理所有用户界面和浏览器通信逻辑，而业务层将负责执行与请求关联的特定业务规则。体系结构中的每一层都围绕为满足特定业务请求而需要完成的工作形成一个抽象。例如，表示层不需要知道或担心如何获取客户数据；它只需要以特定格式在屏幕上显示该信息。同样，业务层不需要关心如何格式化客户数据以显示在屏幕上，甚至不需要关心客户数据来自哪里；它只需要从持久层获取数据，对数据执行业务逻辑（例如，计算值或聚合数据），并将该信息向上传递到表示层。
 
-![Layered Architecture](../resource/concepts/layered-arch-example.png)
+<Image
+      src={require('../resource/concepts/layered-arch-example.png').default}
+      alt='Layered Architecture'
+/>
+
 <center>《分层架构模式》</center>
 
 分层架构特征：
@@ -47,7 +53,11 @@ slug: /docs/concepts/architecture-evolution
 
 事件驱动架构模式由两个主要拓扑结构组成，中介者和代理。当您需要通过中央调解器在一个事件中编排多个步骤时，通常使用调解器拓扑，而当您希望在不使用中央调解器的情况下将事件链接在一起时，则使用代理拓扑。由于这两种拓扑的体系结构特征和实现策略不同，因此了解每一种拓扑以了解哪种最适合您的特定情况非常重要。
 
-![Event-driven architecture](../resource/concepts/event-driven-arch.png)
+<Image
+      src={require('../resource/concepts/event-driven-arch.png').default}
+      alt='Event-driven architecture'
+/>
+
 <center>《事件驱动架构模式》</center>
 
 在事件驱动的架构中，通常有十几个到几百个事件队列。该模式没有指定事件队列组件的实现；它可以是消息队列、Web 服务端点或它们的任意组合。
@@ -67,7 +77,10 @@ slug: /docs/concepts/architecture-evolution
 
 微内核架构模式的核心系统传统上只包含使系统运行所需的最少功能。许多操作系统都实现了微内核架构模式，这也是该模式名称的由来。从业务应用的角度来看，核心系统通常被定义为通用业务逻辑，没有针对特殊情况、特殊规则或复杂条件处理的自定义代码。
 
-![Microkernel architecture ](../resource/concepts/microkernel-arch.png)
+<Image
+      src={require('../resource/concepts/microkernel-arch.png').default}
+      alt='Microkernel architecture'
+/>
 <center>《微内核架构模式》</center>
 
 插件模块是独立的、独立的组件，包含专门的处理、附加功能和自定义代码，旨在增强或扩展核心系统以产生附加业务功能。通常，插件模块应该独立于其他插件模块，但您当然可以设计需要其他插件存在的插件。无论哪种方式，重要的是将插件之间的通信保持在最低限度以避免依赖性问题。
@@ -87,7 +100,10 @@ slug: /docs/concepts/architecture-evolution
 
 理解此模式的最重要概念可能是服务组件的概念。与其考虑微服务架构中的服务，不如考虑服务组件，服务组件的粒度可以从单个模块到应用程序的大部分。服务组件包含一个或多个模块（例如 Java 类），这些模块代表单一用途功能（例如，提供特定城市或城镇的天气）或大型业务应用程序的独立部分（例如，股票交易配售或确定汽车保险费率）。设计正确级别的服务组件粒度是微服务架构中最大的挑战之一。在以下服务组件编排小节中将更详细地讨论这一挑战。
 
-![Basic Microservices architecture pattern](../resource/concepts/basic-microservices-arch.png)
+<Image
+      src={require('../resource/concepts/basic-microservices-arch.png').default}
+      alt='Basic Microservices architecture pattern'
+/>
 <center>《基本微服务架构模式》</center>
 
 微服务架构模式解决了单体应用程序和面向服务架构中的许多常见问题。由于主要的应用程序组件被拆分成更小的、单独部署的单元，使用微服务架构模式构建的应用程序通常更健壮，提供更好的可扩展性，并且可以更轻松地支持持续交付。
@@ -109,7 +125,11 @@ slug: /docs/concepts/architecture-evolution
 
 基于空间的架构模式专门设计用于处理和解决可伸缩性和并发性问题。对于具有可变且不可预测的并发用户量的应用程序，它也是一种有用的架构模式。从架构上解决极端和可变的可伸缩性问题通常是比尝试扩展数据库或将缓存技术改造为不可扩展的架构更好的方法。
 
-![Space-based architecture pattern](../resource/concepts/space-based-arch.png)
+<Image
+      src={require('../resource/concepts/space-based-arch.png').default}
+      alt='Space-based architecture pattern'
+/>
+
 <center>《基于空间的架构模式》</center>
 
 基于空间的架构特征：
@@ -154,8 +174,8 @@ slug: /docs/concepts/architecture-evolution
 
 ## 参考文献
 
-- [《维基百科-软件架构》](https://zh.wikipedia.org/zh-sg/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84)
-- [《维基百科-架构模式》](https://zh.m.wikipedia.org/zh-sg/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F)
-- [《维基百科-微服务》](https://zh.m.wikipedia.org/zh-sg/%E5%BE%AE%E6%9C%8D%E5%8B%99)
-- [《凤凰架构-服务架构演进史》](http://icyfenix.cn/architecture/architect-history/)
-- [《Software architecture patterns》](https://www.oreilly.com/content/software-architecture-patterns/)
+- <a href="https://zh.wikipedia.org/zh-sg/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84" target="_blank">《软件架构•维基百科》</a>
+- <a href="https://zh.m.wikipedia.org/zh-sg/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F" target="_blank">《架构模式•维基百科》</a>
+- <a href="https://zh.m.wikipedia.org/zh-sg/%E5%BE%AE%E6%9C%8D%E5%8B%99" target="_blank">《微服务•维基百科》</a>
+- <a href="http://icyfenix.cn/architecture/architect-history/" target="_blank">《凤凰架构-服务架构演进史》</a>
+- <a href="https://www.oreilly.com/content/software-architecture-patterns/" target="_blank">《Software architecture patterns》</a>
