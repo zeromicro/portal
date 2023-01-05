@@ -6,6 +6,10 @@ slug: /docs/tasks/installation/protoc
 import DocsCard from '@components/global/DocsCard';
 import DocsCards from '@components/global/DocsCards';
 
+## 概述
+
+protoc 是一个用于生成代码的工具，它可以根据 proto 文件生成C++、Java、Python、Go、PHP 等多重语言的代码，而 gRPC 的代码生成还依赖 `protoc-gen-go`，`protoc-gen-go-grpc` 插件来配合生成 Go 语言的 gRPC 代码。
+
 ## 1. 一键安装
 
 通过 `goctl` 可以一键安装 `protoc`，`protoc-gen-go`，`protoc-gen-go-grpc` 相关组件，你可以执行如下命令：
