@@ -126,7 +126,7 @@ $ goctl env check --verbose --install
 [goctl-env]: do you want to install "protoc" [y: YES, n: No]
 y
 [goctl-env]: preparing to install "protoc"
-[goctl-env]: "protoc" is already installed in "/Users/sh00414ml/go/bin/protoc"
+[goctl-env]: "protoc" is already installed in "/Users/keson/go/bin/protoc"
 
 [goctl-env]: looking up "protoc-gen-go"
 [goctl-env]: "protoc-gen-go" is not found in PATH
@@ -134,7 +134,7 @@ y
 y
 [goctl-env]: preparing to install "protoc-gen-go"
 "protoc-gen-go" installed from cache
-[goctl-env]: "protoc-gen-go" is already installed in "/Users/sh00414ml/go/bin/protoc-gen-go"
+[goctl-env]: "protoc-gen-go" is already installed in "/Users/keson/go/bin/protoc-gen-go"
 
 [goctl-env]: looking up "protoc-gen-go-grpc"
 [goctl-env]: "protoc-gen-go-grpc" is not found in PATH
@@ -142,7 +142,7 @@ y
 y
 [goctl-env]: preparing to install "protoc-gen-go-grpc"
 "protoc-gen-go-grpc" installed from cache
-[goctl-env]: "protoc-gen-go-grpc" is already installed in "/Users/sh00414ml/go/bin/protoc-gen-go-grpc"
+[goctl-env]: "protoc-gen-go-grpc" is already installed in "/Users/keson/go/bin/protoc-gen-go-grpc"
 
 [goctl-env]: congratulations! your goctl environment is ready!
 ```
@@ -159,19 +159,19 @@ $ goctl env check --verbose --install --force
 [goctl-env]: "protoc" is not found in PATH
 [goctl-env]: preparing to install "protoc"
 "protoc" installed from cache
-[goctl-env]: "protoc" is already installed in "/Users/sh00414ml/go/bin/protoc"
+[goctl-env]: "protoc" is already installed in "/Users/keson/go/bin/protoc"
 
 [goctl-env]: looking up "protoc-gen-go"
 [goctl-env]: "protoc-gen-go" is not found in PATH
 [goctl-env]: preparing to install "protoc-gen-go"
 "protoc-gen-go" installed from cache
-[goctl-env]: "protoc-gen-go" is already installed in "/Users/sh00414ml/go/bin/protoc-gen-go"
+[goctl-env]: "protoc-gen-go" is already installed in "/Users/keson/go/bin/protoc-gen-go"
 
 [goctl-env]: looking up "protoc-gen-go-grpc"
 [goctl-env]: "protoc-gen-go-grpc" is not found in PATH
 [goctl-env]: preparing to install "protoc-gen-go-grpc"
 "protoc-gen-go-grpc" installed from cache
-[goctl-env]: "protoc-gen-go-grpc" is already installed in "/Users/sh00414ml/go/bin/protoc-gen-go-grpc"
+[goctl-env]: "protoc-gen-go-grpc" is already installed in "/Users/keson/go/bin/protoc-gen-go-grpc"
 
 [goctl-env]: congratulations! your goctl environment is ready!
 ```

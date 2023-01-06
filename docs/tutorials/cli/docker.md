@@ -85,7 +85,7 @@ $ tree
 # 生成 Dockerfile 文件
 $ goctl docker --go hello.go --exe hello
 Hint: run "docker build ..." command in dir:
-    /Users/sh00414ml/hello
+    /Users/keson/hello
 Done.
 
 # 查看 Dockerfile 文件
