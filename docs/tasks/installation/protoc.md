@@ -18,6 +18,8 @@ protoc 是一个用于生成代码的工具，它可以根据 proto 文件生成
 $ goctl env check --install --verbose --force
 ```
 
+关于 `goctl env` 指令详情可参考 <a href="http://localhost:3000/docs/tutorials/cli/env" target="_blank">goctl env</a>
+
 ## 2. 手动安装
 
 ### 2.1 下载
