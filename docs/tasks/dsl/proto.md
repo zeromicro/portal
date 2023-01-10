@@ -135,6 +135,142 @@ service Message {
 }
 ```
 
+### 示例 4. message 示例
+
+```protobuf
+// 声明 proto 语法版本，固定值
+syntax = "proto3";
+
+// proto 包名
+package greet;
+
+// 生成 golang 代码后的包名
+option go_package = "example/proto/greet";
+
+// 定义枚举
+
+enum Status{
+  UNSPECIFIED = 0;
+  SUCCESS = 1;
+  FAILED = 2;
+}
+
+// 定义结构体
+
+message Base{
+  int32 code = 1;
+  string msg = 2;
+}
+
+message SendMessageReq{
+  string message = 1;
+}
+
+message SendMessage{
+  // 使用枚举
+  Status status = 1;
+  // 数组
+  repeated string array = 2;
+  // map
+  map<string,int32> map = 3;
+  // 布尔类型
+  bool boolean = 4;
+  // 序列号保留
+  reserved 5;
+}
+
+message SendMessageResp{
+  Base base = 1;
+  SendMessage data = 2;
+}
+
+// 定义 Greet 服务
+service Greet {
+  // 定义客户端流式 rpc
+  rpc SendMessage(stream SendMessageReq) returns (SendMessageResp);
+}
+```
+
+### 示例 5. proto 文件引入
+
+假设我们有如下环境：
+
+1. 工作路径：`/usr/local/workspace`
+1. base.proto 路径及内容：`/usr/local/workspace/base/base.proto`
+
+```protobuf
+syntax = "proto3";
+
+// proto 包名
+package base;
+
+// 生成 golang 代码后的包名
+option go_package = "example/proto/base";
+
+message Base{
+  int32 code = 1;
+  string msg = 2;
+}
+
+```
+
+现在需要新建 `/usr/local/workspace/greet/greet.proto` 文件，且需要引用 `/usr/local/workspace/base/base.proto` 文件中的 `Base` 结构体，我们来看一下简单的引用示例：
+
+```protobuf
+// 声明 proto 语法版本，固定值
+syntax = "proto3";
+
+// proto 包名
+package greet;
+
+// 生成 golang 代码后的包名
+option go_package = "example/proto/greet";
+
+import "base/base.proto";
+
+enum Status{
+  UNSPECIFIED = 0;
+  SUCCESS = 1;
+  FAILED = 2;
+}
+
+message SendMessageReq{
+  string message = 1;
+}
+
+message SendMessage{
+  // 使用枚举
+  Status status = 1;
+  // 数组
+  repeated string array = 2;
+  // map
+  map<string,int32> map = 3;
+  // 布尔类型
+  bool boolean = 4;
+  // 序列号保留
+  reserved 5;
+}
+
+message SendMessageResp{
+  base.Base base = 1;
+  SendMessage data = 2;
+}
+
+// 定义 Greet 服务
+service Greet {
+  // 定义客户端流式 rpc
+  rpc SendMessage(stream SendMessageReq) returns (SendMessageResp);
+}
+```
+
+:::note 温馨提示
+goctl 根据 proto 生成 gRPC 代码时：
+
+1. service 中的 Message（入参&出参） 必须要在 main proto 文件中，不支持引入的文件
+1. 引入的 Message 只能嵌套在 main proto 中的 Message 中使用
+1. goctl 生成 gRPC 代码时，不会生成被引入的 proto 文件的 Go 代码，需要自行预先生成
+:::
+
 ## 参考文献
 
 - <a href="https://developers.google.com/protocol-buffers/docs/proto3" target="_blank">《Language Guide (proto3)》</a>
