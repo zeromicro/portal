@@ -19,7 +19,7 @@ https://example.com/sign/demo
 
 其对应的 api 语言如下：
 
-```go
+```go {13}
 syntax = "v1"
 
 type (
@@ -42,7 +42,7 @@ service sign-api {
 
 我们来看一下生成的路由代码，完整代码点击 <a href={require('/docs/resource/tutorials/api/signdemo.zip').default} target="_blank">这里下载</a>
 
-```go
+```go {10}
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
     server.AddRoutes(
         []rest.Route{

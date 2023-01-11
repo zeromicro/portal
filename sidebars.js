@@ -169,6 +169,7 @@ module.exports = {
             collapsed: false,
             items: [
                 'tutorials/cli/overview',
+                'tutorials/cli/style',
                 'tutorials/cli/api',
                 'tutorials/cli/bug',
                 'tutorials/cli/completion',

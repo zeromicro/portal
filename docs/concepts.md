@@ -215,4 +215,8 @@ null
 
 加我之前有劳点一下 **_star_**，一个小小的 **_star_** 是作者们回答海量问题的动力 🤝
 
-<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/wechat.jpg" alt="wechat" width="300" />
+<Image
+      width={300}
+      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/wechat.jpg"
+      alt='wechat'
+/>

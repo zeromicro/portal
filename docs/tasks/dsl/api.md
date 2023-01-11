@@ -198,7 +198,7 @@ type GetUserInfoResp {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-    // 定义一个鉴权控制的中间件
+    // 定义一个鉴权控制的中间件，多个中间件以英文逗号,分割，如 Middleware1,Middleware2
     middleware: AuthInterceptor
 )
 // 定义一个名称为 user 的服务
@@ -252,6 +252,46 @@ service user {
     post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 }
 ```
+
+### 示例 6. 结构体引用
+
+```go
+syntax = "v1"
+
+type Base {
+    Code int    `json:"code"`
+    Msg  string `json:"msg"`
+}
+
+type UserInfo {
+    Id    int64   `json:"id"`
+    Name  string  `json:"name"`
+    Desc  string  `json:"desc"`
+}
+
+type GetUserInfoReq {
+    Id int64 `json:"id"`
+}
+
+type GetUserInfoResp {
+    // api 支持匿名结构体嵌套，也支持结构体引用
+    Base
+    Data UserInfo `json:"data"`
+}
+
+// 定义一个名称为 user 的服务
+service user {
+    // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+    @handler getUserInfo
+    // 定义接口
+    // 请求方法为 post
+    // 路由为 /user/info
+    // 请求体为 GetUserInfoReq
+     // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+    post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+}
+```
+
 
 ## 参考文献
 
