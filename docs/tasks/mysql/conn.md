@@ -4,29 +4,30 @@ sidebar_label: 数据库链接
 slug:  /docs/tasks/mysql/connection
 ---
 
-# 概述
+## 概述
 数据库的相关使用, 我们一般推荐使用 goctl 直接生成 model 代码，同时会自动生成 golang 结构体，CURD操作方法，缓存等，可以参考 <a href="/docs/tasks/cli/mysql" target="_blank">goctl model</a>。
 
 但是针对特殊情况需要自行直接链接数据库的，我们也可以直接自己初始化 sql conn。
 
-# 任务目标
+## 任务目标
 1. 了解 **github.com/zeromicro/go-zero/core/stores/sqlx** 包的使用。
 2. 根据 sqlx 创建一个 sql 链接。
 
-# 创建数据库
+## 创建数据库
 首先在的数据库中创建如下的表。
 
-   ```sql
-   CREATE TABLE user (
-       id bigint AUTO_INCREMENT,
-       name varchar(255) NOT NULL DEFAULT '' COMMENT 'The username',
-       type tinyint(1) NULL DEFAULT 0 COMMENT 'The user type, 0:normal,1:vip, for test golang keyword',
-       create_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-       update_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-       PRIMARY KEY (id)
-   ) ENGINE = InnoDB COLLATE utf8mb4_general_ci COMMENT 'user table';
-   ```
-# 连接到数据库
+```sql
+CREATE TABLE user (
+    id bigint AUTO_INCREMENT,
+    name varchar(255) NOT NULL DEFAULT '' COMMENT 'The username',
+    type tinyint(1) NULL DEFAULT 0 COMMENT 'The user type, 0:normal,1:vip, for test golang keyword',
+    create_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB COLLATE utf8mb4_general_ci COMMENT 'user table';
+```
+
+## 连接到数据库
 
 1. Mysql
 
@@ -93,7 +94,7 @@ func main() {
 
 ```
 
-# 开始 CRUD
+## 开始 CRUD
 1. 插入一条数据
 
 我们使用上面的创建链接的方法得到一个链接之后，我们可以开始操作数据库。
