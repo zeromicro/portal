@@ -3,4 +3,12 @@ title: DB 选择
 sidebar_label: DB 选择
 slug: /docs/tutorials/redis/db/selection
 ---
-balala...
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## 概述
+本章节主要介绍 go-zero redis 组件对 db 选择的考虑。
+
+## 说明
+go-zero redis 组件，没有提供 db 相关的配置，默认使用 db0。主要因为 <a href="https://redis.io/docs/reference/cluster-spec/#implemented-subset" target="_blank">redis cluster</a> 的默认也仅支持 db0, 不支持 db 的选择。 如果存在通过 db 区分不同的业务场景，建议使用多个 redis 实例进行管理。
