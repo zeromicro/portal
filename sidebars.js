@@ -115,7 +115,7 @@ module.exports = {
         'tasks/memory-cache',
         {
             type: 'category',
-            label: 'Redis 使用',
+            label: '定时任务',
             collapsed: false,
             items: [
                 'tasks/timer-task/process',
