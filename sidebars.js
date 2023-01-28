@@ -422,9 +422,8 @@ module.exports = {
             label: 'Redis',
             collapsed: false,
             items: [
-                'tutorials/redis/single-node',
-                'tutorials/redis/multi-nodes',
-                'tutorials/redis/cluster',
+                'tutorials/redis/redis-lock',
+                'tutorials/redis/metric',
                 'tutorials/redis/db-selection',
             ],
         },
