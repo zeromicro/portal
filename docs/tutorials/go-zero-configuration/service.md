@@ -6,7 +6,7 @@ slug: /docs/tutorials/go-zero/configuration/service
 
 ## service 概述
 
-[SErviceConf](https://github.com/zeromicro/go-zero/blob/master/core/service/serviceconf.go) 这个配置是用来表示我们一个独立服务的配置。他被我们的 rest，zrpc，等引用，当然我们也可以自己简单定义自己的服务。
+[ServiceConf](https://github.com/zeromicro/go-zero/blob/master/core/service/serviceconf.go) 这个配置是用来表示我们一个独立服务的配置。他被我们的 rest，zrpc 等引用，当然我们也可以自己简单定义自己的服务。
 
 例如：
 
@@ -55,7 +55,7 @@ type ServiceConf struct {
 ```
 
 | 参数       | 类型              | 默认值 | 说明                                                                |
-| ---------- | ----------------- | ------ | ------------------------------------------------------------------- | ---- | --- | --- | --- |
+| ---------- | ----------------- | ------ | ------------------------------------------------------------------- |
 | Name       | string            | -      | 定义服务的名称，会出现在 log 和 tracer 中                           |
 | Log        | logx.LogConf      | -      | 参考 [log](/docs/tutorials/go-zero/configuration/log)               |
 | Mode       | string            | pro    | 服务的环境，目前我们预定义了 dev                                    | test | rt  | pre | pro |
