@@ -118,23 +118,15 @@ module.exports = {
             label: '定时任务',
             collapsed: false,
             items: [
-                'tasks/timer-task/process',
+                'tasks/timer-task/k8s',
             ],
         },
         {
             type: 'category',
-            label: '消息队列',
+            label: '队列',
             collapsed: false,
             items: [
-                'tasks/message-queue/kafka',
-            ],
-        },
-        {
-            type: 'category',
-            label: '延时队列',
-            collapsed: false,
-            items: [
-                'tasks/delay-queue/beanstalkd',
+                'tasks/queue/delay-queue',
             ],
         }
     ],
@@ -349,7 +341,6 @@ module.exports = {
             collapsed: false,
             items: [
                 'tutorials/message-queue/kafka',
-                'tutorials/message-queue/rabbitmq',
             ],
         },
         {
@@ -450,6 +441,7 @@ module.exports = {
             label: '运维部署',
             collapsed: false,
             items: [
+                'tutorials/ops/prepare',
                 'tutorials/ops/machine',
                 'tutorials/ops/docker-compose',
                 'tutorials/ops/k8s',
