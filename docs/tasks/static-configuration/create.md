@@ -1,7 +1,7 @@
 ---
 title: 新增配置
 sidebar_label: 新增配置
-slug:  /docs/tasks/static/configuration/create
+slug: /docs/tasks/static/configuration/create
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,21 +16,20 @@ import TabItem from '@theme/TabItem';
 1. 学会如何定义一个配置。
 1. 从静态文件中加载配置。
 
-
 ## 准备条件
 
-1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
-
+1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
 
 ## 定义 Config
 
 ```go
 type Config struct {
-	Name string
-	Host string `json:",default=0.0.0.0"`
-	Port int
+    Name string
+    Host string `json:",default=0.0.0.0"`
+    Port int
 }
 ```
+
 如上，我们定义了一个 Config struct ，里面包含几个字段，服务名称，监听地址，端口号。
 
 ## 定义配置路径
@@ -38,9 +37,11 @@ type Config struct {
 ```go
 var f = flag.String("f", "config.yaml", "config file")
 ```
+
 我们一般希望可以在启动的时候指定配置文件的路径，所以我们定一个 flag 用于接受配置文件的路径。
 
 ## 编写配置文件
+
 我们使用 yaml 格式当做实例，生成 config.yaml 文件。写入如下内容
 
 ```yaml
@@ -66,22 +67,22 @@ println(c.Name)
 package main
 
 import (
-	"flag"
-	"github.com/zeromicro/go-zero/core/conf"
+    "flag"
+    "github.com/zeromicro/go-zero/core/conf"
 )
 
 type Config struct {
-	Name string
-	Host string `json:",default=0.0.0.0"`
-	Port int
+    Name string
+    Host string `json:",default=0.0.0.0"`
+    Port int
 }
 
 var f = flag.String("f", "config.yaml", "config file")
 
 func main() {
-	flag.Parse()
-	var c Config
-	conf.MustLoad(*f, &c)
-	println(c.Name)
+    flag.Parse()
+    var c Config
+    conf.MustLoad(*f, &c)
+    println(c.Name)
 }
 ```

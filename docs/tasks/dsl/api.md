@@ -292,6 +292,44 @@ service user {
 }
 ```
 
+### 示例 7. 控制最大请求体控制的 api 服务
+
+```go
+syntax = "v1"
+
+type GetUserInfoReq {
+    Id int64 `json:"id"`
+}
+
+type GetUserInfoResp {
+    Id    int64   `json:"id"`
+    Name  string  `json:"name"`
+    Desc  string  `json:"desc"`
+}
+
+// @server 语法块主要用于控制对 HTTP 服务生成时 meta 信息，目前支持功能有：
+// 1. 路由分组
+// 2. 中间件声明
+// 3. 路由前缀
+// 4. 超时配置
+// 5. jwt 鉴权开关
+// 所有声明仅对当前 service 中的路由有效
+@server (
+    // 定义一个请求体限制在 1MB 以内的请求，goctl >= 1.5.0 版本支持
+     maxBytes: 1024
+)
+// 定义一个名称为 user 的服务
+service user {
+    // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+    @handler getUserInfo
+    // 定义接口
+    // 请求方法为 post
+    // 路由为 /user/info
+    // 请求体为 GetUserInfoReq
+     // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+    post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+}
+```
 
 ## 参考文献
 

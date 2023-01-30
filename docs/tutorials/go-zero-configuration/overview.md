@@ -78,7 +78,7 @@ func Load(file string, v interface{}, opts ...Option) error
 我们目前支持的配置格式如下：
 
 - json
-- yaml | yam
+- yaml | yml
 - toml
 
 我们程序会自动通过文件后缀进行对应格式的加载。

@@ -15,14 +15,14 @@ EtcdConf 定义如下
 ```go
 // EtcdConf is the config item with the given key on etcd.
 type EtcdConf struct {
-	Hosts              []string
-	Key                string
-	User               string `json:",optional"`
-	Pass               string `json:",optional"`
-	CertFile           string `json:",optional"`
-	CertKeyFile        string `json:",optional"`
-	CACertFile         string `json:",optional"`
-	InsecureSkipVerify bool   `json:",optional"`
+    Hosts              []string
+    Key                string
+    User               string `json:",optional"`
+    Pass               string `json:",optional"`
+    CertFile           string `json:",optional"`
+    CertKeyFile        string `json:",optional"`
+    CACertFile         string `json:",optional"`
+    InsecureSkipVerify bool   `json:",optional"`
 }
 ```
 
