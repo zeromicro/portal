@@ -1,0 +1,22 @@
+
+name: sync_to_anqiansong/portal
+on:
+  push:
+    branches:
+      - feat/v3
+      # - main
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror the Github organization repos to Gitee.
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: 'github/zeromicro'
+          dst: 'github/anqiansong'
+          dst_key: ${{ secrets.PRIVATE_KEY }}
+          dst_token:  ${{ secrets.ACCESSTOKEN }}
+          static_list: "portal"
+          force_update: true
+       debug: true
+
