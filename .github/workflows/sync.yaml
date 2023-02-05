@@ -18,5 +18,5 @@ jobs:
           dst_token:  ${{ secrets.ACCESSTOKEN }}
           static_list: "portal"
           force_update: true
-        debug: true
+          debug: true
 
