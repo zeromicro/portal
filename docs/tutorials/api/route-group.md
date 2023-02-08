@@ -172,94 +172,97 @@ service user-api {
 syntax = "v1"
 
 type (
-    UserLoginReq       {}
-    UserInfoReq        {}
-    UserLoginResp      {}
-    UserInfoResp       {}
-    UserInfoUpdateReq  {}
-    UserInfoUpdateResp {}
+	UserLoginReq  {}
+	UserInfoReq  {}
+	UserLoginResp  {}
+	UserInfoResp  {}
+	UserInfoUpdateReq  {}
+	UserInfoUpdateResp  {}
 )
 
 type (
-    UserRoleReq        {}
-    UserRoleResp       {}
-    UserRoleUpdateReq  {}
-    UserRoleUpdateResp {}
-    UserRoleAddReq     {}
-    UserRoleAddResp    {}
-    UserRoleDeleteReq  {}
-    UserRoleDeleteResp {}
+	UserRoleReq  {}
+	UserRoleResp  {}
+	UserRoleUpdateReq  {}
+	UserRoleUpdateResp  {}
+	UserRoleAddReq  {}
+	UserRoleAddResp  {}
+	UserRoleDeleteReq  {}
+	UserRoleDeleteResp  {}
 )
 
 type (
-    UserClassReq        {}
-    UserClassResp       {}
-    UserClassUpdateReq  {}
-    UserClassUpdateResp {}
-    UserClassAddReq     {}
-    UserClassAddResp    {}
-    UserClassDeleteReq  {}
-    UserClassDeleteResp {}
+	UserClassReq  {}
+	UserClassResp  {}
+	UserClassUpdateReq  {}
+	UserClassUpdateResp  {}
+	UserClassAddReq  {}
+	UserClassAddResp  {}
+	UserClassDeleteReq  {}
+	UserClassDeleteResp  {}
 )
-@server(
-    prefix: /v1
-    group: user
-)
-service user-api {
-    @handler UserLogin
-    post /user/login (UserLoginReq) returns (UserLoginResp)
-    
-    @handler UserInfo
-    post /user/info (UserInfoReq) returns (UserInfoResp)
-    
-    @handler UserInfoUpdate
-    post /user/info/update (UserInfoUpdateReq) returns (UserInfoUpdateResp)
-    
-    @handler UserList
-    get /user/list returns ([]UserInfoResp)
-}
 
-@server(
-    prefix: /v1
-    group: role
+@server (
+	prefix: /v1
+	group:  user
 )
 service user-api {
-    @handler UserRoleList
-    get /user/role/list returns ([]UserRoleResp)
+	@handler UserLogin
+	post /user/login (UserLoginReq) returns (UserLoginResp)
 
-    @handler UserRoleUpdate
-    get /user/role/update (UserRoleUpdateReq) returns (UserRoleUpdateResp)
+	@handler UserInfo
+	post /user/info (UserInfoReq) returns (UserInfoResp)
 
-    @handler UserRoleInfo
-    get /user/role/info (UserRoleReq) returns (UserRoleResp)
+	@handler UserInfoUpdate
+	post /user/info/update (UserInfoUpdateReq) returns (UserInfoUpdateResp)
 
-    @handler UserRoleAdd
-    get /user/role/add (UserRoleAddReq) returns (UserRoleAddResp)
-
-    @handler UserRoleDelete
-    get /user/role/delete (UserRoleDeleteReq) returns (UserRoleDeleteResp)
+	@handler UserList
+	get /user/list returns ([]UserInfoResp)
 }
 
-@server(
-    prefix: /v1
-    group: class
+@server (
+	prefix: /v1
+	group:  role
 )
 service user-api {
-    @handler UserClassList
-    get /user/class/list returns ([]UserClassResp)
+	@handler UserRoleList
+	get /user/role/list returns ([]UserRoleResp)
 
-    @handler UserClassUpdate
-    get /user/class/update (UserClassUpdateReq) returns (UserClassUpdateResp)
+	@handler UserRoleUpdate
+	get /user/role/update (UserRoleUpdateReq) returns (UserRoleUpdateResp)
 
-    @handler UserClassInfo
-    get /user/class/info (UserClassReq) returns (UserClassResp)
+	@handler UserRoleInfo
+	get /user/role/info (UserRoleReq) returns (UserRoleResp)
 
-    @handler UserClassAdd
-    get /user/class/add (UserClassAddReq) returns (UserClassAddResp)
+	@handler UserRoleAdd
+	get /user/role/add (UserRoleAddReq) returns (UserRoleAddResp)
 
-    @handler UserClassDelete
-    get /user/class/delete (UserClassDeleteReq) returns (UserClassDeleteResp)
+	@handler UserRoleDelete
+	get /user/role/delete (UserRoleDeleteReq) returns (UserRoleDeleteResp)
 }
+
+@server (
+	prefix: /v1
+	group:  class
+)
+service user-api {
+	@handler UserClassList
+	get /user/class/list returns ([]UserClassResp)
+
+	@handler UserClassUpdate
+	get /user/class/update (UserClassUpdateReq) returns (UserClassUpdateResp)
+
+	@handler UserClassInfo
+	get /user/class/info (UserClassReq) returns (UserClassResp)
+
+	@handler UserClassAdd
+	get /user/class/add (UserClassAddReq) returns (UserClassAddResp)
+
+	@handler UserClassDelete
+	get /user/class/delete (UserClassDeleteReq) returns (UserClassDeleteResp)
+}
+
+
 ```
 
 我们再来看一下分组后的代码生成目录结构：

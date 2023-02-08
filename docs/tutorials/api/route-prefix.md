@@ -24,28 +24,30 @@ https://example.com/v2/users
 syntax = "v1"
 
 type UserV1 {
-    Name string `json:"name"`
+	Name string `json:"name"`
 }
 
 type UserV2 {
-    Name string `json:"name"`
+	Name string `json:"name"`
 }
 
-@server(
-    prefix: /v1
+@server (
+	prefix: /v1
 )
 service user-api {
-    @handler usersv1
-    get /users returns ([]UserV1)
+	@handler usersv1
+	get /users returns ([]UserV1)
 }
 
-@server(
-    prefix: /v2
+@server (
+	prefix: /v2
 )
 service user-api {
-    @handler usersv2
-    get /users returns ([]UserV2)
+	@handler usersv2
+	get /users returns ([]UserV2)
 }
+
+
 ```
 
 在上文中，我们通过在 `@server` 中来通过 `prefix` 关键字声明了路由前缀，然后通过 `@handler` 来声明了路由处理函数，这样我们就可以通过路由前缀来区分不同的版本了。

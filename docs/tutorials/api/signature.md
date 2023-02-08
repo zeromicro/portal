@@ -23,21 +23,23 @@ https://example.com/sign/demo
 syntax = "v1"
 
 type (
-    SignDemoReq{
-        Msg string `json:"msg"`
-    }
-    SignDemoResp{
-        Msg string `json:"msg"`
-    }
+	SignDemoReq {
+		Msg string `json:"msg"`
+	}
+	SignDemoResp {
+		Msg string `json:"msg"`
+	}
 )
 
-@server(
-    signature: true // 通过 signature 关键字开启签名功能
+@server (
+	signature: true // 通过 signature 关键字开启签名功能
 )
 service sign-api {
-    @handler SignDemo
-    post /sign/demo (SignDemoReq) returns (SignDemoResp)
+	@handler SignDemo
+	post /sign/demo (SignDemoReq) returns (SignDemoResp)
 }
+
+
 ```
 
 我们来看一下生成的路由代码，完整代码点击 <a href={require('/docs/resource/tutorials/api/signdemo.zip').default} target="_blank">这里下载</a>
