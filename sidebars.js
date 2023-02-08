@@ -339,15 +339,8 @@ module.exports = {
             label: '消息队列',
             collapsed: false,
             items: [
-                'tutorials/message-queue/kafka',
-            ],
-        },
-        {
-            type: 'category',
-            label: '延时队列',
-            collapsed: false,
-            items: [
-                'tutorials/delay-queue/beanstalkd',
+                'tutorials/queue/kafka',
+                'tutorials/queue/beanstalkd',
             ],
         },
         {
