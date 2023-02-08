@@ -126,6 +126,7 @@ module.exports = {
             label: '队列',
             collapsed: false,
             items: [
+                'tasks/queue/message-queue',
                 'tasks/queue/delay-queue',
             ],
         }
