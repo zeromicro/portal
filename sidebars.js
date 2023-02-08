@@ -57,8 +57,7 @@ module.exports = {
             label: '静态配置文件管理',
             collapsed: false,
             items: [
-                'tasks/static-configuration/create',
-                'tasks/static-configuration/update',
+                'tasks/static-configuration/configuration',
             ],
         },
         {
@@ -91,8 +90,7 @@ module.exports = {
             label: 'MySQL 数据库操作',
             collapsed: false,
             items: [
-                'tasks/mysql/conn',
-                'tasks/mysql/curd',
+                'tasks/mysql/mysql',
             ],
         },
         {

@@ -1,7 +1,6 @@
 ---
-title: 新增配置
-sidebar_label: 新增配置
-slug: /docs/tasks/static/configuration/create
+title: 配置文件
+slug: /docs/tasks/static/configuration
 ---
 
 import Tabs from '@theme/Tabs';

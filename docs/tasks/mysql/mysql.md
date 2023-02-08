@@ -1,7 +1,6 @@
 ---
-title: 数据库链接
-sidebar_label: 数据库链接
-slug:  /docs/tasks/mysql/connection
+title: MySQL 数据库操作
+slug:  /docs/tasks/mysql
 ---
 
 ## 概述
