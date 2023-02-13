@@ -61,6 +61,13 @@ const logos: CustomerLogo[] = [
     filter: false,
   },
   {
+    src: require("@site/static/img/pages/customers/china_mobile.png").default,
+    alt: "中国移动上海产业研究院",
+    width: 200,
+    height: 40,
+    filter: false,
+  },
+  {
     src: require("@site/static/img/pages/customers/51CTO.png").default,
     alt: "51CTO",
     width: 200,

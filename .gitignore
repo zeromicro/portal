@@ -18,6 +18,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /.idea/
+.vscode/
 .log
 .ignore
 /package-lock.json
