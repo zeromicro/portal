@@ -461,29 +461,29 @@ module.exports = {
             ],
         },
     ],
-    components: [
-        'components',
-        'components/mr',
-        'components/fx',
-        {
-            type: 'category',
-            label: '限流器',
-            collapsed: false,
-            items: [
-                'components/limiter/token',
-                'components/limiter/peroid',
-            ],
-        },
-        {
-            type: 'category',
-            label: '日志',
-            collapsed: false,
-            items: [
-                'components/log/logx',
-                'components/log/logc',
-            ],
-        },
-    ],
+    // components: [
+    //     'components',
+    //     'components/mr',
+    //     'components/fx',
+    //     {
+    //         type: 'category',
+    //         label: '限流器',
+    //         collapsed: false,
+    //         items: [
+    //             'components/limiter/token',
+    //             'components/limiter/peroid',
+    //         ],
+    //     },
+    //     {
+    //         type: 'category',
+    //         label: '日志',
+    //         collapsed: false,
+    //         items: [
+    //             'components/log/logx',
+    //             'components/log/logc',
+    //         ],
+    //     },
+    // ],
     reference: [
         'reference',
         'reference/proto',
