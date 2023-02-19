@@ -120,12 +120,12 @@ module.exports = {
                     label: ' 指南',
                     position: 'left',
                 },
-                // {
-                //     type: 'doc',
-                //     docId: 'components',
-                //     label: '组件',
-                //     position: 'left',
-                // },
+                {
+                    type: 'doc',
+                    docId: 'components',
+                    label: '组件',
+                    position: 'left',
+                },
                 {
                     type: 'doc',
                     docId: 'reference',

@@ -1,5 +1,6 @@
 ---
-title: 组件概览
-sidebar_label: 组件概览
+title: ''
 slug: /docs/components
 ---
+
+组件功能正在努力编写中...
