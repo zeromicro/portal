@@ -97,13 +97,13 @@
 **Model 代码生成默认都是带缓存的。**
 
 `Model Code Generation` 和 `Model Quick Code Generation` 的区别是：
-- `Model Code Generation` 中 `goctl` 的相关指令参数均使用指定值，其代码生成指令内容如下：
+- `Model Quick Code Generation` 中 `goctl` 的相关指令参数均使用指定值，其代码生成指令内容如下：
     ```shell
     $ goctl model mysql ddl --src=${sql 文件路径} --dir=${sql 文件所在文件夹} --style=gozero -c --home="~/.goctl"
     ```
-- `Model Quick Code Generation` 会打开弹窗让使用者填写 `--style`，`-- dir`，`--home`，`--cache` 等信息
+- `Model Code Generation` 会打开弹窗让使用者填写 `--style`，`-- dir`，`--home`，`--cache` 等信息
   ![preview](../resource/api_code_gen_dialog.png)
--
+
 # 错误提示
 ![context menu](../resource/alert.png)
 
