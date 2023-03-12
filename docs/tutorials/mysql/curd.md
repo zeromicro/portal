@@ -8,7 +8,9 @@ slug: /docs/tutorials/mysql/curd
 在我们通过[创建链接](/docs/tutorials/mysql/connection)可以获得一个 sqlx.SqlConn，接着我们就可以完成各种数据库操作。
 
 ## CURD
-我们提供了 **ExecCtx** 方法来完成各种 CURD 操作，简单示例：
+我们提供了 **ExecCtx** 方法来完成各种 CURD 操作，我们建议使用 [goctl model](c)
+ 自动生成 sql 代码，无需手动录入。
+简单示例：
 
 ```go
 var conn sqlx.SqlConn // should be created by NewConn

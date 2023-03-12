@@ -5,7 +5,9 @@ slug: /docs/tutorials/mysql/bulk/insert
 ---
 
 ## 概述
-go-zero 提供了一个简单批量插入的封住，简单实例：
+go-zero 提供了一个简单批量插入的封装，他的使用场景是例如有大量的日志需要批量写入，不用关心结果的时候可以使用本方式。
+
+简单实例：
 ```go
 	var conn sqlx.SqlConn
 	blk, err := sqlx.NewBulkInserter(conn, "insert into user (id, name) values (?, ?)")
@@ -17,6 +19,8 @@ go-zero 提供了一个简单批量插入的封住，简单实例：
 	blk.Insert(2, "test2")
 ```
 BulkInserter 目前的逻辑将会在收集到 1000 个记录或者每个1秒进行一次落库操作。
+
+BulkInserter 是基于 [executors.PeriodicalExecutor](https://github.com/zeromicro/go-zero/blob/master/core/executors/periodicalexecutor.go) 实现的，他会在收集到足够数据的记录的时候或者满足一定时长的时候写入数据，同时他的写入是异步操作，错误的结果只能够通过回调进行处理。
 
 ## 创建 BulkInserter
 我们通过 **sqlx.NewBulkInserter** 创建 BulkInserter，他需要一个 sqlx.SqlConn 和一个插入 sql 语句。
