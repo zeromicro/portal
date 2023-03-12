@@ -5,7 +5,8 @@ slug: /docs/tutorials/mysql/cache
 ---
 
 ## 概述
-go-zero 除了提供 sqlx.SqlConn, 我们也提供了一个 sqlc.CachedConn 的封装，用于sql 数据库缓存的支持，简单实例如下：
+go-zero 除了提供 sqlx.SqlConn, 我们也提供了一个 sqlc.CachedConn 的封装，用于sql 数据库缓存的支持，我们建议如下代码使用 [goctl model -c](/docs/tutorials/mysql/connection) 进行生成，无需手动录入。
+简单实例如下：
 ```go
 	cachedConn := sqlc.NewConn(conn, cacheConf)
 	var v User
@@ -14,12 +15,16 @@ go-zero 除了提供 sqlx.SqlConn, 我们也提供了一个 sqlc.CachedConn 的�
 	})
 ```
 
+```note 
+sqlc 只支持主键，唯一键的单条记录索引方式。其他批量查询的方式不支持。
+```
+
 ## 创建 sqlc.CachedConn
 ### NewConnWithCache
 ```go
 func NewConn(db sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option) CachedConn
 ```
-我们可以通过**NewConnWithCache** 方法创建一个 CachedConn，其中 db 就是我们sqlx中的 SqlConn，需要用户自行创建。
+我们可以通过**NewConnWithCache** 方法创建一个 CachedConn，其中 db 就是我们sqlx中的 [SqlConn](/docs/tutorials/mysql/connection)，需要用户自行创建。
 
 ache.CacheConf 为我们内置Cache的配置，他支持多个 redis 组成一个我们业务上面的集群，我们会自动将key 分配到多个 redis 实例上面
 
