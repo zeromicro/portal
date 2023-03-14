@@ -196,7 +196,7 @@ module.exports = {
             label: 'HTTP Server',
             collapsed: false,
             items: [
-                'tutorials/http/server/service',
+                'tutorials/http/server/configuration',
                 'tutorials/http/server/request-body',
                 'tutorials/http/server/response-body',
                 'tutorials/http/server/middleware',
@@ -214,11 +214,7 @@ module.exports = {
             label: 'HTTP Client',
             collapsed: false,
             items: [
-                'tutorials/http/client/get',
-                'tutorials/http/client/post-form',
-                'tutorials/http/client/post-json',
-                'tutorials/http/client/timeout',
-                'tutorials/http/client/header',
+                'tutorials/http/client/index',
             ],
         },
         {
@@ -226,46 +222,10 @@ module.exports = {
             label: 'gRPC Server',
             collapsed: false,
             items: [
-                {
-                    type: 'category',
-                    label: '配置',
-                    collapsed: false,
-                    items: [
-                        'tutorials/grpc/server/configuration/service',
-                        'tutorials/grpc/server/configuration/redis',
-                        'tutorials/grpc/server/configuration/mysql',
-                        'tutorials/grpc/server/configuration/log',
-                    ]
-                },
+                'tutorials/grpc/server/configuration',
                 'tutorials/grpc/server/debug',
-                {
-                    type: 'category',
-                    label: '服务注册',
-                    collapsed: false,
-                    items: [
-                        'tutorials/grpc/server/service-register/direct',
-                        'tutorials/grpc/server/service-register/etcd',
-                        'tutorials/grpc/server/service-register/nacos',
-                        'tutorials/grpc/server/service-register/consul',
-                        'tutorials/grpc/server/service-register/dns',
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: '中间件',
-                    collapsed: false,
-                    items: [
-                        'tutorials/grpc/server/middleware/auth',
-                        'tutorials/grpc/server/middleware/breaker',
-                        'tutorials/grpc/server/middleware/recover',
-                        'tutorials/grpc/server/middleware/prometheus',
-                        'tutorials/grpc/server/middleware/timeout',
-                    ]
-                },
-                'tutorials/grpc/server/security',
-                'tutorials/grpc/server/error',
-                'tutorials/grpc/server/options',
-                'tutorials/grpc/server/mock',
+                'tutorials/grpc/server/register',
+                'tutorials/grpc/server/middleware'
             ],
         },
         {
