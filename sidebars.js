@@ -73,7 +73,7 @@ module.exports = {
             label: 'gRPC Server 开发',
             collapsed: false,
             items: [
-                'tasks/grpc/server/helloworld'
+                'tasks/grpc/server/quickstart'
             ],
         },
         {
@@ -81,7 +81,7 @@ module.exports = {
             label: 'gRPC Client 开发',
             collapsed: false,
             items: [
-                'tasks/grpc/client/helloworld',
+                'tasks/grpc/client/quickstart',
             ],
         },
         {
