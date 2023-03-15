@@ -170,6 +170,7 @@ module.exports = {
                 'tutorials/cli/migrate',
                 'tutorials/cli/model',
                 'tutorials/cli/quickstart',
+                'tutorials/cli/rpc',
                 'tutorials/cli/template',
                 'tutorials/cli/upgrade',
             ],
@@ -202,11 +203,6 @@ module.exports = {
                 'tutorials/http/server/middleware',
                 'tutorials/http/server/jwt',
                 'tutorials/http/server/error',
-                // 'tutorials/http/server/signature',
-                // 'tutorials/http/server/cros',
-                // 'tutorials/http/server/context',
-                // 'tutorials/http/server/security',
-                // 'tutorials/http/server/mock',
             ],
         },
         {
@@ -233,44 +229,8 @@ module.exports = {
             label: 'gRPC Client',
             collapsed: false,
             items: [
-                {
-                    type: 'category',
-                    label: '配置',
-                    collapsed: false,
-                    items: [
-                        'tutorials/grpc/client/configuration/service',
-                        'tutorials/grpc/client/configuration/redis',
-                        'tutorials/grpc/client/configuration/mysql',
-                        'tutorials/grpc/client/configuration/log',
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: '服务发现',
-                    collapsed: false,
-                    items: [
-                        'tutorials/grpc/client/service-discover/direct',
-                        'tutorials/grpc/client/service-discover/etcd',
-                        'tutorials/grpc/client/service-discover/nacos',
-                        'tutorials/grpc/client/service-discover/consul',
-                        'tutorials/grpc/client/service-discover/dns',
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: '中间件',
-                    collapsed: false,
-                    items: [
-                        'tutorials/grpc/client/middleware/breaker',
-                        'tutorials/grpc/client/middleware/duration',
-                        'tutorials/grpc/client/middleware/timeout',
-                        'tutorials/grpc/client/middleware/trace',
-                    ]
-                },
-                'tutorials/grpc/client/security',
-                'tutorials/grpc/client/error',
-                'tutorials/grpc/client/options',
-                'tutorials/grpc/client/mock',
+                'tutorials/grpc/client/configuration',
+                'tutorials/grpc/client/conn',
             ],
         },
         {

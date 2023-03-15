@@ -1,6 +1,0 @@
----
-title: 日志配置
-sidebar_label: 日志配置
-slug: /docs/tutorials/grpc/client/configuration/log
----
-balala...
