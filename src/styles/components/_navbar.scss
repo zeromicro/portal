@@ -90,7 +90,8 @@ html[data-theme='dark'] {
     }
 
     &__items--right {
-      flex-grow: 1;
+      //flex-grow: 1;
+      min-width: 400px;
 
       .icon-link,
       [class*='toggle_'] {
