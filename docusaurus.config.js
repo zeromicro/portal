@@ -255,8 +255,8 @@ module.exports = {
         function (context, options) {
             return {
                 name: 'zeromicro-docs-ads',
-                contentLoaded({ content, actions: { setGlobalData, addRoute } }) {
-                    return setGlobalData({ prismicAds: adJSON });
+                contentLoaded({content, actions: {setGlobalData, addRoute}}) {
+                    return setGlobalData({prismicAds: adJSON});
                 },
             };
         },
@@ -273,7 +273,15 @@ module.exports = {
                 ],
             },
         ],
-        path.resolve(__dirname, './node_modules/@docusaurus/theme-search-algolia'),
+        [
+            "@easyops-cn/docusaurus-search-local",
+            {
+                hashed: true,
+                language: ["en", "zh"],
+                highlightSearchTermsOnTargetPage: true
+            }
+        ]
+        // path.resolve(__dirname, './node_modules/@docusaurus/theme-search-algolia'),
     ],
     customFields: {},
 };

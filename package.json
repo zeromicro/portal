@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "npm run generate-markdown; scripts/i18n.sh; if [ -n \"$CROWDIN_PERSONAL_TOKEN\" ]; then npm run crowdin:sync; fi",
     "build": "npm run build:${VERCEL_ENV:-preview}",
-    "build:preview": "docusaurus build --locale en",
+    "build:preview": "docusaurus build --locale zh",
     "build:production": "docusaurus build",
     "clear": "docusaurus clear",
     "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.42.2",
+    "@cmfcmf/docusaurus-search-local": "^1.0.0",
     "@docusaurus/core": "0.0.0-4192",
     "@docusaurus/mdx-loader": "0.0.0-4192",
     "@docusaurus/plugin-client-redirects": "0.0.0-4192",
@@ -41,6 +42,7 @@
     "@docusaurus/preset-classic": "0.0.0-4192",
     "@docusaurus/theme-classic": "0.0.0-4192",
     "@docusaurus/theme-search-algolia": "0.0.0-4192",
+    "@easyops-cn/docusaurus-search-local": "^0.35.0",
     "@ionic-internal/docusaurus-plugin-tag-manager": "^2.0.0",
     "@ionic-internal/ionic-ds": "^7.0.0",
     "@mdx-js/react": "^1.6.22",
