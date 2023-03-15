@@ -70,38 +70,20 @@ $  docker-compose up -d
 
 ### 2.2 访问 gitlab
 
-访问 http://192.168.1.103
+访问 http://192.168.1.103（即http://"docker-compose中ip/域名"）
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209100353045.png').default}
-      alt='gitlab'
+src={require('../../resource/tutorials/ops/image-20220209100353045.png').default}
+alt='gitlab'
 />
-
-:::tip 温馨提示
-
-ip 192.168.1.103 地址为 docker-compose 中 ip
-
-首次设置新密码 ： 12345678
 
 账号默认是 root
-:::
 
-
-### 2.3 创建项目
+### 2.3 创建项目 k8scode
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209100813435.png').default}
-      alt='20220209100813435'
-/>
-
-<Image
-      src={require('../../resource/tutorials/ops/image-20220209100852807.png').default}
-      alt='20220209100852807'
-/>
-
-<Image
-      src={require('../../resource/tutorials/ops/image-20220209101037256.png').default}
-      alt='20220209101037256'
+src={require('../../resource/tutorials/ops/image-20220209100813435.png').default}
+alt='gitlab'
 />
 
 ### 2.4 配置 ssh 公钥
@@ -109,26 +91,20 @@ ip 192.168.1.103 地址为 docker-compose 中 ip
 点击头像位置下箭头，“设置”
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209101148261.png').default}
-      alt='20220209101148261'
+src={require('../../resource/tutorials/ops/image-20220209101148261.png').default}
+alt='gitlab'
 />
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209101328400.png').default}
-      alt='20220209101328400'
+src={require('../../resource/tutorials/ops/gitlab-ssh-key.png').default}
+alt='gitlab'
 />
-
 
 将自己的公钥配置上，点击“Add key”即可 （公钥不会生成的自己搜索，这里不详细说了）
 
-#### 2.5 上传项目
+### 2.5 上传项目
 
-在点击项目，回到刚才创建的项目，将 go-zero-looklook 项目上传到此仓库 ssh://git@192.168.1.180:2222/root/go-zero-looklook.git 即可，到此我们的 gitlab 搭建就结束了。
-
-<Image
-      src={require('../../resource/tutorials/ops/image-20220209175734040.png').default}
-      alt='20220209175734040'
-/>
+在点击项目，回到刚才创建的项目，将 k8scode 项目上传到此仓库 ssh://git@192.168.1.180:2222/root/k8scode.git 即可，到此我们的 gitlab 搭建就结束了。
 
 ## 3、harbor
 
@@ -150,7 +126,7 @@ hostname: 192.168.1.180 #修改为本机ip，不能使用localhost、127.0.0.1
 http:
   port: 8077 #改一下http端口8077
 
-#https: 																									 #暂时将https注释掉，我们先不通过https只铜鼓http
+#https: #暂时将https注释掉，我们先不通过https只铜鼓http
 #  port: 443
 #  certificate: /your/certificate/path
 #  private_key: /your/private/key/path
@@ -176,16 +152,15 @@ log:
 密码: Harbor12345 (在 harbor.yml 中记录的，默认是 Harbor12345)
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209134737504.png').default}
-      alt='20220209134737504'
+src={require('../../resource/tutorials/ops/image-20220209134737504.png').default}
+alt='gitlab'
 />
-
 
 登陆成功
 
 <Image
-      src={require('../../resource/tutorials/ops/README.png').default}
-      alt='README'
+src={require('../../resource/tutorials/ops/README.png').default}
+alt='gitlab'
 />
 
 到此我们 harbor 搭建完成。
@@ -307,52 +282,49 @@ local-path-storage   Active   43m
 http://192.168.1.180:8989
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209104638510.png').default}
-      alt='image-20220209104638510'
+src={require('../../resource/tutorials/ops/image-20220209104638510.png').default}
+alt='gitlab'
 />
-
 
 第一次访问出现上面图不要慌，让你稍等一会，它在进行准备工作，准备好后会自动跳到登陆页面。
 
 出现如下界面，说明准备好了，因为我们目录是挂载出来的，我们查看本机 jenkins_home/secrets/initialAdminPassword 密码，输入下一步即可
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209104946101.png').default}
-      alt='image-20220209104946101'
+src={require('../../resource/tutorials/ops/image-20220209104946101.png').default}
+alt='gitlab'
 />
 
 选择“安装推荐插件“
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209105921610.png').default}
-      alt='image-20220209105921610'
+src={require('../../resource/tutorials/ops/image-20220209105921610.png').default}
+alt='gitlab'
 />
-
 
 然后等待插件安装完成
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209110010562.png').default}
-      alt='image-20220209110010562'
+src={require('../../resource/tutorials/ops/image-20220209110010562.png').default}
+alt='gitlab'
 />
-
 
 ### 4.4 创建用户
 
-账号：root
+root
 
-密码：root
+root
 
 <Image
-      src={require('../../resource/tutorials/ops/jenkins-user.png').default}
-      alt='jenkins-user'
+src={require('../../resource/tutorials/ops/jenkins-user.png').default}
+alt='gitlab'
 />
 
 ### 4.5 部署完成
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209111135979.png').default}
-      alt='image-20220209111135979'
+src={require('../../resource/tutorials/ops/image-20220209111135979.png').default}
+alt='gitlab'
 />
 
 到此 jenkins 部署完成
@@ -362,29 +334,29 @@ http://192.168.1.180:8989
 点击左边菜单“Manage Jenkins”
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209111325922.png').default}
-      alt='image-20220209111325922'
+src={require('../../resource/tutorials/ops/image-20220209111325922.png').default}
+alt='gitlab'
 />
 
 点击 "Manage Credentials"
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209111450217.png').default}
-      alt='image-20220209111450217'
+src={require('../../resource/tutorials/ops/image-20220209111450217.png').default}
+alt='gitlab'
 />
 
 点击“全局”后面的三角标，然后在点击“添加凭据”
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209111612564.png').default}
-      alt='image-20220209111612564'
+src={require('../../resource/tutorials/ops/image-20220209111612564.png').default}
+alt='gitlab'
 />
 
 进入“添加凭据”页面，类型我们选择 “SSH Username with private key” 使用私钥方式，`Username`是 gitlab 一个标识，后面添加 pipeline 你知道这个标识是代表 gitlab 的凭据自行自定义的，Private Key`即在 gitlab 配置的私钥（之前我们配置在 gitlab 的公钥对应的私钥，在这里就是我们自己本机的私钥），我们这个凭证就是给 jenkins 用来去 gitlab 时候免密拉代码用的
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209112430241.png').default}
-      alt='image-20220209112430241'
+src={require('../../resource/tutorials/ops/image-20220209112430241.png').default}
+alt='gitlab'
 />
 
 确定即可。
@@ -394,15 +366,15 @@ http://192.168.1.180:8989
 进入首页，点击左侧菜单`Manage Jenkins`->`Configure System`
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209112756140.png').default}
-      alt='image-20220209112756140'
+src={require('../../resource/tutorials/ops/image-20220209112756140.png').default}
+alt='gitlab'
 />
 
 下滑动到`全局属性`条目，添加 docker 私有仓库相关信息，如图为`docker用户名`、`docker用户密码`、`docker私有仓库地址`
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220210095715913.png').default}
-      alt='image-20220210095715913'
+src={require('../../resource/tutorials/ops/image-20220210095715913.png').default}
+alt='gitlab'
 />
 
 点击 “保存”
@@ -412,8 +384,8 @@ http://192.168.1.180:8989
 进入`Manage Jenkins`->`Global Tool Configureation`，找到 Git 条目，填写 jenkins 所在机器 git 可执行文件所在 path，如果没有的话，需要在 jenkins 插件管理中下载 Git 插件, 有就不需要管了（如下图）
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209195140145.png').default}
-      alt='image-20220209195140145'
+src={require('../../resource/tutorials/ops/image-20220209195140145.png').default}
+alt='gitlab'
 />
 
 配置 pipline 需要的 Git Parameter 插件
@@ -421,15 +393,15 @@ http://192.168.1.180:8989
 点击 “系统配置” -> “插件管理”
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209200922797.png').default}
-      alt='image-20220209200922797'
+src={require('../../resource/tutorials/ops/image-20220209200922797.png').default}
+alt='gitlab'
 />
 
 然后点击“可选插件” , 搜索中输入 “Git Parameter” , 如下图
 
 <Image
-      src={require('../../resource/tutorials/ops/image-20220209201022699.png').default}
-      alt='image-20220209201022699'
+src={require('../../resource/tutorials/ops/image-20220209201022699.png').default}
+alt='gitlab'
 />
 
 安装好，重启后即可，到此 jenkins 搭建完成。

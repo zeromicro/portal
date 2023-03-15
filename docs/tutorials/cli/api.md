@@ -40,6 +40,13 @@ Flags:
 Use "goctl api [command] --help" for more information about a command.
 ```
 
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 |<img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
+| --- | --- | --- | --- | --- |
+| branch | string | NO | 空字符串 | 模板仓库分支，配合 --remote 使用 |
+| home | string | NO | `~/.goctl` | 模板仓库本地路径，优先级高于 --remote |
+| o | string | NO | 空字符串 | 输出 api 文件 |
+| remote | string | NO | 空字符串 | 模板仓库远程路径 |
+
 ### dart
 
 根据 api 文件生成 dart 代码。
@@ -208,6 +215,8 @@ Flags:
 | dir | string | NO | 当前工作目录 | api 文件路径 |
 | plugin | string | YES | 空字符串 | 插件可执行文件所在路径，支持本地和 http 文件 |
 | style | string | NO | `gozero` | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
+
+插件资源请参考 <a href="/docs/reference/goctl/plugins" target="_blank"> goctl 插件资源 </a>
 
 ### ts
 

@@ -40,20 +40,20 @@ alt='gitlab-pz-jenkins-sshkey'
 去 harbor 创建本项目镜像仓库
 
 <Image
-src={require('../../resource/tutorials/ops/image-20220209190928092.png').default}
-alt='image-20220209190928092'
+src={require('../../resource/tutorials/ops/apicode-harbor_new.png').default}
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 <Image
-src={require('../../resource/tutorials/ops/apicode-harbor2.png').default}
-alt='apicode-harbor2'
+src={require('../../resource/tutorials/ops/apicode-harbor2_new.png').default}
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 查看 push 命令
 
 <Image
-src={require('../../resource/tutorials/ops/apicode-harbor3.png').default}
-alt='apicode-harbor2'
+src={require('../../resource/tutorials/ops/image-20220209191757422_newnew.png').default}
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 ```sh
@@ -70,21 +70,21 @@ $ docker push 192.168.1.180:8077/apicode/REPOSITORY[:TAG]
 
 <Image
 src={require('../../resource/tutorials/ops/apicode-docker.png').default}
-alt='apicode-docker'
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 然后点击“General” , 选择“This project is parameterized” ， "添加参数"，“Choice Parameter”，如下图
 
 <Image
 src={require('../../resource/tutorials/ops/deploy-server-plpline-2.png').default}
-alt='deploy-server-plpline-2'
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 然后编写内容如下
 
 <Image
 src={require('../../resource/tutorials/ops/deploy-server-pipline-3.png').default}
-alt='deploy-server-plpline-3'
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 直接保存。
@@ -103,8 +103,7 @@ $ cat /root/.ssh/id_rsa.pub
 
 向下滑动找到`Pipeline script`,填写脚本内容
 
-```shell
-pipeline {
+    pipeline {
       agent any
 
       parameters {
@@ -172,26 +171,23 @@ pipeline {
       }
     }
 
-```
-​
-
 ## 4、构建发布
 
 点击首页，找到 apicode 这个服务点击进去
 
 <Image
 src={require('../../resource/tutorials/ops/deploy-server-deploy.jpg').default}
-alt='deploy-server-deploy'
+alt='gitlab-pz-jenkins-sshkey'
 />
 
 点击 Build with Parameters ，选择对应的“分支”跟“服务”，开始构建
 
 <Image
 src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default}
-alt='deploy-server-deploy-2'
+alt='gitlab-pz-jenkins-sshkey'
 />
 
-构建完成，最后我们来访问 http://192.168.1.183:8889/hello?msg=mikael ，可以看到页面上输出
+构建完成，最后我们来访问http://192.168.1.183:8889/hello?msg=mikael ，可以看到页面上输出
 
 ```json
 {

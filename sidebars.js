@@ -73,8 +73,7 @@ module.exports = {
             label: 'gRPC Server 开发',
             collapsed: false,
             items: [
-                'tasks/grpc/server/helloworld',
-                'tasks/grpc/server/debug',
+                'tasks/grpc/server/helloworld'
             ],
         },
         {
@@ -111,14 +110,6 @@ module.exports = {
             ],
         },
         'tasks/memory-cache',
-        {
-            type: 'category',
-            label: '定时任务',
-            collapsed: false,
-            items: [
-                'tasks/timer-task/k8s',
-            ],
-        },
         {
             type: 'category',
             label: '队列',
@@ -183,13 +174,7 @@ module.exports = {
                 'tutorials/go-zero-configuration/overview',
                 'tutorials/go-zero-configuration/service',
                 'tutorials/go-zero-configuration/log',
-                'tutorials/go-zero-configuration/etcd',
-                'tutorials/go-zero-configuration/redis',
-                'tutorials/go-zero-configuration/mysql',
-                'tutorials/go-zero-configuration/postgresql',
-                'tutorials/go-zero-configuration/mongo',
                 'tutorials/go-zero-configuration/prometheus',
-                'tutorials/go-zero-configuration/trace',
             ],
         },
         {
@@ -239,7 +224,6 @@ module.exports = {
             collapsed: false,
             items: [
                 'tutorials/cron-job/k8s',
-                'tutorials/cron-job/process',
             ],
         },
         {
@@ -256,33 +240,12 @@ module.exports = {
             label: 'MySQL',
             collapsed: false,
             items: [
-                'tutorials/mysql/configuration',
                 'tutorials/mysql/connection',
                 'tutorials/mysql/curd',
-                'tutorials/mysql/timeout',
                 'tutorials/mysql/cache',
-                'tutorials/mysql/page-query',
                 'tutorials/mysql/bulk-insert',
-                'tutorials/mysql/bulk-update',
-                'tutorials/mysql/partition-query',
                 'tutorials/mysql/local-transaction',
                 'tutorials/mysql/distribute-transaction',
-            ],
-        },
-        {
-            type: 'category',
-            label: 'PostgreSQL',
-            collapsed: false,
-            items: [
-                'tutorials/postgresql/configuration',
-                'tutorials/postgresql/connection',
-                'tutorials/postgresql/curd',
-                'tutorials/postgresql/timeout',
-                'tutorials/postgresql/cache',
-                'tutorials/postgresql/page-query',
-                'tutorials/postgresql/bulk-insert',
-                'tutorials/postgresql/bulk-update',
-                'tutorials/postgresql/partition-query',
             ],
         },
         {
@@ -290,22 +253,9 @@ module.exports = {
             label: 'Mongo',
             collapsed: false,
             items: [
-                'tutorials/mongo/configuration',
                 'tutorials/mongo/connection',
                 'tutorials/mongo/curd',
-                'tutorials/mongo/timeout',
                 'tutorials/mongo/cache',
-            ],
-        },
-        {
-            type: 'category',
-            label: 'ElasticSearch',
-            collapsed: false,
-            items: [
-                'tutorials/elasticsearch/configuration',
-                'tutorials/elasticsearch/connection',
-                'tutorials/elasticsearch/curd',
-                'tutorials/elasticsearch/statistics',
             ],
         },
         {
@@ -352,12 +302,8 @@ module.exports = {
             label: '监控',
             collapsed: false,
             items: [
-                'tutorials/monitor/health-check',
-                'tutorials/monitor/log-collection',
-                'tutorials/monitor/trace',
-                'tutorials/monitor/metrics',
-                'tutorials/monitor/alert',
-            ],
+                'tutorials/monitor/index'
+            ]
         },
         {
             type: 'category',
@@ -365,7 +311,6 @@ module.exports = {
             collapsed: false,
             items: [
                 'tutorials/customization/template',
-                'tutorials/customization/http',
             ],
         },
     ],
@@ -396,6 +341,8 @@ module.exports = {
         'reference',
         'reference/proto',
         'reference/examples',
+        'reference/goctl-plugins',
+        'reference/about-us',
     ],
     contributing: [
         'contributing',

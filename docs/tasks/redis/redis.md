@@ -1,26 +1,28 @@
 ---
 title: Redis 连接
 sidebar_label: Redis 连接
-slug:  /docs/tasks/redis/redis-conn
+slug: /docs/tasks/redis/redis-conn
 ---
-
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## 概述
+
 本章节主要介绍创建单节点的 redis 实例。
 
 ## 准备条件
-1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
+
+1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
 2. 启动 redis 服务
 
 ## redis 配置说明
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/conf.go#L16" target="_blank">RedisConf</a>
 
 ```go
 RedisConf struct {
-	Host string 
+	Host string
 	Type string `json:",default=node,options=node|cluster"`
 	Pass string `json:",optional"`
 	Tls  bool   `json:",optional"`
@@ -33,12 +35,13 @@ Tls: 是否开启tls
 ```
 
 ## 创建 redis 实例
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/conf.go#L16" target="_blank">MustNewRedis</a>
 
 ```golang
-函数签名: 
-    MustNewRedis func(conf RedisConf, opts ...Option) *Redis 
-说明: 
+函数签名:
+    MustNewRedis func(conf RedisConf, opts ...Option) *Redis
+说明:
     1. 创建 redis 实例。
     2. 如果配置存在问题或者 redis server 连接失败，会终止执行。
 入参:
@@ -61,9 +64,9 @@ rds := MustNewRedis(conf)
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/conf.go#L16" target="_blank">NewRedis</a>
 
 ```golang
-函数签名: 
+函数签名:
     NewRedis func(conf RedisConf, opts ...Option) (*Redis, error)
-说明: 
+说明:
     1. 创建 redis 实例。
     2. 如果配置存在问题或者 redis server 连接失败，会返回 error。
 入参:

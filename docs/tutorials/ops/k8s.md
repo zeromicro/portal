@@ -34,12 +34,9 @@ $ docker-compose ps #查看确认
 
 独立线上仓库目录结构如下（这个结构是跟 pipline 中写法相关的）
 
-<Image
-src={require('../../resource/tutorials/ops/image-20220213134628497.png').default}
-alt='image-20220213134628497'
-/>
+go-zero 官方 k8s 配置 demo 地址: https://github.com/zeromicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml
 
-仓库地址 ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf , 直接下载就好
+也可以参考配置仓库地址 ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf
 
 【注】1、修改配置中的中间件，数据库、redis 等都要改成 192.168.1.181 这台机器，我们把这台机器当成线上环境的中间件。
 
@@ -50,8 +47,8 @@ alt='image-20220213134628497'
 去 harbor 创建本项目镜像仓库
 
 <Image
-src={require('../../resource/tutorials/ops/image-20220209190928092.png').default}
-alt='image-20220209190928092'
+src={require('../../resource/tutorials/ops/image-20220209190928092_new.png').default}
+alt='image-20220209190928092_new'
 />
 
 <Image
@@ -67,7 +64,7 @@ alt='image-20220209191757422'
 />
 
 ```sh
-$ docker push 192.168.1.180:8077/go-zero-looklook/REPOSITORY[:TAG]
+$ docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
 ```
 
 ## 5、边写 jenkins 的 pipline
@@ -99,11 +96,11 @@ alt='image-20220209195853856'
 
 直接保存。
 
-### 5.2 编写 pipline
+### 2.2 编写 pipline
 
 向下滑动找到`Pipeline script`,填写脚本内容
 
-```shell
+```pipline
 pipeline {
   agent any
   parameters {
@@ -132,13 +129,13 @@ pipeline {
               doGenerateSubmoduleConfigurations: false,
               extensions: [],
               submoduleCfg: [],
-              userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook.git']]])
+              userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode.git']]])
           }
       }
       stage('获取commit_id') {
           steps {
               echo '获取commit_id'
-              git credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook.git'
+              git credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode.git'
               script {
                   env.commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
               }
@@ -151,7 +148,7 @@ pipeline {
                   doGenerateSubmoduleConfigurations: false,
                   extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'conf']],
                   submoduleCfg: [],
-                  userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook-pro-conf.git']]])
+                  userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode-pro-conf.git']]])
               }
         }
 
@@ -176,8 +173,8 @@ pipeline {
           steps{
           	  //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
               sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
-              sh 'docker tag  ${image} ${docker_repo}/go-zero-looklook/${image}'
-              sh 'docker push ${docker_repo}/go-zero-looklook/${image}'
+              sh 'docker tag  ${image} ${docker_repo}/k8scode/${image}'
+              sh 'docker push ${docker_repo}/k8scode/${image}'
           }
       }
 
@@ -191,7 +188,7 @@ pipeline {
               sh 'echo ${port}'
 
               sh 'rm -f ${deployYaml}'
-              sh '/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace go-zero-looklook -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} -serviceAccount find-endpoints '
+              sh '/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} -serviceAccount find-endpoints '
               sh '/usr/local/bin/kubectl apply -f ${deployYaml}'
           }
       }
@@ -211,9 +208,7 @@ pipeline {
 
 1、构建优化：pipline 中使用"/usr/local/bin/goctl kube xxx"生 k8s yaml 的时候，我们是使用 k8s 方式部署不需要 etcd，但是这种方式部署需要为生成的 k8s yaml 中指定 serviceAccount。 原理可以看这篇文章下方 go-zero 的 k8s 服务发现讲解 ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
 
-我这边已经指定好了 serviceAccount ： find-endpoints 在模版下 kube 文件夹中模版中：
-
-https://github.com/Mikaelemmmm/go-zero-looklook/tree/main/deploy/goctl
+我这边已经指定好了 serviceAccount
 
 所以你需要在你的 k8s 创建 find-endpoints 这个 serviceAccount 并绑定相应权限，yaml 文件我已经准备好了，你只需要执行
 
@@ -224,7 +219,7 @@ kubectl apply -f auth.yaml 即可 ，auth.yaml 文件如下：
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: go-zero-looklook
+  namespace: k8scode
   name: find-endpoints
 
 ---
@@ -251,28 +246,20 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: find-endpoints
-    namespace: go-zero-looklook
+    namespace: k8scode
 ```
 
-【注】如果你的 goctl>=1.3.3 ，pipline 生成 k8s yaml 的文件可以不需要使用模版方式支持 serviceAccount 可以在生成时候指定 serviceAccount，也就是说 pipline 中可以直接指定-serviceAcount 直接就在生成 k8s 的 yaml 中添加 serviceAccount : find-endpoints，如下命令
+pipline 生成 k8s yaml 的文件可以不需要使用模版方式支持 serviceAccount 可以在生成时候指定 serviceAccount，也就是说 pipline 中可以直接指定-serviceAcount 直接就在生成 k8s 的 yaml 中添加 serviceAccount : find-endpoints，如下命令
 
 ```shell
-/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace go-zero-looklook -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --serviceAccount find-endpoints
+/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --serviceAccount find-endpoints
 ```
-
-但是如果你的 goctl <=1.3.2，你只能手动去修改你的模版下 kube 文件夹下的 2 个模版，自己在模版中添加 serviceAccountName : find-endpoints （参考模版链接：https://github.com/Mikaelemmmm/go-zero-looklook/tree/v1.0.2/deploy/goctl） ，然后使用--home 指定你改好的模版来生成 k8s yaml，命令如下，你在 pipline 中要把上面这个命令改成如下命令
-
-```sh
-/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace go-zero-looklook -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --home /root/template
-```
-
-因为 1.3.3 开始 goctl 支持--serviceAccount 参数了，如果 goctl<=1.3.2 还是要通过 pipline 中指定的模版实现
 
 2、${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，我们之前配置的是gitlab-cert所以这里就填写gitlab-cert，如果你不是这个自己要更换，${gitUrl}需要替换为你代码的 git 仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
 
 3、这里跟官方文档有一点点不一样，由于我项目文件夹目录不同，goctl 生成的 dockerfile 文件我手动做了点调整，在一个我不是在构建时候生成的 dockerfile，是在创建项目时候就把 dockerfile 一起放在目录下，这样构建镜像时候不需要 goctl 了
 
-## 6、配置 k8s 拉取私有仓库镜像
+## 5、配置 k8s 拉取私有仓库镜像
 
 k8s 在默认情况下，只能拉取 harbor 镜像仓库的公有镜像，如果拉取私有仓库镜像，则是会报 `ErrImagePull` 和 `ImagePullBackOff` 的错误
 
@@ -319,12 +306,12 @@ data:
 ```
 
 ```shell
-$ kubectl create -f docker-secret.yaml -n go-zero-looklook
+$ kubectl create -f docker-secret.yaml -n k8scode
 
 secret "docker-login" created
 ```
 
-## 7、构建
+## 6、构建
 
 我们进入首页，点击”服务名称“进入详情页
 
@@ -361,9 +348,9 @@ alt='image-20220211142729231'
 
 同样道理，在去构建 identity-api，再去配置 usercenter 服务 构建 usercenter-rpc、构建 usercenter-api，接着配置其他服务、构建即可，本次我们先只构建 identity-api、identity-rpc、usercenter-rpc、usercenter-api 给大家演示。
 
-## 8、添加网关
+## 6、添加网关
 
-因为我们的 api 服务通过 goctl 发布在 k8s 中都会暴露 nodeport 端口，索引我们看下 k8s 中 go-zero-looklook 命名空间下的 service 的 nodeport 端口服务，然后将 nodeport 配置在 nginx 即可。
+因为我们的 api 服务通过 goctl 发布在 k8s 中都会暴露 nodeport 端口，索引我们看下 k8s 中 k8scode 命名空间下的 service 的 nodeport 端口服务，然后将 nodeport 配置在 nginx 即可。
 
 本次我们独立一台虚拟机在 k8s 之外，安装 nginx，将 k8s 后端 api 服务通过 nodeport 方式把端口暴露给 nginx，然后 nginx 在配置中配置此 api 服务，这样 nginx 就充当网关使用。
 
@@ -371,11 +358,11 @@ nginx 的安装就不再这里多说了，记得一定要有 auth_request 模块
 
 nginx 的配置
 
-```shell
+```conf
 server{
     listen 8081;
-    access_log /var/log/nginx/looklook.com_access.log;
-    error_log /var/log/nginx//looklook.com_error.log;
+    access_log /var/log/nginx/k8scode.com_access.log;
+    error_log /var/log/nginx//k8scode.com_error.log;
 
     location ~ /usercenter/ {
        auth_request /auth;
@@ -407,3 +394,7 @@ server{
 ```
 
 如果是线上的话，应该配置多台 nginx 保持高可用，在 nginx 前面还会有一个 slb，你的域名包括 https 配置都应该解析到 slb，在 slb 前面在有防火墙等这些。
+
+## 8、结束语
+
+至此，整个系列就结束了，整体架构图应该如第一篇所展示，本系列希望能给你带来帮助。

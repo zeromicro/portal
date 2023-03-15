@@ -38,5 +38,5 @@ func main() {
 
 ## 参考文件
 
-- <a href="https://github.com/fullstorydev/grpcurl" target="_blank">grpcurl</a>
-- <a href="https://github.com/fullstorydev/grpcui" target="_blank">grpcui</a>
+- <a href="https://github.com/fullstorydev/grpcurl" target="_blank">《grpcurl》</a>
+- <a href="https://github.com/fullstorydev/grpcui" target="_blank">《grpcui》</a>

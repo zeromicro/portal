@@ -63,4 +63,4 @@ Content-Length: 0
 
 ## 参考文献
 
-- <a href="https://jwt.io/introduction/" target="_blank">JSON Web Token</a>
+- <a href="https://jwt.io/introduction/" target="_blank">《JSON Web Token》</a>
