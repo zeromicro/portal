@@ -83,6 +83,10 @@ type (
 
 protoDescriptor 方式需要通过 protoc 将 proto 生成为 pb 文件，然后在 gateway 中去引用该 pb 文件做 rest-grpc 的规则映射。
 
+:::tip
+go-zero sdk 版本 v1.5.0 的 gateway 配置会造成配置冲突，请避开此版本，当前示例使用的是 v1.4.4 版本
+:::
+
 1. 我们新建一个工程 demo1, 在 demo1 中新建一个 hello.proto 文件，如下：
 
 ```protobuf
@@ -126,7 +130,14 @@ func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
 }
 ```
 
-4. 进入 `demo1/gateway` 目录，创建目录 `etc`，然后添加配置文件 `gateway.yaml`，如下：
+4. 修改配置文件 `demo1/server/etc/hello.yaml` 内容如下：
+
+```yaml
+Name: hello.rpc
+ListenOn: 0.0.0.0:8080
+```
+
+5. 进入 `demo1/gateway` 目录，创建目录 `etc`，然后添加配置文件 `gateway.yaml`，如下：
 
 ```yaml
 Name: demo1-gateway
@@ -145,7 +156,7 @@ Upstreams:
         RpcPath: hello.Hello/Ping
 ```
 
-5. 进入 `demo1/gateway` 目录， 新建 `gateway.go` 文件，内容如下：
+6. 进入 `demo1/gateway` 目录， 新建 `gateway.go` 文件，内容如下：
 
 ```go
 package main
@@ -171,7 +182,7 @@ func main() {
 
 ```
 
-6. 分别开两个终端启动 grpc server 服务和 gateway 服务，然后访问 `http://localhost:8888/ping`：
+7. 分别开两个终端启动 grpc server 服务和 gateway 服务，然后访问 `http://localhost:8888/ping`：
 
 ```bash
 # 进入 demo1/server 目录下，启动 grpc 服务
@@ -237,7 +248,7 @@ func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
 }
 ```
 
-将配置文件 `demo2/server/etc/hello.yaml` 中添加如下配置：
+将配置文件 `demo2/server/etc/hello.yaml` 修改如下：
 
 ```yaml {3}
 Name: hello.rpc

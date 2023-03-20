@@ -45,22 +45,6 @@ go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹�
 
 <DocsCards>
 
-<DocsCard 
-header="安装教程" 
-href="/docs/tasks" 
-icon="/icons/guide-installation-icon.svg" 
-hoverIcon="/icons/guide-installation-icon-hover.svg">
-    <p>框架及工具安装指南</p>
-</DocsCard>
-
-<DocsCard 
-header="基础教程" 
-href="/docs/tasks" 
-icon="/icons/guide-task-icon.svg" 
-hoverIcon="/icons/guide-task-icon-hover.svg">
-    <p>基础教程是快速了解和使用框架的最佳方式</p>
-</DocsCard>
-
 <DocsCard
   header="框架指南"
   href="/docs/tutorials"
