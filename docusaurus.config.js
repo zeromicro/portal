@@ -111,21 +111,21 @@ module.exports = {
                 {
                     type: 'doc',
                     docId: 'tasks',
-                    label: ' 任务',
+                    label: '快速开始',
                     position: 'left',
                 },
                 {
                     type: 'doc',
                     docId: 'tutorials',
-                    label: ' 指南',
+                    label: '指南',
                     position: 'left',
                 },
-                {
-                    type: 'doc',
-                    docId: 'components',
-                    label: '组件',
-                    position: 'left',
-                },
+                // {
+                //     type: 'doc',
+                //     docId: 'components',
+                //     label: '组件',
+                //     position: 'left',
+                // },
                 {
                     type: 'doc',
                     docId: 'reference',

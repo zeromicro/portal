@@ -3,6 +3,7 @@ title: goctl 安装
 sidebar_label: goctl 安装
 slug: /docs/tasks/installation/goctl
 ---
+<!-- TODO：goctl 安装以最新为主，同步更新 -->
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
