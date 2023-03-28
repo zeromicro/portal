@@ -54,8 +54,6 @@ type StructureExample {
     BaseFloat32StaticArray [2]float32 `json:"base_float32_array"`
     BaseFloat64StaticArray [2]float64 `json:"base_float64_array"`
     BaseMapStringStaticIntArray map[string][2]int `json:"base_map_string_static_int_array"`
-    // any 类型示例
-    Any any `json:"any"`
     // 标签忽略示例
     TagOmit string
 }
