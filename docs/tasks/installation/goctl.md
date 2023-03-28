@@ -3,7 +3,6 @@ title: goctl 安装
 sidebar_label: goctl 安装
 slug: /docs/tasks/installation/goctl
 ---
-<!-- TODO：goctl 安装以最新为主，同步更新 -->
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -50,17 +49,13 @@ $ goctl --version
 
 ## 手动安装
 
-:::note 注意
-这里以 `1.4.3` 版本为例子，并 **不推荐** 安装具体版本，开发者可根据需要自行选择，更多版本可前往 [Github](https://github.com/zeromicro/go-zero/releases) 自行选择。
-:::
-
 ### 2.1 下载
 
 <DocsCards>
 
 <DocsCard 
 header="Microsoft Windows" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-windows-amd64.zip" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-windows-amd64.zip" >
 
 <p>Windows Intel x86-64 位处理器</p>
 <a>goctl-v1.4.3-windows-amd64.zip（14.7MB）</a>
@@ -68,7 +63,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 
 <DocsCard 
 header="Microsoft Windows" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-windows-386.zip" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-windows-386.zip" >
 
 <p>Windows Intel x86-32 位处理器</p>
 <a>goctl-v1.4.3-windows-386.zip（14MB）</a>
@@ -76,7 +71,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 
 <DocsCard 
 header="Apple macOS（ARM64）" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-darwin-arm64.tar.gz" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-darwin-arm64.tar.gz" >
 
 <p>支持 macOS Apple 64 位处理器</p>
 <a>goctl-v1.4.3-darwin-arm64.tar.gz（14.5MB）</a>
@@ -84,7 +79,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 
 <DocsCard 
 header="Apple macOS（x86-64）" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-darwin-amd64.tar.gz" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-darwin-amd64.tar.gz" >
 
 <p>支持 macOS 64 位处理器</p>
 <a>goctl-v1.4.3-darwin-amd64.tar.gz（14.7MB）</a>

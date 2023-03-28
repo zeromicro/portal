@@ -19,4 +19,12 @@ $ go get -u github.com/zeromicro/go-zero@latest
 ```
 
 ## 常见问题
-TODO：待补充
+
+### 1. 设置了 GOROXY 后，依赖还是拉不下来？
+
+确认 `GO111MODULE` 是否开启
+
+```shell
+$ go env -w GO111MODULE=on
+$ go env -w GOPROXY=https://goproxy.cn,direct
+```
