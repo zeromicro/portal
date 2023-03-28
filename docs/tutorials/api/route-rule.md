@@ -11,18 +11,13 @@ slug: /docs/tutorials/api/route/rule
 
 ## 路由规则
 
-在 api 描述语言中，我们需要满足如下正则表达式的路由规则（Golang）：
+在 api 描述语言中，路由需要满足如下规则
 
-```go
-(?m)(/:{0,1}[\w-]+)+
-```
 
-规则细分：
-
-1. 路由规则必须以 `/` 开头
+1. 路由必须以 `/` 开头
 1. 路由节点必须以 `/` 分隔
 1. 路由节点中可以包含 `:`，但是 `:` 必须是路由节点的第一个字符，`:` 后面的节点值必须要在结请求体中有 `path` tag 声明，用于接收路由参数，详细规则可参考 <a href="/docs/tutorials/api/parameter" target="_blank">路由参数</a>。
-1. 路由节点可以包含字母、数字、下划线、中划线
+1. 路由节点可以包含字母、数字(`goctl 1.5.1` 支持，可参考<a href="/docs/tutorials/api/faq#1-%E6%80%8E%E4%B9%88%E4%BD%93%E9%AA%8C%E6%96%B0%E7%9A%84-api-%E7%89%B9%E6%80%A7" target="_blank"> 新版 API 解析器使用</a>)、下划线、中划线
 
 路由示例：
 
@@ -73,7 +68,7 @@ service Demo {
 	@handler demoPath6
 	get /foo/bar/baz-qux (DemoReq) returns (DemoResp)
 
-	// 示例路由 /foo/bar_baz/123
+	// 示例路由 /foo/bar_baz/123(goctl 1.5.1 支持)
 	@handler demoPath7
 	get /foo/bar_baz/123 (DemoReq) returns (DemoResp)
 }

@@ -127,6 +127,7 @@ module.exports = {
             collapsed: false,
             items: [
                 'tutorials',
+                'tutorials/api/type',
                 'tutorials/api/route-prefix',
                 'tutorials/api/route-group',
                 'tutorials/api/signature',
@@ -134,6 +135,7 @@ module.exports = {
                 'tutorials/api/parameter',
                 'tutorials/api/middleware',
                 'tutorials/api/import',
+                'tutorials/api/faq',
             ],
         },
         {
