@@ -3,7 +3,7 @@
 必备工具Goctl的安装，Golang环境配置等，本节将包含以下小节：
 * [开发流程]( dev-flow)
 * [golang安装](golang-install)
-* [go modudle配置](gomod-config)
+* [go module配置](gomod-config)
 * [goctl安装](goctl-install)
 * [protoc & protoc-gen-go安装](protoc-install)
 * [其他](prepare-other)
