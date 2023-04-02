@@ -3,6 +3,7 @@ title: Redis 连接
 sidebar_label: Redis 连接
 slug: /docs/tasks/redis/redis-conn
 ---
+TODO: 从静态配置文件读取，创建实例，set & get 演示即可
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -14,7 +15,6 @@ import TabItem from '@theme/TabItem';
 ## 准备条件
 
 1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
-2. 启动 redis 服务
 
 ## redis 配置说明
 

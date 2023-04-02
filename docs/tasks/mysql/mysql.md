@@ -2,6 +2,7 @@
 title: MySQL 数据库操作
 slug:  /docs/tasks/mysql
 ---
+TODO:从静态配置文件读取
 
 ## 概述
 数据库的相关使用, 我们一般推荐使用 goctl 直接生成 model 代码，同时会自动生成 golang 结构体，CURD操作方法，缓存等，可以参考 <a href="/docs/tasks/cli/mysql" target="_blank">goctl model</a>。
@@ -165,8 +166,7 @@ func main() {
 执行上述程序，我们会看到 我们刚刚插入进去的 user 信息
 
 
-3. 更新数据
-我们继续习惯代码
+3. 修改数据 我们继续习惯代码
 ```go
 package main
 

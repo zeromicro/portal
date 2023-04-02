@@ -6,6 +6,7 @@ slug: /docs/tasks/cli/mysql
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+TODO: 超链到指南里面 MySQL 用法
 ## 概述
 
 mysql 代码生成支持从 sql 文件和数据库链接生成， 且支持生成带缓存逻辑代码。

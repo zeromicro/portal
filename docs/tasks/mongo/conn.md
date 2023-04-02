@@ -2,6 +2,7 @@
 title: 数据库链接
 slug:  /docs/tasks/mongo/connection
 ---
+TODO: goctl model mongo 外链，从静态配置文件读取
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

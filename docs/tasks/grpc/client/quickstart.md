@@ -2,6 +2,9 @@
 title: 快速开始
 slug:  /docs/tasks/grpc/client/quickstart
 ---
+
+TODO: 从静态配置文件加载
+
 ## 概述
 
 本文将介绍如何快速使用 zrpc client 连接 rpc。

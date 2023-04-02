@@ -3,6 +3,8 @@ title: Hello World
 slug: /docs/tasks/http/hello-world
 ---
 
+TODO: 从静态配置文件加载
+
 ## 概述
 
 本节将演示如何使用 go-zero 创建一个简单的 HTTP 服务。

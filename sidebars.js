@@ -109,7 +109,14 @@ module.exports = {
                 'tasks/redis/redis',
             ],
         },
-        'tasks/memory-cache',
+        {
+            type: 'category',
+            label: '内存缓存',
+            collapsed: false,
+            items: [
+                'tasks/memory-cache',
+            ],
+        },
         {
             type: 'category',
             label: '队列',

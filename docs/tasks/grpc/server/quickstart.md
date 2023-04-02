@@ -3,6 +3,8 @@ title: 快速开始
 slug:  /docs/tasks/grpc/server/quickstart
 ---
 
+TODO: 从静态配置文件加载
+
 ## 概述
 
 本文将介绍如何快速开发一个 rpc server 服务。
