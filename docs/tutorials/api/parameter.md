@@ -37,10 +37,9 @@ type Foo {
 | <img width={100}/>接收规则 | 说明 | 示例 |
 | --- | --- | --- |
 | optional | 当前字段是可选参数，允许为零值(zero value) | \`json:"foo,optional"\` |
-| options | 当前参数仅可接收的枚举值 | **写法1**：竖线\|分割，\`json:"gender,options=foo\|bar"\` <br/>**写法2**：数组风格，\`json:"gender,[foo,bar]"\` |
+| options | 当前参数仅可接收的枚举值 | \`json:"gender,options=[foo,bar]"\` |
 | default | 当前参数默认值 | \`json:"gender,default=male"\` |
 | range | 当前参数数值有效范围，仅对数值有效，写法规则详情见下文温馨提示 | \`json:"age,range=[0,120]"\` |
-| env |  当前参数从环境变量获取 | \`json:"mode,env=MODE"\` |
 
 :::note range 表达式值规则
 1. 左开右闭区间：(min:max]，表示大于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省

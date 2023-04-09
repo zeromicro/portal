@@ -138,6 +138,7 @@ module.exports = {
                 'tutorials/api/route-prefix',
                 'tutorials/api/route-group',
                 'tutorials/api/signature',
+                'tutorials/api/jwt',
                 'tutorials/api/route-rule',
                 'tutorials/api/parameter',
                 'tutorials/api/middleware',

@@ -46,14 +46,6 @@ type StructureExample {
     Base4 *Base `json:"base4"`
     
     // 新的特性（ goctl >= 1.5.1 版本支持 ）
-    // 数组示例
-    BaseIntStaticArray [2]int `json:"base_int_array"`
-    BaseBoolStaticArray [2]bool `json:"base_bool_array"`
-    BaseStringStaticArray [2]string `json:"base_string_array"`
-    BaseByteStaticArray [2]byte `json:"base_byte_array"`
-    BaseFloat32StaticArray [2]float32 `json:"base_float32_array"`
-    BaseFloat64StaticArray [2]float64 `json:"base_float64_array"`
-    BaseMapStringStaticIntArray map[string][2]int `json:"base_map_string_static_int_array"`
     // 标签忽略示例
     TagOmit string
 }
@@ -61,4 +53,8 @@ type StructureExample {
 
 :::tip
 API 新特性使用可参考<a href="/docs/tutorials/api/faq#1-%E6%80%8E%E4%B9%88%E4%BD%93%E9%AA%8C%E6%96%B0%E7%9A%84-api-%E7%89%B9%E6%80%A7" target="_blank"> 新版 API 解析器使用</a>
+
+我们暂时不支持泛型、弱类型，如 `any` 类型
+
+TODO: 加一个 github discussion 链接
 :::

@@ -56,6 +56,4 @@ service foo {
 
 ## 3. goctl api 不支持 `any` 类型
 
-any 类型在 1.5.1 才开始内测支持，新特性可参考 <a href="/docs/tutorials/api/faq#1-怎么体验新的-api-特性" target="_blank"> 《常见问题 • 1. 怎么体验新的 API 特性？》</a>
-
-## 4. 
+api 语法里面不支持使用泛型、弱类型。
