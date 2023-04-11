@@ -79,7 +79,7 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 
 ```bash
 goctl -h
-A cli tool to generate api, zrpc, model code
+A cli tool to generate api, gRPC, model code
 
 GitHub: https://github.com/zeromicro/go-zero
 Site:   https://go-zero.dev

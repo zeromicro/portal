@@ -7,7 +7,7 @@ TODO: 从静态配置文件加载
 
 ## 概述
 
-本文将介绍如何快速使用 zrpc client 连接 rpc。
+本文将介绍如何快速使用 gRPC client 连接 rpc。
 
 ## 示例
 
@@ -30,7 +30,7 @@ $ mkdir client && cd client
 $ touch client.go
 ```
 
-zrpc client 连接（直连）
+gRPC client 连接（直连）
 
 ```go
 func main() {
@@ -52,7 +52,7 @@ func main() {
 如果你也觉得这样写代码很麻烦，不妨试试 goctl 脚手架代码生成，详情可参考 <a href="/docs/tutorials/cli/rpc" target="_blank"> goctl rpc </a>
 :::
 
-更多 zrpc 连接(服务注册、服务发现、集群直连、中间件使用等)可参考 <a href="/docs/tutorials/grpc/client/conn" target="_blank"> rpc 服务连接 </a>
+更多 gRPC 连接(服务注册、服务发现、集群直连、中间件使用等)可参考 <a href="/docs/tutorials/grpc/client/conn" target="_blank"> rpc 服务连接 </a>
 
 ## 参考文献
 

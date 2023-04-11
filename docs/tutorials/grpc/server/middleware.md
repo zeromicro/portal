@@ -9,14 +9,14 @@ gRPC中间件是指在gRPC框架中用于增强其功能和性能的插件，可
 
 ## go-zero中间件
 
-和 gRPC 一样，zRPC 的中间件也是沿用 gRPC 的中间件机制，因此，我们可以直接使用 gRPC 的中间件，也可以使用 go-zero 的中间件。
+和 gRPC 一样，go-zero rpc 的中间件也是沿用 gRPC 的中间件机制，因此，我们可以直接使用 gRPC 的中间件，也可以使用 go-zero 的中间件。
 gRPC 中间件有 2 种类型，分别是 Unary(grpc.UnaryServerInterceptor) 和 Stream(grpc.StreamServerInterceptor)。
 
 ### 中间件使用
 
 #### 内置中间件
 
-zRPC 内置了非常丰富的中间件，详情可查看<a href="https://github.com/zeromicro/go-zero/tree/master/zrpc/internal/serverinterceptors" target="_blank">serverinterceptors</a>
+go-zero rpc 内置了非常丰富的中间件，详情可查看<a href="https://github.com/zeromicro/go-zero/tree/master/zrpc/internal/serverinterceptors" target="_blank">serverinterceptors</a>
 
 - 鉴权中间件：StreamAuthorizeInterceptor|UnaryAuthorizeInterceptor
 - 熔断中间件：StreamBreakerInterceptor|UnaryBreakerInterceptor

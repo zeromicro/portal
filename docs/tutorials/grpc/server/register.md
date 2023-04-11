@@ -83,7 +83,7 @@ func (e *exampleServer) Ping(ctx context.Context, request *greet.Request) (*gree
 
 ## 其他服务注册
 
-除了 zrpc 内置的 ectd 作为服务注册组件外，社区还提供了对 nacos,consul
+除了 go-zero rpc 内置的 ectd 作为服务注册组件外，社区还提供了对 nacos,consul
 等的服注册支持，详情可参考 <a href="https://github.com/zeromicro/zero-contrib/tree/main/zrpc/registry" target="_blank">
 更多服务注册组件</a>
 

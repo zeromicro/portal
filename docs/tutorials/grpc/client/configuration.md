@@ -5,7 +5,7 @@ slug: /docs/tutorials/grpc/client/configuration
 
 ## 概述
 
-本文介绍如何使用 zrpc 框架进行 gRPC Client 的开发。
+本文介绍如何使用 go-zero 框架进行 gRPC Client 的开发。
 
 ## 配置
 

@@ -5,7 +5,7 @@ slug: /docs/tutorials/grpc/client/conn
 
 ## 概述
 
-本文介绍如何使用 zrpc 框架进行 gRPC Client 的开发。
+本文介绍如何使用 gRPC 框架进行 gRPC Client 的开发。
 
 ## 示例
 
@@ -100,7 +100,7 @@ func main() {
 
 ## 原生支持
 
-如果你不想使用 zrpc 的 client 进行初始化，zrpc 也支持 grpc.ClientConn 的原生支持，你可以直接使用 grpc.ClientConn 进行初始化。
+如果你不想使用 go-zero rpc 的 client 进行初始化，zrpc 也支持 grpc.ClientConn 的原生支持，你可以直接使用 grpc.ClientConn 进行初始化。
 
 ```go
 func main() {
@@ -121,4 +121,4 @@ func main() {
 
 ## 其他服务发现
 
-除了 zrpc 内置的 ectd 作为服务发现外，社区还提供了对 nacos,consul 等的服务发现支持，详情可参考 <a href="https://github.com/zeromicro/zero-contrib/tree/main/zrpc/registry" target="_blank">更多服务发现组件</a>
+除了 go-zero 内置的 ectd 作为服务发现外，社区还提供了对 nacos,consul 等的服务发现支持，详情可参考 <a href="https://github.com/zeromicro/zero-contrib/tree/main/zrpc/registry" target="_blank">更多服务发现组件</a>

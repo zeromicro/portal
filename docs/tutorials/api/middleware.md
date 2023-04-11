@@ -30,7 +30,7 @@ type UserInfoResponse {
 }
 
 @server(
-    // 通过 middileware 关键字声明中间件
+    // 通过 middileware 关键字声明中间件，多个中间件以英文逗号分割，如 UserAgentMiddleware,LogMiddleware
     middleware: UserAgentMiddleware
 )
 service user {
@@ -191,5 +191,3 @@ func (m *UserAgentMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
     }
 }
 ```
-
-TODO: 多中间件写法补充

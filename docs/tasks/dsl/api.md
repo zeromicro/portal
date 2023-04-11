@@ -231,7 +231,8 @@ type GetUserInfoResp {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 定义一个超时时长为 3 秒的超时配置 TODO: 详细介绍一下单位
+	// 定义一个超时时长为 3 秒的超时配置，这里可填写为 time.Duration 的字符串形式，详情可参考 
+	// https://pkg.go.dev/time#Duration.String
 	timeout: 3s
 )
 // 定义一个名称为 user 的服务

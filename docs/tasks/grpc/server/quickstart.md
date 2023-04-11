@@ -30,7 +30,7 @@ $ mkdir client && cd client
 $ touch client.go
 ```
 
-zrpc server 服务创建
+gRPC server 服务创建
 
 ```go
 func main() {
@@ -61,7 +61,7 @@ func (e *exampleServer) Ping(ctx context.Context, request *greet.Request) (*gree
 如果你也觉得这样写代码很麻烦，不妨试试 goctl 脚手架代码生成，详情可参考 <a href="/docs/tutorials/cli/rpc" target="_blank"> goctl rpc </a>
 :::
 
-更多 zrpc 使用(服务注册、服务发现、中间件使用等)可参考 <a href="/docs/tutorials/grpc/server/register" target="_blank"> rpc 服务注册 </a>
+更多 gRPC 使用(服务注册、服务发现、中间件使用等)可参考 <a href="/docs/tutorials/grpc/server/register" target="_blank"> rpc 服务注册 </a>
 
 ## 参考文献
 
