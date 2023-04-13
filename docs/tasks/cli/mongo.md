@@ -6,7 +6,6 @@ slug: /docs/tasks/cli/mongo
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-TODO: 超链到指南里面 Mongo 用法
 
 ## 概述
 
@@ -194,3 +193,7 @@ type User struct {
 ```
 </TabItem>
 </Tabs>
+
+## 参考文献
+
+- <a href="/docs/tutorials/mongo/connection" target="_blank">《Mongo 基本用法》</a>

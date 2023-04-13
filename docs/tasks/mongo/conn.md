@@ -2,7 +2,6 @@
 title: 数据库链接
 slug:  /docs/tasks/mongo/connection
 ---
-TODO: goctl model mongo 外链，从静态配置文件读取
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -51,3 +50,7 @@ go-zero 包含两个 mongodb 工具包，其中 <a href="https://github.com/zero
     1. *Model: 连接管理对象
     2. error: 创建错误
 ```
+
+## 参考文献
+
+- <a href="/docs/tutorials/cli/model#goctl-model-mongo-%E6%8C%87%E4%BB%A4" target="_blank">《goctl model mongo 代码生成》 </a>

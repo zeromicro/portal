@@ -2,7 +2,6 @@
 title: MySQL 数据库操作
 slug:  /docs/tasks/mysql
 ---
-TODO:从静态配置文件读取
 
 ## 概述
 数据库的相关使用, 我们一般推荐使用 goctl 直接生成 model 代码，同时会自动生成 golang 结构体，CURD操作方法，缓存等，可以参考 <a href="/docs/tasks/cli/mysql" target="_blank">goctl model</a>。
@@ -224,3 +223,7 @@ func main() {
 运行上述代码，会发现数据库中的记录已经被删除了。
 
 至此，你已经完成 mysql 数据库的基本使用。
+
+## 参考文献
+
+- <a href="/docs/tutorials/cli/model#goctl-model-mysql-%E6%8C%87%E4%BB%A4" target="_blank">《goctl model mysql 代码生成》 </a>
