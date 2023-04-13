@@ -189,7 +189,7 @@ zRPC has a rich set of built-in interceptors, including adaptive dowload, adapti
 
 ##### Adaptive fuse (breaker)
 
-When the client initiates a request to the server, the client will record the error returned by the server, and when the error reaches a certain percentage, the client will fuse the process itself, discarding a certain percentage of requests to protect downstream dependencies, and can automatically recover. zRPC adaptive fusion follows the [Google SRE](https://landing.google. com/sre/sre-book/chapters/handling-overload) with the following algorithm for overload protection.
+When the client initiates a request to the server, the client will record the error returned by the server, and when the error reaches a certain percentage, the client will fuse the process itself, discarding a certain percentage of requests to protect downstream dependencies, and can automatically recover. zRPC adaptive fusion follows the [Google SRE](https://landing.google.com/sre/sre-book/chapters/handling-overload) with the following algorithm for overload protection.
 
 requests: total number of requests
 
@@ -199,7 +199,7 @@ K: multiplier (Google SRE recommends 2)
 
 The aggressiveness of the fusion can be modified by changing the value of K. Decreasing the value of K will make the adaptive fusion algorithm more aggressive, and increasing the value of K will make it less aggressive.
 
-[circuit](https://github.com/zeromicro/go-zero/blob/master/zrpc/internal/clientinterceptors/breakerinterceptor.go)定义如下：
+The circuit is defined [as follows](https://github.com/zeromicro/go-zero/blob/master/zrpc/internal/clientinterceptors/breakerinterceptor.go):
 
 ```go
 func BreakerInterceptor(ctx context.Context, method string, req, reply interface{},
