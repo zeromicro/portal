@@ -56,5 +56,5 @@ API 新特性使用可参考<a href="/docs/tutorials/api/faq#1-%E6%80%8E%E4%B9%8
 
 我们暂时不支持泛型、弱类型，如 `any` 类型
 
-TODO: 加一个 github discussion 链接
+可以参与 discussion 讨论说出你的看法 <a href="https://github.com/zeromicro/go-zero/discussions/3121" target="_blank">https://github.com/zeromicro/go-zero/discussions/3121</a>
 :::

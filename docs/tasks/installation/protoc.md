@@ -2,14 +2,13 @@
 title: protoc 安装
 slug: /docs/tasks/installation/protoc
 ---
-<!-- TODO: 插件超链 -->
 
 import DocsCard from '@components/global/DocsCard';
 import DocsCards from '@components/global/DocsCards';
 
 ## 概述
 
-protoc 是一个用于生成代码的工具，它可以根据 proto 文件生成C++、Java、Python、Go、PHP 等多重语言的代码，而 gRPC 的代码生成还依赖 `protoc-gen-go`，`protoc-gen-go-grpc` 插件来配合生成 Go 语言的 gRPC 代码。
+<a href="https://protobuf.dev/" target="_blank">protoc</a> 是一个用于生成代码的工具，它可以根据 proto 文件生成C++、Java、Python、Go、PHP 等多重语言的代码，而 gRPC 的代码生成还依赖 <a href="https://github.com/golang/protobuf/tree/master/protoc-gen-go" target="_blank">protoc-gen-go</a>，<a href="https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc" target="_blank">protoc-gen-go-grpc</a> 插件来配合生成 Go 语言的 gRPC 代码。
 
 ## 1. 一键安装(推荐)
 
@@ -108,6 +107,3 @@ $ goctl env check --verbose
 
 [goctl-env]: congratulations! your goctl environment is ready!
 ```
-
-## 4.常见问题
-TODO: 待补充

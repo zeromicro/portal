@@ -3,7 +3,8 @@ title: 快速开始
 slug:  /docs/tasks/grpc/client/quickstart
 ---
 
-TODO: 从静态配置文件加载
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## 概述
 
@@ -26,18 +27,33 @@ $ goctl rpc -o greet.proto
 $ protoc greet.proto --go_out=. --go-grpc_out=.
 # 创建 client 目录
 $ mkdir client && cd client
+# 新增配置文件
+$ mkdir etc && cd etc
+$ touch greet-client.yaml
 # 新增 client.go 文件
 $ touch client.go
 ```
 
-gRPC client 连接（直连）
+参考配置及内容如下
+
+<Tabs>
+
+<TabItem value="etc/greet-client.yaml" label="etc/greet-client.yaml" default>
+
+
+```yaml
+Target: 127.0.0.1:8080
+```
+
+</TabItem>
+
+<TabItem value="client.go" label="client.go" default>
 
 ```go
 func main() {
-	conn := zrpc.MustNewClient(zrpc.RpcClientConf{
-		Target: "127.0.0.1:8080", // rpc server 地址
-	})
-	client := greet.NewGreetClient(conn.Conn())
+	var clientConf zrpc.RpcClientConf
+	conf.MustLoad("etc/client.yaml", &clientConf)
+	conn := zrpc.MustNewClient(clientConf)
 	resp, err := client.Ping(context.Background(), &greet.Request{})
 	if err != nil {
 		log.Fatal(err)
@@ -47,6 +63,9 @@ func main() {
 	log.Println(resp)
 }
 ```
+</TabItem>
+
+</Tabs>
 
 :::tip 小技巧
 如果你也觉得这样写代码很麻烦，不妨试试 goctl 脚手架代码生成，详情可参考 <a href="/docs/tutorials/cli/rpc" target="_blank"> goctl rpc </a>
@@ -56,5 +75,6 @@ func main() {
 
 ## 参考文献
 
-- <a href="/docs/tutorials/grpc/client/configuration" target="_blank"> rpc 客户端配置 </a>
-- <a href="/docs/tutorials/grpc/client/conn" target="_blank"> rpc 服务连接 </a>
+- <a href="/docs/tutorials/cli/rpc" target="_blank"> 《goctl rpc 代码生成》 </a>
+- <a href="/docs/tutorials/grpc/client/configuration" target="_blank"> 《rpc 客户端配置》 </a>
+- <a href="/docs/tutorials/grpc/client/conn" target="_blank"> 《rpc 服务连接》 </a>

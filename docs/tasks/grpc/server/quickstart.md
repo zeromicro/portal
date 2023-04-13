@@ -3,7 +3,8 @@ title: 快速开始
 slug:  /docs/tasks/grpc/server/quickstart
 ---
 
-TODO: 从静态配置文件加载
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## 概述
 
@@ -25,26 +26,42 @@ $ goctl rpc -o greet.proto
 # 生 pb.go 文件
 $ protoc greet.proto --go_out=. --go-grpc_out=.
 # 创建 client 目录
-$ mkdir client && cd client
+$ mkdir server && cd server
+# 新增配置文件
+$ mkdir etc && cd etc
+$ touch greet-server.yaml
 # 新增 client.go 文件
-$ touch client.go
+$ touch server.go
 ```
 
-gRPC server 服务创建
+yaml 配置内容及 server.go 代码如下
+
+<Tabs>
+
+<TabItem value="etc/greet-server.yaml" label="etc/greet-server.yaml" default>
+
+
+```yaml
+Name: greet.rpc
+ListenOn: 127.0.0.1:8080
+```
+
+</TabItem>
+
+<TabItem value="server.go" label="server.go" default>
 
 ```go
 func main() {
-	s := zrpc.MustNewServer(zrpc.RpcServerConf{
-		ServiceConf: service.ServiceConf{
-			Name: "greet.rpc", // 服务名称，并非服务发现 key，只是用于标记服务
-		},
-		ListenOn: "127.0.0.1:8080", // 监听地址
-	}, func(server *grpc.Server) {
+	func main() {
+	var serverConf zrpc.RpcServerConf
+	conf.MustLoad("etc/greet-server.yaml", &serverConf)
+	s := zrpc.MustNewServer(serverConf, func(server *grpc.Server) {
 		greet.RegisterGreetServer(server, &exampleServer{})
 	})
 
 	defer s.Stop()
 	s.Start()
+}
 }
 
 type exampleServer struct {
@@ -57,6 +74,10 @@ func (e *exampleServer) Ping(ctx context.Context, request *greet.Request) (*gree
 }
 ```
 
+</TabItem>
+
+</Tabs>
+
 :::tip 小技巧
 如果你也觉得这样写代码很麻烦，不妨试试 goctl 脚手架代码生成，详情可参考 <a href="/docs/tutorials/cli/rpc" target="_blank"> goctl rpc </a>
 :::
@@ -65,5 +86,6 @@ func (e *exampleServer) Ping(ctx context.Context, request *greet.Request) (*gree
 
 ## 参考文献
 
-- <a href="/docs/tutorials/grpc/client/configuration" target="_blank"> rpc 客户端配置 </a>
-- <a href="/docs/tutorials/grpc/client/conn" target="_blank"> rpc 服务连接 </a>
+- <a href="/docs/tutorials/cli/rpc" target="_blank"> 《goctl rpc 代码生成》 </a>
+- <a href="/docs/tutorials/grpc/client/configuration" target="_blank"> 《rpc 客户端配置》 </a>
+- <a href="/docs/tutorials/grpc/client/conn" target="_blank"> 《rpc 服务连接》 </a>

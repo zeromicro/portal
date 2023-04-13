@@ -191,7 +191,7 @@ type GetUserInfoResp {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 定义一个鉴权控制的中间件，多个中间件以英文逗号,分割，如 Middleware1,Middleware2,TODO: 执行顺序
+	// 定义一个鉴权控制的中间件，多个中间件以英文逗号,分割，如 Middleware1,Middleware2,中间件按声明顺序执行
 	middleware: AuthInterceptor
 )
 // 定义一个名称为 user 的服务

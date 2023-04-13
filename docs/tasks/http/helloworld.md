@@ -3,7 +3,8 @@ title: Hello World
 slug: /docs/tasks/http/hello-world
 ---
 
-TODO: 从静态配置文件加载
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## 概述
 
@@ -11,32 +12,46 @@ TODO: 从静态配置文件加载
 
 ## 示例
 
+<Tabs>
+
+<TabItem value="etc/helloworld.yaml" label="etc/helloworld.yaml" default>
+
+```yaml
+Name: HelloWorld.api
+Host: 127.0.0.1
+Port: 8080
+```
+
+</TabItem>
+
+<TabItem value="main.go" label="main.go" default>
+
 ```go
 func main() {
-    s, err := rest.NewServer(rest.RestConf{
-        ServiceConf: service.ServiceConf{// 服务基础配置
-            Name: "HelloWorld.api",
-        },
-        Host: "127.0.0.1",// 服务监听地址
-        Port: 8080,// 服务监听端口
-    })
-    if err != nil {
-        log.Fatal(err)
-        return
-    }
+	var restConf rest.RestConf
+	conf.MustLoad("etc/helloworld.yaml", &restConf)
+	s, err := rest.NewServer(restConf)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
-    s.AddRoute(rest.Route{// 添加路由
-        Method: http.MethodGet,
-        Path:   "/hello/world",
-        Handler: func(writer http.ResponseWriter, request *http.Request) {// 处理函数
-            httpx.OkJson(writer, "Hello World!")
-        },
-    })
+	s.AddRoute(rest.Route{ // 添加路由
+		Method: http.MethodGet,
+		Path:   "/hello/world",
+		Handler: func(writer http.ResponseWriter, request *http.Request) { // 处理函数
+			httpx.OkJson(writer, "Hello World!")
+		},
+	})
 
-    defer s.Stop()
-    s.Start()// 启动服务
+	defer s.Stop()
+	s.Start() // 启动服务
 }
 ```
+
+</TabItem>
+
+</Tabs>
 
 rest 服务配置可参考 <a href="/docs/tutorials/http/server/configuration" target="_blank"> HTTP 服务配置</a>
 
@@ -48,3 +63,4 @@ rest 服务配置可参考 <a href="/docs/tutorials/http/server/configuration" t
 ## 参考文献
 
 - <a href="/docs/tutorials/cli/overview" target="_blank"> 《goctl 指令概览》 </a>
+- <a href="/docs/tutorials/http/server/configuration" target="_blank"> 《HTTP 服务配置》</a>
