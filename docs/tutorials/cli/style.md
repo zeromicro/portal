@@ -45,9 +45,9 @@ goctl 生成代码支持对文件和文件夹的命名风格进行格式化，�
 
 ```bash
 # 生成 lower case 文件和目录示例
-$ goctl api new demo -style gozero
+$ goctl api new demo --style gozero
 # 生成 snake case 文件和目录示例
-$ goctl api new demo -style go_zero
+$ goctl api new demo --style go_zero
 # 生成 camel case 文件和目录示例
-$ goctl api new demo -style goZero
+$ goctl api new demo --style goZero
 ```

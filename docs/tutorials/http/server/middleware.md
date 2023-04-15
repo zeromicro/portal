@@ -91,7 +91,7 @@ srv := rest.MustNewServer(rest.RestConf{
 })
 ```
 
-再次请求http://127.0.0.1:8080/hello，打开jaeger页面即可查看链路请求信息，默认会携带`http.host`、`http.medhod`、`http.route`、`http.status_code`等属性
+再次请求 `http://127.0.0.1:8080/hello`，打开jaeger页面即可查看链路请求信息，默认会携带`http.host`、`http.medhod`、`http.route`、`http.status_code`等属性
 
 ### LogHandler
 
