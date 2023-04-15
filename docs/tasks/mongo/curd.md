@@ -203,3 +203,64 @@ func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
 	return err
 }
 ```
+
+## 完整 demo 实例
+
+```go
+package main
+
+import (
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"github.com/zeromicro/go-zero/core/stores/mon"
+)
+
+type User struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	Username string             `bson:"username,omitempty" json:"username,omitempty"`
+	Password string             `bson:"password,omitempty" json:"password,omitempty"`
+	UpdateAt time.Time          `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time          `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func main() {
+	conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
+	ctx := context.Background()
+	u := &User{
+		ID:       primitive.ObjectID{},
+		Username: "username",
+		Password: "password",
+		UpdateAt: time.Now(),
+		CreateAt: time.Now(),
+	}
+	// insert one
+	_, err := conn.InsertOne(ctx, u)
+	if err != nil {
+		panic(err)
+	}
+
+	// 查询
+	var newUser User
+	err = conn.FindOne(ctx, &newUser, bson.M{"_id": u.ID})
+	if err != nil {
+		panic(err)
+	}
+
+	// 更新
+	newUser.Username = "newUsername"
+	_, err = conn.ReplaceOne(ctx, bson.M{"_id": newUser.ID}, newUser)
+	if err != nil {
+		panic(err)
+	}
+
+	// 删除
+	_, err = conn.DeleteOne(ctx, bson.M{"_id": newUser.ID})
+	if err != nil {
+		panic(err)
+	}
+}
+
+```
