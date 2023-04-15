@@ -1,5 +1,5 @@
 ---
-title: 数据库链接
+title: mongo 数据库操作
 slug:  /docs/tasks/mongo/connection
 ---
 
@@ -11,11 +11,14 @@ import TabItem from '@theme/TabItem';
 
 ## 准备条件
 1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
+2. 自行搭建一个 mongo server，我们以 mongodb://admin:123456@localhost 为例
 
 ## 工具包说明
 go-zero 包含两个 mongodb 工具包，其中 <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mongo" target="_blank">mongo</a> 包已经废弃，后续不再支持维护，推荐使用 <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mon" target="_blank">mon</a> 工具包。 
 
 本章节的所有介绍都是基于 <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mon" target="_blank">mon</a> 工具包。
+
+同时我们建议使用 [byctl](/docs/tasks/cli/mongo) 来生成 mongo model，进行业务开发。
 
 ## 创建数据库连接
 数据库的连接创建提供了两个方法，<a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L40" target="_blank">MustNewModel</a> 和 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L50" target="_blank">NewModel</a>。
@@ -51,6 +54,12 @@ go-zero 包含两个 mongodb 工具包，其中 <a href="https://github.com/zero
     2. error: 创建错误
 ```
 
+代码示例
+```go
+conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
+```
+
 ## 参考文献
 
 - <a href="/docs/tutorials/cli/model#goctl-model-mongo-%E6%8C%87%E4%BB%A4" target="_blank">《goctl model mongo 代码生成》 </a>
+
