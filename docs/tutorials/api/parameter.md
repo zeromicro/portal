@@ -13,12 +13,12 @@ slug: /docs/tutorials/api/parameter
 
 在 api 描述语言中，我们可以通过在 tag 中来声明参数接收规则，目前 go-zero 支持的参数接收规则如下：
 
-| <img width={100}/>接收规则 | 说明 | <img width={150}/>生效范围 | 示例 |
-| --- | --- | --- | --- |
-| json | json 序列化 | 请求体&响应体 | \`json:"foo"\` |
-| path | 路由参数 | 请求体 | \`path:"id"\` |
-| form | post 请求的表单参数请求接收标识，get 请求的 query 参数接收标识 | 请求体 | \`form:"name"\` |
-| header | http 请求体接收标识 | 请求体 |\`header:"Content-Length"\` |
+| <img width={100}/>接收规则 | 说明                                                                                            | <img width={150}/>生效范围           | 示例 |
+| --- |-----------------------------------------------------------------------------------------------|----------------------------------| --- |
+| json | json 序列化                                                                                      | 请求体&响应体                          | \`json:"foo"\` |
+| path | 路由参数                                                                                          | 请求体                              | \`path:"id"\` |
+| form | post 请求的表单(支持 content-type 为 `form-data` 和 `x-www-form-urlencoded`) 参数请求接收标识，get 请求的 query 参数接收标识 | 请求体 | \`form:"name"\` |
+| header | http 请求体接收标识                                                                                  | 请求体                              |\`header:"Content-Length"\` |
 
 :::note 温馨提示
 go-zero 中不支持多 tag 来接收参数，即一个字段只能有一个 tag，如下写法可能会导致参数接收不到：
