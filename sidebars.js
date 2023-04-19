@@ -153,6 +153,7 @@ module.exports = {
             items: [
                 'tutorials/proto/spec',
                 'tutorials/proto/services-group',
+                'tutorials/proto/faq',
             ],
         },
         {

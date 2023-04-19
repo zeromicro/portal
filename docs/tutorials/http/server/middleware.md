@@ -2,6 +2,8 @@
 title: 中间件
 slug: /docs/tutorials/http/server/middleware
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## 概述
 
@@ -58,15 +60,34 @@ type MiddlewaresConf struct {
 
 例如，在 Hello World 程序中想禁用指标收集，可以做如下配置：
 
-```go
-srv := rest.MustNewServer(rest.RestConf{
-		Port: 8080,
-		Middlewares: rest.MiddlewaresConf{
-			Metrics: false,
-		},
-})
-defer srv.Stop()
+<Tabs>
+
+<TabItem value="etc/config.yaml" label="etc/config.yaml" default>
+
+```yaml
+Name: HelloWorld.api
+Host: 127.0.0.1
+Port: 8080
+Middlewares:
+  Metrics: false
 ```
+
+</TabItem>
+
+<TabItem value="main.go" label="main.go" default>
+
+```go
+func main() {
+    var restConf rest.RestConf
+    conf.MustLoad("etc/config.yaml", &restConf)
+    srv := rest.MustNewServer(restConf)
+    defer srv.Stop()
+    ...
+}
+```
+
+</TabItem>
+</Tabs>
 
 ## 重点中间件介绍
 
@@ -74,22 +95,36 @@ defer srv.Stop()
 
 框架默认集成了 Opentelemetry 来标准化链路追踪。如果想把追踪信息上报到 jaeger，还是以 hello world 程序为例，可以做如下配置：
 
-```go
-srv := rest.MustNewServer(rest.RestConf{
-		Port: 8080,
-		Middlewares: rest.MiddlewaresConf{
-			Trace: true,
-		},
-		ServiceConf: service.ServiceConf{
-			Telemetry: trace.Config{
-				Name:     "hello",
-				Endpoint: "http://127.0.0.1:14268/api/traces", // 使用http推送trace信息，请求地址为http://127.0.0.1:14268/api/traces
-				Batcher:  "jaeger",
-				Sampler:  1.0,
-			},
-		},
-})
+<Tabs>
+
+<TabItem value="etc/config.yaml" label="etc/config.yaml" default>
+
+```yaml
+Name: HelloWorld.api
+Host: 127.0.0.1
+Port: 8080
+Middlewares:
+  Metrics: true
+Telemetry:
+  Name: hello
+  Endpoint: http://127.0.0.1:14268/api/traces
+  Batcher: jaeger
+  Sampler: 1.0
 ```
+
+</TabItem>
+
+<TabItem value="main.go" label="main.go" default>
+
+```go
+var restConf rest.RestConf
+conf.MustLoad("etc/config.yaml", &restConf)
+srv := rest.MustNewServer(restConf)
+```
+
+</TabItem>
+
+</Tabs>
 
 再次请求 `http://127.0.0.1:8080/hello`，打开jaeger页面即可查看链路请求信息，默认会携带`http.host`、`http.medhod`、`http.route`、`http.status_code`等属性
 
@@ -109,14 +144,31 @@ srv := rest.MustNewServer(rest.RestConf{
 
 可以通过配置来禁用 Log 中间件，默认启用
 
-```go
-srv := rest.MustNewServer(rest.RestConf{
-		Port: 8080,
-		Middlewares: rest.MiddlewaresConf{
-			Log: false,
-		},
-})
+<Tabs>
+
+<TabItem value="etc/config.yaml" label="etc/config.yaml" default>
+
+```yaml
+Name: HelloWorld.api
+Host: 127.0.0.1
+Port: 8080
+Middlewares:
+  Log: false
 ```
+
+</TabItem>
+
+<TabItem value="main.go" label="main.go" default>
+
+```go
+var restConf rest.RestConf
+conf.MustLoad("etc/config.yaml", &restConf)
+srv := rest.MustNewServer(restConf)
+```
+
+</TabItem>
+
+</Tabs>
 
 ### PrometheusHandler
 
@@ -134,16 +186,34 @@ http_server_requests_duration_ms
 http_server_requests_code_total
 ```
 
-可以通过配置来禁用 Log 中间件，默认启用
+可以通过配置来禁用 Prometheus 中间件，默认启用
+
+<Tabs>
+
+<TabItem value="etc/config.yaml" label="etc/config.yaml" default>
+
+```yaml
+Name: HelloWorld.api
+Host: 127.0.0.1
+Port: 8080
+Middlewares:
+  Prometheus: false
+```
+
+</TabItem>
+
+<TabItem value="main.go" label="main.go" default>
+
 
 ```go
-srv := rest.MustNewServer(rest.RestConf{
-		Port: 8080,
-		Middlewares: rest.MiddlewaresConf{
-			Prometheus: false,
-		},
-})
+var restConf rest.RestConf
+conf.MustLoad("etc/config.yaml", &restConf)
+srv := rest.MustNewServer(restConf)
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### MaxConnsHandler
 
