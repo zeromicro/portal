@@ -4,7 +4,6 @@ module.exports = {
         'concepts/keywords',
         'concepts/components',
         'concepts/architecture-evolution',
-        'concepts/service-governance',
         'concepts/layout'
     ],
     tasks: [
