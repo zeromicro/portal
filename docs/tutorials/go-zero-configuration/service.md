@@ -54,11 +54,11 @@ type ServiceConf struct {
 }
 ```
 
-| 参数       | 类型              | 默认值 | 说明                                                                                     |
-| ---------- | ----------------- | ------ |----------------------------------------------------------------------------------------|
+| 参数       | 类型              | 默认值 | 说明                                                                                     | 枚举值 |
+| - | - | - |- | - |
 | Name       | string            | -      | 定义服务的名称，会出现在 log 和 tracer 中                                                            |
 | Log        | logx.LogConf      | -      | 参考 [log](/docs/tutorials/go-zero/configuration/log)                                    |
-| Mode       | string            | pro    | 服务的环境，目前我们预定义了 dev                                                                     | test | rt  | pre | pro |
+| Mode       | string            | pro    | 服务的环境，目前我们预定义了 dev。在dev 环境我们会开启反射 | dev,test,rt,pre, pro |
 | MetricsUrl | string            | 空     | 打点上报，我们会将一些 metrics 上报到对应的地址，如果为空，则不上报                                                 |
 | Prometheus | prometheus.Config | -      | 参考 [Prometheus.md](/docs/tutorials/monitor/index#%E6%8C%87%E6%A0%87%E7%9B%91%E6%8E%A7) |
 | Telemetry  | trace.Config      | -      | 参考 [trace.md](/docs/tutorials/monitor/index#链路追踪)                                                                        |

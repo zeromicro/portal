@@ -13,7 +13,7 @@ go-zero 提供了一个强大的 conf 包用于加载配置。我们目前支持
 
 ## 如何使用
 
-我们使用 **github.com/zeromicro/go-zero/core/conf** conf 包进行配置的加载。
+我们使用 [github.com/zeromicro/go-zero/core/conf](https://github.com/zeromicro/go-zero/tree/master/core/conf) conf 包进行配置的加载。
 
 第一步我们会定义我们的配置结构体，其中定义我们所有需要的依赖。
 
@@ -145,6 +145,8 @@ Name: ${SERVER_NAME}
 
 ### 2. env Tag
 
+注意 env 需要 go-zero [v1.4.3](https://github.com/zeromicro/go-zero/releases/tag/v1.4.3) 以上版本才支持。
+
 ```go
 var c struct {
     Name string `json:",env=SERVER_NAME"`
@@ -184,11 +186,95 @@ type Config struct {
 | env      | 当前参数从环境变量获取                                         | \`json:"mode,env=MODE"\`                                                                                          |
 
 :::note range 表达式值规则
-
 1. 左开右闭区间：(min:max]，表示大于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省
 1. 左闭右开区间：[min:max)，表示大于等于 min 小于 max，当 max 缺省时，max 代表数值 0，当 min 缺省时，min 代表无穷大，min 和 max 不能同时缺省
 1. 闭区间：[min:max]，表示大于等于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省
 1. 开区间：(min:max)，表示大于 min 小于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省
-   :::
+:::
 
 更多可以参考 [unmarshaler_test.go](https://github.com/zeromicro/go-zero/blob/master/core/mapping/unmarshaler_test.go)
+
+
+## inherit 配置继承
+在我们日程的配置，会出现很多重复的配置，例如 rpcClientConf 中，每个 rpc 都有一个 etcd 的配置，但是我们大部分的情况下 etcd 的配置都是一样的，我们希望可以只用配置一次etcd就可以了。
+如下的例子
+
+```goc
+type Config struct {
+	Etcd     discov.EtcdConf
+	UserRpc  zrpc.RpcClientConf
+	PortRpc  zrpc.RpcClientConf
+	OtherRpc zrpc.RpcClientConf
+}
+
+const str = `
+Etcd:
+  Key: rpcServer"
+  Hosts:
+    - "127.0.0.1:6379"
+    - "127.0.0.1:6377"
+    - "127.0.0.1:6376"
+
+UserRpc:
+  Etcd:
+    Key: UserRpc
+    Hosts:
+    - "127.0.0.1:6379"
+    - "127.0.0.1:6377"
+    - "127.0.0.1:6376"
+
+PortRpc:
+  Etcd:
+    Key: PortRpc
+    Hosts:
+    - "127.0.0.1:6379"
+    - "127.0.0.1:6377"
+    - "127.0.0.1:6376"
+
+OtherRpc:
+  Etcd:
+    Key: OtherRpc
+    Hosts:
+    - "127.0.0.1:6379"
+    - "127.0.0.1:6377"
+    - "127.0.0.1:6376"
+`
+
+```
+
+我们必须为每个 Etcd 都要加上 Hosts 等基础配置。
+
+但是如果我们使用了 inherit 的tag 定义，使用的方式在tag 中加上 **inherit**。如下：
+
+```go
+// A RpcClientConf is a rpc client config.
+	RpcClientConf struct {
+		Etcd          discov.EtcdConf `json:",optional,inherit"`
+        ....
+    }
+```
+
+这样我们就可以简化 Etcd 的配置，他会自动向上一层寻找配置。
+
+```go
+const str = `
+Etcd:
+  Key: rpcServer"
+  Hosts:
+    - "127.0.0.1:6379"
+    - "127.0.0.1:6377"
+    - "127.0.0.1:6376"
+
+UserRpc:
+  Etcd:
+    Key: UserRpc
+
+PortRpc:
+  Etcd:
+    Key: PortRpc
+
+OtherRpc:
+  Etcd:
+    Key: OtherRpc
+`
+```

@@ -124,6 +124,14 @@ module.exports = {
                 'tasks/queue/message-queue',
                 'tasks/queue/delay-queue',
             ],
+        },
+        {
+            type: 'category',
+            label: '日志',
+            collapsed: false,
+            items: [
+                'tasks/log/log',
+            ]
         }
     ],
     tutorials: [
