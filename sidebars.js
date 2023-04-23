@@ -296,6 +296,14 @@ module.exports = {
         },
         {
             type: 'category',
+            label: '日志',
+            collapsed: false,
+            items: [
+                'tutorials/log/log',
+            ]
+        },
+        {
+            type: 'category',
             label: '流量治理',
             collapsed: false,
             items: [
