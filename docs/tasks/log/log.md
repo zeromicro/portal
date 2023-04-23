@@ -1,6 +1,5 @@
 ---
 title: 日志使用
-sidebar_label: go-zero 安装
 slug: /docs/tasks/log/log
 ---
 
