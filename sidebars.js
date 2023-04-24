@@ -206,6 +206,7 @@ module.exports = {
                 'tutorials/http/server/middleware',
                 'tutorials/http/server/jwt',
                 'tutorials/http/server/error',
+                'tutorials/http/server/response-ext',
             ],
         },
         {
