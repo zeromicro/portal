@@ -5,98 +5,43 @@ slug: /docs/tutorials/http/server/error
 
 ## 概述
 
-错误处理这里并非指 error 堆栈处理，错误管理等，而是指 HTTP 的错误处理，即以统一的数据格式响应。
+错误处理这里并非指 error 堆栈处理，错误管理等，而是指 HTTP 的错误处理。
 
 ## 使用示例
 
-我们这里以常见的 code-msg 格式为例子来演示一下，响应格式如下：
-
-- 业务处理失败
-
-```json
-{
-  "code": 1001,
-  "msg": "参数错误"
-}
-```
-
-- 业务处理成功
-
-```json
-{
-  "code": 0,
-  "msg": "success",
-  "data":{
-    ...
-  }
-}
-```
-```json
-{
-  "code": 0,
-  "msg": "success",
-  "data":[...]
-}
-```
-
-在 go-zero 中并没有内置这样的响应规范，但开发者可以通过自定义的方式来实现，这里我们以自定义的方式来实现。
-
-1. 自定义一个错误类型
+我们来模拟当 error 为 `*errors.CodeMsg` 类型时，以 `code-msg` 格式响应错误。
 
 ```go
-package errorx
+package main
 
-const defaultCode = 1001
+import (
+	"go/types"
+	"net/http"
 
-type CodeError struct {
-    Code int    `json:"code"`
-    Msg  string `json:"msg"`
-}
+	"code.bydev.io/frameworks/byone/rest"
+	"code.bydev.io/frameworks/byone/rest/httpx"
+	"github.com/zeromicro/x/errors"
+	xhttp "github.com/zeromicro/x/http"
+)
 
-type CodeErrorResponse struct {
-    Code int    `json:"code"`
-    Msg  string `json:"msg"`
-}
-
-func NewCodeError(code int, msg string) error {
-    return &CodeError{Code: code, Msg: msg}
-}
-
-func NewDefaultError(msg string) error {
-    return NewCodeError(defaultCode, msg)
-}
-
-func (e *CodeError) Error() string {
-    return e.Msg
-}
-
-func (e *CodeError) Data() *CodeErrorResponse {
-    return &CodeErrorResponse{
-        Code: e.Code,
-        Msg:  e.Msg,
-    }
-}
-
-```
-
-2. 使用自定义错误
-
-```go
 func main() {
 	srv := rest.MustNewServer(rest.RestConf{
 		Port: 8080,
 	})
 	srv.AddRoute(rest.Route{
-		Method:  http.MethodGet,
+		Method:  http.MethodPost,
 		Path:    "/hello",
 		Handler: handle,
-	}, rest.WithJwt("abc123"))
+	})
 	defer srv.Stop()
-    // httpx.SetErrorHandler 仅在调用了 httpx.Error 处理响应时才有效。
+	// httpx.SetErrorHandler 仅在调用了 httpx.Error 处理响应时才有效。
 	httpx.SetErrorHandler(func(err error) (int, any) {
 		switch e := err.(type) {
-		case *CodeError:
-			return http.StatusOK, e.Data()
+		case *errors.CodeMsg:
+			return http.StatusOK, xhttp.BaseResponse[types.Nil]{
+				Code: e.Code,
+				Msg:  e.Msg,
+			}
 		default:
 			return http.StatusInternalServerError, nil
 		}
@@ -104,39 +49,50 @@ func main() {
 	srv.Start()
 }
 
+type HelloRequest struct {
+	Name string `json:"name"`
+}
+
+type HelloResponse struct {
+	Msg string `json:"msg"`
+}
+
 func handle(w http.ResponseWriter, r *http.Request) {
-	// 模拟参数错误
-	httpx.Error(w, NewDefaultError("参数错误"))
-}
-
-const defaultCode = 1001
-
-type CodeError struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
-}
-
-type CodeErrorResponse struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
-}
-
-func NewCodeError(code int, msg string) error {
-	return &CodeError{Code: code, Msg: msg}
-}
-
-func NewDefaultError(msg string) error {
-	return NewCodeError(defaultCode, msg)
-}
-
-func (e *CodeError) Error() string {
-	return e.Msg
-}
-
-func (e *CodeError) Data() *CodeErrorResponse {
-	return &CodeErrorResponse{
-		Code: e.Code,
-		Msg:  e.Msg,
+	var req HelloRequest
+	if err := httpx.Parse(r, &req); err != nil {
+		httpx.Error(w, err)
+		return
 	}
+
+	if req.Name == "error" {
+		// 模拟参数错误
+		httpx.Error(w, errors.New(400, "参数错误"))
+		return
+	}
+
+	httpx.OkJson(w, HelloResponse{
+		Msg: "hello " + req.Name,
+	})
 }
+
 ```
+
+```shell
+$ curl --location '127.0.0.1:8080/hello' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name":"go-zero"
+}'
+{"msg":"hello go-zero"}
+
+$ curl --location '127.0.0.1:8080/hello' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name":"error"
+}'
+{"code":400,"msg":"参数错误","data":{}}
+```
+
+:::tip 温馨提示
+这里仅演示 `httpx.SetErrorHandler` 的用法，如需指定 HTTP 统一响应格式请参考 <a href="/docs/tutorials/http/server/response/ext" target="_blank">《统一响应格式》</a>
+:::
