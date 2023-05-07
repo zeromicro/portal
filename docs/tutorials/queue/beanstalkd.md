@@ -84,7 +84,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 }
 ```
 
-在 logic 中写业务逻辑使用 go-queue 的 q client 发送消息到 beanstalk
+在 logic 中写业务逻辑使用 go-queue 的 dq client 发送消息到 beanstalk
 
 ```go
 .......
