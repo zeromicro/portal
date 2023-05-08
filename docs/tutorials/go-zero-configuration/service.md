@@ -62,4 +62,4 @@ type ServiceConf struct {
 | MetricsUrl | string            | 空     | 打点上报，我们会将一些 metrics 上报到对应的地址，如果为空，则不上报                                                 |
 | Prometheus | prometheus.Config | -      | 参考 [Prometheus.md](/docs/tutorials/monitor/index#%E6%8C%87%E6%A0%87%E7%9B%91%E6%8E%A7) |
 | Telemetry  | trace.Config      | -      | 参考 [trace.md](/docs/tutorials/monitor/index#链路追踪)                                                                        |
-| DevServer  | devserver.Config  | -      |                                                                                        |
+| DevServer  | devserver.Config  | -      | go-zero 版本 `v1.4.3` 及以上支持                                                                                       |
