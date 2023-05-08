@@ -223,9 +223,7 @@ module.exports = {
             collapsed: false,
             items: [
                 'tutorials/grpc/server/configuration',
-                'tutorials/grpc/server/debug',
-                'tutorials/grpc/server/register',
-                'tutorials/grpc/server/middleware'
+                'tutorials/grpc/server/example',
             ],
         },
         {

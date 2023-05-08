@@ -105,3 +105,7 @@ curl --location 'http://localhost:3333/nodes/foo' \
     "bar":"bar"
 }'
 ```
+
+:::tip 温馨提示
+httpc 默认使用的是 http.DefaultClient，这个不能指定
+:::
