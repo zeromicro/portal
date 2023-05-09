@@ -32,14 +32,14 @@ goctl rpc 指令使用请参考 <a href="/docs/tutorials/cli/rpc" target="_blank
 
 直连分为两种模式，一种是直连单个服务，一种是直连服务集群。
 
-### 直连单个服务
+### 地址解析模式
 
 在 main.go 文件中代码如下
 
 ```go
 func main() {
     conn := zrpc.MustNewClient(zrpc.RpcClientConf{
-        Target: "127.0.0.1:8080",// 单节点直连时，只需要给 Target 配置 rpc server的地址即可
+        Target: "dns:///127.0.0.1:8080",
     })
     client := greet.NewGreetClient(conn.Conn())
     resp, err := client.Ping(context.Background(), &greet.Request{})
@@ -51,7 +51,7 @@ func main() {
 }
 ```
 
-### 直连服务集群
+### 多节点直连模式
 
 在 main.go 文件中代码如下
 
