@@ -34,7 +34,7 @@ type KqConf struct {
 
 - Topic：订阅的 Topic 主题
 
-- Offset：如果新的 topic kafka 没有对应的 offset 信息,或者当前的 offset 无效了(历史数据被删除),那么需要指定从头消费还是从尾部消费
+- Offset：如果新的 topic kafka 没有对应的 offset 信息,或者当前的 offset 无效了(历史数据被删除),那么需要指定从头(`first`)消费还是从尾(`last`)部消费
 
 - Conns: 一个 kafka queue 对应可对应多个 consumer，Conns 对应 kafka queue 数量，可以同时初始化多个 kafka queue，默认只启动一个
 
