@@ -58,9 +58,17 @@ func (m *defaultUserModel) InsertMany(ctx context.Context, data []*User) error {
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/bulkinserter.go#L22" target="_blank">BulkInserter</a>
 ```golang
+函数签名: 
+    NewBulkInserter(coll Collection, interval ...time.Duration) (*BulkInserter, error) 
 说明: 
     1. 如果存在大批量新增数据时，可以使用。
-    2. 插入过程会按 bulk(1000) 分组插入。
+    2. 插入过程会按 bulk(1000) 或 周期时间分组插入。
+入参:
+    1. coll: mongo 连接对象
+    2. interval: 批量插入周期, intervals[0] 是有效值
+返回值:
+    1. *BulkInserter: bulk 模块对象
+    2. error: 创建结果
 
 示例:
 type User struct {
