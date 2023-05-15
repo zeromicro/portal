@@ -36,7 +36,7 @@ func (bi *BulkInserter) Insert(args ...any) error
 注意其中 args，为 insert 中的每个参数，需要和 ？ 一一对应。同时因为 Insert 其实是一个异步操作，这个地方不会有插入 error 返回。
 
 ## flushes 
-因为的插入其实是一个异步过程，如果我们有业务需要立即入库或者程序即将退出，我们需要手动 flush 一下
+因为的插入其实是一个异步过程，如果我们有业务需要立即入库或者程序即将退出，我们需要手动 flush 一下。框架已经在 **PeriodicalExecutor** 添加了 **proc.AddShutdownListener**。所以无需关心退出时的操作，只需要在业务需要的时候自己调用flush。
 ```go
 blk.Flush()
 ```
