@@ -115,6 +115,28 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.InsertOneResult: 新增结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+var prefixUserCacheKey = "cache:user:"
+
+type User struct {
+	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
+	if data.ID.IsZero() {
+		data.ID = primitive.NewObjectID()
+		data.CreateAt = time.Now()
+		data.UpdateAt = time.Now()
+	}
+
+	key := prefixUserCacheKey + data.ID.Hex()
+	_, err := m.conn.InsertOne(ctx, key, data)
+	return err
+}
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L189" target="_blank">InsertOneNoCache</a>
@@ -131,6 +153,25 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.InsertOneResult: 新增结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+type User struct {
+	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
+	if data.ID.IsZero() {
+		data.ID = primitive.NewObjectID()
+		data.CreateAt = time.Now()
+		data.UpdateAt = time.Now()
+	}
+
+	_, err := m.conn.InsertOneNoCache(ctx, data)
+	return err
+}
 ```
 
 ## 更新
@@ -150,6 +191,24 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+var prefixUserCacheKey = "cache:user:"
+
+type User struct {
+	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
+	data.UpdateAt = time.Now()
+	key := prefixUserCacheKey + data.ID.Hex()
+	_, err := m.conn.UpdateByID(ctx, key, bson.M{"_id": data.ID}, data)
+
+	return err
+}
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L236" target="_blank">UpdateByIDNoCache</a>
@@ -167,6 +226,22 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+type User struct {
+	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
+	data.UpdateAt = time.Now()
+	key := prefixUserCacheKey + data.ID.Hex()
+	_, err := m.conn.UpdateByIDNoCache(ctx, bson.M{"_id": data.ID}, data)
+
+	return err
+}
 ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L242" target="_blank">UpdateMany</a>
@@ -185,6 +260,29 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+var prefixUserCacheKey = "cache:user:"
+
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*User) error {
+	var keys = make([]string, 0, len(data))
+	for _, v := range data {
+		keys = append(keys, prefixUserCacheKey+v.ID.Hex())
+		v.UpdateAt = time.Now()
+	}
+	_, err := m.conn.UpdateMany(ctx, keys, bson.M{"name": name}, data)
+
+	return err
+}
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L257" target="_blank">UpdateManyNoCache</a>
@@ -202,6 +300,22 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*User) error {
+	_, err := m.conn.UpdateManyNoCache(ctx, bson.M{"name": name}, data)
+
+	return err
+}
 ```
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L263" target="_blank">UpdateOne</a>
@@ -220,6 +334,26 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+var prefixUserCacheKey = "cache:user:"
+
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
+	data.UpdateAt = time.Now()
+	key := prefixUserCacheKey + data.ID.Hex()
+
+	_, err := m.conn.UpdateOne(ctx, key, bson.M{"name": data.Name}, data)
+	return err
+}
 ```
 
 6. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateOneNoCache</a>
@@ -237,6 +371,24 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
     2. error: 操作结果
+
+示例:
+
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
+	data.UpdateAt = time.Now()
+
+	_, err := m.conn.UpdateOneNoCache(ctx, bson.M{"name": data.Name}, data)
+	return err
+}
 ```
 
 ## 查询
@@ -257,6 +409,37 @@ import TabItem from '@theme/TabItem';
     5. opts: 操作选项
 返回值:
     1. error: 操作结果
+
+示例:
+var prefixUserCacheKey = "cache:user:"
+
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error) {
+	oid, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, ErrInvalidObjectId
+	}
+
+	var data User
+	key := prefixUserCacheKey + id
+	err = m.conn.FindOne(ctx, key, &data, bson.M{"_id": oid})
+	switch err {
+	case nil:
+		return &data, nil
+	case monc.ErrNotFound:
+		return nil, ErrNotFound
+	default:
+		return nil, err
+	}
+}
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L115" target="_blank">FindOneNoCache</a>
@@ -273,6 +456,34 @@ import TabItem from '@theme/TabItem';
     4. opts: 操作选项
 返回值:
     1. error: 操作结果
+
+示例:
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error) {
+	oid, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, ErrInvalidObjectId
+	}
+
+	var data User
+	err = m.conn.FindOneNoCache(ctx, &data, bson.M{"_id": oid})
+	switch err {
+	case nil:
+		return &data, nil
+	case monc.ErrNotFound:
+		return nil, ErrNotFound
+	default:
+		return nil, err
+	}
+}
 ```
 
 ## 删除
@@ -292,6 +503,28 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. int64: 删除个数
     2. error: 操作结果
+
+示例:
+var prefixUserCacheKey = "cache:user:"
+
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
+	oid, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return ErrInvalidObjectId
+	}
+	key := prefixUserCacheKey + id
+	_, err = m.conn.DeleteOne(ctx, key, bson.M{"_id": oid})
+	return err
+}
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L101" target="_blank">DeleteOneNoCache</a>
@@ -308,4 +541,23 @@ import TabItem from '@theme/TabItem';
 返回值:
     1. int64: 删除个数
     2. error: 操作结果
+
+示例:
+type User struct {
+	ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+    Name string             `bson:"name,omitempty" json:"name,omitempty"`
+	Age  int                `bson:"age,omitempty" json:"age,omitempty"`
+	// TODO: Fill your own fields
+	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+}
+
+func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
+	oid, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return ErrInvalidObjectId
+	}
+	_, err = m.conn.DeleteOneNoCache(ctx, bson.M{"_id": oid})
+	return err
+}
 ```

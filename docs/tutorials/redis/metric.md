@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 本章节主要介绍通过 redis 监控相关。
 
 ## 说明
-redis 内置两个两个监控相关的 metric。
+redis 内置两个两个监控相关的 metric。<a href="/docs/tutorials/monitor/index" target="_blank">更多组件监控信息</a>。
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/metrics.go#L8" target="_blank">metricReqDur</a>: 用于对 redis 命令操作的耗时监控。
 ```golang
