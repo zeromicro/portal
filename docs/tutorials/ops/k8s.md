@@ -204,8 +204,7 @@ pipeline {
 }
 ```
 
-【注】：！！！非常重要！！！
-
+:::note 非常重要
 1、构建优化：pipline 中使用"/usr/local/bin/goctl kube xxx"生 k8s yaml 的时候，我们是使用 k8s 方式部署不需要 etcd，但是这种方式部署需要为生成的 k8s yaml 中指定 serviceAccount。 原理可以看这篇文章下方 go-zero 的 k8s 服务发现讲解 ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
 
 我这边已经指定好了 serviceAccount
@@ -258,6 +257,7 @@ pipline 生成 k8s yaml 的文件可以不需要使用模版方式支持 service
 2、${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，我们之前配置的是gitlab-cert所以这里就填写gitlab-cert，如果你不是这个自己要更换，${gitUrl}需要替换为你代码的 git 仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
 
 3、这里跟官方文档有一点点不一样，由于我项目文件夹目录不同，goctl 生成的 dockerfile 文件我手动做了点调整，在一个我不是在构建时候生成的 dockerfile，是在创建项目时候就把 dockerfile 一起放在目录下，这样构建镜像时候不需要 goctl 了
+:::
 
 ## 5、配置 k8s 拉取私有仓库镜像
 
