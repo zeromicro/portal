@@ -409,3 +409,10 @@ alt='gitlab'
 ## 5、k8s
 
 k8s 的部署这里就不介绍了，自己用 kubeadm、rancher、kind 去安装吧，或者买个按量云容器服务，总之有一个 k8s 集群就好了。
+
+## 参考文献
+
+- <a href=" " target="_blank">gitlab</a >
+- <a href="https://www.jenkins.io/" target="_blank">jenkins</a >
+- <a href="https://goharbor.io/" target="_blank">harbor</a >
+- <a href="https://kubernetes.io/" target="_blank">kubernetes</a >
