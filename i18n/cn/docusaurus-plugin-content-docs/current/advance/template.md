@@ -152,7 +152,7 @@ func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 ```
 
 # 总结
-本文档仅对http相应为例讲述了自定义模板的流程，除此之外，自定义模板的场景还有：
+本文档仅对http响应为例讲述了自定义模板的流程，除此之外，自定义模板的场景还有：
 * model 层添加kmq
 * model 层生成待有效期option的model实例
-* http自定义相应格式
+* http自定义响应格式
