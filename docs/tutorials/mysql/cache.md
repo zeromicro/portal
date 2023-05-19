@@ -10,7 +10,7 @@ go-zero 除了提供 sqlx.SqlConn, 我们也提供了一个 sqlc.CachedConn 的�
 ```go
 cachedConn := sqlc.NewConn(conn, cacheConf)
 var v User
-err := cachedConn.QueryRowCtx(ctx, &v, "id:1", func(ctx contextContext, conn sqlx.SqlConn, v any) error {
+err := cachedConn.QueryRowCtx(ctx, &v, "id:1", func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 	return conn.QueryRowCtx(ctx, v, "select * from user where id = ?", 1)
 })
 ```
