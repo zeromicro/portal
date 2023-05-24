@@ -46,7 +46,7 @@ hoverIcon="/icons/looklook-icon-hover.svg">
 
 <DocsCard
 header="zeromall"
-href="hhttps://github.com/zeromicro/zeromall"
+href="https://github.com/zeromicro/zeromall"
 icon="/icons/mall-icon.svg"
 hoverIcon="/icons/mall-icon-hover.svg">
 
