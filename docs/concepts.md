@@ -146,9 +146,6 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro
    Content-Length: 14
    ```
 
-null
-```
-
 编写业务代码：
 
     * api 文件定义了服务对外暴露的路由，可参考 [api 规范](https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md)
