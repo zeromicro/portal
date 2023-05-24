@@ -197,7 +197,7 @@ type Config struct {
 
 
 ## inherit 配置继承
-在我们日程的配置，会出现很多重复的配置，例如 rpcClientConf 中，每个 rpc 都有一个 etcd 的配置，但是我们大部分的情况下 etcd 的配置都是一样的，我们希望可以只用配置一次etcd就可以了。
+在我们日常的配置，会出现很多重复的配置，例如 rpcClientConf 中，每个 rpc 都有一个 etcd 的配置，但是我们大部分的情况下 etcd 的配置都是一样的，我们希望可以只用配置一次etcd就可以了。
 如下的例子
 
 ```goc
