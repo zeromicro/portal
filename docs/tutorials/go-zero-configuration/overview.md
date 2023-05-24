@@ -142,7 +142,7 @@ conf.MustLoad("config.yaml", &c, conf.UseEnv())
 Name: ${SERVER_NAME}
 ```
 
-如上，我们在 Load 时候传人 **UseEnv**， conf 会自动根据值替换字符串中的${var}或$var 当前环境变量。
+如上，我们在 Load 时候传入 **UseEnv**， conf 会自动根据值替换字符串中的${var}或$var 当前环境变量。
 
 ### 2. env Tag
 

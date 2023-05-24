@@ -50,7 +50,7 @@ module.exports = {
                         },
                         {
                             label: "zero-example",
-                            href: "https://github.com/zeromicro/zero-example",
+                            href: "https://github.com/zeromicro/zero-examples",
                         },
                     ],
                 },
