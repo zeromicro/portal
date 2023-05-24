@@ -4,7 +4,7 @@ slug: /docs/tasks/log/log
 ---
 
 ## 概述
-logc 和 logx 是 go-zero 的日志库，我们可以轻松实现日志的打印的能里。
+logc 和 logx 是 go-zero 的日志库，我们可以轻松实现日志的打印的能力。
 
 
 ## 任务目标
