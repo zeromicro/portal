@@ -90,7 +90,7 @@ type Beanstalk struct {
 | <img width={100}/>参数 | <img width={100}/>类型 | <img width={100}/>是否必填 | <img width={100}/>默认值 | <img width={100}/>说明                                                                                                        |
 | ---------------------- | ---------------------- | -------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
 | Beanstalks             | []Beanstalk            | 是                         |                          | beanstalkd 配置                                                                                                               |
-| Redis                  | RedisConf              | 是                         |                          | redis 配置，详情参考<a href="http://localhost:3000/docs/tutorials/go-zero/configuration/redis" target="_blank">Redis 配置</a> |
+| Redis                  | RedisConf              | 是                         |                          | redis 配置，详情参考<a href="/docs/tutorials/go-zero/configuration/redis" target="_blank">Redis 配置</a> |
 
 **Beanstalk**
 

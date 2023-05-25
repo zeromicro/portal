@@ -50,7 +50,7 @@ module.exports = {
                         },
                         {
                             label: "zero-example",
-                            href: "https://github.com/zeromicro/zero-example",
+                            href: "https://github.com/zeromicro/zero-examples",
                         },
                     ],
                 },
@@ -225,24 +225,24 @@ module.exports = {
                 sidebarPath: require.resolve('./sidebars.js'),
                 editUrl: ({versionDocsDirPath, docPath, locale}) => {
                     if ((match = docPath.match(/concepts\/(.*)\.md/)) != null) {
-                        return `https://github.com/zeromicro/portal/tree/main/docs/concepts/${match[1]}.md`;
+                        return `https://github.com/zeromicro/portal/tree/feat/v3/docs/concepts/${match[1]}.md`;
                     }
                     if ((match = docPath.match(/tasks\/(.*)\.md/)) != null) {
-                        return `https://github.com/zeromicro/portal/tree/main/docs/tasks/${match[1]}.md`;
+                        return `https://github.com/zeromicro/portal/tree/feat/v3/docs/tasks/${match[1]}.md`;
                     }
                     if ((match = docPath.match(/components\/(.*)\.md/)) != null) {
-                        return `https://github.com/zeromicro/portal/tree/main/docs/components/${match[1]}.md`;
+                        return `https://github.com/zeromicro/portal/tree/feat/v3/docs/components/${match[1]}.md`;
                     }
                     if ((match = docPath.match(/contributing\/(.*)\.md/)) != null) {
-                        return `https://github.com/zeromicro/portal/tree/main/docs/contributing/${match[1]}.md`;
+                        return `https://github.com/zeromicro/portal/tree/feat/v3/docs/contributing/${match[1]}.md`;
                     }
                     if ((match = docPath.match(/reference\/(.*)\.md/)) != null) {
-                        return `https://github.com/zeromicro/portal/tree/main/docs/reference/${match[1]}.md`;
+                        return `https://github.com/zeromicro/portal/tree/feat/v3/docs/reference/${match[1]}.md`;
                     }
                     if ((match = docPath.match(/tutorials\/(.*)\.md/)) != null) {
-                        return `https://github.com/zeromicro/portal/tree/main/docs/tutorials/${match[1]}.md`;
+                        return `https://github.com/zeromicro/portal/tree/feat/v3/docs/tutorials/${match[1]}.md`;
                     }
-                    return `https://github.com/zeromicro/portal/tree/main/docs/${versionDocsDirPath}/${docPath}`;
+                    return `https://github.com/zeromicro/portal/tree/feat/v3/docs/${versionDocsDirPath}/${docPath}`;
                 },
                 exclude: ['README.md'],
                 lastVersion: 'current',
