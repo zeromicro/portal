@@ -96,7 +96,7 @@ alt='image-20220209195853856'
 
 直接保存。
 
-### 2.2 编写 pipline
+### 5.2 编写 pipline
 
 向下滑动找到`Pipeline script`,填写脚本内容
 
@@ -259,7 +259,7 @@ pipline 生成 k8s yaml 的文件可以不需要使用模版方式支持 service
 3、这里跟官方文档有一点点不一样，由于我项目文件夹目录不同，goctl 生成的 dockerfile 文件我手动做了点调整，在一个我不是在构建时候生成的 dockerfile，是在创建项目时候就把 dockerfile 一起放在目录下，这样构建镜像时候不需要 goctl 了
 :::
 
-## 5、配置 k8s 拉取私有仓库镜像
+## 6、配置 k8s 拉取私有仓库镜像
 
 k8s 在默认情况下，只能拉取 harbor 镜像仓库的公有镜像，如果拉取私有仓库镜像，则是会报 `ErrImagePull` 和 `ImagePullBackOff` 的错误
 
@@ -311,7 +311,7 @@ $ kubectl create -f docker-secret.yaml -n k8scode
 secret "docker-login" created
 ```
 
-## 6、构建
+## 7、构建
 
 我们进入首页，点击”服务名称“进入详情页
 
@@ -348,7 +348,7 @@ alt='image-20220211142729231'
 
 同样道理，在去构建 identity-api，再去配置 usercenter 服务 构建 usercenter-rpc、构建 usercenter-api，接着配置其他服务、构建即可，本次我们先只构建 identity-api、identity-rpc、usercenter-rpc、usercenter-api 给大家演示。
 
-## 6、添加网关
+## 8、添加网关
 
 因为我们的 api 服务通过 goctl 发布在 k8s 中都会暴露 nodeport 端口，索引我们看下 k8s 中 k8scode 命名空间下的 service 的 nodeport 端口服务，然后将 nodeport 配置在 nginx 即可。
 
@@ -395,6 +395,6 @@ server{
 
 如果是线上的话，应该配置多台 nginx 保持高可用，在 nginx 前面还会有一个 slb，你的域名包括 https 配置都应该解析到 slb，在 slb 前面在有防火墙等这些。
 
-## 8、结束语
+## 9、结束语
 
 至此，整个系列就结束了，整体架构图应该如第一篇所展示，本系列希望能给你带来帮助。
