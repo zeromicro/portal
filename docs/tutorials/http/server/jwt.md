@@ -55,7 +55,7 @@ func getJwtToken(secretKey string, iat, seconds int64,payload string) (string, e
 
 ## JWT 认证失败自定义处理返回
 
-在main中定义一个callback即可
+在main.go中定义一个callback即可
 ```go
 func main() {
 	........
