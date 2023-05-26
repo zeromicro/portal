@@ -242,7 +242,7 @@ module.exports = {
                     if ((match = docPath.match(/tutorials\/(.*)\.md/)) != null) {
                         return `https://github.com/zeromicro/portal/tree/feat/v3/docs/tutorials/${match[1]}.md`;
                     }
-                    return `https://github.com/zeromicro/portal/tree/feat/v3/docs/${versionDocsDirPath}/${docPath}`;
+                    return `https://github.com/zeromicro/portal/tree/feat/v3/${versionDocsDirPath}/${docPath}`;
                 },
                 exclude: ['README.md'],
                 lastVersion: 'current',
