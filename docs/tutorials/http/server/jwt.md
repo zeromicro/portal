@@ -52,6 +52,23 @@ func getJwtToken(secretKey string, iat, seconds int64,payload string) (string, e
 }
 ```
 
+
+## JWT 认证失败自定义处理返回
+
+在main中定义一个callback即可
+```go
+func main() {
+	........
+
+	server := rest.MustNewServer(c.RestConf, rest.WithUnauthorizedCallback(func(w http.ResponseWriter, r *http.Request, err error) {
+		// 自定义处理返回
+	}))
+
+	.......
+}
+
+```
+
 :::tip
 如果 JWT 鉴权失败会出现如下类似错误：
 ```
