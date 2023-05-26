@@ -115,7 +115,7 @@ func exec() error {
 }
 ```
 
-如上我们可以打印 exec 的位置。。这种对封装方法获取调用特别有效。在
+如上我们可以打印 exec 的位置。。这种对封装方法获取调用特别有效。
 
 ## 日志文件分割
 go-zero在文件输出模式下面，支持2种文件的分割模式 按照天 和 按照大小进行分割， 详情见[Rotation](/docs/tutorials/go-zero/configuration/log)

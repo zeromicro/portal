@@ -37,7 +37,7 @@ hoverIcon="/icons/queue-icon-hover.svg">
 
 <DocsCard
 header="go-zero-looklook"
-href="https://github.com/zeromicro/go-zero-looklook"
+href="https://github.com/Mikaelemmmm/go-zero-looklook"
 icon="/icons/looklook-icon.svg"
 hoverIcon="/icons/looklook-icon-hover.svg">
 
@@ -46,7 +46,7 @@ hoverIcon="/icons/looklook-icon-hover.svg">
 
 <DocsCard
 header="zeromall"
-href="hhttps://github.com/zeromicro/zeromall"
+href="https://github.com/zeromicro/zeromall"
 icon="/icons/mall-icon.svg"
 hoverIcon="/icons/mall-icon-hover.svg">
 

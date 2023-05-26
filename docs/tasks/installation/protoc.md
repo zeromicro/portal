@@ -18,7 +18,7 @@ import DocsCards from '@components/global/DocsCards';
 $ goctl env check --install --verbose --force
 ```
 
-关于 `goctl env` 指令详情可参考 <a href="http://localhost:3000/docs/tutorials/cli/env" target="_blank">goctl env</a>
+关于 `goctl env` 指令详情可参考 <a href="/docs/tutorials/cli/env" target="_blank">goctl env</a>
 
 ## 2. 手动安装
 

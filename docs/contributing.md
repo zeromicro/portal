@@ -45,7 +45,7 @@ go-zero 的Pull request中的代码需要满足一定规范
 * 进入自己的github中go-zero项目，点击浮层上的的`【Pull requests】`进入Compare页面。
 
 <Image
-      src={require('./resource/contributing/new_pr.png').default}
+      src={require('./resource/contributing/contribute.png').default}
       alt='new_pr'
       title="new_pr"
 />
