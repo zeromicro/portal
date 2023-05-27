@@ -25,7 +25,7 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 
 <Image
       width={1500}
-      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture.png"
+      src={require('./resource/concepts/architecture.png').default}
       alt='架构图'
 />
 
@@ -81,7 +81,7 @@ go-zero 是一个集成了各种工程实践的包含 web 和 rpc 框架，有�
 如下图，我们从多个层面保障了整体服务的高可用：
 
 <Image
-      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/resilience.jpg"
+      src={require('./resource/concepts/resilience.jpg').default}
       alt="弹性设计"
 />
 
@@ -163,7 +163,7 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro
 ## 6. Benchmark
 
 <Image
-      src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/benchmark.png"
+      src={require('./resource/concepts/benchmark.png').default}
       alt='benchmark'
 />
 
@@ -195,7 +195,7 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro
 
 <Image
       width={300}
-      src="https://zeromicro.github.io/go-zero-pages/resource/go-zero-practise.png"
+      src={require('@site/static/img/ad/go-zero-practise.jpg').default}
       alt='wechat'
 />
 
