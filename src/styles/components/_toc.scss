@@ -77,7 +77,7 @@ html[data-theme='dark'] {
     cursor: pointer;
     max-width: 148px;
     display: block;
-    margin: 48px 0 0;
+    margin: 24px 0 0;
     p {
       font-size: 13px;
       line-height: 19px;
@@ -85,6 +85,7 @@ html[data-theme='dark'] {
       letter-spacing: 0.02em;
       color: var(--ifm-font-color-base);
       transition: 0.2s color;
+      text-align: center;
     }
   }
 

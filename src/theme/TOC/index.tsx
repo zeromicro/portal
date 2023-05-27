@@ -4,31 +4,31 @@ import OriginalTOC from '@theme-original/TOC';
 import EditThisPage from '@theme/EditThisPage';
 import React, {useEffect, useState} from 'react';
 import {PrismicRichText} from '@prismicio/react';
+import {prismicAds} from "./data"
 
 export default function TOC({toc, editUrl, ...props}) {
-    const {prismicAds} = usePluginData('zeromicro-docs-ads');
     const [activeAd, setActiveAd] = useState<typeof prismicAds.list.data>();
     const location = useLocation();
 
     const isEmpty = toc.length <= 0;
 
     function getOr(path) {
-        if (prismicAds.enable===false){
+        if (prismicAds.enable === false) {
             return null
         }
-        for (let i=0;i<prismicAds.list.length;i++){
-            const item=prismicAds.list[i]
-            if (item.data.path===path){
-                if (item.data.disable===true){
+        for (let i = 0; i < prismicAds.list.length; i++) {
+            const item = prismicAds.list[i]
+            if (item.data.path === path) {
+                if (item.data.disable === true) {
                     return null
                 }
                 return item.data
             }
         }
 
-        let validAds =[]
-        prismicAds.list.forEach((item)=>{
-            if (item.data.disable===false){
+        let validAds = []
+        prismicAds.list.forEach((item) => {
+            if (item.data.disable === false) {
                 validAds.push(item)
             }
         })
@@ -46,8 +46,7 @@ export default function TOC({toc, editUrl, ...props}) {
         <div className="toc-wrapper">
             <h2>Contents</h2>
             <OriginalTOC toc={toc} {...props} />
-            <EditThisPage editUrl={editUrl}/>
-
+            {/*<EditThisPage editUrl={editUrl}/>*/}
             {activeAd && (
                 <div className="doc-ad">
                     <a
