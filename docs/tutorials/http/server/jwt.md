@@ -78,6 +78,9 @@ Content-Length: 0
 ```
 :::
 
+## JWT 过期管理
+jwt token 过期管理可以自己使用 redis 实现。
+
 ## 参考文献
 
 - <a href="https://jwt.io/introduction/" target="_blank">《JSON Web Token》</a>

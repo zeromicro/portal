@@ -18,8 +18,8 @@ import (
 	"go/types"
 	"net/http"
 
-	"code.bydev.io/frameworks/byone/rest"
-	"code.bydev.io/frameworks/byone/rest/httpx"
+	"github.com/zeromicro/go-zero/rest"
+	"github.com/zeromicro/go-zero/rest/httpx"
 	"github.com/zeromicro/x/errors"
 	xhttp "github.com/zeromicro/x/http"
 )
