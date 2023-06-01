@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 ## 概述
 
-目前 go-zero 提供非常强大的 http能力，但有部分功能扔未在 go-zero 实现，在 zeromicro 下有一个 x 仓库专门用于对 go-zero 的扩展，其中 HTTP
+目前 go-zero 提供非常强大的 http能力，但有部分功能仍未在 go-zero 实现，在 zeromicro 下有一个 x 仓库专门用于对 go-zero 的扩展，其中 HTTP
 的扩展支持了：
 
 1. code-data 响应格式支持
