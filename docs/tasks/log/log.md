@@ -54,7 +54,7 @@ logc.Infow(context.Background(), "hello world", logc.Field("key", "value"))
 // {"@timestamp":"2023-04-22T20:48:12.516+08:00","caller":"inherit/main.go:11","content":"hello world","key":"value","level":"info"}
 ```
 
-我们尅通过 logc.Filed 对我们的日志进行扩展。
+我们可以通过 logc.Filed 对我们的日志进行扩展。
 
 ## 日志带上自定义的key
 我们可以在所有的日志上面带上一些默认的 key和value，例如：我们希望在 api 所有链路上面都带上 路由信息，我们可以将信息注入到ctx中，这样后面的方法在打印的时候就会自动带上 kv 信息。
