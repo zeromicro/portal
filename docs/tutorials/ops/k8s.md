@@ -67,7 +67,7 @@ alt='image-20220209191757422'
 $ docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
 ```
 
-## 5、边写 jenkins 的 pipline
+## 5、编写 jenkins 的 pipline
 
 ### 5.1 配置参数
 
