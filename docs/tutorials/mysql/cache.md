@@ -55,7 +55,7 @@ func (cc CachedConn) QueryRowCtx(ctx context.Context, v any, key string, query Q
 ```
 入参说明：
 - ctx: context
-- v: any 用于接受查询到的数据，需要传人指针
+- v: any 用于接受查询到的数据，需要传入指针
 - key: string redis 中的缓存key，会根据这个key到缓存中查询数据；也会将查询到的数据写入到这个缓存的key 中。
 - query: QueryCtxFn 真实的查询方式，如果缓存中没有，将会执行这个查询方式。
 
@@ -75,7 +75,7 @@ func (cc CachedConn) QueryRowIndexCtx(ctx context.Context, v any, key string,
 ```
 入参说明：
 - ctx: context
-- v: any 用于接受查询到的数据，需要传人指针
+- v: any 用于接受查询到的数据，需要传入指针
 - key: string redis 中的缓存key，会根据这个key到缓存中查询数据；也会将查询到的数据写入到这个缓存的key 中。
 - keyer: func 需要根据查询到的对象返回对应的主键。
 - indexQuery: IndexQueryCtxFn 索引查询方法
