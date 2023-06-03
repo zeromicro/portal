@@ -1,0 +1,138 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tasks.category.安装": {
+    "message": "Install",
+    "description": "The label for category 安装 in sidebar tasks"
+  },
+  "sidebar.tasks.category.DSL 介绍": {
+    "message": "DSL Introduction",
+    "description": "The label for category DSL 介绍 in sidebar tasks"
+  },
+  "sidebar.tasks.category.CLI 代码生成": {
+    "message": "CLI Code Generation",
+    "description": "The label for category CLI 代码生成 in sidebar tasks"
+  },
+  "sidebar.tasks.category.创建项目": {
+    "message": "Create project",
+    "description": "The label for category 创建项目 in sidebar tasks"
+  },
+  "sidebar.tasks.category.静态配置文件管理": {
+    "message": "Static configuration file management",
+    "description": "The label for category 静态配置文件管理 in sidebar tasks"
+  },
+  "sidebar.tasks.category.HTTP 开发": {
+    "message": "HTTP Development",
+    "description": "The label for category HTTP 开发 in sidebar tasks"
+  },
+  "sidebar.tasks.category.gRPC Server 开发": {
+    "message": "gRPC Server Development",
+    "description": "The label for category gRPC Server 开发 in sidebar tasks"
+  },
+  "sidebar.tasks.category.gRPC Client 开发": {
+    "message": "gRPC client development",
+    "description": "The label for category gRPC Client 开发 in sidebar tasks"
+  },
+  "sidebar.tasks.category.MySQL 数据库操作": {
+    "message": "MySQL database operations",
+    "description": "The label for category MySQL 数据库操作 in sidebar tasks"
+  },
+  "sidebar.tasks.category.Mongo 数据库操作": {
+    "message": "Mongo Database Operations",
+    "description": "The label for category Mongo 数据库操作 in sidebar tasks"
+  },
+  "sidebar.tasks.category.Redis 使用": {
+    "message": "Redis Usage",
+    "description": "The label for category Redis 使用 in sidebar tasks"
+  },
+  "sidebar.tasks.category.内存缓存": {
+    "message": "Memory Cache",
+    "description": "The label for category 内存缓存 in sidebar tasks"
+  },
+  "sidebar.tasks.category.队列": {
+    "message": "Queue",
+    "description": "The label for category 队列 in sidebar tasks"
+  },
+  "sidebar.tasks.category.日志": {
+    "message": "Logs",
+    "description": "The label for category 日志 in sidebar tasks"
+  },
+  "sidebar.tutorials.category.API 定义": {
+    "message": "API Definitions",
+    "description": "The label for category API 定义 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.Proto 定义": {
+    "message": "Proto Definitions",
+    "description": "The label for category Proto 定义 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.CLI 工具": {
+    "message": "CLI Tool",
+    "description": "The label for category CLI 工具 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.go-zero 配置": {
+    "message": "go-zero configuration",
+    "description": "The label for category go-zero 配置 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.HTTP Server": {
+    "message": "HTTP Server",
+    "description": "The label for category HTTP Server in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.HTTP Client": {
+    "message": "HTTP Client",
+    "description": "The label for category HTTP Client in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.gRPC Server": {
+    "message": "gRPC Server Development",
+    "description": "The label for category gRPC Server in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.gRPC Client": {
+    "message": "gRPC Client",
+    "description": "The label for category gRPC Client in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.Cron job": {
+    "message": "Cron job",
+    "description": "The label for category Cron job in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.消息队列": {
+    "message": "Message queue",
+    "description": "The label for category 消息队列 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.MySQL": {
+    "message": "MySQL",
+    "description": "The label for category MySQL in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.Mongo": {
+    "message": "Mongo",
+    "description": "The label for category Mongo in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.Redis": {
+    "message": "Redis",
+    "description": "The label for category Redis in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.Gateway": {
+    "message": "Gateway",
+    "description": "The label for category Gateway in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.日志": {
+    "message": "Logs",
+    "description": "The label for category 日志 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.流量治理": {
+    "message": "Traffic governance",
+    "description": "The label for category 流量治理 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.运维部署": {
+    "message": "DevOps",
+    "description": "The label for category 运维部署 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.监控": {
+    "message": "Monitoring",
+    "description": "The label for category 监控 in sidebar tutorials"
+  },
+  "sidebar.tutorials.category.定制化": {
+    "message": "Customization",
+    "description": "The label for category 定制化 in sidebar tutorials"
+  }
+}

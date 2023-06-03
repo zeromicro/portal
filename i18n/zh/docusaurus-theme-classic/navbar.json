@@ -1,0 +1,22 @@
+{
+  "item.label.概念": {
+    "message": "概念",
+    "description": "Navbar item with label 概念"
+  },
+  "item.label.快速开始": {
+    "message": "快速开始",
+    "description": "Navbar item with label 快速开始"
+  },
+  "item.label.指南": {
+    "message": "指南",
+    "description": "Navbar item with label 指南"
+  },
+  "item.label.参考": {
+    "message": "参考",
+    "description": "Navbar item with label 参考"
+  },
+  "item.label.贡献": {
+    "message": "贡献",
+    "description": "Navbar item with label 贡献"
+  }
+}

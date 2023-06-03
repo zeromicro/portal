@@ -1,0 +1,115 @@
+---
+title: md 写法示例
+sidebar_label: md 写法示例
+slug: /docs/example
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Image } from '@arco-design/web-react';
+
+# 标题示例
+
+# 标题 H1
+
+## 标题 H2
+
+### 标题 H3
+
+#### 标题 H4
+
+##### 标题 H5
+
+###### 标题 H6
+
+# 正文示例
+
+正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例
+正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例
+正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例正文示例
+
+# 超链接示例
+
+[超链接](https://go-zero.dev)
+
+# 代码块示例
+
+1.  不含标题的代码块
+
+```go
+func main(){
+    fmt.Println("Hello world!")
+}
+```
+
+2.  含标题的代码块
+
+```go title="main.go"
+func main(){
+    fmt.Println("Hello world!")
+}
+```
+
+3.  行高亮
+
+```go {2} title="main.go"
+func main(){
+    fmt.Println("Hello world!")
+}
+```
+
+# 选项卡示例
+
+:::note null
+文件名后缀必须为 `mdx`
+:::
+
+<Tabs>
+<TabItem value="linux" label="Linux" default>
+linux
+</TabItem>
+<TabItem value="macOS" label="MacOS">
+macOS
+</TabItem>
+<TabItem value="windows" label="Windows">
+Windows
+</TabItem>
+</Tabs>
+
+# 引用示例
+
+> 这是一段引用文本
+
+# TIPS 示例
+
+:::note null
+这是一段 note 类型提示.
+:::
+
+:::tip null
+这是一段 tip 类型提示.
+:::
+
+:::info null
+这是一段 info 类型提示.
+:::
+
+:::caution null
+这是一段 caution 类型提示.
+:::
+
+:::danger null
+这是一段 danger 类型提示.
+:::
+
+:::note 你的标题名称
+这是一个带标题的 note 类型提示.
+:::
+
+# 图片组件
+
+<Image
+      src={require('./resource/example/example.png').default}
+      alt='logo'
+      title="zeromicro"
+/>
