@@ -1,36 +1,36 @@
 ---
-title: 分布式事务
-sidebar_label: 分布式事务
+title: Distributed transaction
+sidebar_label: Distributed transaction
 slug: /docs/tutorials/mysql/distribute/transaction
 ---
 
 ## Overview
 
-在微服务架构中，当我们需要跨服务保证数据一致性时，原先的数据库事务力不从心，无法将跨库、跨服务的多个操作放在一个事务中。这样的应用场景非常多，我们可以列举出很多：
+In the microservice architecture, when we need cross-service to ensure data consistency, the original database service cannot be used to place cross-library and multiple service operations in a single transaction.There are many applications like this, we can list many：
 
-- 订单系统：需要保证创建订单和扣减库存要么同时成功，要么同时回滚
-- 跨行转账场景：数据不在一个数据库，但需要保证余额扣减和余额增加要么同时成功，要么同时失败
-- 积分兑换场景：需要保证积分扣减和权益增加同时成功，或者同时失败
-- 出行订票场景：需要在第三方系统同时定几张票，要么同时成功，要么全部取消
+- Order system：requires a guarantee that both orders and deductions are created or rolled back at the same time
+- Cross-line transfer scenario：data is not in a database, but either the balance deduction and the balance increase are successful or failed at the same time.
+- Redeem Scene：requires both credit deductions and interest increases to be successful, or failed at the same time.
+- Ticket ticket scenario：requires a few tickets at the same time as a third party system, either successfully or canceled all
 
-面对这些本地事务无法解决的场景，我们需要分布式事务的解决方案，保证跨服务、跨数据库更新数据的一致性。
+Faced with scenarios where these local services cannot be solved, we need distributive services solutions that ensure consistency between cross-service and database updates.
 
-## 解决方案
+## Solution
 
-go-zero 与[dtm](https://github.com/dtm-labs/dtm)强强联合，推出了在 go-zero 中无缝接入 dtm 的极简方案，是 go 生态中首家提供分布式事务能力的微服务框架。该方案具备以下特征：
+go-zero joined [dtm](https://github.com/dtm-labs/dtm) to launch a very simple programme of seamless access to dtm in go-zero, the first microservice framework in go ecology to provide distributive services.The solution has the following features：
 
-- dtm 服务可以通过配置，直接注册到 go-zero 的注册中心
-- go-zero 能够以内建的 target 格式访问 dtm 服务器
-- dtm 能够识别 go-zero 的 target 格式，动态访问 go-zero 中的服务
+- dtm services can be configured to register directly to go-zero
+- go-zero can access dtm servers in built-in target format
+- dtm is able to recognize go-zero target format and access the service in go-zero dynamically
 
-详细的接入方式，参见 dtm 文档：[go-zero 支持](https://dtm.pub/ref/gozero.html)
+For more information about access, see dtm document：[ go-zero support](https://dtm.pub/ref/gozero.html)
 
-## 更多应用场景
+## More Use Cases
 
-dtm 不仅可以解决上述的分布式事务场景，还可以解决更多的与数据一致性相关的场景，包括：
+dtm can solve not only the distribution service scenario above but also more data consistency scenarios, including：
 
-- 数据库与缓存一致性： dtm 的二阶段消息，能够保证数据库更新操作，和缓存更新/删除操作的原子性
-- 秒杀系统： dtm 能够保证秒杀场景下，创建的订单量与库存扣减数量完全一样，无需后续的人工校准
-- 多种存储组合： dtm 已支持数据库、Redis、Mongo 等多种存储，可以将它们组合为一个全局事务，保证数据的一致性
+- Database compatibility with cache： dtm second phase messages that guarantee database updates, and cache update/delete operations
+- The second kill system： dtm is capable of securing the second kill scenario, creating orders that are exactly the same as the stock deduction, without subsequent manual calibration
+- Multiple storage combinations： dtm support multiple storages, such as databases, Redis, Mongo and others, which can be grouped into a global issue to ensure data consistency
 
-更多 dtm 的能力和介绍，参见[dtm](https://github.com/dtm-labs/dtm)
+For more dtm abilities and descriptions, see[ dtm ](https://github.com/dtm-labs/dtm)

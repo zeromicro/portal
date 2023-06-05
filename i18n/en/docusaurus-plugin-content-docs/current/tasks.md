@@ -1,5 +1,5 @@
 ---
-title: golang 安装
+title: golang installation
 slug: /docs/tasks
 ---
 
@@ -10,23 +10,23 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-Go 是 Google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言，其为罗伯特·格瑞史莫、罗勃·派克及肯·汤普逊于 2007 年 9 月开始设计 Go，之后伊恩·兰斯·泰勒（Ian Lance Taylor）、拉斯·考克斯（Russ Cox）加入项目。Go 是基于 Inferno 操作系统所开发的。Go 于 2009 年 11 月正式宣布推出，成为开放源代码项目，支持 Linux、macOS、Windows 等操作系统。
+Go is a static force type, compiled, co-generated, and programming language with garbage recovery features developed by Google, with Robert Glaismo, Rob Peark and Ken Thompson started designing Go in September 2007, followed by Ian Lance Taylor and Russ Cox joining the project.Go is based on the Inferno operating system.Go was officially launched in November 2009 as an open source project to support Linux, macOS, Windows and other operating systems.
 
-Go 的语法接近 C 语言，但对于变量的声明有所不同。Go 支持垃圾回收功能。Go 的并行计算模型是以东尼·霍尔的通信顺序进程（CSP）为基础，采取类似模型的其他语言包括 Occam 和 Limbo，Go 也具有这个模型的特征，比如通道传输。通过 goroutine 和通道等并行构造可以建造线程池和管道等。在 1.8 版本中开放插件（Plugin）的支持，这意味着现在能从 Go 中动态加载部分函数。
+The Go syntax is close to C language, but the statement of variables is different.Go supports garbage recovery features.The parallel computing model for Go is based on the communication sequencing process (CSP) of Easy Hor, and other languages using similar models include Occam and Limbo, which also features in the model such as the transmission of the channel.A parallel construct, such as goroutine and channel, can build a thread, pipe and so on.Open plugin plugin support in version 1.8, which means that some functions can now be loaded dynamically from Go.
 
-与 C++相比，Go 并不包括如枚举、异常处理、继承、泛型（此功能在 go1.18 中加入）、断言、虚函数等功能，但增加了切片(Slice) 型、并发、管道、垃圾回收、接口等特性的语言级支持。对于断言的存在，则持负面态度，同时也为自己不提供类型继承来辩护。
+In comparison with C++, Go does not include functions such as enumeration, unusual handling, inheritance, generic (added to go.18), assertions, false functions, etc. but adds language level support for slice (Slice) types, co-flowing, piping, garbage recovery, interfaces etc.There is a negative attitude towards the existence of assertions and a defence to the fact that they do not provide a type of inheritance.
 
-Go 官网概括如下：
+Go Website below：
 
-- 谷歌支持的开源编程语言
-- 易于学习，非常适合团队
-- 内置并发性和强大的标准库
-- 合作伙伴、社区和工具的大型生态系统
+- Google Supported Open Source Language
+- Easy to learn, very well suited to team
+- Built-in and powerful standard libraries
+- Large ecosystems of partners, communities and tools
 
-## 1. 下载
+## 1. Downloads
 
-:::note 注意
-这里以 `1.19.4` 版本为例子，并 **不推荐** 安装具体版本，开发者可根据需要自行选择，更多版本可前往 [前往官网](https://go.dev/dl/) 自行选择。
+:::note NOTE
+Here we take the `1.19` version as an example, and it is **not recommended** to install a specific version. Developers can choose according to their needs. For more versions, go to [Go to Golang](https://go.dev/dl/) to choose by yourself.
 :::
 
 <DocsCards>
@@ -34,28 +34,28 @@ Go 官网概括如下：
 <DocsCard 
 header="Microsoft Windows" 
 href="https://go.dev/dl/go1.19.4.windows-amd64.msi">
-<p>支持 Windows 7 及以后，Intel 64 位处理器</p>
+<p>Supported Windows 7 and beyond, Intel 64-bit processor</p>
 <a>go1.19.4.windows-amd64.msi（135MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Apple macOS（ARM64）" 
 href="https://go.dev/dl/go1.19.4.darwin-arm64.pkg">
-<p>支持 macOS 11 及以后，Apple 64 位处理器</p>
+<p>Support macOS 11 and later, Apple 64 bit processor</p>
 <a>go1.19.4.darwin-arm64.pkg（139MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Apple macOS（x86-64）" 
 href="https://go.dev/dl/go1.19.4.darwin-amd64.pkg">
-<p>支持 macOS 10.13 及以后，64 位处理器</p>
+<p>Supported macOS 10.13 and later, 64 bit processor</p>
 <a>go1.19.4.darwin-amd64.pkg（145MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Linux" 
 href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz">
-<p>支持 Linux 2.6.32 及以后，Intel 64 位处理器</p>
+<p>Support Linux 2.6.32 and later, Intel 64-bit processor</p>
 <a>go1.19.4.linux-amd64.tar.gz（142MB）</a>
 </DocsCard>
 
@@ -63,94 +63,94 @@ href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz">
 
 ###
 
-其他版本及操作系统可 [前往官网](https://go.dev/dl/) 自行选择。
+Other versions and operating systems can [to go to the official network](https://go.dev/dl/) to choose.
 
-## 2. 安装
+## 2. Installation
 
 <Tabs>
 <TabItem value="linux" label="Linux" default>
 
-1. 删除 `/usr/local/go` 文件夹（如果存在）来删除任何以前的 Go 安装，然后将刚刚下载的存档解压缩到 `/usr/local`，在 `/usr/local/go` 中创建一个新的 Go 目录：
+1. Delete the `/usr/local/go` folder (if available) to remove any previous Go installation and then compress the just downloaded archive to `/usr/local`, Create a new Go directory in `/usr/local/go`：
 
 ```bash
 $ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 ```
 
-:::note 注意
-您可能需要以 root 身份或通过 sudo 运行命令
-不要将存档解压到现有的 `/usr/local/go` 目录中。众所周知，这会产生损坏的 Go 安装。
-:::  
+::NOTE  
+You may need to be root or run command via sudo
+Do not extract the archive to the existing `/usr/local/go` directory.It is well known that this will cause damage to the Go installation.
+::: 
 
-2. 将 `/usr/local/go/bin` 添加到 `PATH` 环境变量。您可以通过将以下行添加到 `$HOME/.profile` 或 `/etc/profile`（对于系统范围的安装）来执行此操作：
+2. Add `/usr/local/go/bin` to the `PATH` environment.You can perform this action by adding the following lines to `$HOME/.profile` or `/etc/profile` (for the installation of the system scale)：
 
 ```bash
 $ export PATH=$PATH:/usr/local/go/bin
 ```
 
-:::note 注意
-在您下次登录计算机之前，对配置文件所做的更改可能不会应用。要立即应用更改，只需直接运行 shell 命令或使用诸如 `source $HOME/.profile` 之类的命令从配置文件中执行它们。
+:::note
+changes to the configuration file may not be applied until you log in the next computer.To apply changes immediately, simply run shell commands directly or execute them from configuration files using commands such as `source $HOME/.profile`.
 :::  
 
-3. 打开终端并键入以下命令来验证您是否已安装：
+3. Open the terminal and type the following command to verify that you are installed：
 
 ```bash
 $ go version
 ```
 
-4. 确认该指令已经打印了已安装的 Go 版本。
+4 . Make sure that the directive has printed the installed version of Go.
 
 </TabItem>
 
 <TabItem value="mac" label="Mac" default>
 
-1. 打开你下载的包文件，按照提示安装 Go。该软件包将 Go 发行版安装到 `/usr/local/go`。该软件包应将 `/usr/local/go/bin` 目录放入您的 `PATH` 环境变量中。您可能需要重新启动所有打开的终端会话才能使更改生效。
+1. Open your downloaded package file and install Go as prompted.The package installed Go distribution to `/usr/local/go`.The package should put the `/usr/local/go/bin` directory into your `PATH` environment variable.You may need to restart all open terminal sessions for changes to take effect.
 
-2. 打开终端并键入以下命令来验证您是否已安装：
+:::  2. Open the terminal and type the following command to verify that you are installed
+
 
 ```bash
 $ go version
 ```
-
-3. 确认该指令已经打印了已安装的 Go 版本。
+3 . Make sure that the directive has printed the installed version of Go.
 
 </TabItem>
 
 <TabItem value="windows" label="Windows" default>
 
-1. 打开您下载的 MSI 文件并按照提示安装 Go。默认情况下，安装程序将安装 Go 到 `Program Files` 或 `Program Files (x86)` 目录。您可以根据需要更改位置。安装后，您需要关闭并重新打开所有打开的命令提示符，以便安装程序对环境所做的更改反映在命令提示符中。
+1. Open your downloaded MSI file and install Go as prompted.By default, the installer will install Go to the `Program Files` or ``Program Files (x86)` directory.You can change your location as needed.After installation, you will need to close and reopen all open commands so that changes to the environment made by the installer are reflected in the command prompt.
 
-2. 确认您已安装 Go。
+2. Make sure you have installed Go.
 
-- 在 Windows 中，单击“开始”菜单。
-- 在菜单的搜索框中，键入 cmd，然后按 Enter 键。
-- 在出现的命令提示符窗口中，键入以下命令：
+- In Windows, click the "Start" menu.
+- Type cmd, then press Enter in the menu search box.
+- In the command reminder window, type the following command：
 
   ```bash
   $ go version
   ```
 
-3. 确认该指令已经打印了已安装的 Go 版本。
+3. Make sure that the directive has printed the installed version of Go.
 
 </TabItem>
 </Tabs>
 
-## 3. 配置
+## 3. Configuration
 
-### 3.1 GO111MODULE 开启
+### 3.1 GO111MODULE ON
 
-在 go 1.11 以后建议将 `GO111MODULE` 值显式设置为 `on`，以免后续拉取依赖出现一些不必要的错误。
+After go 1.11, it is recommended that the `GO111MODULE` value be set to `on`in order to avoid unnecessary errors in the follow-up pull dependency.
 
 ```bash
 $ go env -w GO111MODULE=on
 ```
 
-### 3.2 配置 Proxy
+### 3.2 Configure Proxy
 
 ```bash
 $ go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
-### 3.3 查看配置
+### 3.3 View configuration
 
 ```bash
 $ go env GO111MODULE
@@ -159,6 +159,6 @@ $ go env GOPROXY
 https://goproxy.cn,direct
 ```
 
-## 参考文献
+## References
 
-- <a href="https://zh.wikipedia.org/zh-cn/Go" tagret="_blank">《Go•维基百科》</a>
+- <a href="https://zh.wikipedia.org/zh-cn/Go" tagret="_blank">Wikipedia - Go</a>

@@ -6,41 +6,41 @@ slug: /docs/tutorials/ops/docker/compose
 
 import { Image } from '@arco-design/web-react';
 
-## 1、概述
+## 1. Overview
 
-本节我们介绍使用 docker 部署
+This section describes the use of docker deployment
 
-docker 部署我们要使用到 harbor 镜像象仓库了，本地代码编写完成之后，构建镜像上传到 harbor，部署机器上直接拉取镜像启动即可。
+The docker deploys us to use the harbor mirror repository. Once the local code is written, build the mirror to be uploaded to harbor.
 
-## 2、项目代码
+## 2. Project code
 
-本节代码我们跟物理机部署一节代码保持一致，但是要多一步要使用 goctl 生成 dockerfile
+This section code is consistent with a section code deployed by the physical machine, but needs to use goctl to generate a dockerfile step
 
-在 apicode 项目根目录下执行如下命令生成 Dockerfile
+Execute the following command to generate Dockerfile at the root of the apicode project
 
 ```sh
 $ goctl docker -go apicode.go
 ```
 
-### 2.1、上传代码
+### 2.1 Upload code
 
-将代码 push 到 gitlab 上去即可
+Push the code to the gitlab
 
-### 2.2 、配置 jenkins 服务器的公钥
+### 2.2 Public key for configuring jenkins server
 
-jenkins 需要来 gitlab 拉取代码进行构建，所以我们要将 jenkins 所在物理机器的公钥配置到 gitlab 中，进行免密登陆
+jenkins needs a gitlab pull code to build, so we want to configure the public key of the jenkins physical machine to gitlab and unencrypt login
 
 <Image src={require('../../resource/tutorials/ops/gitlab-pz-jenkins-sshkey.jpg').default} alt='gitlab-pz-jenkins-sshkey' />
 
-## 3、镜像仓库
+## 3. Mirror Repository
 
-去 harbor 创建本项目镜像仓库
+Go to harbor to create this project's mirror repository
 
 <Image src={require('../../resource/tutorials/ops/apicode-harbor_new.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
 <Image src={require('../../resource/tutorials/ops/apicode-harbor2_new.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
-查看 push 命令
+View the push command
 
 <Image src={require('../../resource/tutorials/ops/image-20220209191757422_newnew.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
@@ -48,39 +48,39 @@ jenkins 需要来 gitlab 拉取代码进行构建，所以我们要将 jenkins �
 $ docker push 192.168.1.180:8077/apicode/REPOSITORY[:TAG]
 ```
 
-## 4、Jenkins 发布
+## 4. Jenkins deployment
 
-之前我们已经将 jenkins 与 gitlab 一起部署好了，接下来我们使用 jenkins 进行代码发布，只要编写 pipline 即可
+We have already deployed jenkins with gitlab and then we use jenkins to publish the code as long as you write pipline
 
-### 4.1 创建 pipline
+### 4.1 Create pipline
 
-点击首页左侧“新建 item” ， 名称输入“apicode-docker”，选择“流水线”，然后确定
+Click "New Item" on the left side of the front page, enter "apicode-docker", select "Waterlines", then determine
 
 <Image src={require('../../resource/tutorials/ops/apicode-docker.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
-然后点击“General” , 选择“This project is parameterized” ， "添加参数"，“Choice Parameter”，如下图
+Then click on “General”, select "This project is parameterized", "Add parameter", "Choice Parameter", like the beacon
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-plpline-2.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
-然后编写内容如下
+Then write the following
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-pipline-3.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
-直接保存。
+Save directly.
 
-### 4.2 编辑 pipline
+### 4.2 Edit pipline
 
-【注】在编写 pipline 之前我们还有一个公钥要配置，要将 jenkins 的公钥配置到运行服务的服务器上，因为我们使用 jenkins 构建好之后要将构建好的 tar 包使用 scp 传到运行服务器上，这时候就要免密登陆
+'Note' We have a public key to configure before writing pipline to configure jenkins public key to the server running the service because we build using jenkins and then upload the built tar package to the running server using scp.
 
-查看 jenkins 所在的物理机公钥：
+View jenkins host public key：
 
 ```shell
 $ cat /root/.ssh/id_rsa.pub
 ```
 
-配置到运行服务物理机的 /root/.ssh/authorized_keys 即可。
+Configure to the /root/.ssh/authorized_keys running the service physics.
 
-向下滑动找到`Pipeline script`,填写脚本内容
+Swipe down to find `Pipeline scripts`, fill in script content
 
     pipeline {
       agent any
@@ -150,17 +150,17 @@ $ cat /root/.ssh/id_rsa.pub
       }
     }
 
-## 5、构建发布
+## 5. Build Publication
 
-点击首页，找到 apicode 这个服务点击进去
+Click on the home page to find the apicode service to click on it
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-deploy.jpg').default} alt='gitlab-pz-jenkins-sshkey' />
 
-点击 Build with Parameters ，选择对应的“分支”跟“服务”，开始构建
+Tap Build with Parameters, select the corresponding "branch" to "Service" to start building
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default} alt='gitlab-pz-jenkins-sshkey' />
 
-构建完成，最后我们来访问http://192.168.1.183:8889/hello?msg=mikael ，可以看到页面上输出
+Build finished, we go to http://192.168.1.183:8889/hello?msg=mikael to see output on page
 
 ```json
 {
@@ -168,4 +168,4 @@ $ cat /root/.ssh/id_rsa.pub
 }
 ```
 
-至此，部署完成。当然你可以在前面加自己喜欢的网关进行转发到此服务中，比如 nginx、kong...
+As of then, deployment has been completed.Of course you can forward your favorite gateway to this service like nginx, kong...

@@ -1,13 +1,13 @@
 ---
-title: 延时队列
+title: Delay Queue
 slug: /docs/tutorials/delay-queue/beanstalkd
 ---
 
 ## Overview
 
-关于延时任务，在很多场景也会被使用到，比如订单 20 分钟后未支付自动关闭归还库存等。
+With regard to extended tasks, there are many scenarios in which the return of stocks is automatically closed without payment after 20 minutes.
 
-<a href="https://github.com/zeromicro/go-queue" target="_blank"> go-queue </a> 除了提供了 kafka 消息队列 kq 之外，也实现了延时队列 dq。目前 go-queue 的延时队列底层是使用的 <a href="https://beanstalkd.github.io/" target="_blank">beanstalkd</a>。
+<a href="https://github.com/zeromicro/go-queue" target="_blank"> go-queue </a> implements the time queue dq, in addition to providing kafka message queue kq.The bottom layer of the go-queue is used for the <a href="https://beanstalkd.github.io/" target="_blank">beanstalkd</a>.
 
 ### Config
 
@@ -25,19 +25,19 @@ type (
 )
 ```
 
-- Beanstalks: 多个 Beanstalk 节点配置
+- Beantalks: multiple Beanstalk node configurations
 
-- Redis：redis 配置，主要在这里面使用 Setnx 去重
+- Redis：redis configuration, mainly using Setnx here
 
-### go-zero 中使用 dq 的 pusher
+### pusher using dq in go-zero
 
-项目中首先要拉取 go-queue 的依赖
+First pull go-queue dependencies in the project
 
 ```shell
 $ go get github.com/zeromicro/go-queue@latest
 ```
 
-在 etc/xxx.yaml 配置文件中添加当前的 dq 配置信息
+Add current dq configuration information to the etc/xxx.yaml configuration file
 
 ```yaml
 Name: dq
@@ -54,7 +54,7 @@ DqConf:
       Tube: tube2
 ```
 
-在 internal/config 下的 config.go 中定义 go 映射的配置
+Define configuration of go mapping in config.go under internal/config
 
 ```go
 type Config struct {
@@ -66,7 +66,7 @@ type Config struct {
 }
 ```
 
-在 svc/serviceContext.go 中初始化 pusher 的 dq client
+Initialize a penchant dq client in svc/serviceContext.go
 
 ```go
 type ServiceContext struct {
@@ -84,7 +84,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 }
 ```
 
-在 logic 中写业务逻辑使用 go-queue 的 dq client 发送消息到 beanstalk
+Write business logic in logic, using go-queue dq client to send messages to beanstalk
 
 ```go
 .......
@@ -110,15 +110,15 @@ func (l *PusherLogic) Pusher() error {
 }
 ```
 
-### go-zero 中使用 dq 消费者 consumer
+### Use dq consumer consumer in go-zero
 
-项目中首先要拉取 go-queue 的依赖
+First pull go-queue dependencies in the project
 
 ```shell
 $ go get github.com/zeromicro/go-queue@latest
 ```
 
-在 etc/xxx.yaml 配置文件中添加当前的 kafka 配置信息
+Add current kafka configuration information to the etc/xxx.yaml configuration file
 
 ```yaml
 Name: dq
@@ -139,7 +139,7 @@ DqConf:
     Type: node
 ```
 
-在 internal/config 下的 config.go 中定义 go 映射的配置
+Define configuration of go mapping in config.go under internal/config
 
 ```go
 package config
@@ -156,7 +156,7 @@ type Config struct {
 }
 ```
 
-在 svc/serviceContext.go 中初始化 consumer 的 dq client
+Initialize consumer dq client in svc/serviceContext.go
 
 ```go
 type ServiceContext struct {
@@ -184,7 +184,7 @@ func (l *PusherLogic) Consumer() error {
 }
 ```
 
-写在最后，本身 beanstalk 不依赖 redis 的，但是 go-queue 为我们想的更周到防止短时间内重复消费，便使用了 redis 的 Setnx 帮我们在短时间内过滤掉消费过的消息
+Write in the end, the beanstalk is not reliant on redis, but go-queue is the better we want to prevent repeated consumption in a short period of time, using redis Setnx to allow us to filter spent messages within a short period of time
 
-## 参考文献
-1. <a href="https://beanstalkd.github.io/" target="_blank">《beanstalkd 介绍及安装》</a>
+## References
+1. <a href="https://beanstalkd.github.io/" target="_blank">Beanstalkd Introduction and Installation</a>

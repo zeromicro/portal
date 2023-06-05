@@ -1,36 +1,36 @@
 ---
-title: 数据库连接
-sidebar_label: 数据库连接
+title: Database connection
+sidebar_label: Database connection
 slug: /docs/tutorials/mysql/connection
 ---
 
 ## Overview
-go-zero 提供了一个强大的 sqlx 工具，用于操作数据库。 所有 SQL 相关操作的包在 **github.com/zeromicro/go-zero/core/stores/sqlx**
+go-zero provides a powerful sqlx tool to operate the database. Packages for all SQL related operations in **github.com/zeroicro/go-zero/core/stores/sqlx**
 
-## 创建链接
+## Create DB Connection
 ### mysql
-我们提供了一个快捷的方式可以创建 Mysql 链接，具体实现在 https://github.com/zeromicro/go-zero/blob/master/core/stores/sqlx/mysql.go#L11
+We provide a quick way to create MySQL links that are now available at https://github.com/zeromicro/go-zero/blob/master/core/stores/sqlx/mysql.go#L11
 ```go
 func NewMysql(datasource string, opts ...SqlOption) SqlConn
 ```
-需要传入数据库地址，数据地址格式可以参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情。
+A database address needs to be imported. The data address format can be found at https://github.com/go-sql-driver/mysql#dsn-data-source-name for details.
 
-### 自定义驱动
-Go数据库驱动的目的是为了实现数据库的通用访问方式，使得开发人员可以通过相同的API对不同类型的数据库进行操作。这样做的好处有以下几点：
+### Custom driver
+The purpose of the Go-database drive is to achieve universal access to the database that allows developers to operate different types of databases through the same APIs.The advantage of doing this is that it has been achieved by the prime minister：
 
-1. 数据库驱动抽象了底层数据库的细节，提供了一种统一的编程接口，简化了程序员的工作。
+1. The database drives the abstraction of the details of the underlying database, provides a unified programming interface and simplifies the work of the programmers.
 
-2. 数据库驱动可以支持多种类型的数据库，使得开发人员可以灵活地选择和使用适合自己的数据库，而无需关心具体的数据库实现细节。
+2. Database drivers can support multiple types of databases, allowing developers the flexibility to select and use databases that are appropriate to their own, without having to pay attention to the details of specific databases.
 
-3. 通过数据库驱动，开发人员可以实现自定义的数据库连接、事务、语句等操作，以满足不同场景下的需求。
+3. By database driving, developers can implement customized database connections, services, statements, etc. to meet the needs of different scenarios.
 
-总之，Go设计数据库驱动的初衷是为了提高开发效率和代码可复用性，降低开发成本，并且在保证性能的前提下提供更加灵活的数据库访问方式。 具体详情可以参考： https://golang.org/s/sqldrivers
+In summary, the go-design database driver was originally intended to improve development efficiency and code replicability, reduce development costs and provide more flexible access to databases with guaranteed performance. Details can be found in： https://golang.org/s/sqlrivers
 
-go-zero 也提供了自定义驱动的方式， 基于底层对 database/sql/driver 的包装。
+go-zero also provides a custom driver, based on bottom packing of database/sql/driver.
 ```go
 func NewSqlConn(driverName, datasource string, opts ...SqlOption) SqlConn 
 ```
-需要传入驱动名称和链接地址。注意，驱动需要自行注入进来。 例如：
+The driver name and link address are required.Note, drivers need to inject themselves. Example:
 ```go
 sql.Register("clickhouse", &stdDriver{})
 ```
@@ -41,8 +41,8 @@ sql.Register("clickhouse", &stdDriver{})
 import _ "github.com/go-sql-driver/mysql"
 ```
 
-### 现有的数据库连接
-go-zero 可以通过一个现有的数据库来初始化 sqlx.SqlConn
+### Existing database connection
+go-zero can initialize sqlx.SqlConn through an existing database
 ```go
 func NewSqlConnFromDB(db *sql.DB, opts ...SqlOption) SqlConn
 ```

@@ -1,6 +1,6 @@
 ---
-title: Redis 监控
-sidebar_label: Redis 监控
+title: Redis Monitor
+sidebar_label: Redis Monitor
 slug: /docs/tutorials/redis/metric
 ---
 
@@ -8,12 +8,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
-本章节主要介绍通过 redis 监控相关。
+This section highlights the relevance of monitoring through redis.
 
-## 说明
-redis 内置两个两个监控相关的 metric。<a href="/docs/tutorials/monitor/index" target="_blank">更多组件监控信息</a>。
+## Description
+Redis has two internal metrics to monitor related metric.<a href="/docs/tutorials/monitor/index" target="_blank">More component monitoring messages</a>
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/metrics.go#L8" target="_blank">metricReqDur</a>: 用于对 redis 命令操作的耗时监控。
+1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/metrics.go#L8" target="_blank">RedisConf</a> related introduction.
 ```golang
     metricReqDur = metric.NewHistogramVec(&metric.HistogramVecOpts{
         Namespace: namespace,
@@ -25,7 +25,7 @@ redis 内置两个两个监控相关的 metric。<a href="/docs/tutorials/monito
     })
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/metrics.go#L16" target="_blank">metricReqErr</a>: 用于对 redis 命令操作的错误监控。
+2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/metrics.go#L16" target="_blank">metricReqErr</a>: Useful monitoring of redis commands.
 ```golang
     metricReqErr = metric.NewCounterVec(&metric.CounterVecOpts{
         Namespace: namespace,

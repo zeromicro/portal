@@ -1,11 +1,11 @@
 ---
-title: 基本 CURD
-sidebar_label: 基本 CURD
+title: Basic CURD
+sidebar_label: Basic CURD
 slug: /docs/tutorials/mysql/curd
 ---
 
 ## Overview
-在我们通过[创建链接](/docs/tutorials/mysql/connection)可以获得一个 sqlx.SqlConn，接着我们就可以完成各种数据库操作。 我们强烈建议使用 [goctl model](/docs/tutorials/cli/model) 自动生成 sql 代码，无需手动录入。
+We can get a sqlx.SqlConn at [ to create a link](/docs/tutorials/mysql/connection) and then we can complete various database operations. We strongly recommend using [goctl model](/docs/tutorials/cli/model) to generate sql code automatically, without manual entry.
 
 SqlConn 基本的方法如下
 ```go
@@ -38,19 +38,19 @@ type (
 ```
 
 ## ExecCtx
-我们提供了 **ExecCtx** 方法来完成各种增删改的操作。 简单示例：
+We have provided **ExecCtx** methods to complete various additions and deletions. Simple Example：
 
 ```go
 var conn sqlx.SqlConn // should be created by NewConn
 r, err := conn.ExecCtx(context.Background(), "delete from user where `id` = ?", 1)
 ```
 
-一般我们用于输入的参数都是使用 ？ 占位，接着通过 args 传入，这样可以有效防止 sql 注入等问题。
+Normally we use the input parameters placeholder ? 占位，接着通过 args 传入，这样可以有效防止 sql 注入等问题。
 
-本个方法如果执行的sql 出现错误，也将会触发熔断。并且会有一定机制在服务恢复正常之后自动放行。详情见熔断。
+This method will also trigger melting if an error occurs with the sql executed.There is also a mechanism for automatic release once the service has returned to normal.See melting for details.
 
 ## QueryRowCtx
-我们提供了 **QueryRowCtx** 进行普通的查询操作， 简单示例：
+We provided **QueryRowCtx** for normal query, Simple Example：
 
 ```go
 
@@ -69,10 +69,10 @@ if err != nil {
 _ = u
 ```
 
-这样我们就可以从 user 表中查出 id 为 1 的数据。相关常见的错误可以见下方 **常见错误**
+This way we can use data from user tables that you have provided with an account id 1.Common errors can be found below **common errors**
 
 ## QueryRowPartialCtx
-QueryRowPartialCtx 其实和 QueryRowCtx 都是提供用户查询数据使用的。 但是我们为了保证 User 中定义的所有字段都能过准确的被查询处理，所以设计 QueryRowCtx 的时候，强制校验查询出来的列需要与定义的 field 一致。 例如如下定义和Sql会报错。
+Both QueryRowPartialCtx and QueryRowCtx provide user queries for data use. But in order to ensure that all fields defined in the User are processed with accuracy, so when QueryRowCtx is designed, the queryVerify QueryRowCtx list needs to match the defined field. For example, the definition and Sql report errors.
 ```go
 type User struct {
     Id   int64  `db:"id"`
@@ -88,7 +88,7 @@ if err != nil { // err == ErrNotMatchDestination
     return
 }
 ```
-因为我们定义的 age ，并没有在 sql 中查询出来，会导致变量不一致的情况。如果用户确实有宽表，只需要查询部分字段，我们提供了 **QueryRowPartialCtx** 进行查询，这个方法及时查询的列不够也不会报错。
+Because our defined age is not queried in sql, this will cause inconsistency in variables.If the user does have a wide table, only some fields need to be queried. We provided  **QueryRowPartialCtx** this method is not enough for a list of timely queries.
 
 ```go
 type User struct {
@@ -108,7 +108,7 @@ _ = u // age is default 0
 ```
 
 ## QueryRowsCtx
-我们也提供了 **QueryRowsCtx** 进行批量查询的语句， 简单示例：
+We also provided **QueryRowsCtx** for bulk queryRowsCt, Simple Example：
 
 ```go
 type User struct {
@@ -125,11 +125,11 @@ if err != nil {
 }
 _ = users
 ```
-这样我们就可以查询所有叫 dylan 的 users。注意当数据库中没有 user 的时候，我们是不会返回 ErrNotFound 的，这块和 QueryRowCtx 是不同的。
+This will make it possible to find all users named dylan.Note that we will not return ErrNotFound when there is no user in the database, this block is different from QueryRowCtx.
 
 
-## 常见的错误
-在我们执行 sql 语句中一些常见的错误如下：
+## Common Errors
+Some common errors in our sql statements below：
 
 ```go
 var (
@@ -146,4 +146,4 @@ var (
 )
 ```
 
-当然还有包括 sql 底层网络错误，这里不在列举。
+There is, of course, a network error including sql bottom, not listing.

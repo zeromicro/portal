@@ -1,26 +1,26 @@
 ---
-title: API 规范
-sidebar_label: API 规范
+title: API specification
+sidebar_label: API specification
 slug: /docs/tutorials
 ---
 
 ## Overview
 
-api 是 go-zero 自研的领域特性语言（下文称 api 语言 或 api 描述语言），旨在实现人性化的基础描述语言，作为生成 HTTP 服务最基本的描述语言。
+api is the domain characteristic language of go-zero (below is api language or api description), which is intended to humanize as the most basic description language for generating HTTP services.
 
-api 领域特性语言包含语法版本，info 块，结构体声明，服务描述等几大块语法组成，其中结构体和 Golang 结构体 语法几乎一样，只是移出了 `struct` 关键字。
+The api field feature language contains syntax versions, info blocks, structural statements, service descriptions, etc., where the structure is almost the same as the Golang structural syntax, but only the `structure` keywords.
 
-## 目标
+## Targets
 
-- 学习成本低
-- 可读性强
-- 扩展自由
-- HTTP 服务一键生成
-- 编写一个 api 文件，生成多种语言代码服务
+- Learning sex
+- Readability
+- Expansion Freedom
+- HTTP Service 1 click to generate
+- Write an api file to generate multilingual code services
 
-## 语法标记符号
+## Syntax Token
 
-api 语法是使用 [扩展巴科斯范式（EBNF）](https://zh.m.wikipedia.org/zh-sg/%E6%89%A9%E5%B1%95%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F) 来描述的，在扩展巴科斯范式中指定
+api syntax is described using [ to extend the Bakos style(EBNF)](https://zh.m.wikipedia.org/zh-sg/%E6%89%A9%E5%B1%95%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F) and specified in the extended Bakos style.
 
 ```text
 Syntax      = { Production } .
@@ -33,7 +33,7 @@ Option      = "[" Expression "]" .
 Repetition  = "{" Expression "}" .
 ```
 
-`Production` 由 `Term` 和如下操作符组成，如下操作符优先级递增：
+`Production` is composed of `Term` and the following operators, with the following operators' priority increasing：
 
 ```text
 |   alternation
@@ -42,12 +42,12 @@ Repetition  = "{" Expression "}" .
 {}  repetition (0 to n times)
 ```
 
-形式 `a...b` 表示从 a 到 b 的一组字符作为替代，如 `0...9` 代表 0 到 9 的有效数值。
+Form `a...b` indicates a set of characters from a to b as an alternative, eg. `0...9` represents a valid number from 0 to 9.
 
-`.` 表示 ENBF 的终结符号。
+`` for ENBF end symbols.
 
-:::note 注意
-产生式的名称如果为小写，则代表终结 token，驼峰式的产生式名称则为非终结符 token，如：
+::note  
+Generate names if lowercase, then end token,camel peak production names are non-terminator token, e.g.：
 
 ```ebnf
 // 终结 token
@@ -61,76 +61,76 @@ TypeLit  = TypeAlias | TypeStruct .
 
 :::
 
-## 源代码表示
+## Source representation
 
-源代码表示是用来描述 api 语法的最基础元素。
+Source code representation is the most basic element used to describe api syntax.
 
-### 字符
+### Characters
 
 ```text
-newline        = /* 代表换行符， Unicode 值为 U+000A */ .
-unicode_char   = /* 除换行符 newline 外的其他 Unicode 字符 */ .
-unicode_letter = /* 字母 a...z|A...Z Unicode */ .
-unicode_digit  = /* 数值 0...9 Unicode */ .
+newline = /* indicates line replacement, Unicode value is U+000A */ .
+unicode_char = /* Unicode characters other than newline newline.*/
+unicode_letter = /* letter a.z|A..Z Unicode */
+unicode_digit = /* value 0...9 Unicode */
 ```
 
-### 字母和数字
+### Letters and Numbers
 
-下划线字符 `_` (U+005F) 被视为小写字母。
+Underline character `_` (U+005F) is considered to be lowercase.
 
 ```text
 letter        = "A"..."Z" | "a"..."z" | "_" .
 decimal_digit = "0" … "9" .
 ```
 
-## 抽象语法树
+## Abstract syntax tree
 
-抽象语法树（**A**bstract **S**yntax **T**ree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有三个分支的节点来表示。
+Abstract tree (**A**bstract **S**yntax **T**ree, AST), or syntax tree (Syntax tree), is an abstract expression of source syntax structure.It presents the syntax structure of the programming language in a tree and each node on the tree denotes a structure in the source code.The expression is “abstract” because the syntax does not indicate every detail that appears in the true syntax.For example, nested brackets are implicit in the tree structure and are not presented in the form of nodes; and a condition like if-condition-then can be represented by nodes with three branches.
 
-抽象语法树是代码的树形表示。它们是编译器工作方式的基本组成部分。当编译器转换一些代码时，基本上有以下步骤：
+The abstract syntax tree is the tree of the code.They are an essential component of the compiler's modus operandi.When the compiler converts some code, there are basically the following steps：
 
-- 词法分析（Lexical Analysis）
-- 语法分析（Syntax Analysis）
-- 代码生成（Code Generation）
+- Lexical Analysis
+- Syntax Analysis
+- Code Generation
 
-![ast process](./resource/tasks/dsl/ast-process.png)
+![AST process](./resource/tasks/dsl/ast-process.png)
 
 <center>
-  AST 分析过程
+  AST Analytics Process
 </center>
 
-### 词法分析
+### Lexical Analysis
 
-词法分析（Lexical Analysis）是计算机科学中将字符序列转换为记号（token）序列的过程。进行词法分析的程序或者函数叫作词法分析器（lexical analyzer，简称 lexer），也叫扫描器（scanner）。词法分析器一般以函数的形式存在，供语法分析器调用。
+Lexical Analysis is a process in computer science to convert character sequences to token (token) sequences.The procedure or function for the analysis of the word is called the word analyst (lexical analyzer, abbreviation), also known as scanner.The semiconductor is generally in the form of a function, for syntax analyst calls.
 
-在 api 语言中，词法分析是将字符转换为词法元素序列的过程，其中词法元素包括 `注释` 和 `Token`。
+In api language, word analysis is a process of converting characters to a dictionary of synonyms, including `comments` and `Token`.
 
-#### 词法元素
+#### Word Element
 
-##### 注释
+##### Note
 
-在 api 领域特性语言中有 2 种格式：
+2 formats in api field feature language：
 
-1. 单行注释以 `//` 开始，行尾结束。
+1. One line notes start with `//` and end of line.
 
    ```go
-   // 这是一个单行注释示例
+   // This is an example of a single line comment
    ```
 
-2. 多行注释（文档注释）以 `/*` 开始，以第一个 `*/` 结束。
+2. Multi-line comment (document note) starts with `/*` and ends with first `*/`.
 
    ```go
-   /*这是在同意行内的文档注释*/
+   /*This is the document annotation */
    /*
-   这是在多行的文档注释
-   */
+   in multiple lines of document annotation
+*/
    ```
 
 ##### Token
 
-Token 是组成节点的最基本元素，由 `标识符（identifier）`、`关键字（keyword）`、`运算符（operator）`、`标点符号（punctuation）`、`字面量（literal）`组成，`空白符（White space）`一般由`空格（U+0020）`、`水平制表符（U+0009）`、`回车符（U+000D）`和 `换行符（U+000A）`组成，在 api 语言中，Token 不包含 `运算符（operator）`。
+Token is the most basic element of the constituent node consisting of `identifier (identifier)`,`keyword (keyword)`,`operator (operator)`,`punctuation)`,`word volume (literal)`,`Whitespace (White space)`Generically by`spaces (U+0020)`,`Horizontal tabs (U+0009)`,`Car returns (U+000D)`and `newlines (U+000A)`In api language, Token does not contain `operator(operator)`.
 
-Token 的 Golang 结构体定义为：
+The Golang Structure of Token is defined as：
 
 ```go
 type Token struct {
@@ -146,15 +146,15 @@ type Position struct {
 }
 ```
 
-如 api 语句 `syntax="v1"`，其词法化后的为：
+Example api statement `syntax="v1"` its word is：
 
-| 文本     | 类型  |
-| ------ | --- |
-| syntax | 标识符 |
-| =      | 操作符 |
-| "v1"   | 字符串 |
+| Text   | DataType    |
+| ------ | ----------- |
+| syntax | Identifiers |
+| =      | Operator    |
+| "v1"   | String      |
 
-###### ID 标识符
+###### ID
 
 ID 标识符一般是结构体，变量，类型等的名称实体，ID 标识符一般有 1 到 n 个字母和数字组成，且开头必须为字母（记住上文提到的 `_` 也被当做小写字母看待），其 EBNF 表示法为：
 
@@ -162,7 +162,7 @@ ID 标识符一般是结构体，变量，类型等的名称实体，ID 标识�
 identifier = letter { letter | unicode_digit } .
 ```
 
-ID 标识符示例：
+ID Identifier Example：
 
 ```text
 a
@@ -170,31 +170,31 @@ _a1
 GoZero
 ```
 
-有些 ID 标识符是预先定义的，api 沿用了 [Golang 预定义 ID 标识符](https://go.dev/ref/spec#Predeclared_identifiers) 。
+The ID identifier is pre-defined,api follows [Golang Predefined ID identifier](https://go.dev/ref/spec#Predeclared_identifiers).
 
 ```go
-预定义类型:
+Predefined type:
     any bool byte comparable
     complex64 complex128 error float32 float64
     int int8 int16 int32 int64 rune string
     uint uint8 uint16 uint32 uint64 uintptr
 
-预定义常量:
+predefined constants:
     true false iota
 
-零值:
+zero:
     nil
 
-预定义函数:
+predefined functions:
     append cap close complex copy delete imag len
     make new panic print println real recover
 ```
 
-###### 关键字
+###### Keywords
 
-关键字是一些特殊的 ID 标识符，是系统保留字，api 的关键字沿用了 Golang 关键字，结构体中不得使用 Golang 关键字作为标识符。
+The keywords are some special ID identifiers, are system reserved, api keywords follow Golang keyword, and Golang keywords cannot be used as identifiers in the structure.
 
-Golang 关键字
+Golang Keywords
 
 ```go
 break        default      func         interface    select
@@ -204,9 +204,9 @@ const        fallthrough  if           range        type
 continue     for          import       return       var
 ```
 
-###### 标点符号
+###### Punctuation Marks
 
-标点符号可以用于对 Token、表达式做分割、分组，以下是 api 语言中的标点符号：
+Punctuation can be used to split token, expressions, groups, and below is punctuation in api language：
 
 ```text
 -    ,    (    )
@@ -216,16 +216,16 @@ continue     for          import       return       var
 ...
 ```
 
-###### 字符串
+###### String
 
-字符串字面量是由一组字符序列组成的常量。在 api 中沿用了 Golang 的字符串，有 2 种形式： 原始字符串（raw string）和普通符串（双引号字符串）。
+String font volume is a constant of a sequence of characters.Golang strings are used in api, with 2 forms： original string (raw string) and normal string (double quote).
 
-原始字符串的字符序列在两个反引号之间，除反引号外，任何字符都可以出现，如 \`foo\`；
+The string sequence of the original string is between two dequotation marks, except for a counterquotation number, any character can appear, such as \`foo\`；
 
-普通字符串的字符序列在两个双引号之间，除双引号外，任何字符都可以出现，如 "foo"。
+The string sequence of a normal string is between two quotes except two quotes and any characters can appear, like "foo".
 
-:::note 注意
-在 api 语言中，双引号字符串不支持 `\"` 来实现字符串转义。
+:::note
+In api language, the double quotation string does not support `\"` to implement string.
 :::
 
 ```ebnf
@@ -234,28 +234,28 @@ raw_string_lit         = "`" { unicode_char | newline } "`" .
 interpreted_string_lit = `"` { unicode_value | byte_value } `"` .
 ```
 
-字符串示例：
+String Example：
 
 ```text
-// 原始字符串
+// Original string
 ``
 `foo`
 `bar`
 `json:"baz"`
 
-// 普通字符串
+// normal string
 ""
 "foo"
 "bar"
 ```
 
-### 语法分析
+### Syntax analysis
 
-语法分析（Syntax Analysis）又叫语法解析，这个过程是将词法元素转换为树的过程，而语法树一般由节点（Node）、表达式（Expression）、语句（Statement）组成，语法解析的过程除了词汇转换成树外，还需要完成语义分析。
+Syntax Analysis is also called syntax resolution, which is the process of converting the synonym element into a tree, whereas the syntax tree generally consists of nodes (Node), expression (Expression) and statement (Statement) which, in addition to the translation of terms into trees, require the completion of a semantic analysis.
 
-#### 节点
+#### Node
 
-节点（Node）是 Token 的变体，是一个接口类型，是组成表达式、语句的基本元素，其在 Golang 中的结构体定义为：
+Node is a variation of token, an interface type, a basic element of an expression and statement, defined as： in a structure in Golang
 
 ```go
 // Node represents a node in the AST.
@@ -275,18 +275,18 @@ type Node interface {
 }
 ```
 
-#### 表达式
+#### Expression
 
-表达式（Expression）是组成语句的基本元素，可以理解为一个句子中的 “短语”，在 api 语言中包含的表达式如下：
+Expression are the basic element of the constituent statement. They can be understood as "phrases" in a sentence and the expression contained in api language as follows:：
 
-1. 数据类型表达式
-1. 结构体中的 field 表达式
-1. key-value 表达式
-1. 服务声明表达式
-1. HTTP 请求/响应体表达式
-1. HTTP 路由表达式
+1. Data Type Expression
+1. Field expression in structure
+1. key-value expression
+1. Service Declaration Expression
+1. HTTP Request/Response Body Expression
+1. HTTP Router Expression
 
-在 api 中 Golang 的结构体定义为：
+The structure of Golang in api is defined as：
 
 ```go
 // Expr represents an expression in the AST.
@@ -296,23 +296,23 @@ type Expr interface {
 }
 ```
 
-#### 语句
+#### Statement
 
-语句（Statement）是组成抽象语法树的基本元素，抽象语法树可以理解成一篇文章，而语句是组成文章的多条句子，在 api 语言中包含语句如下：
+Statement is the basic element of the abstract syntax tree, which can be understood as an article, and statement is a number of sentences that make up the article, and the api language contains statements as follows:
 
-1. @doc 语句
-1. @handler 语句
-1. @server 语句
-1. HTTP 服务的请求/响应体语句
-1. 注释语句
-1. import 语句
-1. info 语句
-1. HTTP 路由语句
-1. HTTP 服务声明语句
-1. syntax 语句
-1. 结构体语句
+1. @doc statement
+1. @handler statement
+1. @server statement
+1. Request / Response Body Statement for HTTP Service
+1. Comment statement
+1. Import statement
+1. info statement
+1. HTTP Router Expression
+1. HTTP service declaration statement
+1. Syntax statement
+1. Structure statement
 
-在 api 中 Golang 的结构体定义为：
+The structure of Golang in api is defined as：
 
 ```go
 // Stmt represents a statement in the AST.
@@ -322,48 +322,48 @@ type Stmt interface {
 }
 ```
 
-### 代码生成
+### Code Generation
 
-我们一旦有了抽象语法树，就可以通过它来打印或者生成不同的代码了，在 api 抽象语法树行成后，可以支持：
+Once we have an abstract syntax tree, we can use it to print or generate different codes, which can be supported by api abstract syntax when it is done：
 
-1. 打印 AST
-1. api 语言格式化
-1. Golang HTTP 服务生成
-1. Typescript 代码生成
-1. Dart 代码生成
-1. Kotlin 代码生成
+1. Print AST
+1. api file format
+1. Golang HTTP Service Generation
+1. TypeScript Code Generation
+1. Dart code generation
+1. Kotlin Code Generation
 
-除此之外，还可以根据 AST 进行扩展，比如插件：
+In addition to this, extensions can be made based on AST such as plugin：
 
 1. goctl-go-compact
 1. goctl-swagger
 1. goctl-php
 
-## api 语法标记
+## api syntax marker
 
 ```go
 api = SyntaxStmt | InfoStmt | { ImportStmt } | { TypeStmt } | { ServiceStmt } .
 ```
 
-### syntax 语句
+### Syntax statement
 
-syntax 语句用于标记 api 语言的版本，不同的版本可能语法结构有所不同，随着版本的提升会做不断的优化，当前版本为 `v1`。
+Syntax statements are used to mark the api language version, different versions may have different syntax structures and are optimized as versions are upgraded, the current version is `v1`.
 
-syntax 的 EBNF 表示为：
+EBNF syntax expressed as：
 
 ```go
 SyntaxStmt = "syntax" "=" "v1" .
 ```
 
-syntax 语法写法示例：
+syntax example：
 
 ```go
 syntax = "v1"
 ```
 
-### info 语句
+### info statement
 
-info 语句是 api 语言的 meta 信息，其仅用于对当前 api 文件进行描述，**暂**不参与代码生成，其和注释还是有一些区别，注释一般是衣服某个 syntax 语句存在，而 info 语句是用于描述整个 api 信息的，当然，不排除在将来会参与到代码生成里面来，info 语句的 EBNF 表示为：
+info is meta information in api language that is only used to describe the current api file,**Advertisement**does not participate in code generation, it differs from annotation but notes generally exist with a syntax that is used to describe the entire api message, of course, does not exclude future participation in code generation: EBNF for info is：
 
 ```go
 InfoStmt         = "info" "(" { InfoKeyValueExpr } ")" .
@@ -371,22 +371,22 @@ InfoKeyValueExpr = InfoKeyLit [ interpreted_string_lit ] .
 InfoKeyLit       = identifier ":" .
 ```
 
-info 语句写法示例：
+info writing sample：
 
 ```go
-// 不包含 key-value 的 info 块
+// Block of info without key-value
 info ()
 
-// 包含 key-value 的 info 块
+// blocks containing key-value
 info (
     foo: "bar"
     bar:
 )
 ```
 
-### import 语句
+### Import statement
 
-`import` 语句是在 api 中引入其他 api 文件的语法块，其支持相对/绝对路径，**不支持** `package` 的设计，其 EBNF 表示为：
+`import` statements are syntax blocks to introduce other api files in api, which support relative/absolute path,**does not support** `package` design whose EBNF is：
 
 ```go
 ImportStmt        = ImportLiteralStmt | ImportGroupStmt .
@@ -394,14 +394,14 @@ ImportLiteralStmt = "import" interpreted_string_lit .
 ImportGroupStmt   = "import" "(" { interpreted_string_lit } ")" .
 ```
 
-`import` 语句写法示例：
+`import` statement writing sample：
 
 ```go
-// 单行 import
+// Single line import
 import "foo"
 import "/path/to/file"
 
-// import 组
+// import group
 import ()
 import (
     "bar"
@@ -409,7 +409,7 @@ import (
 )
 ```
 
-### 数据类型
+### Data Type
 
 api 中的数据类型基本沿用了 Golang 的数据类型，用于对 rest 服务的请求/响应体结构的描述，其 EBNF 表示为：
 
@@ -438,17 +438,17 @@ ElemNameExpr      = identifier { "," identifier } .
 Tag               = raw_string_lit .
 ```
 
-数据类型写法示例：
+Sample data type writing：
 
 ```go
-// 别名类型 [1]
+// Alias [1]
 type Int int
 type Integer = int
 
-// 空结构体
+// Empty structure
 type Foo {}
 
-// 单个结构体
+// Structrue literal
 type Bar {
     Foo int               `json:"foo"`
     Bar bool              `json:"bar"`
@@ -458,17 +458,17 @@ type Bar {
 
 type Baz {
     Bar    `json:"baz"`
-    // 结构体内嵌 [2]
+    // inline [2]
     Qux {
         Foo string `json:"foo"`
         Bar bool   `json:"bar"`
     } `json:"baz"`
 }
 
-// 空结构体组
+// Empty type group
 type ()
 
-// 结构体组
+// Type Group
 type (
     Int int
     Integer = int
@@ -482,23 +482,23 @@ type (
 
 ```
 
-:::caution 注意
-[1] 虽然语法上支持别名，但是在语义分析时会对别名进行拦截，这或在将来进行放开。
+:::caution takes note of
+[1] While aliases are supported in syntax, alias are intercepted during semicolon analysis, or will be liberalized in the future.
 
-[2] 虽然语法上支持结构体内嵌，但是在语义分析时会对别名进行拦截，这或在将来进行放开。
+[2] While syntax supports inline structures, alias are intercepted when semicolon analyses, this will or will be liberalized in the future.
 
-除此之外：
+In addition：
 
-1. 目前 api 语法中虽然支持了数组的语法，但是在语义分析时会对数组进行拦截，目前建议用切片替代，这或在将来放开。
-2. 不支持 package 设计，如 `time.Time`。
+1. The current api syntax supports an array but blocks an array during semiconductor analysis and is currently proposed to replace it with a slice or be released in the future.
+2. Package design is not supported, e.g. `time.Time`.
 
 :::
 
-### service 语句
+### Service statement
 
-service 语句是对 HTTP 服务的直观描述，包含请求 handler，请求方法，请求路由，请求体，响应体，jwt 开关，中间件声明等定义。
+The service statement is a visual description of the HTTP service, which contains definitions of requests to handler, request method, request routing, requester, response,jwt switch, intermediate declaration etc.
 
-其 EBNF 表示为：
+Its EBNF expression is：
 
 ```go
 ServiceStmt     = [ AtServerStmt ] "service" ServiceNameExpr "("
@@ -506,16 +506,16 @@ ServiceStmt     = [ AtServerStmt ] "service" ServiceNameExpr "("
 ServiceNameExpr = identifier [ "-api" ] .
 ```
 
-#### @server 语句
+#### @server statement
 
-@server 语句是对一个服务语句的 meta 信息描述，其对应特性包含但不限于：
+@server is a meta description of a service statement that contains but is not limited to：
 
-- jwt 开关
-- 中间件
-- 路由分组
-- 路由前缀
+- jwt switch
+- Middleware
+- Route Group
+- Route Prefix
 
-@server 的 EBNF 表示为：
+EBNF for @server expressed as：
 
 ```go
 AtServerStmt     = "@server" "(" {  AtServerKVExpr } ")" .
@@ -525,57 +525,57 @@ AtServerValueLit = PathLit | identifier { "," identifier } .
 PathLit          = `"` { "/" { identifier | "-" identifier} } `"` .
 ```
 
-@server 写法示例：
+@server write sample：
 
 ```go
-// 空内容
+// Empty content
 @server()
 
-// 有内容
+// has content
 @server (
-    // jwt 声明
-    // 如果 key 固定为 “jwt:”，则代表开启 jwt 鉴权声明
-    // value 则为配置文件的结构体名称
+    // jwt declaration
+    // if key is fixed as 'jwt:', On behalf of the jwt credit declaration
+    // value for the configuration file structure name
     jwt: Auth
 
-    // 路由前缀
-    // 如果 key 固定为 “prefix:”
-    // 则代表路由前缀声明，value 则为具体的路由前缀值，字符串中没让必须以 / 开头
+    // Route prefix
+    // If the key is fixed to 'prefix:'
+    // for routing prefix statement, alue is a specific routing prefix value, The string does not let it start with /
     prefix: /v1
 
-    // 路由分组
-    // 如果 key 固定为 “group:”，则代表路由分组声明
-    // value 则为具体分组名称，在 goctl生成代码后会根据此值进行文件夹分组
+    // routing group
+    // if key is fixed to 'group:', Group statements on behalf of routing groups
+    // value for specific groupings, Goctl Generates code by grouping folders according to this value
     group: Foo
 
-    // 中间件
-    // 如果 key 固定为 middleware:”，则代表中间件声明
-    // value 则为具体中间件函数名称，在 goctl生成代码后会根据此值进生成对应的中间件函数
-    middleware: AuthInterceptor
+    // Middle
+    // If key is fixed to middle leware:", For intermediate declaration
+    //value for specific intermediate function name, Goctl Generates the intermediate function based on this value
+    middleware: AuthorInterceptor
 
-    // 超时控制
-    // 如果 key 固定为  timeout:”，则代表超时配置
-    // value 则为具体中duration，在 goctl生成代码后会根据此值进生成对应的超时配置
+    // Timeout control
+    // If key is fixed to timeout:", Represents timeout configurations for
+    // value for specific duration, and when goctl is generated the timeout for this value
     timeout: 3s
 
-    // 其他 key-value，除上述几个内置 key 外，其他 key-value
-    // 也可以在作为 annotation 信息传递给 goctl 及其插件，但就
-    // 目前来看，goctl 并未使用。
+    // other key-value, In addition to these built-in keys, other key-values
+    // can also be passed to goctl and its plugins as an annotation message, but for
+    // currently, goctl is not used.
     foo: bar
 )
 ```
 
-#### 服务条目
+#### ServiceItemStmt
 
-服务条目（ServiceItemStmt）是对单个 HTTP 请求的描述，包括 @doc 语句，handler 语句，路由语句信息，其 EBNF 表示为：
+ServiceItemStmt is a description of a HTTP request, including @doc statement, handler statement, routing information, its EBNF expression is：
 
 ```go
 ServiceItemStmt = [ AtDocStmt ] AtHandlerStmt RouteStmt .
 ```
 
-##### @doc 语句
+##### @doc statement
 
-@doc 语句是对单个路由的 meta 信息描述，一般为 key-value 值，可以传递给 goctl 及其插件来进行扩展生成，其 EBNF 表示为：
+The @doc statement is a meta information description for a single route, generally key-value and can be passed to goctl and its plugins for extension generation, EBNF representation is：
 
 ```go
 AtDocStmt        = AtDocLiteralStmt | AtDocGroupStmt .
@@ -585,39 +585,39 @@ AtDocKVExpr      = AtServerKeyLit  interpreted_string_lit .
 AtServerKeyLit   = identifier ":" .
 ```
 
-@doc 写法示例：
+@doc Example writing：
 
 ```go
-// 单行 @doc
+// doc doc
 @doc "foo"
 
-// 空 @doc 组
+// empty @doc group
 @doc ()
 
-// 有内容的 @doc 组
+// @doc group with content
 @doc (
     foo: "bar"
     bar: "baz"
 )
 ```
 
-##### @handler 语句
+##### @handler statement
 
-@handler 语句是对单个路由的 handler 信息控制，主要用于生成 golang http.HandleFunc 的实现转换方法，其 EBNF 表示为：
+@handler is handler information control over a single route, mainly used to generate golang http.HandleFunc, its EBNF expressed as：
 
 ```go
 AtHandlerStmt = "@handler" identifier .
 ```
 
-@handler 写法示例：
+@handler writing sample：
 
 ```go
 @handler foo
 ```
 
-##### 路由语句
+##### Routing statement
 
-路由语句是对单此 HTTP 请求的具体描述，包括请求方法，请求路径，请求体，响应体信息，其 EBNF 表示为：
+Routing statements are a specific description of this single HTTP request, including request method, request path, request, response body, EBNF representation as：
 
 ```go
 RouteStmt = Method PathExpr [ BodyStmt ] [ "returns" ] [ BodyStmt ].
@@ -627,32 +627,32 @@ PathExpr  = "/" identifier { ( "-" identifier ) | ( ":" identifier) } .
 BodyStmt  = "(" identifier ")" .
 ```
 
-路由语句写法示例：
+Router statement writing sample：
 
 ```go
-// 没有请求体和响应体的写法
+// There is no request and response policy
 get /ping
 
-// 只有请求体的写法
+// / only the requesting body
 get /foo (foo)
 
-// 只有响应体的写法
+// Only the responding body
 post /foo returns (foo)
 
-// 有请求体和响应体的写法
+// The request and response body
 post /foo (foo) returns (bar)
 ```
 
-service 写法示例
+Sample service writing
 
 ```go
-// 带 @server 的写法
+// with syntax @server
 @server (
     prefix: /v1
     group: Login
 )
 service user {
-    @doc "登录"
+    @doc "login example"
     @handler login
     post /user/login (LoginReq) returns (LoginResp)
 
@@ -664,7 +664,7 @@ service user {
     middleware: AuthInterceptor
 )
 service user {
-    @doc "登录"
+    @doc "login example"
     @handler login
     post /user/login (LoginReq) returns (LoginResp)
 
@@ -673,9 +673,9 @@ service user {
 }
 
 
-// 不带 @server 的写法
+// without syntax @server
 service user {
-    @doc "登录"
+    @doc "login example"
     @handler login
     post /user/login (LoginReq) returns (LoginResp)
 
@@ -684,10 +684,10 @@ service user {
 }
 ```
 
-:::note 温馨提示
-完整的 api 语法示例可参考 <a href="/docs/reference" target="_blank">《API 定义完整示例》</a>
+:::note Tips
+The full api syntax example can be referenced <a href="/docs/reference" target="_blank">Full Example of API Definitions</a>
 :::
 
-## 参考文献
+## References
 
-[抽象语法树-维基百科](https://zh.m.wikipedia.org/zh-cn/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9) [ASTs - What are they and how to use them](https://www.twilio.com/blog/abstract-syntax-trees)
+[ Wikipedia AST ](https://zh.m.wikipedia.org/zh-cn/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9) [ What are they and how to use them](https://www.twilio.com/blog/abstract-syntax-trees)

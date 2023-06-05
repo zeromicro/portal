@@ -5,7 +5,7 @@ slug: /docs/tutorials/message-queue/kafka
 
 ## go-queue 之 kq（kafka）
 
-消息队列对于大型微服务系统是必不可少的，主要是用来解决削峰、降低服务之间的耦合度以及异步能力。
+Message queues are essential for large microservice systems, mainly to address peaks, reduce coupling between services and asynchronous capabilities.
 
 go-queue 在 segmentio/kafka-go 这个包基础上，使用 go-zero 进行了上层统一封装，让开发人员更容易上手，将更多时间聚焦在开发业务上。https://github.com/zeromicro/go-queue
 
@@ -28,37 +28,37 @@ type KqConf struct {
 }
 ```
 
-- Brokers: kafka 的多个 Broker 节点
+- Brokers: kafka multiple Broker nodes
 
-- Group：消费者组
+- Group：Consumer Group
 
-- Topic：订阅的 Topic 主题
+- Topic: The subscribed topic
 
-- Offset：如果新的 topic kafka 没有对应的 offset 信息,或者当前的 offset 无效了(历史数据被删除),那么需要指定从头(`first`)消费还是从尾(`last`)部消费
+- Offset：if the new topic kafka has no offset information or the current offset is invalid (history data is deleted), you need to specify whether to consume from scratch (`first`) or from end(`last`)
 
-- Conns: 一个 kafka queue 对应可对应多个 consumer，Conns 对应 kafka queue 数量，可以同时初始化多个 kafka queue，默认只启动一个
+- Conns: A kafka queue counterpart can correspond to multiple consumers, Connecs to the number of kafka queue and can be initialized multiple kafka queue, only one by default
 
-- Consumers : go-queue 内部是起多个 goroutine 从 kafka 中获取信息写入进程内的 channel，这个参数是控制此处的 goroutine 数量（⚠️ 并不是真正消费时的并发 goroutine 数量）
+- Consumers: go-queue internal is a channel in which multiple goroutine obtains information from kafka into the writing process that controls the number of goroutine here (⚠️ not the amount of concentrates on real consumption)
 
-- Processors: 当 Consumers 中的多个 goroutine 将 kafka 消息拉取到进程内部的 channel 后，我们要真正消费消息写入我们自己逻辑，go-queue 内部通过此参数控制当前消费的并发 goroutine 数量
+- Processors: When multiple goroutine among Consumers pulled kafka messages to channels within the process, we write the true consumption message into our own logic, using this parameter to control the amount of congeners currently consumed by the go-queue.
 
-- MinBytes: fetch 一次返回的最小字节数,如果不够这个字节数就等待.
+- MinBytes: the minimum number of bytes returned at a time, if this number is not enough.
 
-- MaxBytes: fetch 一次返回的最大字节数,如果第一条消息的大小超过了这个限制仍然会继续拉取保证 consumer 的正常运行.因此并不是一个绝对的配置,消息的大小还需要受到 broker 的`message.max.bytes`限制,以及 topic 的`max.message.bytes`的限制
+- MaxBytes: the maximum number of bytes returned at a time. If the first message exceeds this limit, it will continue to pull the guaranteed consumer running. So it is not an absolute configuration, the message size also needs to be covered by the broker's`message.max.bytes`limit, and the top`max.message.bytes`
 
-- Username: kafka 的账号
+- Username: kafka account
 
-- Password：kafka 的密码
+- Password：kafka password
 
-### 1.2 go-zero 中使用 go-queue 生产者 pusher
+### 1.2 Use go-queue Producer Pusher in go-Zero
 
-项目中首先要拉取 go-queue 的依赖
+First pull go-queue dependencies in the project
 
 ```shell
 $ go get github.com/zeromicro/go-queue@latest
 ```
 
-在 etc/xxx.yaml 配置文件中添加当前的 kafka 配置信息
+Add current kafka configuration information to the etc/xxx.yaml configuration file
 
 ```yaml
 Name: mq
@@ -73,7 +73,7 @@ KqPusherConf:
   Topic: payment-success
 ```
 
-在 internal/config 下的 config.go 中定义 go 映射的配置
+Define configuration of go mapping in config.go under internal/config
 
 ```go
 type Config struct {
@@ -85,7 +85,7 @@ type Config struct {
 }
 ```
 
-在 svc/serviceContext.go 中初始化 pusher 的 kq client
+Initialize a kq client in svc/serviceContext.go
 
 ```go
 type ServiceContext struct {
@@ -103,7 +103,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 }
 ```
 
-在 logic 中写业务逻辑使用 go-queue 的 kq client 发送消息到 kafka
+Write business logic in logic, using kq client of go-queue to send messages to kafka
 
 ```go
 .......
@@ -120,20 +120,20 @@ func (l *PusherLogic) Pusher() error {
 }
 ```
 
-另外，我们在 svc/serviceContext.go 中初始化 pusher 的 kq client 时候，我们可以传递一些可选参数，kq.NewPusher 第三个参数是 options，就是支持传递的可选参数
+Also, when we initialize a kq client in svc/serviceContext.go we can pass some optional parameters, kq.NewPusher is a third argument that supports passages
 
-- chunkSize : 由于效率问题，kq client 是批量提交，批量消息体达到此大小才会提交给 kafka。
-- flushInterval：间隔多久提交一次。即使未达到 chunkSize 但是达到了这个间隔时间也会向 kafka 提交
+- chunkSize : Due to efficiency problems, kq customers are mass submissions and bulk messages reach this size before they are submitted to kafka.
+- flushInterval: How often is flushInterva is submitted.This interval will be submitted to kafka even if the chunkSize is not reached
 
-### 1.3 go-zero 中使用 go-queue 消费者 consumer
+### 1.3 Use go-queue consumer consumer in go-zero
 
-项目中首先要拉取 go-queue 的依赖
+First pull go-queue dependencies in project
 
 ```shell
 $ go get github.com/zeromicro/go-queue@latest
 ```
 
-在 etc/xxx.yaml 配置文件中添加当前的 kafka 配置信息
+Add current kafka configuration information to the etc/xxx.yaml configuration file
 
 ```yaml
 Name: mq
@@ -152,7 +152,7 @@ KqConsumerConf:
   Processors: 8
 ```
 
-在 internal/config 下的 config.go 中定义 go 映射的配置
+Define configuration of go mapping in config.go under internal/config
 
 ```go
 package config
@@ -169,9 +169,9 @@ type Config struct {
 }
 ```
 
-在 internal 下新建一个 mqs 文件夹
+Create a mqs folder under internal
 
-在 mqs 文件夹下新建一个 paymentSuccess 消费者 paymentSuccess.go
+Create a new paymentSuccess Consumer paymentSuccess.gounder the mqs folder
 
 ```go
 package mqs
@@ -200,7 +200,7 @@ func (l *PaymentSuccess) Consume(key, val string) error {
 }
 ```
 
-在 mqs 文件夹下新建一个文件 mqs.go 用来监听多个消费者,mqs.go 代码如下
+Create a new file mqs.go under the mqs folder to listen to multiple consumers, mqs.go
 
 ```go
 package mqs
@@ -225,7 +225,7 @@ func Consumers(c config.Config, ctx context.Context, svcContext *svc.ServiceCont
 }
 ```
 
-在 main.go 中启动 consumers 等待消费
+Start consumption waiting for consumption in main.go
 
 ```go
 package main
@@ -266,9 +266,9 @@ func main() {
 }
 ```
 
-当然，consumer 中在 mqs.go 中 kq.MustNewQueue 初始化时候点个参数也是可选参数
+Of course, point arguments in consumer are optional when initializing kq.MustNewQueue in mqs.go
 
-- commitInterval : 提交给 kafka broker 间隔时间，默认是 1s
-- queueCapacity：kafka 内部队列长度
-- maxWait：从 kafka 批量获取数据时，等待新数据到来的最大时间。
-- metrics：上报消费每个消息消费时间，默认会内部初始化，一般也不需要指定
+- commitInterval: Commit to kafka broker interval, default is 1s
+- queueCapacity：kafka internal queue length
+- maxWait：Max time to wait for new data when fetches data from kafka bulks.
+- metrics：report consumption time per message, default will initialize internally, and usually no need to specify

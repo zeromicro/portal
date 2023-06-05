@@ -12,10 +12,10 @@ import AppWizard from '@components/page/intro/AppWizard';
 import Customers from "@components/global/Customers"
 
 <head>
-  <title>go-zero 缩短从需求到上线的距离</title>
+  <title>go-zero shorten the distance from demand to offline</title>
   <meta
     name="description"
-    content="go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。"
+    content="go-zero is a web and rpc framework that integrates various engineering practices.Flexible design guarantees stability at the same end and undergoes a full operational test."
   />
   <link rel="canonical" href="https://go-zero.dev" />
   <link rel="alternate" href="https://go-zero.dev" hreflang="x-default" />
@@ -23,21 +23,21 @@ import Customers from "@components/global/Customers"
   <meta property="og:url" content="https://go-zero.dev" />
 </head>
 
-go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。
+go-zero is a web and rpc framework that integrates various engineering practices.Flexible design guarantees stability at the same end and undergoes a full operational test.
 
 <intro-end />
 
 <DocsCard
   className="cordova-ee-card"
-  header="缩短从需求到上线的距离"
+  header="go-zero shorten the distance from demand to offline"
   href="/docs/tasks"
 >
   <div>
     <img src="/logos/logo.svg" class="cordova-ee-img" />
     <p>
-      go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 api 文件一键生成 Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript 代码，并可直接运行。
+      go-zero contains very simple API definitions and generation tools goctl. Can generate Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript code based on defined api files and can be run directly.
     </p>
-    <DocsButton className="native-ee-detail">开始教程</DocsButton>
+    <DocsButton className="native-ee-detail">Start tutorial</DocsButton>
   </div>
 </DocsCard>
 
@@ -46,36 +46,36 @@ go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹�
 <DocsCards>
 
 <DocsCard
-  header="框架指南"
+  header="Get Started"
   href="/docs/tutorials"
   icon="/icons/guide-tutorial-icon.svg"
   hoverIcon="/icons/guide-tutorial-icon-hover.svg"
 >
-  <p>这里拥有比基础任务更高级和全面的用法</p>
+  <p>Here's more advanced and comprehensive usage than basic tasks</p>
 </DocsCard>
 
 <DocsCard
-  header="框架组件"
+  header="Components"
   href="/docs/components"
   icon="/icons/guide-components-icon.svg"
   hoverIcon="/icons/guide-components-icon-hover.svg"
 >
-  <p>框架组件更深层次了解框架工作原理</p>
+  <p>A deeper understanding of how the framework works</p>
 </DocsCard>
 
 </DocsCards>
 
-## 架构图
+## Architecture
 ![arch](/img/index/arch-cn.svg)
 
-## 框架设计
-轻松获得支撑千万日活服务的稳定性，内建级联超时控制、限流、自适应熔断、自适应降载等微服务治理能力，无需配置和额外代码，微服务治理中间件可无缝集成到其它现有框架使用，极简的 API 描述，一键生成各端代码，自动校验客户端请求参数合法性，大量微服务治理和并发工具包。
+## Framework design
+Easy access to stability to support tens of millions of days of living services, end-to-timeout controls, limited flow, adaptive smelting, adaptive downloading capabilities such as microservices without configuration and extra code. Micro-service governance middleware can be seamlessly integrated into other existing frameworks, abbreviated API descriptions, one-click generation of end codes, auto-calibration of client requests parameters and a large number of microservice governance and parallel toolkits.
 
-## 框架特点
-强大的工具支持，尽可能少的代码编写，极简的接口，完全兼容 net/http，支持中间件，方便扩展，高性能，面向故障编程，弹性设计，内建服务发现、负载均衡，内建限流、熔断、降载，且自动触发，自动恢复，API 参数自动校验，超时级联控制，自动缓存控制，链路跟踪、统计报警等，高并发支撑，稳定保障了疫情期间每天的流量洪峰。
+## Framework Features
+Powerful tool support, minimum code writing, very simple interfaces, fully compatible net/http, supports intermediaries, easy expansion, high performance, troubleshooting, adaptive design, internal service discovery, load balance, internal build limit flow, melting, downloading and automatic trigger, automatic recovery, API parameter auto, timebound control, auto-cache control, link tracking, statistical alert, etc., high and supported in order to stabilize daily flow peaks during the epidemic.
 
-## 代码自动生成
-go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 api 文件一键生成 Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript 代码，并可直接运行。
+## Code Autogenerate
+go-zero contains very simple API definitions and generation tools goctl. Can generate Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript code based on defined api files and can be run directly.
 
 ```bash
 goctl -h
@@ -110,6 +110,6 @@ Flags:
 Use "goctl [command] --help" for more information about a command.
 ```
 
-## 用户列表
+## Users
 
 <Customers nbElements={6} />

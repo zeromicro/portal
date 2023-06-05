@@ -3,9 +3,9 @@ title: Monitoring
 slug: /docs/tutorials/monitor/index
 ---
 
-## 健康检查
+## Health Check
 
-go-zero 启动的服务（RPC Server 或 HTTP Server）默认集成健康检查，健康检查默认端口为`6470`，默认 Path 为`/healthz`，服务启动后访问健康检查地址会返回`OK`
+Default integrated health check for go-zero enabled service (RPC Server or HTTP Server). The default health check port is`6470`default Path is`/healthz`and access to health check address will return on service startup`OK`
 
 ```shell
 curl -i http://127.0.0.1:6470/healthz
@@ -17,7 +17,7 @@ Content-Type: text/plain; charset=utf-8
 OK
 ```
 
-禁用健康检查配置如下：
+Disable health check configuration below：
 
 ```go
 srv := rest.MustNewServer(rest.RestConf{
@@ -30,7 +30,7 @@ srv := rest.MustNewServer(rest.RestConf{
 })
 ```
 
-对应配置开启:
+Configuration turned on:
 ```yaml
 Name: user-api
 Host: 0.0.0.0
@@ -43,7 +43,7 @@ DevServer:
 ```
 
 
-可以通过配置修改健康检查端口和 Path，比如把健康检查端口和 Path 修改为`8080`和`ping`
+You can modify your health check ports and Path by configuring to `8080` and `ping`
 
 ```go
 srv := rest.MustNewServer(rest.RestConf{
@@ -58,7 +58,7 @@ srv := rest.MustNewServer(rest.RestConf{
 })
 ```
 
-对应配置开启:
+Configuration turned on:
 ```yaml
 Name: user-api
 Host: 0.0.0.0
@@ -72,11 +72,11 @@ DevServer:
 ```
 
 
-## 日志收集
+## Log collection
 
-## 链路追踪
+## Link Tracking
 
-go-zero 中基于[OpenTelemetry](https://opentelemetry.io/docs/)集成了链路追踪，配置如下：
+go-zero integrated link tracking based on[OpenTelemetry](https://opentelemetry.io/docs/)configured below：
 
 ```go
 type Config struct {
@@ -88,7 +88,7 @@ type Config struct {
 ```
 
 
-go-zero链路追踪支持(jaeger\zipkin)只需要在配置中添加几行配置就可开启，无需修改任何代码，示例如下：
+go-zero link tracking support (Jaeger\zipkin) can only be enabled by adding a few lines to the configuration. No code needs to be modified. Example：
 
 1）api配置
 
@@ -99,7 +99,6 @@ Port: 8002
 Mode: dev
 ......
 
-#链路追踪
 Telemetry:
   Name: user-api
   Endpoint: http://jaeger:14268/api/traces
@@ -107,7 +106,7 @@ Telemetry:
   Batcher: jaeger
 ```
 
-2）rpc配置
+2) rpc configuration
 
 ```yaml
 Name: user-rpc
@@ -116,7 +115,6 @@ Mode: dev
 
 .....
 
-#链路追踪
 Telemetry:
   Name: user-rpc
   Endpoint: http://jaeger:14268/api/traces
@@ -125,11 +123,11 @@ Telemetry:
 ```
 
 
-更多详细示例请参考 [tracing 示例](https://github.com/zeromicro/zero-examples/tree/main/tracing)
+For more examples, refer to [tracing Examples](https://github.com/zeromicro/zero-examples/tree/main/tracing)
 
-## 指标监控
+## Merics monitoring
 
-go-zero 中 prometheus 指标默认启动收集，默认端口为`6470`，默认 Path 为`/metrics`，启动服务后访问指标监控地址如下：
+The prometheus indicator in go-zero will be collected by default, with the default port `6470` and the default Path will be `/metrics`, after starting the service indicator monitoring address below：
 
 ```go
 $ curl http://127.0.0.1:6470/metrics
@@ -147,7 +145,7 @@ go_gc_duration_seconds_count 1
 go_goroutines 12
 ```
 
-通过 EnableMetrics 禁用指标监控，通过 MetricsPath 修改指标监控 Path，如下：
+Monitor Path with EnableMetrics disabled; change the indicator by MetricsPath below：
 
 ```go
 srv := rest.MustNewServer(rest.RestConf{
@@ -163,49 +161,48 @@ srv := rest.MustNewServer(rest.RestConf{
 })
 ```
 
-go-zero 默认集成的 prometheus 指标如下：
+Prometheus indicators for go-zero default integration are below：
 
 ### RPC Server
 
-|                 指标名                 |    Label    |         说明          |
-|:-----------------------------------:|:-----------:|:-------------------:|
-| rpc_server_requests_duration_ms |   method    | Histogram，耗时统计单位为毫秒 |
-| rpc_server_requests_code_total  | method、code |    Counter，错误码统计    |
+|             Metric name             |    Label    |                       Description                       |
+|:-----------------------------------:|:-----------:|:-------------------------------------------------------:|
+| rpc_server_requests_duration_ms |   method    | Histogram, time-consuming statistical unit milliseconds |
+| rpc_server_requests_code_total  | method、code |             Counter, Error Code Statistics              |
 
 ### RPC Client
 
-|                 指标名                 |    Label    |         说明          |
-|:-----------------------------------:|:-----------:|:-------------------:|
-| rpc_client_requests_duration_ms |   method    | Histogram，耗时统计单位为毫秒 |
-| rpc_client_requests_code_total  | method、code |    Counter，错误码统计    |
+|             Metric name             |    Label    |                       Description                       |
+|:-----------------------------------:|:-----------:|:-------------------------------------------------------:|
+| rpc_client_requests_duration_ms |   method    | Histogram, time-consuming statistical unit milliseconds |
+| rpc_client_requests_code_total  | method、code |             Counter, Error Code Statistics              |
 
 ### HTTP Server
 
-|                 指标名                  |   Label   |         说明          |
-|:------------------------------------:|:---------:|:-------------------:|
-| http_server_requests_duration_ms |   path    | Histogram，耗时统计单位为毫秒 |
-| http_server_requests_code_total  | path、code |    Counter，错误码统计    |
+|             Metric name              |   Label   |                       Description                       |
+|:------------------------------------:|:---------:|:-------------------------------------------------------:|
+| http_server_requests_duration_ms |   path    | Histogram, time-consuming statistical unit milliseconds |
+| http_server_requests_code_total  | path、code |             Counter, Error Code Statistics              |
 
 ### Mysql
 
-|                 指标名                 |     Label     |         说明          |
-|:-----------------------------------:|:-------------:|:-------------------:|
-| sql_client_requests_duration_ms |    command    | Histogram，耗时统计单位为毫秒 |
-| sql_client_requests_error_total | command、error |    Counter，错误统计     |
+|             Metric name             |     Label     |                       Description                       |
+|:-----------------------------------:|:-------------:|:-------------------------------------------------------:|
+| sql_client_requests_duration_ms |    command    | Histogram, time-consuming statistical unit milliseconds |
+| sql_client_requests_error_total | command、error |             Counter, Error Code Statistics              |
 
 ### Redis
 
-| 指标名                                   | Label         | 说明                  |
-| ------------------------------------- | ------------- | ------------------- |
-| redis_client_requests_duration_ms | command       | Histogram，耗时统计单位为毫秒 |
-| redis_client_requests_error_total | command、error | Counter，错误统计        |
+| Metric name                           | Label         | Description                                             |
+| ------------------------------------- | ------------- | ------------------------------------------------------- |
+| redis_client_requests_duration_ms | command       | Histogram, time-consuming statistical unit milliseconds |
+| redis_client_requests_error_total | command、error | Counter, Error Code Statistics                          |
 
-### 自定义监控指标
+### Custom monitoring metrics
 
-在包 `go-zero/core/metric` 下提供了 Histogram、Counter、Gauge 三种 prometheus 指标数据类型，用户可以使用该包下提供的方法自定义业务指标，如使用 Counter 来统计用户访问某一资源的总数，定义如下：
+In the package `go-zero/core/metric` the type of data for the Histograms, Counter, Gauge adequate prometheus indicator is available. Users can customize business indicators using the method provided under this package, such as using Counters to measure the total number of users accessing a resource, defined below：
 
 ```go
-// 定义Counter
 userVisitResourceTotal = metric.NewCounterVec(&metric.CounterVecOpts{
     Namespace: "user",
     Subsystem: "visit_resource",
@@ -214,6 +211,5 @@ userVisitResourceTotal = metric.NewCounterVec(&metric.CounterVecOpts{
     Labels:    []string{"user_id", "resource_id"},
 })
 
-// 用户每次访问资源通过如下方法增加计数
 userVisitResourceTotal.Inc("userId", "resourceId")
 ```

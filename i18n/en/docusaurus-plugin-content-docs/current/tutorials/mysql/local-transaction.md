@@ -1,11 +1,11 @@
 ---
-title: 本地事务
-sidebar_label: 本地事务
+title: Local transaction
+sidebar_label: Local transaction
 slug: /docs/tutorials/mysql/local/transaction
 ---
 
 ## Overview
-sqlx.SqlConn 提供了基础的事务机制，简单实例：
+sqlx.SqlConn provides the basic service mechanism, simple instance：
 ```go
     var conn sqlx.SqlConn
     err := conn.TransactCtx(context.Background(), func(ctx context.Context, session sqlx.Session) error {

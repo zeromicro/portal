@@ -1,56 +1,56 @@
 ---
-title: 负载均衡
+title: Load Balancing
 slug: /docs/tutorials/service/governance/lb
 ---
 
 ## Overview
 
-负载均衡（Load Balancing）是一种用于分布式系统中的技术，通过均衡系统中不同节点的工作负载，来提高系统的性能和可靠性。在计算机科学领域中，负载均衡已经成为一种不可或缺的技术，特别是在互联网应用程序和数据中心环境中，其应用更是广泛。
+Load Balancing is a technology used in distributed systems that enhances the system's performance and reliability by balancing the workloads of different nodes in the system.In the field of computer science, the load balance has become an indispensable technology, especially in the context of Internet applications and data centres, and its application has become more widespread.
 
-在传统的计算机系统中，一个应用程序通常只运行在单个计算机上。但是，随着计算机技术的不断发展，人们开始采用分布式系统，将应用程序运行在多个计算机上，以提高系统的可扩展性和可靠性。然而，由于系统中各个节点之间的处理能力和负载可能会出现不均衡的情况，导致系统整体性能下降。为了解决这个问题，负载均衡技术应运而生。
+In traditional computer systems, an application usually operates only on a single computer.However, as computer technology continues to evolve, distributed systems have been introduced whereby applications are operated on multiple computers in order to improve the system's outreach and reliability.However, the overall performance of the system is reduced because of the potential imbalance in processing capacity and load between the various nodes in the system.In order to address this problem, the burden balancing technology has emerged.
 
-负载均衡可以将请求分发给系统中的不同节点，从而平衡各节点的工作负载。这可以通过不同的算法来实现。例如，基于轮询的算法将请求依次分发给每个节点，而基于权重的算法则会给具有更高权重的节点分配更多的请求。还有一些更复杂的算法，例如基于反馈的负载均衡算法，根据节点的实际工作情况调整负载均衡策略。
+Load balance allows requests to be distributed to different nodes in the system, thus balancing the workloads of nodes.This can be done through different algorithms.For example, an algorithm based on a query distributes requests sequentially to each node, while weight-based algorithms give more requests to nodes with higher weights.There are also more complex algorithms, such as payload balancing methods based on feedback, which adjust the load balance strategy to the actual performance of nodes.
 
-## 常见算法
+## Common Algorithm
 
-负载均衡是分布式系统中的重要技术，可以将请求分发给系统中的不同节点，从而平衡各节点的工作负载，提高系统的性能和可靠性。下面介绍几种常见的负载均衡算法及其实现。
+Load equilibrium is an important technology in distributed systems that allows requests to be circulated to different nodes in the system, thus balancing the workloads and improving the performance and reliability of the system.The following is a description of the common load balance method and its achievement.
 
-### 基于轮询的负载均衡算法
+### Load equilibrium algorithms based on polls
 
-基于轮询的负载均衡算法是一种简单的负载均衡算法，将请求依次分发给每个节点，循环重复这个过程。这种算法适用于系统中的节点处理能力相同的情况，但是在实际应用中，由于节点的处理能力可能不同，所以需要进行改进。
+The load-balancing method based on the query is a simple payload balancing method that circulates requests sequentially to each node and repeats the process.This algorithm applies to situations where nodes in the system have the same processing capacity, but in practice improvements are needed as nodes may have different processing capabilities.
 
-### 基于权重的负载均衡算法
+### Weight based load balance algorithm
 
-基于权重的负载均衡算法是一种考虑节点处理能力的算法，将请求分配给具有更高权重的节点。权重可以根据节点的处理能力进行设置。例如，处理能力更强的节点可以设置更高的权重，从而处理更多的请求。
+The weight-based load balancing method is an algorithm that takes into account the ability of nodes to process and assigns requests to nodes with higher weight.The weight can be set according to the processing capacity of the node.For example, more capable nodes can handle more requests by setting a higher weight.
 
-### 基于最少连接数的负载均衡算法
+### Load equilibrium algorithm based on minimum connections
 
-基于最少连接数的负载均衡算法是一种考虑节点负载情况的算法，将请求分配给连接数最少的节点。这种算法适用于连接时间较长的应用场景，因为连接时间较长的节点可能会影响其他节点的连接数。
+Load Balancers, based on minimum connections, are an algorithm that takes into account the load of nodes and assigns requests to the least connected node.This algorithm is applicable to applications scenes with longer connections, as the peers with longer connections may affect the number of connections to other nodes.
 
 
-### 基于IP散列的负载均衡算法
-基于IP散列的负载均衡算法是一种根据请求的源IP地址进行分配的算法。它将请求的源IP地址进行散列，然后根据散列结果将请求分配给相应的节点。这种算法可以确保来自同一IP地址的请求被分配到同一节点上，从而保持会话的一致性。
+### Load equilibrium algorithm based on IP hash
+The payload balance based on IP hash is an algorithm for distribution based on the requested source IP address.It hash the requested source IP address and assign the request to the corresponding node based on hash results.This algorithm ensures that requests from the same IP address are assigned to the same node, thereby maintaining consistency in the session.
 
 ### P2C（Power of Two Choices）
-P2C（Power of Two Choices）算法是一种基于随机化的负载均衡算法，由Jeff Dean和Luiz Andre Barroso在2001年提出。
+The P2C (Power of Two Choices) algorithm, a randomized load balancing method, was proposed by Jeff Dean and Luiz Andre Barroso in 2001.
 
-P2C算法是一种改进的随机算法，它可以避免最劣选择和负载不均衡的情况。P2C算法的核心思想是：从所有可用节点中随机选择两个节点，然后根据这两个节点的负载情况选择一个负载较小的节点。这样做的好处在于，如果只随机选择一个节点，可能会选择到负载较高的节点，从而导致负载不均衡；而选择两个节点，则可以进行比较，从而避免最劣选择。
+The P2C algorithm is an improved random algorithm that avoids the worst selection and load imbalances.The core idea of the P2C algorithm is：to select two nodes randomly from all available nodes and then select a less loaded node based on the load of these two nodes.The advantage of doing so is that if only one node is randomly selected, it may be selected to higher load nodes, leading to a load imbalance, while two nodes can be compared to avoid the worst selection.
 
-具体来说，P2C算法的实现步骤如下：
+Specifically, the P2C algorithm implements the following：
 
-1. 将所有可用节点按照负载大小排序，从小到大排列。
-2. 随机选择两个节点。
-3. 选择两个节点中负载较小的节点，作为负载均衡器选择的节点。 P2C算法的优点在于，它可以在保证负载均衡的前提下，选择负载更小的节点，从而提高系统的性能和可靠性。此外，P2C算法的实现简单，不需要太多的计算和存储资源，因此在实际应用中被广泛采用。
+1. Sort all available nodes by load size, from small to size.
+2. Select two nodes randomly.
+3. Select the less loaded nodes in two nodes as the nodes selected by the load balancer. The advantage of the P2C algorithm is that it can increase the performance and reliability of the system by selecting smaller nodes with a guaranteed load balance.In addition, the simple implementation of the P2C algorithm does not require much computing and storing resources and is therefore widely used in practical applications.
 
-***小结***
+***Summary***
 
-这些负载均衡算法都有各自的优缺点，在实际应用中需要根据具体场景选择合适的算法。此外，负载均衡的实现可以采用硬件负载均衡器、软件负载均衡器或DNS负载均衡器等不同的方式。其中，硬件负载均衡器具有高性能、可靠性和灵活性等优点，但是成本较高；软件负载均衡器则具有灵活性和可定制性等优点，但是性能可能较低；DNS负载均衡器则可以根据域名解析将请求分配到不同的节点上，但是可能存在DNS缓存的问题。
+These load balances have their respective advantages and disadvantages and require the selection of appropriate algorithms in practical applications based on specific scenarios.In addition, the achievement of the load balance can be achieved in different ways such as hardware load balancers, software load balancers or DNS load balancers.Among them, the hardware load balancers have the advantages of high performance, reliability and flexibility, but they are costly; the software load balancers have the advantages of flexibility and customizability, but performance may be low; the DNS load balancer can assign requests to different nodes based on domain name resolution, but there may be problems with DNS cache.
 
 
-## 应用
+## Practise
 
-在 go-zero 中，负载均衡算法主要应用在 gRPC 的客户端，用于将请求分发给不同的 gRPC 服务端，采用的是 P2C 算法。 详情见 <a href="https://github.com/zeromicro/go-zero/blob/master/zrpc/internal/balancer/p2c/p2c.go" target="_blank">p2c.go</a>
+In go-zero, the load balance method is mainly applied to the client of the gRPC and is used to distribute requests to different gRPC servers, using P2C algorithms. See <a href="https://github.com/zeromicro/go-zero/blob/master/zrpc/internal/balancer/p2c/p2c.go" target="_blank">p2c.go for more information</a>
 
-## 参考文献
+## References
 
-- <a href="https://github.com/zeromicro/go-zero/blob/master/zrpc/internal/balancer/p2c/p2c.go" target="_blank">《go-zero • p2c》</a>
+- <a href="https://github.com/zeromicro/go-zero/blob/master/zrpc/internal/balancer/p2c/p2c.go" target="_blank">go-zero • p2c</a>

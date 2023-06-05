@@ -6,15 +6,15 @@ slug: /docs/tutorials/ops/k8s
 
 import { Image } from '@arco-design/web-react';
 
-## 1、概述
+## 1. Overview
 
-之前部署环境一节我们已经把 gitlab、jenkins、harbor、k8s 都已经搭建好了，这一节我们来编写 jenkins 的 pipline 将我们的服务通过 jenkins 完整的发布到 k8s 中。
+Previously, the deployment environment section had already been set up to make gitlab, jenkins, harbor, k8s, and we'll write jenkin's pipline to publish our services fully into k8s through jenkins.
 
-## 2、部署中间件
+## 2. Middlewares Deployment
 
-将 mysql、redis、es 等部署到 k8s 之外 ， 模拟用作线上独立环境（至于线上你想把某些中间件部署到 k8s 内部这个自行处理，本次重点是如何将 go-zero 开发的微服务部署到 k8s 集群内部），这里我就直接使用项目下的 docker-compose-env.yaml 了，把所有依赖的第三方中间件环境直接安装在 srv-data.com(192.168.1.181)这台服务器，前提是这台服务器已经安装好 docker、docker-compose。
+Deploy mysql, redis, es and others outside the k8s, simulate online independent environments (you want to deploy some middleware inside the k8s self-handling, this time focus on how to deploy the microservices developed by go-zero into the k8s cluster). Here I am using the docker-compose-env.yaml of the project and installing all the dependent third-party intermediate environments directly on the srv-data.com (192.168.1.181) server, provided the server is docker, dock-compose.
 
-登陆到 192.168.1.181
+Login to 192.168.1.181
 
 ```shell
 $ mkdir data && cd data && vim docker-compose.yml
@@ -22,35 +22,35 @@ $ docker-compose up -d
 $ docker-compose ps #查看确认
 ```
 
-## 3、独立配置
+## 3. Independent configuration
 
-将每个服务的配置都独立出来，统一放在一个 git 仓库，这样只给一个人线上仓库的权限，如果线上配置有变直接修改这个仓库的文件，在 jenkins 做 cd 的时候，会先拉取代码在拉取对应服务的配置自动构建，具体可以看后面的 pipline。
+Put the configuration of each service independently and uniformly in a git warehouse, so that only one person can be given permission to change the files in this repository directly. When jenkins do cd, you will first pull the code to automatically build the configuration of the corresponding service and see the following pipline.
 
-【问】为什么不用配置中心？
+Why not configure center?
 
-1）修改 db、redis 等需要重启服务，但是有一些配置又不需要重启服务，运维有要去记，记混了比较容易造成线上事故
+1) Modification of db, redis and so forth requires restart of services, but some configuration does not require reboot of service, the shipping dimension has a record of which is more likely to cause online accidents.
 
-2）方便回滚。我们发新版本到线上，并且又改了新版本配置。这时候线上用户反馈有问题，线上需要快速回滚的话，如果我们使用将文件构建到镜像中，直接使用 k8s 一行命令就可以将上一个版本代码加配置直接回滚回来。如果使用了配置中心，回滚了代码，还要将上个版本的配置去陪中心改回来很麻烦，
+2) Easy to roll back.We found a new version online, and we changed the new version configuration.This is a time when there is a problem with online user feedback. If we build files into a mirror, you can roll back the previous version plus configuration directly using the k8s line command.If the configuration center is used, the code is rolled back, and the previous version will be reconfigured to escort the center back
 
-独立线上仓库目录结构如下（这个结构是跟 pipline 中写法相关的）
+Independent online repository directory structure is as follows (this structure is related to the writing in pipline)
 
-go-zero 官方 k8s 配置 demo 地址: https://github.com/zeromicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml
+go-zero official k8s configuration demo address: https://github.com/zeroicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml
 
-也可以参考配置仓库地址 ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf
+Also reference is made to configuration repository address ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf
 
-【注】1、修改配置中的中间件，数据库、redis 等都要改成 192.168.1.181 这台机器，我们把这台机器当成线上环境的中间件。
+[NOTE ] 1. Modified Middle,Database, redis etc to change to 192.168.1.181 This machine is used as an intermediate for online environments.
 
-​ 2、另外一个就是我们的服务发现，线上我们部署在 k8s 中，go-zero 直接支持 k8s 服务发现，所以不需要 etcd 等，我们在配置 zrpc client 的时候，要改成 target，k8s 的配置方式。
+2. another is our service discovery that we are deployed online in k8s, go-zero directly supports k8s service discoveries, so letcd is not required. We need to change target,k8s configuration when we configure zrpc customers.
 
-## 4、镜像仓库
+## 4. Mirror Repository
 
-去 harbor 创建本项目镜像仓库
+Go to harbor to create this project's mirror repository
 
 <Image src={require('../../resource/tutorials/ops/image-20220209190928092_new.png').default} alt='image-20220209190928092_new' />
 
 <Image src={require('../../resource/tutorials/ops/image-20220209191633736.png').default} alt='image-20220209191633736' />
 
-查看 push 命令
+View the push command
 
 <Image src={require('../../resource/tutorials/ops/image-20220209191757422.png').default} alt='image-20220209191757422' />
 
@@ -58,29 +58,29 @@ go-zero 官方 k8s 配置 demo 地址: https://github.com/zeromicro/zero-example
 $ docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
 ```
 
-## 5、编写 jenkins 的 pipline
+## 5. Write the pipline of jenkins
 
-### 5.1 配置参数
+### 5.1 Configuration parameters
 
-访问 http://192.168.1.180:8989/ 打开 jenkins，进入 jenkins 首页，点击左侧菜单`新建Item`
+Visit http://192.168.1.1180:8989/ Open jenkins, enter jenkins homepage, click on the left menu `to create an Item`
 
-我们先创建一个服务的流水线
+We first create a service pipeline
 
 <Image src={require('../../resource/tutorials/ops/image-20220209195418130.png').default} alt='image-20220209195418130' />
 
-然后点击“General” , 选择“This project is parameterized” ， "添加参数"，“Choice Parameter”，如下图
+Then click on “General”, select "This project is parameterized", "Add parameter", "Choice Parameter", like the beacon
 
 <Image src={require('../../resource/tutorials/ops/image-20220209195724082.png').default} alt='image-20220209195724082' />
 
-然后编写内容如下
+Then write the following
 
 <Image src={require('../../resource/tutorials/ops/image-20220209195853856.png').default} alt='image-20220209195853856' />
 
-直接保存。
+Save directly.
 
-### 5.2 编写 pipline
+### 5.2 Edit pipline
 
-向下滑动找到`Pipeline script`,填写脚本内容
+Swipe down to find `Pipeline scripts`, fill in script content
 
 ```pipline
 pipeline {
@@ -186,14 +186,14 @@ pipeline {
 }
 ```
 
-:::note 非常重要
-1、构建优化：pipline 中使用"/usr/local/bin/goctl kube xxx"生 k8s yaml 的时候，我们是使用 k8s 方式部署不需要 etcd，但是这种方式部署需要为生成的 k8s yaml 中指定 serviceAccount。 原理可以看这篇文章下方 go-zero 的 k8s 服务发现讲解 ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
+:::note is very important
+when building optimization：pipline is using "/usr/local/bin/goctl kube xxxx" we're deploying using k8s yaml without etcds, but this deployment needs to be specified for the built k8s yaml. The idea is to look at the k8s service in this article below go-zero below ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
 
-我这边已经指定好了 serviceAccount
+I have already specified the serviceAccount
 
-所以你需要在你的 k8s 创建 find-endpoints 这个 serviceAccount 并绑定相应权限，yaml 文件我已经准备好了，你只需要执行
+So you need to create find-endpoints on your k8s, this serviceAccount and bind the corresponding permissions. yaml file I am ready. You just need to do it
 
-kubectl apply -f auth.yaml 即可 ，auth.yaml 文件如下：
+Execute command kubectl apply -f auth.yaml, the auth.yaml file as follows:：
 
 ```yaml
 #创建账号
@@ -230,22 +230,22 @@ subjects:
     namespace: k8scode
 ```
 
-pipline 生成 k8s yaml 的文件可以不需要使用模版方式支持 serviceAccount 可以在生成时候指定 serviceAccount，也就是说 pipline 中可以直接指定-serviceAcount 直接就在生成 k8s 的 yaml 中添加 serviceAccount : find-endpoints，如下命令
+pipline generating k8s yaml files can support serviceAccount without using a template to specify serviceAccount at the time of generation; directly-specify -serviceAcount in pipline and add serviceAccount in the yaml generating k8s
 
 ```shell
 /usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --serviceAccount find-endpoints
 ```
 
-2、${credentialsId}要替换为你的具体凭据值，即【添加凭据】模块中的一串字符串，我们之前配置的是gitlab-cert所以这里就填写gitlab-cert，如果你不是这个自己要更换，${gitUrl}需要替换为你代码的 git 仓库地址，其他的${xxx}形式的变量无需修改，保持原样即可。
+2. ${credentialsId}will replace your specific credentials with a string of strings in the "Add Credit" module, so we've filled in gitlab-cert here. If you are not this own replacement,${gitUrl}needs to be replaced with a git repository address for your code, other variables in${xxx}form need no modification, keeping it as it is.
 
-3、这里跟官方文档有一点点不一样，由于我项目文件夹目录不同，goctl 生成的 dockerfile 文件我手动做了点调整，在一个我不是在构建时候生成的 dockerfile，是在创建项目时候就把 dockerfile 一起放在目录下，这样构建镜像时候不需要 goctl 了
+3. This is a little different from the official document. Since my project folder is different, goctl generated dockerfile files that I adjusted manually because I did not create a dockerfile, when I created the project, placing the dockerfile together in the directory when creating the project, so no goctl was required to build the mirror
 :::
 
-## 6、配置 k8s 拉取私有仓库镜像
+## 6, Configure k8s pull private repository image
 
-k8s 在默认情况下，只能拉取 harbor 镜像仓库的公有镜像，如果拉取私有仓库镜像，则是会报 `ErrImagePull` 和 `ImagePullBackOff` 的错误
+k8s, by default, can only pull a public mirror image of a hole in a repository. If a private repository image is pulled out, it is the error of the drill `ErrImagePull` and `ImagePullBackOff`
 
-1、先在 jenkins 发布机器登陆 harbor
+1. First Jenkins Publish Machine Login harbor
 
 ```shell
 $ docker login 192.168.1.180:8077
@@ -254,7 +254,7 @@ $ Password:
 Login Succeeded
 ```
 
-2、在 k8s 中生成登陆 harbor 配置文件
+2. Generate login harbor profile in k8s
 
 ```shell
 #查看上一步登陆harbor生成的凭证
@@ -267,7 +267,7 @@ $ cat /root/.docker/config.json
 }
 ```
 
-3、对秘钥文件进行 base64 加密
+3. Base64 encryption of key files
 
 ```shell
 $ cat /root/.docker/config.json  | base64 -w 0
@@ -275,7 +275,7 @@ $ cat /root/.docker/config.json  | base64 -w 0
 ewoJImF1dGhzIjogewoJCSIxOTIuMTY4LjEuMTgwOjgwNzciOiB7CgkJCSJhdXRoIjogIllXUnRhVzQ2U0dGeVltOXlNVEl6TkRVPSIKCQl9Cgl9Cn0=
 ```
 
-4、创建 docker-secret.yaml
+4, Create docker-secret.yaml
 
 ```yml
 apiVersion: v1
@@ -293,19 +293,19 @@ $ kubectl create -f docker-secret.yaml -n k8scode
 secret "docker-login" created
 ```
 
-## 7、构建
+## 7. Buildings
 
-我们进入首页，点击”服务名称“进入详情页
+We go into the home page, click on the service name "Go to the details page
 
 <Image src={require('../../resource/tutorials/ops/image-20220209201812134.png').default} alt='image-20220209201812134' />
 
-然后可以看到，上面我们配置好的 identity 服务，如下图 ，点击“Build with Parameters”， 然后选择 rpc,点击“开始构建”
+Then see that we have configured an identity service like the shape, click "Build with Parameters", then select rpc, click "Start Build"
 
 <Image src={require('../../resource/tutorials/ops/image-20220209201927466.png').default} alt='image-20220209201927466' />
 
-【注】第一次构建在拉代码时候都会失败，应该是初始化啥东西，再点一次就好了。
+The first time you build your code will fail. It's what should be initialized and it's good to do again.
 
-部署成功
+Successfully Deployed
 
 <Image src={require('../../resource/tutorials/ops/image-20220211142524599.png').default} alt='image-20220211142524599' />
 
@@ -313,17 +313,17 @@ secret "docker-login" created
 
 <Image src={require('../../resource/tutorials/ops/image-20220211142729231.png').default} alt='image-20220211142729231' />
 
-同样道理，在去构建 identity-api，再去配置 usercenter 服务 构建 usercenter-rpc、构建 usercenter-api，接着配置其他服务、构建即可，本次我们先只构建 identity-api、identity-rpc、usercenter-rpc、usercenter-api 给大家演示。
+In the same way, build identity-api, then configure usercenter services to build usercenter-rpc, build usercenter-api, then configure other services and build. This time we build identity-api, identity-rpc, usercenter-api and usercenter-api.
 
-## 8、添加网关
+## 8. Add gateway
 
-因为我们的 api 服务通过 goctl 发布在 k8s 中都会暴露 nodeport 端口，索引我们看下 k8s 中 k8scode 命名空间下的 service 的 nodeport 端口服务，然后将 nodeport 配置在 nginx 即可。
+Because our api service will be exposed to nodeport ports through goctl, indexing the nodeport service in k8s in k8scode namespace, and then configuring nodeport in nginx.
 
-本次我们独立一台虚拟机在 k8s 之外，安装 nginx，将 k8s 后端 api 服务通过 nodeport 方式把端口暴露给 nginx，然后 nginx 在配置中配置此 api 服务，这样 nginx 就充当网关使用。
+This time, we have an independent VM installed nginx in addition to k8s, which exposes the k8s backend api service to nginx via nodeport, then nginx configures this api service in its configuration, so nginx is used as a gateway.
 
-nginx 的安装就不再这里多说了，记得一定要有 auth_request 模块，没有的话自己去安装。
+The nginx installation is no longer said here. Remember to have the auth_request module, and you don't have to install it yourself.
 
-nginx 的配置
+nginx configuration
 
 ```conf
 server{
@@ -360,8 +360,8 @@ server{
 }
 ```
 
-如果是线上的话，应该配置多台 nginx 保持高可用，在 nginx 前面还会有一个 slb，你的域名包括 https 配置都应该解析到 slb，在 slb 前面在有防火墙等这些。
+If you are on the line, you should configure multiple nginx to remain highly available, there will be a slb before nginx and your domain names including the https' configurations should be parsed to slb, firewalls and so on before slb.
 
-## 9、结束语
+## 9. Final remarks
 
-至此，整个系列就结束了，整体架构图应该如第一篇所展示，本系列希望能给你带来帮助。
+The whole series will come to an end and the overall architecture should be shown, as the first chapter shows, and it is the hope of this series to help you.

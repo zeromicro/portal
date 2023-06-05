@@ -1,12 +1,12 @@
 ---
-title: API 定义完整示例
-sidebar_label: API 定义完整示例
+title: Full example of API definition
+sidebar_label: Full Example of API Defining
 slug: /docs/reference
 ---
 
-## api 示例
+## api Example
 
-下文仅展示 api 文件的完整写法和对应语法块的功能说明，如需查看 api 规范定义，可参考 [《API 规范》](/docs/tutorials)
+Show only the full writing and syntax description of api files below. See the api specification by reference to [API norms](/docs/tutorials)
 
 ```go
 syntax = "v1"

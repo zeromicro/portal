@@ -67,27 +67,27 @@ retruns:
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L62" target="_blank">NewNodeModel</a>
 ```golang
-函数签名: 
+Function signature: 
     NewNodeModel func(uri, db, collection string, rds *redis.Redis, opts ...cache.Option) (*Model, error)
-说明: 
-    1. 当 db 和 collection 不存在时，会创建 db 和 collection。
-入参:
+description: 
+    1. When db and collection do not exist, db and collection will be created.
+inputs:
     1. uri: mongodb uri 
-    2. db: 数据库名
-    3. collection: 集合名
-    4. rds: redis 链接对象
-    5. opts: WithExpiry 自定义过期时间，WithNotFoundExpiry 没有记录时，缓存空记录时间(防止缓存穿透)
-返回值:
-    1. *Model: 连接管理对象
-    2. error: 创建错误
+    2. db: the database name
+    3. collection: the collection name
+    4. rds: redis collection
+    5. opts: WithExpiry Custom expiration time, WithNotFoundExpiry Cache empty record time when there is no record (prevent cache penetration)
+returns:
+    1. *Model: Connection management objects
+    2. error: Creation error
 ```
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L31" target="_blank">NewModelWithCache</a>
 ```golang
-函数签名: 
+Function signature: 
     NewModelWithCache func(uri, db, collection string, c cache.Cache) (*Model, error)
-说明: 
-    1. 当 db 和 collection 不存在时，会创建 db 和 collection。
+description: 
+    1. db and collection are created when db and collection do not exist.
 入参:
     1. uri: mongodb uri 
     2. db: 数据库名
@@ -101,21 +101,20 @@ retruns:
 ## 新增
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L174" target="_blank">InsertOne</a>
 ```golang
-函数签名: 
+Function signature: 
     InsertOne func(ctx context.Context, key string, document interface{},
     opts ...*mopt.InsertOneOptions) (*mongo.InsertOneResult, error) 
-说明: 
-    1. 新增单条记录，新增同时会清理 key 缓存。
-入参:
-    1. ctx: context 
-    2. key: 缓存 key
-    3. document: 记录
-    4. opts: 操作选项
-返回值:
-    1. *mongo.InsertOneResult: 新增结果，包含记录 _id 信息
-    2. error: 操作结果
+description: 
+    1. Add a new record and clean key cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 var prefixUserCacheKey = "cache:user:"
 
 type User struct {
@@ -140,20 +139,20 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L189" target="_blank">InsertOneNoCache</a>
 ```golang
-函数签名: 
+Function signature: 
     InsertOneNoCache func(ctx context.Context, document interface{},
     opts ...*mopt.InsertOneOptions) (*mongo.InsertOneResult, error)
-说明: 
-    1. 新增单条记录，不会清理缓存。
-入参:
-    1. ctx: context 
-    2. document: 记录
-    3. opts: 操作选项
-返回值:
-    1. *mongo.InsertOneResult: 新增结果，包含记录 _id 信息
-    2. error: 操作结果
+description: 
+    1. Add a single record and don't clear the cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 type User struct {
     ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
     // TODO: Fill your own fields
@@ -173,25 +172,23 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 }
 ```
 
-## 更新
+## Update
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateByID</a>
 ```golang
-函数签名: 
+Function signature: 
     UpdateByID func(ctx context.Context, key string, id, update interface{},
     opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error) 
-说明: 
-    1. 通过 _id 更新记录，同时会清理 key 缓存。
-入参:
-    1. ctx: context 
-    2. key: 缓存 key
-    3. id: 记录 _id
-    4. update: 记录
-    5. opts: 操作选项
-返回值:
-    1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
-    2. error: 操作结果
+description: 
+    1. Update record with _id and clean key cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 var prefixUserCacheKey = "cache:user:"
 
 type User struct {
@@ -212,21 +209,20 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L236" target="_blank">UpdateByIDNoCache</a>
 ```golang
-函数签名: 
+Function signature: 
     UpdateByIDNoCache func(ctx context.Context, id, update interface{},
     opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error) 
-说明: 
-    1. 通过 _id 更新记录，不会清理缓存。
-入参:
-    1. ctx: context 
-    3. id: 记录 _id
-    3. update: 记录
-    4. opts: 操作选项
-返回值:
-    1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
-    2. error: 操作结果
+Note: 
+    1. Update record by _id and not clear cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 type User struct {
     ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
     // TODO: Fill your own fields
@@ -245,22 +241,20 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L242" target="_blank">UpdateMany</a>
 ```golang
-函数签名: 
+Function signature: 
     UpdateMany func(ctx context.Context, keys []string, filter, update interface{},
     opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)  
-说明: 
-    1. 更新多条记录，同时会清理 keys 缓存。
-入参:
-    1. ctx: context 
-    2. keys: 缓存 key 列表
-    3. filter: 过滤条件
-    4. update: 记录
-    5. opts: 操作选项
-返回值:
-    1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
-    2. error: 操作结果
+description: 
+    1. More records are updated and keys are cleaned up.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 var prefixUserCacheKey = "cache:user:"
 
 type User struct {
@@ -286,21 +280,20 @@ func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L257" target="_blank">UpdateManyNoCache</a>
 ```golang
-函数签名: 
+Function signature: 
     UpdateManyNoCache func(ctx context.Context, filter, update interface{},
     opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)
-说明: 
-    1. 通过 _id 更新记录，不会清理缓存。
-入参:
-    1. ctx: context 
-    2. filter: 过滤条件
-    3. update: 记录
-    4. opts: 操作选项
-返回值:
-    1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
-    2. error: 操作结果
+description: 
+    1. Update record by _id and not clear cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 type User struct {
     ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
     Name string             `bson:"name,omitempty" json:"name,omitempty"`
@@ -319,22 +312,20 @@ func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L263" target="_blank">UpdateOne</a>
 ```golang
-函数签名: 
+Function signature: 
     UpdateOne func(ctx context.Context, key string, filter, update interface{},
     opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)
-说明: 
-    1. 更新单条记录，同时清理 key 缓存。
-入参:
-    1. ctx: context 
-    2. key: 缓存 key
-    3. filter: 过滤条件
-    4. update: 记录
-    5. opts: 操作选项
-返回值:
-    1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
-    2. error: 操作结果
+description: 
+    1. Update single record and clean key cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
+Example:
 var prefixUserCacheKey = "cache:user:"
 
 type User struct {
@@ -357,22 +348,20 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 
 6. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateOneNoCache</a>
 ```golang
-函数签名: 
+Function signature: 
     UpdateOneNoCache func(ctx context.Context, filter, update interface{},
     opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)
-说明: 
-    1. 更新单条记录，不会清理缓存。
-入参:
-    1. ctx: context 
-    2. filter: 过滤条件
-    3. update: 记录
-    4. opts: 操作选项
-返回值:
-    1. *mongo.UpdateResult: 更新结果，包含记录 _id 信息
-    2. error: 操作结果
+Note: 
+    1. Update the single entry and won't clear the cache.
+Input:
+    1. ctx: context
+    2. document: record information
+    3. opts: operating options
+return value:
+    1. *mongo.InsertOneResult: New result, including the _id of the new record
+    2. error: Results of the
 
-示例:
-
+Example:
 type User struct {
     ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
     Name string             `bson:"name,omitempty" json:"name,omitempty"`
@@ -394,22 +383,21 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L107" target="_blank">FindOne</a>
 ```golang
-函数签名: 
+Method name: 
     FindOne func(ctx context.Context, key string, v, filter interface{},
     opts ...*mopt.FindOneOptions) error
-说明: 
-    1. 查询单条记录，优先通过缓存 key 查找，查不到会从数据库查找再插入缓存中，
-    如果数据库也不存在会在缓存中插入空记录，防止缓存穿透。
-入参:
-    1. ctx: context 
-    2. key: 缓存 key
-    3. v: 查询记录结果
-    4. filter: 查询条件
-    5. opts: 操作选项
-返回值:
-    1. error: 操作结果
+Description: 
+    1. If a single record is queried, the cache key is used as the first priority, and if it does not exist, it is inserted into the cache again.
+    If the database does not exist, we will insert an empty record into the cache to prevent cache penetration.
+Input:
+    1. ctx: context
+    2. v: record result
+    2. filter: filter condition
+    3. opts: operating options
+return value:
+    1. error: Results of the
 
-示例:
+Example:
 var prefixUserCacheKey = "cache:user:"
 
 type User struct {
@@ -443,20 +431,20 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L115" target="_blank">FindOneNoCache</a>
 ```golang
-函数签名: 
+Function signatures: 
     FindOneNoCache func(ctx context.Context, v, filter interface{},
     opts ...*mopt.FindOneOptions) error
-说明: 
-    1. 查询单条记录，不使用缓存。
-入参:
-    1. ctx: context 
-    2. v: 查询记录结果
-    3. filter: 查询条件
-    4. opts: 操作选项
-返回值:
-    1. error: 操作结果
+description: 
+    . Query single record without cache.
+Input:
+    1. ctx: context
+    2. v: record result
+    2. filter: filter condition
+    3. opts: operating options
+return value:
+    1. error: Results of the
 
-示例:
+Example:
 type User struct {
     ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
     Name string             `bson:"name,omitempty" json:"name,omitempty"`
@@ -485,25 +473,21 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 }
 ```
 
-## 删除
+## Delete
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L86" target="_blank">DeleteOne</a>
 ```golang
-函数签名: 
-    DeleteOne func(ctx context.Context, key string, filter interface{},
-    opts ...*mopt.DeleteOptions) (int64, error)
-说明: 
-    1. 删除单条记录，同时会清理 key 缓存
-入参:
-    1. ctx: context 
-    2. key: 缓存 key
-    3. filter: 查询条件
-    4. opts: 操作选项
-返回值:
-    1. int64: 删除个数
-    2. error: 操作结果
+Input:
+    1. ctx: context
+    2. v: record result
+    2. filter: filter condition
+    3. opts: operating options
+return value:
+    1. error: Results of the
 
-示例:
+Example:
+var prefixUserCacheKey = "cache:user:"
+
 var prefixUserCacheKey = "cache:user:"
 
 type User struct {
@@ -528,20 +512,15 @@ func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L101" target="_blank">DeleteOneNoCache</a>
 ```golang
-函数签名: 
-    DeleteOneNoCache func(ctx context.Context, filter interface{},
-    opts ...*mopt.DeleteOptions) (int64, error) 
-说明: 
-    1. 删除单条记录，同时会清理 key 缓存
-入参:
-    1. ctx: context 
-    2. filter: 查询条件
-    3. opts: 操作选项
-返回值:
-    1. int64: 删除个数
-    2. error: 操作结果
+Input:
+    1. ctx: context
+    2. v: record result
+    2. filter: filter condition
+    3. opts: operating options
+return value:
+    1. error: Results of the
 
-示例:
+Example:
 type User struct {
     ID primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
     Name string             `bson:"name,omitempty" json:"name,omitempty"`

@@ -1,22 +1,22 @@
 ---
-title: 物理机部署
-sidebar_label: 物理机部署
+title: Physical deployment
+sidebar_label: Physical deployment
 slug: /docs/tutorials/ops/machine
 ---
 
 import { Image } from '@arco-design/web-react';
 
-## 1、概述
+## 1. Overview
 
-本节我们介绍物理机部署，关于物理机部署后台守护进程常用的几种方式：nohup、supervisor、systemd
+This section describes the physical deployment of the machine, and some of the ways in which the physical deployment background daemon is commonly used：nohup, supervisor, systemd
 
-nohup、systemd 不需要安装，supervisor 需要使用 yum 安装，本节我们就使用 nohup 作为后台守护进程方式，systemd、supervisor 相关资料可以 google 使用方法，只需要配置一个配置文件即可。
+Nohup, systemd does not need installation, supervisor needs to use yum to install, this section uses nohup as a background daemon method, systemd, supervisor data can use a google method, just one configuration file to configure it.
 
-## 2、项目代码
+## 2. Project code
 
-我们创建一个项目名称 apicode(这里我们只演示一个服务部署，其他服务都是用相同方式的)，在其中写上 api 描述文件，使用 goctl 生成 apicode 项目代码
+We create a project name apicode (here we show only one service deployed, other services are in the same way), write api description file and use goctl to generate apicode project code
 
-### 2.1、apicode.api 文件
+### 2.1, apicode.api file
 
 ```go
 syntax = "v1"
@@ -43,14 +43,14 @@ service apicode{
 }
 ```
 
-### 2.2、使用 goctl 生成代码
+### 2.2 Use goctl to generate code
 
 ```sh
 $ cd apicode && goctl api go -api *.api -dir ./
 $ go mod tidy
 ```
 
-### 2.3、项目结构
+### 2.3 Project structure
 
 ```text
 ├── apicode.api
@@ -72,9 +72,9 @@ $ go mod tidy
     └── types.go
 ```
 
-### 2.4、添加代码
+### 2.4 Add code
 
-在 hellologic.go 中添加点代码，用来输出返回，证明我们访问到了
+Add a point code to hellologic.go to export return to prove that we visited
 
 ```go
 .....
@@ -90,13 +90,13 @@ func (l *HelloLogic) Hello(req *types.HelloReq) (resp *types.HelloResp, err erro
 
 ```
 
-启动项目
+Start Project
 
 ```shell
 $ go run apicode.go
 ```
 
-浏览器输入http://127.0.0.1:8888/hello回车访问 ，可以看到浏览器输出了我们在 logic 中添加的代码
+Browser input http:///127.0.0.1:8888/hello return visit to see your browser output the code we added in the logic
 
 ```json
 {
@@ -104,78 +104,78 @@ $ go run apicode.go
 }
 ```
 
-### 2.5、上传代码
+### 2.5 Upload code
 
-在我们之前部署好的 gitlab 上创建一个 apicode 仓库，将代码 push 上去即可
+Create an apicode repository on our previous gitlab deployed, get code push up
 
-### 2.6 、配置 jenkins 服务器的公钥
+### 2.6 Public key for configuring jenkins server
 
-jenkins 需要来 gitlab 拉取代码进行构建，所以我们要将 jenkins 所在物理机器的公钥配置到 gitlab 中，进行免密登陆
+jenkins needs a gitlab pull code to build, so we want to configure the public key of the jenkins physical machine to gitlab and unencrypt login
 
 <Image src={require('../../resource/tutorials/ops/gitlab-pz-jenkins-sshkey.jpg').default} alt='gitlab-pz-jenkins-sshkey' />
 
-## 3、Jenkins 发布
+## 3. Jenkins deployment
 
-之前我们已经将 jenkins 与 gitlab 一起部署好了，接下来我们使用 jenkins 进行代码发布，只要编写 pipline 即可
+We have already deployed jenkins with gitlab and then we use jenkins to publish the code as long as you write pipline
 
-核心思路：
+Core ideas：
 
-- 使用 jenkins 打包出来项目的二进制文件一级配置文件，打成一个压缩包
-- 将压缩包同步到部署机器，使用 nohup 启动即可（或者 supervisor、systemd）
+- Use jenkins to pack the binary level profile of the project into a compression package
+- Sync packets to deploy machines, start with nohup (or erverisor, systemd)
 
-在编写 pipline 之前，因为我们需要在 jenkins 中构建 go 程序所以需要 go 环境，因为我们这次的 jenkins 是使用 docker 安装的(如果你是裸机安装的 jenkins 只需要在服务器上安装 go 环境就可以了)，那么我们要在 jenkins 容器内需要有 go 环境才可以，这里提供有 3 个办法
+Before writing pipline, because we need to build a go program in jenkins, because our jenkins is installed using a docker (if you are naked installed in jenkins simply need to install the go environment on the servers), then we need a go environment in jenkins containers where there are three options available
 
-- 使用 jenkins 提供的 go 插件
-- 在外部将 go 安装包拷贝到容器内，手动在容器中安装。
-- 另外一个就是不使用 docker 安装 jenkins，直接使用裸机安装 jenkins，如果是裸机安装 jenkins 这个只需要在当前服务器安装 go 环境就可以了
+- A go plugin using jenkins
+- Copy the package to the container at the outlet installation and install it manually in the container.
+- The other is to install jenkins without a docker and jenkins directly with nuds. If jenkins is installed only on the current server
 
-这么多种办法总有一种适合你，这里我就将 go 离线包拷贝到 jenkins 容器内了，安装到/usr/local/go 下了
+There is always one way to fit you, and here I copy the go offline package into the jenkins container, installed to /usr/local/go
 
-考虑到多数国内用户访问 golang.org、go.dev 有问题，这里我就使用第二种方式，下载离线包使用”docker cp“拷贝到容器内了。
+Given that most domestic users have problems accessing golang.org, go.dev here, I use the second mode to download the offline package using the docker cp “copied into the container.”
 
-【注】 这里也给大家提供一下 jenkins 如何通过插件来支持 go，如果条件允许使用这种方式是最好的，操作步骤如下：
+'Note' Here also provides you with jenkins how to support gos through plugins and if conditions allow this to be the best, the action steps below：
 
-点击首页“系统管理”-->"插件管理"
+Tap "System Managers" on the front page -->"Plugin Management"
 
-在可选插件中，输入“go”，可以看到 go 插件 直接安装，安装成功后重启即可。
+In an optional plugin, enter 'go', see the go plugin installed directly, and reboot after the installation has succeeded.
 
-插件安装好后，我们需要配置。点击首页“系统管理”--> "全局工具配置"，拉到下方可以看到“Go”
+Once the plugin is installed, we need to configure it.Tap "System Management" on the front page --> "Global Tool Configuration", pull down to see "Go"
 
-我们点击新增 Go, 默认是从 golang.org 安装 go，你也可以选择使用 tar 包等多种方式，然后我们点“应用”
+We click on a new Go, installing gos from golang.org by default. You can also choose how to use tar packages, and then we click "app"
 
-【注】如果看到有提示“To do so , press 'Check now' in thePlugin Manager,or restart jenkins” ，就重启一下 jenkins，配合在 pipline 中添加这个语法即可
+'To do so, press 'check now' in the thePlugin Manager, or start jenkins', reboot jenkins with the addition of this syntax in pipline
 
 https://github.com/jenkinsci/golang-plugin
 
-### 3.1 创建 pipline
+### 3.1 Create pipline
 
-点击首页左侧“新建 item” ， 名称输入“apicode”，选择“流水线”，然后确定
+Click "New Item" on the left side of the front page, enter "apicode-docker", select "Waterlines", then determine
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-jenkins-pipline.jpg').default} alt='deploy-server-jenkins-pipline' />
 
-然后点击“General” , 选择“This project is parameterized” ， "添加参数"，“Choice Parameter”，如下图
+Then click on “General”, select "This project is parameterized", "Add parameter", "Choice Parameter", like the beacon
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-plpline-2.png').default} alt='deploy-server-plpline-2' />
 
-然后编写内容如下
+Then write the following
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-pipline-3.png').default} alt='deploy-server-pipline-3' />
 
-直接保存。
+Save directly.
 
-### 3.2 编辑 pipline
+### 3.2 Edit pipline
 
-【注】在编写 pipline 之前我们还有一个公钥要配置，要将 jenkins 的公钥配置到运行服务的服务器上，因为我们使用 jenkins 构建好之后要将构建好的 tar 包使用 scp 传到运行服务器上，这时候就要免密登陆
+'Note' We have a public key to configure before writing pipline to configure jenkins public key to the server running the service because we build using jenkins and then upload the built tar package to the running server using scp.
 
-查看 jenkins 所在的物理机公钥：
+View jenkins host public key：
 
 ```shell
 $ cat /root/.ssh/id_rsa.pub
 ```
 
-配置到运行服务物理机的 /root/.ssh/authorized_keys 即可。
+Configure to the /root/.ssh/authorized_keys running the service physics.
 
-向下滑动找到`Pipeline script`,填写脚本内容
+Swipe down to find `Pipeline scripts`, fill in script content
 
 ```shell
 pipeline {
@@ -230,17 +230,17 @@ pipeline {
 
 ​
 
-## 4、构建发布
+## 4. Build Publication
 
-点击首页，找到 apicode 这个服务点击进去
+Click on the home page to find the apicode service to click on it
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-deploy.jpg').default} alt='deploy-server-deploy' />
 
-点击 Build with Parameters ，选择对应的“分支”跟“服务”，开始构建
+Tap Build with Parameters, select the corresponding "branch" to "Service" to start building
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default} alt='deploy-server-deploy-2' />
 
-构建完成，最后我们来访问 http://192.168.1.183:8889/hello?msg=mikael ，可以看到页面上输出
+Build finished, we go to http://192.168.1.183:8889/hello?msg=mikael to see output on page
 
 ```json
 {
@@ -248,4 +248,4 @@ pipeline {
 }
 ```
 
-至此，部署完成。当然你可以在前面加自己喜欢的网关进行转发到此服务中，比如 nginx、kong...
+至此，部署完成。Of course you can forward your favorite gateway to this service like nginx, kong...

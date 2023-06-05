@@ -1,5 +1,5 @@
 ---
-title: 限流(并发控制)
+title: Limiter (concurrent control)
 slug: /docs/tutorials/service/governance/limiter
 ---
 
@@ -8,24 +8,24 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-限流器是一种服务治理能力，用于限制服务的并发调用量，以保护服务的稳定性。在本次文档中仅介绍对 rest，grpc 服务的限流器的使用，不介绍限流算法。
+Restricted fluids are a service governance capability that is used to limit the combined use of services to protect their stability.Only the use of restricted fluids for rest,grpc services is described in this subdocument, without a limited flow algorithm.
 
-限流一般有单节点限流、集群限流（将限流数值对集群节点数求平均值，其本质还是单节点限流）、分布式限流。
+Limit flow is typically single-node flows, cluster limit flow (average amount of limit flow value for cluster nodes, its essence or single nodal flow), distributive stream.
 
-本次介绍的是单节点限流，与其说是限流，倒不如说是并发控制更贴切。
+The current presentation is a single-node flow that is more appropriate than a single-point flow.
 
-## 准备工作
+## Preparation
 
-1. 创建一个 go mod 的 demo 工程
+1. Create a go mod project
 
 ```shell
 $ mkdir -p ~/workspace/demo && cd ~/workspace/demo
 $ go mod init demo
 ```
 
-## rest 服务
+## rest service
 
-### 限流配置
+### Limit Configuration
 
 ```go
 RestConf struct {
@@ -35,19 +35,19 @@ RestConf struct {
 }
 ```
 
-### 示例
+### Sample
 
-我们用一个 demo 来介绍一下限流器的使用。
+We use a demo to describe the use of the lower limit streamer.
 
 
-1. 在 `demo` 工程中新建目录 `rest-limit-demo`
+1. Create new directory `demo` project `rest-limit-demo`
 
 ```shell
 $ cd ~/workspace/demo
 $ mkdir rest-limit-demo && cd rest-limit-demo
 ```
 
-2. 新建一个 `limit.api` 文件，将如下内容拷贝到文件中
+2. Create a `limit.api` file, copy the following to the file
 
 ```go title="limit.api"
 syntax = "v1"
@@ -58,14 +58,14 @@ service limit {
 }
 ```
 
-3. 生成 rest 代码
+3. Generate rest code
 
 ```shell
 $ cd ~/workspace/demo/rest-limit-demo
 $ goctl api go -api limit.api -dir .
 ```
 
-4. 查看目录结构
+4. View directory structure
 
 ```shell
 $ tree
@@ -88,17 +88,17 @@ $ tree
 └── limit.go
 ```
 
-我们修改一下配置，将 qps 限制为 100，然后逻辑中加一点阻塞逻辑。
+We modify the configuration, limit qps to 100, and then add a logic of blocking logic.
 
-1. 修改配置文件
+1. Edit configuation
 
-将 `~/workspace/demo/rest-limit-demo/etc/limit.yaml` 中的 `maxConns` 修改为 100
+Change `to <code> maxConns ` in ` ~/workspace/demo/etc/limit.yaml` to 100
 
-2. 添加逻辑代码
+2. Add Logic Code
 
-将 `~/workspace/demo/rest-limit-demo/internal/logic/pinglogic.go` 中的 `Ping` 方法添加阻塞逻辑
+Add a blocking logic to`~/workspace/demo/rest-limit-demo/internal/logic/pinglogic.go` 中的 `Ping`
 
-最终代码内容如下
+Final code content below
 
 <Tabs>
 <TabItem value="limit.yaml" label="limit.yaml" default>
@@ -150,16 +150,16 @@ func (l *PingLogic) Ping() error {
 </TabItem>
 </Tabs>
 
-我们先来运行一下这个最简单的 rest 服务，我们用 <a href="https://github.com/rakyll/hey" target="_blank">hey</a> 工具来简单压测一下接口。
+Let's run this easiest rest service first. We use the <a href="https://github.com/rakyll/hey" target="_blank">hey</a> tool to simply pressure interface.
 
-先启动服务
+Start service
 
 ```shell
 $ cd ~/workspace/demo/rest-limit-demo
 $ go run limit.go
 ```
 
-单独开个终端压测
+Separate terminal pressure
 
 ```shell
 # 我们用 hey 工具来进行压测，压测 90 个并发，执行 1 秒
@@ -207,7 +207,7 @@ Status code distribution:
   [200] 90 responses
 ```
 
-从压测结果来看，90 个请求全部成功，我们来加大并发数，看看会发生什么。
+In terms of pressure measurements, 90 requests have been successful, and we have stepped up and count to see what will happen.
 
 ```shell
 # 我们用 hey 工具来进行压测，压测 110 个并发，执行 1 秒
@@ -256,28 +256,28 @@ Status code distribution:
   [503] 10 responses
 ```
 
-从压测结果来看，我们的服务只能支持 100 个并发，超过 100 个并发的请求都会被限流，返回 503 状态码。 在服务的日志中也会出现限流相关的错误：
+Based on pressure measurements, our services can only support 100 combinations, and more than 100 concurrent requests will be restricted to return to the 503 status code. Flow limitation-related errors also appear in the service's logs at:
 
 ```shell
 {"@timestamp":"2023-02-09T18:41:55.500+08:00","caller":"internal/log.go:62","content":"(/ping - 127.0.0.1:64163) concurrent connections over 100, rejected with code 503","level":"error","span":"08fa61d49b694e63","trace":"622b2287f32ff2d45f4dfce3eec8e62c"}
 ```
 
-## grpc 服务
+## gRPC service
 
-grpc 服务属于内网服务，不对外提供服务，只对内部的其他服务提供服务，所以我们默认情况下不需要对其进行限流。
+grpc is an Intranet service that does not provide services externally but only for other services in-house, so we do not need to limit the flow of services by default.
 
-如果真要对其进行限流，可以通过 grpc 中间件来实现，参考示例如下。
+If you really want to limit the flow, this can be done by grpc intermediaries, for example below.
 
-我们用一个最简单的 grpc server 服务来演示一下。
+We use one of the simplest grpc server to show.
 
-1. 在 `demo` 工程中新建目录 `grpc-limit-demo`
+1. Create new directory `demo` project `grpc-limit-demo`
 
 ```shell
 $ cd ~/workspace/demo
 $ mkdir grpc-limit-demo && cd grpc-limit-demo
 ```
 
-2. 新建一个 `limit.proto` 文件，将如下内容拷贝到文件中
+2. Create a `limit.proto` file, copy the following to the file
 
 ```protobuf title="limit.proto"
 syntax = "proto3";
@@ -294,14 +294,14 @@ service limit{
 }
 ```
 
-3. 生成 grpc 代码
+3. Generate grpc code
 
 ```shell
 $ cd ~/workspace/demo/grpc-limit-demo
 $ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
-4. 查看目录
+4. View Directory
 ```
 $ tree
 .
@@ -327,7 +327,7 @@ $ tree
 8 directories, 10 files
 ```
 
-我们在 `~/workspace/demo/grpc-limit-demo/internal/logic/limitlogic.go` 中实现 `Ping` 方法，代码如下：
+We have implemented `~/workspace/demo/grpc-limit-demo/internal/logic/limitlogic.go` 中实现 `Ping` below：
 
 ```go title="imitlogic.go"
 package logic
@@ -364,7 +364,7 @@ func (l *PingLogic) Ping(in *proto.PingReq) (*proto.PingResp, error) {
 
 ```
 
-5. 在 `~/workspace/demo/grpc-limit-demo/limit.go` 中添加中间件：
+5. Add middleware in `~/workspace/demo/grpc-limit-demo/limit.go` ：
 
 ```go title="limit.go" {42-57}
 package main
@@ -434,7 +434,7 @@ func main() {
 
 ```
 
-我们将生成的配置文件 `~/workspace/demo/grpc-limit-demo/etc/limit.yaml` 文件中的 etcd 配置删除掉，用直连的方式来启动 grpc server。
+We will generate profiles `~/workspace/demo/grpc-limit-demo/etc/limit.yaml` to delete the etcd configuration in the file and start grpc server using direct connections.
 
 ```yaml title="limit.yaml"
 Name: limit.rpc
@@ -442,14 +442,14 @@ ListenOn: 0.0.0.0:8080
 
 ```
 
-启动服务
+Start service
 
 ```shell
 $ cd ~/workspace/demo/grpc-limit-demo
 $ go run limit.go
 ```
 
-现在 grpc server 服务有了，我们用 <a href="https://github.com/bojand/ghz" target="_blank">ghz</a> 来压测一下 。
+Now that the grpc server is available, we use <a href="https://github.com/bojand/ghz" target="_blank">ghz</a> to pressure it.
 
 ```shell
 $ cd ~/workspace/demo/grpc-limit-demo
@@ -489,7 +489,7 @@ Latency distribution:
 Status code distribution:
   [OK]   110 responses
 ```
-可以看到所有的请求都是成功的，我们再来压测 110 qps。
+All requests can be seen to be successful, and we come back to 110 qps.
 
 ```shell
 $ cd ~/workspace/demo/grpc-limit-demo
@@ -534,10 +534,10 @@ Error distribution:
   [10]   rpc error: code = Unavailable desc = concurrent connections over limit 
 ```
 
-可以看到，当并发量超过 100 时，就会返回 `rpc error: code = Unavailable desc = concurrent connections over limit`。
+It can be seen, when the concurrent output exceeds 100, returns  `rpc error: code = Unavailable desc = concurrent connections over limit`.
 
 
-## 参考文献
+## References
 
-1. <a href="https://github.com/rakyll/hey" target="_blank">《轻量级压测工具 hey》</a>
-1. <a href="https://github.com/bojand/ghz" target="_blank">《grpc 压测工作 ghz》</a>
+1. <a href="https://github.com/rakyll/hey" target="_blank">Lightweight Pressure Tool hey</a>
+1. <a href="https://github.com/bojand/ghz" target="_blank">grpc Pressure ghz</a>

@@ -1,13 +1,13 @@
 ---
-title: 批量插入
-sidebar_label: 批量插入
+title: Bulk insert
+sidebar_label: Bulk insert
 slug: /docs/tutorials/mysql/bulk/insert
 ---
 
 ## Overview
-go-zero 提供了一个简单批量插入的封装，他的使用场景是例如有大量的日志需要批量写入，不用关心结果的时候可以使用本方式。
+go-zero provides a simple bulk encapsulation that uses the scenario where, for example, there is a large number of logs that require bulk writing and can be used without attention to results.
 
-简单实例：
+Simple Example：
 ```go
     var conn sqlx.SqlConn
     blk, err := sqlx.NewBulkInserter(conn, "insert into user (id, name) values (?, ?)")
@@ -18,31 +18,31 @@ go-zero 提供了一个简单批量插入的封装，他的使用场景是例如
     blk.Insert(1, "test1")
     blk.Insert(2, "test2")
 ```
-BulkInserter 目前的逻辑将会在收集到 1000 个记录或者每个1秒进行一次落库操作。
+BulkInserter current logic will collect 1000 records or perform library operations at one time per sec.
 
-BulkInserter 是基于 [executors.PeriodicalExecutor](https://github.com/zeromicro/go-zero/blob/master/core/executors/periodicalexecutor.go) 实现的，他会在收集到足够数据的记录的时候或者满足一定时长的时候写入数据，同时他的写入是异步操作，错误的结果只能够通过回调进行处理。
+The BulkInserter is based on [ executors.PeriodicalExecutor](https://github.com/zeromicro/go-zero/blob/master/core/executors/periodicalexecutor.go) and will write the data when collecting enough data or when it meets a certain period of time, while his writing is asynchronous and the result can only be processed by callbacks.
 
-## 创建 BulkInserter
-我们通过 **sqlx.NewBulkInserter** 创建 BulkInserter，他需要一个 sqlx.SqlConn 和一个插入 sql 语句。
+## Create BulkInserter
+We created BulkInserter with **sqlx.NewBulkInserter** who needs a sqlx.SqlConn and an insert sql statement.
 
 ```go
 func NewBulkInserter(sqlConn SqlConn, stmt string) (*BulkInserter, error)
 ```
 
-## 插入数据
+## Insert data
 ```go
 func (bi *BulkInserter) Insert(args ...any) error
 ```
-注意其中 args，为 insert 中的每个参数，需要和 ？ 一一对应。同时因为 Insert 其实是一个异步操作，这个地方不会有插入 error 返回。
+Be aware of args, for each parameter in insert, need and ? A counterpart.Also because Insert is an asynchronous operation, there will be no inserts back in this place.
 
 ## flushes
-因为的插入其实是一个异步过程，如果我们有业务需要立即入库或者程序即将退出，我们需要手动 flush 一下。框架已经在 **PeriodicalExecutor** 添加了 **proc.AddShutdownListener**。所以无需关心退出时的操作，只需要在业务需要的时候自己调用flush。
+Because insertion is an asynchronous process, if we have an immediate library or the program is about to exit, we need to manually flush it out.The framework has been added **PeriodicalExecutor** to **pro.AddShutdown Listener**.So there is no need to be interested in quitting operations and simply call flush on your own when the business needs it.
 ```go
 blk.Flush()
 ```
 
-## 设置结果回调
-如果我们有业务需要关注每次批量插入的结果，因为我们的插入是异步行为，所以我们需要手动设置结果回调。
+## Set Result Callback
+If we have a business that needs to follow the results of each batch insertion, because our insertion is asynchronous, we need to set the results back manually.
 ```go
 blk.SetResultHandler(func(result sql.Result, err error) {
     if err != nil {

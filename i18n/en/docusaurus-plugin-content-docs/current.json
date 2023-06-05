@@ -4,7 +4,7 @@
     "description": "The label for version current"
   },
   "sidebar.tasks.category.安装": {
-    "message": "Install",
+    "message": "Installation",
     "description": "The label for category 安装 in sidebar tasks"
   },
   "sidebar.tasks.category.DSL 介绍": {

@@ -1,16 +1,16 @@
 ---
-title: Protobuf 规范
+title: Protective norms
 slug: /docs/tutorials/proto/spec
 ---
 
 ## Overview
 
-本教程使用 Protocol Buffers 语言的 proto3 版本，为 Go 程序员提供了使用 Protocol Buffers 的基本介绍。通过创建一个简单的示例应用程序，它向您展示了如何
+This tutorial uses proto3 versions of Protocol Buffers language and provides a basic introduction to use Protocol Buffers.By creating a simple example application, it shows you how
 
-- 在 .proto 文件中定义消息格式。
-- 使用协议缓冲区编译器。
-- 使用 Go protocol buffer API 来写入和读取消息。
+- Define message format in .proto file.
+- Use protocol buffer compiler.
+- Write and read messages using the Go protocol buffer API.
 
-## 链接参考
+## Link References
 
-由于  Protocol Buffers 是 Google 的产物，这里就不重复介绍了，详情请参考<a href="https://developers.google.com/protocol-buffers/docs/gotutorial" target="_blank">《Protocol Buffer》</a> 和 <a href="https://grpc.io/docs/" target="_blank">《gRPC》</a>
+Protocol Buffers is a Google product and is not repeated here. For more information, refer to <a href="https://developers.google.com/protocol-buffers/docs/gotutorial" target="_blank">Protocol Buffer</a> and <a href="https://grpc.io/docs/" target="_blank">gRPC</a>
