@@ -177,13 +177,13 @@ If we are loading in conf the verification is not passed, the corresponding erro
 
 The currently supported verification rules for go-zero are as follows:
 
-| Receive rules | Note                                                                                                                  | Sample                                                                                                                                                 |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| optional      | The current field is an optional parameter, allowing zero value (zero value)                                          | \`json:"foo,optional"\`                                                                                                                            |
-| options       | Current parameter can only receive an enumeration value                                                               | **Protestant 1**：portrait line\|split,\`json:`gender,options=foo\|bar"\` <br/>**prototype 2**：array style,\`json:"gender,[foo,bar]"\` |
-| default       | Current Argument Default                                                                                              | \`json:"gender,default=male"\`                                                                                                                     |
-| range         | The valid range of the current parameter value, only valid for the value. Details of the writing rule are given below | \`json:"age,range=[0,120]"\`                                                                                                                       |
-| env           | Current parameters are taken from environmental variables                                                             | \`json:"mode,env=MODE"\`                                                                                                                           |
+| Receive rules | Note                                                                                                                  | Sample                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------- |---------------------------------|
+| optional      | The current field is an optional parameter, allowing zero value (zero value)                                          | \`json:"foo,optional"\`         |
+| options       | Current parameter can only receive an enumeration value                                                               | **Protestant 1**：portrait line\ |split,\`json:`gender,options=foo\|bar"\` <br/>**prototype 2**：array style,\`json:"gender,[foo,bar]"\` |
+| default       | Current Argument Default                                                                                              | \`json:"gender,default=male"\`  |
+| range         | The valid range of the current parameter value, only valid for the value. Details of the writing rule are given below | \`json:"age,range=[0:120]"\`    |
+| env           | Current parameters are taken from environmental variables                                                             | \`json:"mode,env=MODE"\`        |
 
 ::note range expressed value rule
 1. Left close interval：(min:max], meaning that min is less than or equal to max, when min is default, min represents value 0, max is unlimited when max is default, min and max are not allowed to default at the same time
