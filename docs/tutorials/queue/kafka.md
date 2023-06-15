@@ -258,7 +258,7 @@ func main() {
     serviceGroup := service.NewServiceGroup()
     defer serviceGroup.Stop()
 
-    for _, mq := range mqs.Consumers(ctx, svcCtx) {
+    for _, mq := range mqs.Consumers(c,ctx, svcCtx) {
         serviceGroup.Add(mq)
     }
 
