@@ -361,7 +361,7 @@ syntax = "v1"
 
 ### info 语句
 
-info 语句是 api 语言的 meta 信息，其仅用于对当前 api 文件进行描述，**暂**不参与代码生成，其和注释还是有一些区别，注释一般是衣服某个 syntax 语句存在，而 info 语句是用于描述整个 api 信息的，当然，不排除在将来会参与到代码生成里面来，info 语句的 EBNF 表示为：
+info 语句是 api 语言的 meta 信息，其仅用于对当前 api 文件进行描述，**暂**不参与代码生成，其和注释还是有一些区别，注释一般是依附某个 syntax 语句存在，而 info 语句是用于描述整个 api 信息的，当然，不排除在将来会参与到代码生成里面来，info 语句的 EBNF 表示为：
 
 ```go
 InfoStmt         = "info" "(" { InfoKeyValueExpr } ")" .
