@@ -163,7 +163,7 @@ grpcui 是一个gRPC UI 调试工具，用于访问 gRPC 服务，详情可参�
 
 ```json
 {
-    "message": "me"
+     "pong": "pong"
 }
 ```
 </TabItem>
