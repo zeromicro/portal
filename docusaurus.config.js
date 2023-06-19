@@ -58,10 +58,6 @@ module.exports = {
                     title: "友情链接",
                     items: [
                         {
-                            label: "旧文档",
-                            href: "https://legacy.go-zero.dev",
-                        },
-                        {
                             label: "开发路线图",
                             href: "https://github.com/zeromicro/go-zero/blob/master/ROADMAP.md",
                         },
