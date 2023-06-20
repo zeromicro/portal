@@ -3,6 +3,7 @@ title: api demo 代码生成
 slug: /docs/tasks/cli/api-demo
 ---
 
+import { Image } from '@arco-design/web-react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -102,7 +103,10 @@ $ curl --request GET 'http://127.0.0.1:8888/from/me'
 
 <TabItem value="postman" label="Postman 中访问" default>
 
-![postman](../../resource/tasks/cli/task-api-demo-postman.png)
+<Image
+src={require('../../resource/tasks/cli/task-api-demo-postman.png').default}
+alt='task-api-demo-postman'
+/>
 
 <center> 在 Postman 中访问 </center>
 

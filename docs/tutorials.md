@@ -4,6 +4,8 @@ sidebar_label: API 规范
 slug: /docs/tutorials
 ---
 
+import { Image } from '@arco-design/web-react';
+
 ## 概述
 
 api 是 go-zero 自研的领域特性语言（下文称 api 语言 或 api 描述语言），旨在实现人性化的基础描述语言，作为生成 HTTP 服务最基本的描述语言。
@@ -93,7 +95,10 @@ decimal_digit = "0" … "9" .
 - 语法分析（Syntax Analysis）
 - 代码生成（Code Generation）
 
-![ast process](./resource/tasks/dsl/ast-process.png)
+<Image
+src={require('./resource/tasks/dsl/ast-process.png').default}
+alt='task-grpc-demo-grpcui'
+/>
 
 <center>AST 分析过程</center>
 

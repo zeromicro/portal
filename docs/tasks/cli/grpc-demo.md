@@ -3,6 +3,7 @@ title: gRPC demo 代码生成
 slug: /docs/tasks/cli/grpc-demo
 ---
 
+import { Image } from '@arco-design/web-react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -143,7 +144,11 @@ $ grpcui -plaintext 127.0.0.1:8080
 }
  ```
 
- ![postman](../../resource/tasks/cli/task-grpc-demo-grpcui.png)
+<Image
+src={require('../../resource/tasks/cli/task-grpc-demo-grpcui.png').default}
+alt='task-grpc-demo-grpcui'
+/>
+
 
 <center> grpcui 中访问 </center>
 
@@ -155,7 +160,10 @@ grpcui 是一个gRPC UI 调试工具，用于访问 gRPC 服务，详情可参�
 
 <TabItem value="postman" label="Postman 中访问" default>
 
-![postman](../../resource/tasks/cli/task-grpc-demo-postman.png)
+<Image
+src={require('../../resource/tasks/cli/task-grpc-demo-postman.png').default}
+alt='task-grpc-demo-grpcui'
+/>
 
 <center> 在 Postman 中访问 </center>
 
@@ -163,7 +171,7 @@ grpcui 是一个gRPC UI 调试工具，用于访问 gRPC 服务，详情可参�
 
 ```json
 {
-    "message": "me"
+    "message": "pong"
 }
 ```
 </TabItem>
