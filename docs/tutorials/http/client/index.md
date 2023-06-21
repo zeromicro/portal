@@ -30,7 +30,7 @@ var domain = flag.String("domain", "http://localhost:3333", "the domain to reque
 func main() {
     flag.Parse()
 
-    req := types.Request{
+    req := Request{
         Node:   "foo",
         ID:     1024,
         Header: "foo-header",
@@ -76,7 +76,7 @@ var domain = flag.String("domain", "http://localhost:3333", "the domain to reque
 func main() {
     flag.Parse()
 
-    req := types.Request{
+    req := Request{
         Node:   "foo",
         Header: "foo-header",
         Body:   map[string]string{
