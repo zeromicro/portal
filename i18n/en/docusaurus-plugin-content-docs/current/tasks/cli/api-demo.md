@@ -63,7 +63,7 @@ API, RPC, Job Directory structure is similar to what the go-zero project structu
 
 ## Write simple logic code
 
-After completing the above code generation, we can find `~/workspace/api/demo/internal/logic/demologic.go` files, add c odes between line `27` and `28`  :
+After completing the above code generation, we can find `~/workspace/api/demo/internal/logic/demologic.go` files, add codes between line `27` and `28`  :
 
 ```go
 resp = new(types.Response)
