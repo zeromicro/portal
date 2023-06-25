@@ -86,7 +86,7 @@ $ go run demo.go
 When you see the following output `Starting server at 0.0.0.0.0:888...`indicates that the service has been successfully started, then we come to visit the HTTP service.
 
 <Tabs>
-<TabItem value="terminal" label="终端中访问" default>
+<TabItem value="terminal" label="Access in terminal" default>
 
 ```bash
 $ curl --request GET 'http://127.0.0.0.1:8888/from/me'
@@ -96,7 +96,7 @@ When you see the output in the terminal `{"message":"me"}` on behalf of your ser
 
 </TabItem>
 
-<TabItem value="postman" label="Postman 中访问" default>
+<TabItem value="postman" label="Access in Postman" default>
 
 ![postman](../../resource/tasks/cli/task-api-demo-postman.png)
 
