@@ -56,7 +56,7 @@ type PathExampleResp {
 	group:      g1 // 对当前 Foo 语法块下的所有路由，路由归并到 g1 目录下，不需要则请删除此行
 	timeout:    3s // 对当前 Foo 语法块下的所有路由进行超时配置，不需要则请删除此行
 	middleware: AuthInterceptor // 对当前 Foo 语法块下的所有路由添加中间件，不需要则请删除此行
-	maxBytes:   1024 // 对当前 Foo 语法块下的所有路由添加请求体大小控制，单位为 byte,goctl 版本 >= 1.5.0 才支持
+	maxBytes:   1048576 // 对当前 Foo 语法块下的所有路由添加请求体大小控制，单位为 byte,goctl 版本 >= 1.5.0 才支持
 )
 service Foo {
 	// 定义没有请求体和响应体的接口，如 ping

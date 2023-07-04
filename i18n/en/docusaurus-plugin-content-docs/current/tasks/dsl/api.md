@@ -314,7 +314,7 @@ type GetUserInfoResp {
 // All declarations are only valid for routes in the current service
 @server (
     // Define a request with a request body limited to 1MB, supported by goctl >= 1.5.0
-    maxBytes: 1024
+    maxBytes: 1048576
 )
 // Define a service named user
 service user {

@@ -314,7 +314,7 @@ type GetUserInfoResp {
 // 所有声明仅对当前 service 中的路由有效
 @server (
 	// 定义一个请求体限制在 1MB 以内的请求，goctl >= 1.5.0 版本支持
-	maxBytes: 1024
+	maxBytes: 1048576
 )
 // 定义一个名称为 user 的服务
 service user {
