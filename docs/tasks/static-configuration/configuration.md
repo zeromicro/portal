@@ -58,7 +58,7 @@ conf.MustLoad(*f, &c)
 println(c.Name)
 ```
 
-至此我们 讲 config.yaml 中的配置文件加载到 Config 中来了。我们后续可以在程序中使用我们的配置变量
+至此我们将 config.yaml 中的配置文件加载到 Config 中来了。我们后续可以在程序中使用我们的配置变量
 
 ## 完整实例
 
