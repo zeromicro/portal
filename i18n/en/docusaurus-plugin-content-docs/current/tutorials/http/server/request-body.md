@@ -117,7 +117,7 @@ go-Zero provides a definition of parameter enumeration values, which can be defi
 
 ```go
 type Request struct {
-    Age int `form:"age,options=18,19"`
+    Age int `form:"age,options=18|19"`
 }
 
 var req Request
