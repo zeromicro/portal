@@ -52,16 +52,14 @@ ListenOn: 127.0.0.1:8080
 
 ```go
 func main() {
-	func main() {
 	var serverConf zrpc.RpcServerConf
 	conf.MustLoad("etc/greet-server.yaml", &serverConf)
 	s := zrpc.MustNewServer(serverConf, func(server *grpc.Server) {
 		greet.RegisterGreetServer(server, &exampleServer{})
 	})
-
+	
 	defer s.Stop()
 	s.Start()
-}
 }
 
 type exampleServer struct {
