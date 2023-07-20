@@ -54,19 +54,19 @@ type LogConf struct {
 
 ```
 
-| 参数                | 类型   | 默认值  | 说明                                                                      | 枚举值 |
-| ------------------- | ------ | ------- | ------------------------------------------------------------------------- | --------- |
-| ServiceName         | string |         | 服务名称                                                                  |
-| Mode                | string | console | 日志打印模式，console 控制台                                              | file, console |
-| Encoding            | string | json    | 日志格式, json 格式 或者 plain 纯文本                                           | json, plain |
-| TimeFormat          | string |         | 日期格式化                                                                |
-| Path                | string | logs    | 日志在文件输出模式下，日志输出路径                                        |
-| Level               | string | info    | 日志输出级别                                                              | debug,info,error,severe |
+| 参数                | 类型   | 默认值  | 说明                                        | 枚举值 |
+| ------------------- | ------ | ------- |-------------------------------------------| --------- |
+| ServiceName         | string |         | 服务名称                                      |
+| Mode                | string | console | 日志打印模式，console 控制台                        | file, console |
+| Encoding            | string | json    | 日志格式, json 格式 或者 plain 纯文本                | json, plain |
+| TimeFormat          | string |         | 日期格式化                                     |
+| Path                | string | logs    | 日志在文件输出模式下，日志输出路径                         |
+| Level               | string | info    | 日志输出级别                                    | debug,info,error,severe |
 | MaxContentLength    | uint32 | 0       | 日志长度限制，打印耽搁日志的时候会对日志进行裁剪，只有对 content 进行裁剪 |
-| Compress            | bool   | false   | 是否压缩日志                                                              |
-| Stat                | bool   | true    | 是否禁用 stat 日志，go-zero 版本大于等于1.5.0才支持                                                        |
-| KeepDays            | int    | 0       | 日志保留天数，只有在文件模式才会生效                                      |
-| StackCooldownMillis | int    | 100     | 堆栈打印冷却时间                                                          |
-| MaxBackups          | int    | 0       | 文件输出模式，按照大小分割时，最多文件保留个数                            |
-| MaxSize             | int    | 0       | 文件输出模式，按照大小分割时，单个文件大小                                |
-| Rotation            | string | daily   | 文件分割模式， daily 按日期                                               | daily,size |
+| Compress            | bool   | false   | 是否压缩日志                                    |
+| Stat                | bool   | true    | 是否开启 stat 日志，go-zero 版本大于等于1.5.0才支持       |
+| KeepDays            | int    | 0       | 日志保留天数，只有在文件模式才会生效                        |
+| StackCooldownMillis | int    | 100     | 堆栈打印冷却时间                                  |
+| MaxBackups          | int    | 0       | 文件输出模式，按照大小分割时，最多文件保留个数                   |
+| MaxSize             | int    | 0       | 文件输出模式，按照大小分割时，单个文件大小                     |
+| Rotation            | string | daily   | 文件分割模式， daily 按日期                         | daily,size |
