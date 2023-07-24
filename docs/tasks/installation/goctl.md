@@ -160,7 +160,7 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --help
 <TabItem value="amd64" label="amd64架构" default>
 
 ```bash
-$ goctl  docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
+$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
 ```
 
 </TabItem>
@@ -168,7 +168,7 @@ $ goctl  docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
 <TabItem value="arm64" label="arm64(M1)架构" default>
 
 ```bash
-$ goctl  docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --version
+$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --version
 ```
 
 </TabItem>
