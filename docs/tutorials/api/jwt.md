@@ -135,3 +135,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 :::caution 注意
 代码生成后的 jwt 认证，框架只做了服务端逻辑，对于 jwt token 的生成及 refresh token 仍需要开发者自行实现。
 :::
+
+### 载体信息获取
+
+jwt 通常可以携带一些自定义信息，比如 server 端生成 jwt key 时添加了 `custom-key` 值，go-zero 在解析后会将所有载体放到 context 中，开发者可以
+通过如下示例获取载体信息。
+
+```go
+func (l *UserInfoLogic) UserInfo(req *types.UserInfoReq) (resp *types.UserInfoResp, err error) {
+    // 获取 jwt 载体信息
+	value:=l.ctx.Value("custom-key")
+	return
+}
+```
