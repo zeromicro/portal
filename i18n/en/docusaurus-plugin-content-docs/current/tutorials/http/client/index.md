@@ -67,7 +67,8 @@ Post Json requests are used in the same way. Just label the fields in the struct
 ```go
 type Request struct {
     Node   string `path:"node"`
-    Body   map[string]string `json:"body"` // json 请求体，这里以 string 为例，你可以使用任意类型
+    Foo    string `json:"foo"`
+    Bar    string `json:"bar"`
     Header string `header:"X-Header"`
 }
 
@@ -79,10 +80,8 @@ func main() {
     req := types.Request{
         Node:   "foo",
         Header: "foo-header",
-        Body:   map[string]string{
-            "foo":"foo",
-            "bar":"bar",
-        },
+        Foo:    "foo",
+        Bar:    "bar",
     }
     resp, err := httpc.Do(context.Background(), http.MethodPost, *domain+"/nodes/:node", req)
     if err != nil {
