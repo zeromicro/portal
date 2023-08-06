@@ -93,7 +93,7 @@ if err != nil { // err == ErrNotMatchDestination
 	return
 }
 ```
-因为我们定义的 age ，并没有在 sql 中查询出来，会导致变量不一致的情况。如果用户确实有宽表，只需要查询部分字段，我们提供了 **QueryRowPartialCtx** 进行查询，这个方法及时查询的列不够也不会报错。
+因为我们定义的 age ，并没有在 sql 中查询出来，会导致变量不一致的情况。如果用户确实有宽表，只需要查询部分字段，我们提供了 **QueryRowPartialCtx** 进行查询，这个方法即使查询的列不够也不会报错。
 
 ```go
 type User struct {
