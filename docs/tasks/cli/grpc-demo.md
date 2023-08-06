@@ -71,7 +71,7 @@ $ tree
 
 ## 编写简单的逻辑代码
 
-在完成上述代码生成后，我们可以找到 `~/workspace/rpc/demo/internal/logic/demologic.go` 文件，编辑该文件，将 `29` 行替换为如下代码：
+在完成上述代码生成后，我们可以找到 `~/workspace/rpc/demo/internal/logic/pinglogic.go` 文件，编辑该文件，将 `29` 行替换为如下代码：
 
 ```go
 return &demo.Response{
