@@ -106,5 +106,5 @@ curl --location 'http://localhost:3333/nodes/foo' \
 ```
 
 :::tip 温馨提示
-httpc 默认使用的是 http.DefaultClient，这个不能指定
+httpc 默认使用的是 http.DefaultClient，如需要自定义 client，请使用 <a href="https://github.com/zeromicro/go-zero/blob/master/rest/httpc/service.go#L37" target="_blank"> httpc.NewServiceWithClient </a>
 :::
