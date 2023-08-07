@@ -121,4 +121,4 @@ alt='task-api-demo-postman'
 </Tabs>
 
 
-当你按照文档步骤走到这里，恭喜你 🎉 🎉 🎉 ，你已经完成了最简单的 go-zero api 服务的创建和启动了，如需了解 `goctl` 工具的使用说明请参阅 <a href="/docs/tutorials/cli/overview" target="_blank">《CLI 工具》</a>，如需了解完整 go-zero api 服务的使用说明请参阅 <a href="/docs/tutorials/http/server/configuration/service" target="_blank">《HTTP Server》</a>。
+当你按照文档步骤走到这里，恭喜你 🎉 🎉 🎉 ，你已经完成了最简单的 go-zero api 服务的创建和启动了，如需了解 `goctl` 工具的使用说明请参阅 <a href="/docs/tutorials/cli/overview" target="_blank">《CLI 工具》</a>，如需了解完整 go-zero api 服务的使用说明请参阅 <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">《HTTP Server》</a>。
