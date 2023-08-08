@@ -96,7 +96,7 @@ logx.Reset()
 这样，所有的日志将会变成默认的输出模式，如果需要，可以再次自行初始化日志。
 
 ## 日志 caller 设置
-目前 go-zero 默认会打印当前日志打印的行数。当时我们封装一些方法的时候需要知道上次的调用层次，可以使用 **logx.WithCallerSkip(1)** 设置 caller 的层次。例如：
+目前 go-zero 默认会打印当前日志打印的行数。但是我们封装一些方法的时候需要知道上次的调用层次，可以使用 **logx.WithCallerSkip(1)** 设置 caller 的层次。例如：
 
 ```go
 package main
