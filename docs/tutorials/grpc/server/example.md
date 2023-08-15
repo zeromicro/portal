@@ -21,7 +21,7 @@ go-zero 提供了 gRPC server 能力，其提供了：
 
 ## 使用示例
 
-在 go-zero 中，我们可以使用 goctl 来快速声一个 gRPC 服务，也可以通过 goctl 0 代码生成一个 gRPC 服务示例。
+在 go-zero 中，我们可以使用 goctl 来快速生成一个 gRPC 服务，也可以通过 goctl 0 代码生成一个 gRPC 服务示例。
 
 :::tip 温馨提示
 通过 goctl 快速生成并启动一个 gRPC 服务示例可以参考 <a href="/docs/tutorials/cli/quickstart" target="_blank">《快速开始•微服务篇》</a>
