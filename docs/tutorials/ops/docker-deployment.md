@@ -333,10 +333,10 @@ jobs:
 ```
           script: |
             cd /home/project/gophertok
-            docker-compose -f docker-compose.yaml stop chat-mq
-            docker-compose -f docker-compose.yaml rm -f chat-mq
-            docker image rm ${{ secrets.DOCKERHUB_IMAGE }}chat-mq:latest
-            docker-compose -f docker-compose.yaml up -d chat-mq
+            docker-compose -f docker-compose.yaml stop chat-rpc
+            docker-compose -f docker-compose.yaml rm -f chat-rpc
+            docker image rm ${{ secrets.DOCKERHUB_IMAGE }}chat-rpc:latest
+            docker-compose -f docker-compose.yaml up -d chat-rpc
 ```
 
 这之后你可以加其他的命令，比如执行一些脚本什么的，或者执行docker-compose部署容器
