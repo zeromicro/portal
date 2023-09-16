@@ -6,7 +6,7 @@ slug: /docs/tasks/dsl/proto
 
 ## 概述
 
-Protocol buffers 是 Google 的语言中立、平台中立、可扩展的结构化数据序列化机制——想想 XML，但更小、更快、更简单。您定义了一次数据的结构化方式，然后您可以使用特殊生成的源代码轻松地将结构化数据写入各种数据流并使用各种语言从中读取结构化数据。
+Protocol buffers 是 Google 的语言中立、平台中立、可扩展的结构化数据序列化机制——像 XML，但更小、更快、更简单。您定义了一次数据的结构化方式，然后您可以使用特殊生成的源代码轻松地将结构化数据写入各种数据流并使用各种语言从中读取结构化数据。
 
 :::note 注意
 在 go-zero 框架开发中，我们使用 <a href="https://developers.google.com/protocol-buffers/docs/proto3" target="_blank">《Language Guide (proto3)》</a> 版本。
