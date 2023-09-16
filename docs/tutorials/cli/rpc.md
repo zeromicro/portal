@@ -118,7 +118,7 @@ Flags:
 | style                       | string                      | NO                          | gozero                    | 文件命名风格，详情可参考 <a href="/docs/tutorials/cli/style" target="_blank">文件风格</a> |
 | zrpc_out                    | string                      | NO                          | 空字符串                  | 输出目录                                                                                  |
 
-出了上述参数外，还有支持 protoc 指令的原生参数，详情可参考 <a href="https://developers.google.com/protocol-buffers/docs/reference/go-generated#invocation" target="_blank"> Go Generated Code Guide</a>。
+除了上述参数外，还有支持 protoc 指令的原生参数，详情可参考 <a href="https://developers.google.com/protocol-buffers/docs/reference/go-generated#invocation" target="_blank"> Go Generated Code Guide</a>。
 
 示例：
 
