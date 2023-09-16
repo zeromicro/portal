@@ -97,21 +97,19 @@ CMD ["./video", "-f", "etc/video.yaml"]
 2. **安装基础依赖**:
 
    ```dockerfile
-   DockerfileCopy code
    RUN apk update --no-cache && apk add --no-cache tzdata
    ```
-
+   
    - 使用Alpine的包管理器 `apk` 来更新包索引并安装 `tzdata` 包，用于时区数据。
-
+   
 3. **设置工作目录**:
 
    ```dockerfile
-   DockerfileCopy code
    WORKDIR /build
    ```
-
+   
    - 设置工作目录为 `/build`，后续的命令将在这个目录中执行。
-
+   
 4. **复制项目文件**:
 
    ```dockerfile
@@ -227,7 +225,8 @@ services:
 #### 方式3——使用Github Action自动构建并且推送镜像到dockerhub
 
 :::info
-建议先了解[GitHub Action](https://docs.github.com/en/actions)
+
+建议先了解<a href="https://docs.github.com/en/actions" target="_blank">GitHub Action</a>
 :::
 
 ```yaml
@@ -308,7 +307,7 @@ jobs:
 7. **Login to Docker Hub**：
 
    - 使用 `docker/login-action@v1` 动作来登录到Docker Hub，以便能够推送构建的Docker镜像。登录需要使用存储在GitHub仓库机密中的Docker用户名和token（`DOCKER_USERNAME` 和 `DOCKERHUB_TOKEN`）。
-   - 注册账号后，进入https://hub.docker.com/settings/security获取token
+   - 注册账号后，进入<a href="https://hub.docker.com/settings/security" target="_blank">Docker Hub</a>获取token
 
    <Image src={require('../../resource/tutorials/ops/docker-deployment-2.png').default} alt='docker-deployment' />
 
