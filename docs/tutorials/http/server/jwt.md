@@ -34,6 +34,13 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+## JWT传输
+
+在HTTP请求添加名为`Authorization`的header，形式如下
+```html
+Authorization: Bearer <token>
+```
+
 ## JWT Token 生成示例
 
 ```go
