@@ -55,50 +55,50 @@ $ goctl --version
 
 <DocsCard 
 header="Microsoft Windows" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-windows-amd64.zip" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-windows-amd64.zip" >
 
 <p>Windows Intel x86-64 位处理器</p>
-<a>goctl-v1.4.3-windows-amd64.zip（14.7MB）</a>
+<a>goctl-v1.5.6-windows-amd64.zip（14.7MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Microsoft Windows" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-windows-386.zip" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-windows-386.zip" >
 
 <p>Windows Intel x86-32 位处理器</p>
-<a>goctl-v1.4.3-windows-386.zip（14MB）</a>
+<a>goctl-v1.5.6-windows-386.zip（14MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Apple macOS（ARM64）" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-darwin-arm64.tar.gz" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-darwin-arm64.tar.gz" >
 
 <p>支持 macOS Apple 64 位处理器</p>
-<a>goctl-v1.4.3-darwin-arm64.tar.gz（14.5MB）</a>
+<a>goctl-v1.5.6-darwin-arm64.tar.gz（14.5MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Apple macOS（x86-64）" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-darwin-amd64.tar.gz" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-darwin-amd64.tar.gz" >
 
 <p>支持 macOS 64 位处理器</p>
-<a>goctl-v1.4.3-darwin-amd64.tar.gz（14.7MB）</a>
+<a>goctl-v1.5.6-darwin-amd64.tar.gz（14.7MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Linux" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-linux-amd64.tar.gz" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-linux-amd64.tar.gz" >
 
 <p>支持 Linux 64 位处理器</p>
-<a>goctl-v1.4.3-linux-amd64.tar.gz（14.8MB）</a>
+<a>goctl-v1.5.6-linux-amd64.tar.gz（14.8MB）</a>
 </DocsCard>
 
 <DocsCard 
 header="Linux" 
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-linux-386.tar.gz" >
+href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-linux-386.tar.gz" >
 
 <p>支持 Linux 32 位处理器</p>
-<a>goctl-v1.4.3-linux-386.tar.gz（13.9MB）</a>
+<a>goctl-v1.5.6-linux-386.tar.gz（13.9MB）</a>
 </DocsCard>
 
 </DocsCards>
