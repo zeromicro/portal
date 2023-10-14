@@ -89,7 +89,7 @@ Flags:
 
 ### goctl template update 指令
 
-goctl template update 用于回滚某个分类下的所有模板文件。
+goctl template update 用于更新某个分类下的所有模板文件。
 
 ```bash
 $ goctl template update --help
