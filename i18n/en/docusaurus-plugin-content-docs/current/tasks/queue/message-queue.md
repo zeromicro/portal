@@ -23,7 +23,7 @@ go-queue producers are simple. Only kafka addresses are needed to create a Pushe
 NewPusher(addrs []string, topic string, opts ...PushOption)
 ```
 
-### Code Example
+### Code Example 2
 
 ```go
 pusher := kq.NewPusher([]string{
@@ -78,7 +78,7 @@ service.ServiceConf reference <a href="/docs/tutorials/go-zero/configuration/ser
 | Password                                   | string                                       | NO                                            |                                                   | Password                                                                  |
 | ForceCommit                                | bool                                         | NO                                            | true                                              | Force Commit or not                                                       |
 
-### Code Example
+### Code Example 1
 
 <Tabs>
 

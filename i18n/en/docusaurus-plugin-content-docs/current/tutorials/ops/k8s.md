@@ -38,9 +38,9 @@ go-zero official k8s configuration demo address: https://github.com/zeroicro/zer
 
 Also reference is made to configuration repository address ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf
 
-[NOTE ] 1. Modified Middle,Database, redis etc to change to 192.168.1.181 This machine is used as an intermediate for online environments.
+[NOTE ] 1 Modified Middle,Database, redis etc to change to 192.168.1.181 This machine is used as an intermediate for online environments.
 
-2. another is our service discovery that we are deployed online in k8s, go-zero directly supports k8s service discoveries, so letcd is not required. We need to change target,k8s configuration when we configure zrpc customers.
+2 another is our service discovery that we are deployed online in k8s, go-zero directly supports k8s service discoveries, so letcd is not required. We need to change target,k8s configuration when we configure zrpc customers.
 
 ## 4. Mirror Repository
 
@@ -83,158 +83,158 @@ Save directly.
 Swipe down to find `Pipeline scripts`, fill in script content
 
 ```pipline
-pipeline {
-  agent any
-  parameters {
-      gitParameter name: 'branch',
-      type: 'PT_BRANCH',
-      branchFilter: 'origin/(.*)',
-      defaultValue: 'master',
-      selectedValue: 'DEFAULT',
-      sortMode: 'ASCENDING_SMART',
-      description: '选择需要构建的分支'
-  }
+    pipeline {
+    agent any
+    parameters {
+        gitParameter name: 'branch',
+        type: 'PT_BRANCH',
+        branchFilter: 'origin/(.*)',
+        defaultValue: 'master',
+        selectedValue: 'DEFAULT',
+        sortMode: 'ASCENDING_SMART',
+        description: '选择需要构建的分支'
+    }
 
-  stages {
-      stage('服务信息')    {
-          steps {
-              sh 'echo 分支：$branch'
-              sh 'echo 构建服务类型：${JOB_NAME}-$type'
-          }
-      }
-
-
-      stage('拉取代码') {
-          steps {
-              checkout([$class: 'GitSCM',
-              branches: [[name: '$branch']],
-              doGenerateSubmoduleConfigurations: false,
-              extensions: [],
-              submoduleCfg: [],
-              userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode.git']]])
-          }
-      }
-      stage('获取commit_id') {
-          steps {
-              echo '获取commit_id'
-              git credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode.git'
-              script {
-                  env.commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-              }
-          }
-      }
-      stage('拉取配置文件') {
-              steps {
-                  checkout([$class: 'GitSCM',
-                  branches: [[name: '$branch']],
-                  doGenerateSubmoduleConfigurations: false,
-                  extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'conf']],
-                  submoduleCfg: [],
-                  userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode-pro-conf.git']]])
-              }
+    stages {
+        stage('服务信息')    {
+            steps {
+                sh 'echo 分支：$branch'
+                sh 'echo 构建服务类型：${JOB_NAME}-$type'
+            }
         }
 
-      stage('goctl版本检测') {
-          steps{
-              sh '/usr/local/bin/goctl -v'
-          }
-      }
 
-      stage('Dockerfile Build') {
-          steps{
-                 sh 'yes | cp  -rf conf/${JOB_NAME}/${type}/${JOB_NAME}.yaml  app/${JOB_NAME}/cmd/${type}/etc'   //线上配置文件
-                 sh 'cd app/${JOB_NAME}/cmd/${type} && /usr/local/bin/goctl docker -go ${JOB_NAME}.go && ls -l'
-                 script{
-                     env.image = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}:${commit_id}').trim()
-                 }
-                 sh 'echo 镜像名称：${image} && cp app/${JOB_NAME}/cmd/${type}/Dockerfile ./  && ls -l && docker build  -t ${image} .'
-          }
-      }
+        stage('拉取代码') {
+            steps {
+                checkout([$class: 'GitSCM',
+                branches: [[name: '$branch']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [],
+                submoduleCfg: [],
+                userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode.git']]])
+            }
+        }
+        stage('获取commit_id') {
+            steps {
+                echo '获取commit_id'
+                git credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode.git'
+                script {
+                    env.commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+                }
+            }
+        }
+        stage('拉取配置文件') {
+                steps {
+                    checkout([$class: 'GitSCM',
+                    branches: [[name: '$branch']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'conf']],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/k8scode-pro-conf.git']]])
+                }
+            }
 
-      stage('上传到镜像仓库') {
-          steps{
-              //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
-              sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
-              sh 'docker tag  ${image} ${docker_repo}/k8scode/${image}'
-              sh 'docker push ${docker_repo}/k8scode/${image}'
-          }
-      }
+        stage('goctl版本检测') {
+            steps{
+                sh '/usr/local/bin/goctl -v'
+            }
+        }
 
-      stage('部署到k8s') {
-          steps{
-              script{
-                  env.deployYaml = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}-deploy.yaml').trim()
-                  env.port=sh(returnStdout: true, script: '/root/port.sh ${JOB_NAME}-${type}').trim()
-              }
+        stage('Dockerfile Build') {
+            steps{
+                    sh 'yes | cp  -rf conf/${JOB_NAME}/${type}/${JOB_NAME}.yaml  app/${JOB_NAME}/cmd/${type}/etc'   //线上配置文件
+                    sh 'cd app/${JOB_NAME}/cmd/${type} && /usr/local/bin/goctl docker -go ${JOB_NAME}.go && ls -l'
+                    script{
+                        env.image = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}:${commit_id}').trim()
+                    }
+                    sh 'echo 镜像名称：${image} && cp app/${JOB_NAME}/cmd/${type}/Dockerfile ./  && ls -l && docker build  -t ${image} .'
+            }
+        }
 
-              sh 'echo ${port}'
+        stage('上传到镜像仓库') {
+            steps{
+                //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
+                sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
+                sh 'docker tag  ${image} ${docker_repo}/k8scode/${image}'
+                sh 'docker push ${docker_repo}/k8scode/${image}'
+            }
+        }
 
-              sh 'rm -f ${deployYaml}'
-              sh '/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} -serviceAccount find-endpoints '
-              sh '/usr/local/bin/kubectl apply -f ${deployYaml}'
-          }
-      }
+        stage('部署到k8s') {
+            steps{
+                script{
+                    env.deployYaml = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}-deploy.yaml').trim()
+                    env.port=sh(returnStdout: true, script: '/root/port.sh ${JOB_NAME}-${type}').trim()
+                }
 
-       stage('Clean') {
-           steps{
-               sh 'docker rmi -f ${image}'
-               sh 'docker rmi -f ${docker_repo}/${image}'
-               cleanWs notFailBuild: true
-           }
-       }
-  }
-}
-```
+                sh 'echo ${port}'
 
-:::note is very important
-when building optimization：pipline is using "/usr/local/bin/goctl kube xxxx" we're deploying using k8s yaml without etcds, but this deployment needs to be specified for the built k8s yaml. The idea is to look at the k8s service in this article below go-zero below ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
+                sh 'rm -f ${deployYaml}'
+                sh '/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} -serviceAccount find-endpoints '
+                sh '/usr/local/bin/kubectl apply -f ${deployYaml}'
+            }
+        }
 
-I have already specified the serviceAccount
+        stage('Clean') {
+            steps{
+                sh 'docker rmi -f ${image}'
+                sh 'docker rmi -f ${docker_repo}/${image}'
+                cleanWs notFailBuild: true
+            }
+        }
+    }
+    }
+    ```
 
-So you need to create find-endpoints on your k8s, this serviceAccount and bind the corresponding permissions. yaml file I am ready. You just need to do it
+    :::note is very important
+    when building optimization：pipline is using "/usr/local/bin/goctl kube xxxx" we're deploying using k8s yaml without etcds, but this deployment needs to be specified for the built k8s yaml. The idea is to look at the k8s service in this article below go-zero below ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
 
-Execute command kubectl apply -f auth.yaml, the auth.yaml file as follows:：
+    I have already specified the serviceAccount
 
-```yaml
-#创建账号
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: k8scode
-  name: find-endpoints
+    So you need to create find-endpoints on your k8s, this serviceAccount and bind the corresponding permissions. yaml file I am ready. You just need to do it
 
----
-#创建角色对应操作
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: discov-endpoints
-rules:
-  - apiGroups: [""]
-    resources: ["endpoints"]
-    verbs: ["get", "list", "watch"]
+    Execute command kubectl apply -f auth.yaml, the auth.yaml file as follows:：
 
----
-#给账号绑定角色
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: find-endpoints-discov-endpoints
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: discov-endpoints
-subjects:
-  - kind: ServiceAccount
-    name: find-endpoints
+    ```yaml
+    #创建账号
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
     namespace: k8scode
-```
+    name: find-endpoints
 
-pipline generating k8s yaml files can support serviceAccount without using a template to specify serviceAccount at the time of generation; directly-specify -serviceAcount in pipline and add serviceAccount in the yaml generating k8s
+    ---
+    #创建角色对应操作
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+    name: discov-endpoints
+    rules:
+    - apiGroups: [""]
+        resources: ["endpoints"]
+        verbs: ["get", "list", "watch"]
 
-```shell
-/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --serviceAccount find-endpoints
-```
+    ---
+    #给账号绑定角色
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+    name: find-endpoints-discov-endpoints
+    roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: discov-endpoints
+    subjects:
+    - kind: ServiceAccount
+        name: find-endpoints
+        namespace: k8scode
+    ```
+
+    pipline generating k8s yaml files can support serviceAccount without using a template to specify serviceAccount at the time of generation; directly-specify -serviceAcount in pipline and add serviceAccount in the yaml generating k8s
+
+    ```shell
+    /usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace k8scode -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --serviceAccount find-endpoints
+    ```
 
 2. ${credentialsId}will replace your specific credentials with a string of strings in the "Add Credit" module, so we've filled in gitlab-cert here. If you are not this own replacement,${gitUrl}needs to be replaced with a git repository address for your code, other variables in${xxx}form need no modification, keeping it as it is.
 
@@ -247,51 +247,51 @@ k8s, by default, can only pull a public mirror image of a hole in a repository. 
 
 1. First Jenkins Publish Machine Login harbor
 
-```shell
-$ docker login 192.168.1.180:8077
-$ Username: admin
-$ Password:
-Login Succeeded
-```
+    ```shell
+    $ docker login 192.168.1.180:8077
+    $ Username: admin
+    $ Password:
+    Login Succeeded
+    ```
 
 2. Generate login harbor profile in k8s
 
-```shell
-#查看上一步登陆harbor生成的凭证
-$ cat /root/.docker/config.json
-{
-    "auths": {
-        "192.168.1.180:8077": {
-            "auth": "YWRtaW46SGFyYm9yMTIzNDU="
-        }
-}
-```
+    ```shell
+    #查看上一步登陆harbor生成的凭证
+    $ cat /root/.docker/config.json
+    {
+        "auths": {
+            "192.168.1.180:8077": {
+                "auth": "YWRtaW46SGFyYm9yMTIzNDU="
+            }
+    }
+    ```
 
 3. Base64 encryption of key files
 
-```shell
-$ cat /root/.docker/config.json  | base64 -w 0
+    ```shell
+    $ cat /root/.docker/config.json  | base64 -w 0
 
-ewoJImF1dGhzIjogewoJCSIxOTIuMTY4LjEuMTgwOjgwNzciOiB7CgkJCSJhdXRoIjogIllXUnRhVzQ2U0dGeVltOXlNVEl6TkRVPSIKCQl9Cgl9Cn0=
-```
+    ewoJImF1dGhzIjogewoJCSIxOTIuMTY4LjEuMTgwOjgwNzciOiB7CgkJCSJhdXRoIjogIllXUnRhVzQ2U0dGeVltOXlNVEl6TkRVPSIKCQl9Cgl9Cn0=
+    ```
 
-4, Create docker-secret.yaml
+4. Create docker-secret.yaml
 
-```yml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: docker-login
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSIxOTIuMTY4LjEuMTgwOjgwNzciOiB7CgkJCSJhdXRoIjogIllXUnRhVzQ2U0dGeVltOXlNVEl6TkRVPSIKCQl9Cgl9Cn0=
-```
+    ```yml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+    name: docker-login
+    type: kubernetes.io/dockerconfigjson
+    data:
+    .dockerconfigjson: ewoJImF1dGhzIjogewoJCSIxOTIuMTY4LjEuMTgwOjgwNzciOiB7CgkJCSJhdXRoIjogIllXUnRhVzQ2U0dGeVltOXlNVEl6TkRVPSIKCQl9Cgl9Cn0=
+    ```
 
-```shell
-$ kubectl create -f docker-secret.yaml -n k8scode
+    ```shell
+    $ kubectl create -f docker-secret.yaml -n k8scode
 
-secret "docker-login" created
-```
+    secret "docker-login" created
+    ```
 
 ## 7. Buildings
 

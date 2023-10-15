@@ -82,6 +82,7 @@ Configure to the /root/.ssh/authorized_keys running the service physics.
 
 Swipe down to find `Pipeline scripts`, fill in script content
 
+```pipeline
     pipeline {
       agent any
     
@@ -149,6 +150,7 @@ Swipe down to find `Pipeline scripts`, fill in script content
           }
       }
     }
+```
 
 ## 5. Build Publication
 

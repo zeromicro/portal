@@ -26,67 +26,67 @@ This section mainly describes the use of redis to create a distribution lock.
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L46" target="_blank">NewRedisLock</a>
 
-```golang
-Function signature: 
-    NewRedisLock func(store *Redis, key string) *RedisLock 
-description: 
-    1. Deleting a single record will also clear the key cache
-    Default expiration time of 1500 ms
-in participation:
-    1. store: redis instance
-    2. key: key
-return value:
-    1. *RedLock: redis locker instance
-```
+    ```golang
+    Function signature: 
+        NewRedisLock func(store *Redis, key string) *RedisLock 
+    description: 
+        1. Deleting a single record will also clear the key cache
+        Default expiration time of 1500 ms
+    in participation:
+        1. store: redis instance
+        2. key: key
+    return value:
+        1. *RedLock: redis locker instance
+    ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L104" target="_blank">SetExpire</a>
 
-```golang
-Function signature: 
-    SetExpire func(seconds int)
-description: 
-    1. Set expiration time
-entry:
-    1. seconds: expiration time, in seconds
-```
+    ```golang
+    Function signature: 
+        SetExpire func(seconds int)
+    description: 
+        1. Set expiration time
+    entry:
+        1. seconds: expiration time, in seconds
+    ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L55" target="_blank">Acquire</a>
 
-```golang
-Function signature: 
-    Acquire func() (bool, error)
-description: 
-    1. Get lock
-return value:
-    1. bool: get lock
-    2. error: operator error
-```
+    ```golang
+    Function signature: 
+        Acquire func() (bool, error)
+    description: 
+        1. Get lock
+    return value:
+        1. bool: get lock
+        2. error: operator error
+    ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L60" target="_blank">AcquireCtx</a>
 
-```golang
-Function signature: 
-   AcquireCtx func(ctx context.Context) (bool, error)
-description: 
-    1. Get lock
-Input:
-    1. ctx: context
-Return value:
-    1. bool: Whether to get lock
-    2. error: operator error
-```
+    ```golang
+    Function signature: 
+    AcquireCtx func(ctx context.Context) (bool, error)
+    description: 
+        1. Get lock
+    Input:
+        1. ctx: context
+    Return value:
+        1. bool: Whether to get lock
+        2. error: operator error
+    ```
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L83" target="_blank">Release</a>
 
-```golang
-Function signature: 
-   Release func() (bool, error)
-description: 
-    1. Get lock
-return value:
-    1. bool: get lock
-    2. error: operator error
-```
+    ```golang
+    Function signature: 
+    Release func() (bool, error)
+    description: 
+        1. Get lock
+    return value:
+        1. bool: get lock
+        2. error: operator error
+    ```
 
 6. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L89" target="_blank">ReleaseCtx</a>
 

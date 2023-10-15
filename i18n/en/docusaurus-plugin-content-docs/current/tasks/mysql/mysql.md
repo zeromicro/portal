@@ -11,8 +11,8 @@ But we can also initialize sql conn directly, if a particular situation requires
 
 ## Task Targets
 
-1. Learn about the use of **github.com/zeroicro/go-zero/core/stores/sqlx**.
-2. Create a sql link from sqlx.
+1 Learn about the use of **github.com/zeroicro/go-zero/core/stores/sqlx**.
+2 Create a sql link from sqlx.
 
 ## Create Database
 
@@ -31,7 +31,7 @@ CREATE TABLE user (
 
 ## Connect to database
 
-1. Mysql
+1 Mysql
 
 ```go
 package main
@@ -54,7 +54,7 @@ func main()
 In order to correctly process time.Time you need to take the time parameter, [more parameters](https://github.com/go-sql-driver/mysql#parameters) To support the full UTF-8 encoding, you need to change charset=utf8 to charset=utf8mb4
 :::
 
-2. Custom driver
+2 Custom driver
 
 go-zero allows to customize MySQL drivers with the DriverName option, eg:：
 
@@ -73,7 +73,7 @@ func main() {
 
 ```
 
-3. Existing database connection
+3 Existing database connection
 
 go-zero is allowed to initialize Sql links through existing databases, e.g.：
 
@@ -98,7 +98,7 @@ func main() {
 
 ## Start CRUD
 
-1. Insert a data
+1 Insert a data
 
 We can start operating the database when we get a link using the above method of creating the link.
 
@@ -128,7 +128,7 @@ func main() {
 
 Execute, we'll insert a record in the user.
 
-2. Query data
+2 Query data
 
 We need to define a user structure before searching directly
 
@@ -169,7 +169,7 @@ func main() {
 
 Execute the above program, we will see user information we just inserted into
 
-3. Modify the data we continue to use the custom code
+3 Modify the data we continue to use the custom code
 
 ```go
 package main
@@ -198,7 +198,7 @@ func main() {
 
 Run the above code to find the record type in the database to 2.
 
-4. Data deletion
+4 Data deletion
 
 ```go
 package main

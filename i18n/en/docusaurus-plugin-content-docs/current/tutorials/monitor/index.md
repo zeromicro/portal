@@ -89,7 +89,7 @@ type Config struct {
 
 go-zero link tracking support (Jaeger\zipkin) can only be enabled by adding a few lines to the configuration. No code needs to be modified. Example：
 
-1）api配置
+1 api配置
 
 ```yaml
 Name: user-api
@@ -105,7 +105,7 @@ Telemetry:
   Batcher: jaeger
 ```
 
-2) rpc configuration
+2 rpc configuration
 
 ```yaml
 Name: user-rpc

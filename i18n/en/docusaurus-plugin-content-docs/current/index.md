@@ -41,8 +41,6 @@ go-zero is a web and rpc framework that integrates various engineering practices
   </div>
 </DocsCard>
 
-###
-
 <DocsCards>
 
 <DocsCard

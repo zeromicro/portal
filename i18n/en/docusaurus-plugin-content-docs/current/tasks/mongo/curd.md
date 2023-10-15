@@ -12,11 +12,11 @@ This section presents a description of the methods associated with the mon packa
 
 ## Preparing
 
-1. <a href="/docs/tasks/mongo/connection" target="_blank">Complete mon link creation.</a>
+1 <a href="/docs/tasks/mongo/connection" target="_blank">Complete mon link creation.</a>
 
 ## Create New
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L99" target="_blank">InsertOne</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L99" target="_blank">InsertOne</a>
 
 ```golang
 Function signature: 
@@ -54,7 +54,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 
 ## Update
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L102" target="_blank">ReplaceOne</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L102" target="_blank">ReplaceOne</a>
 
 ```golang
 Function signature: 
@@ -92,7 +92,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 
 ## Query
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">FindOne</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">FindOne</a>
 
 ```golang
 Function signature: 
@@ -135,7 +135,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">Find</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">Find</a>
 
 ```golang
 Function signature: 
@@ -180,7 +180,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 
 ## Delete
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
 
 ```golang
 Function signature: 

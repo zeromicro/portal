@@ -37,7 +37,7 @@ Flags:
 
 If the `mono` type is selected, goctl generates a minimized HTTP service and starts the HTTP service.
 
-1. Generate code
+1 Generate code
 
 ```bash
 # enter user home
@@ -65,7 +65,7 @@ go: found github.com/zeromicro/go-zero/core/logx in github.com/zeromicro/go-zero
 Starting server at 127.0.0.1:8888...
 ```
 
-2. curl
+2curl
 
 open a new terminal, execute curl test
 
@@ -86,7 +86,7 @@ Content-Length: 14
 
 If the `micro` type is selected, goctl generates a gRPC service and a HTTP service, then starts gRPC service to communicate with the HTTP service.
 
-1. Generate service
+1Generate service
 
 ```bash
 # enter user home
@@ -149,7 +149,7 @@ Starting rpc server at 127.0.0.1:8080...
 Starting server at 127.0.0.1:8888...
 ```
 
-2. curl
+2curl
 
 Open a new terminal and execute curl test
 

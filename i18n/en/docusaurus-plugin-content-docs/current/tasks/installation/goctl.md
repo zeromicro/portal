@@ -103,8 +103,6 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 
 </DocsCards>
 
-###
-
 Other versions and operating systems can [to go to Github](https://github.com/zeromicro/go-zero/releases) to choose.
 
 ### 2.2 Installation

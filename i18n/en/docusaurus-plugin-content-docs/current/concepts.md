@@ -137,11 +137,13 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro
    Content-Length: 14
    ```
 
-Write business code：
+   Write business code：
 
+    ```plain
     * api file defines the routing of the service to be exposed, reference [api norms](https://github.com/zeromicro/zero-doc/blob/main/go-zero.dev/cn/api-grammar.md)
     * Can pass dependencies to logic, such as mysql, redis and so on in servicecontext.go
     * Add business processing logic to the get/post/put/delete request
+    ```
 
 3. Java, TypeScript, Dart, JavaScript code can be generated from api files
 

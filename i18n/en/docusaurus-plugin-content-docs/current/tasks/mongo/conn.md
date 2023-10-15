@@ -12,8 +12,8 @@ Create a valid monodb database connection via monodb uri.
 
 ## Preparing
 
-1. <a href="/docs/tasks" target="_blank">Complete golang installation</a>
-2. Create a mono server on our own and we use mongodb/admin:123456@localhost as an example
+1 <a href="/docs/tasks" target="_blank">Complete golang installation</a>
+2 Create a mono server on our own and we use mongodb/admin:123456@localhost as an example
 
 ## Toolkit Description
 
@@ -29,7 +29,7 @@ Database connection creation provides two methods,<a href="https://github.com/ze
 
 ## Methodological description
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L40" target="_blank">MustNewModel</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L40" target="_blank">MustNewModel</a>
 
 ```golang
 Function signature: 
@@ -45,7 +45,7 @@ return value:
     1. *Model: Connection management object
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L50" target="_blank">NewModel</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L50" target="_blank">NewModel</a>
 
 ```golang
 Function signature: 

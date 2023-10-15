@@ -87,7 +87,7 @@ protoDescriptor method requires proto to be a pb file via protoc and then refere
 go-zero sdk version v1.5.0 gateway configuration will cause configuration conflicts, please avoid this version, the current example is using v1.4.4 version
 :::
 
-1. We create a new project, demo1, and a new hello.proto file in demo1, as follows:
+1 We create a new project, demo1, and a new hello.proto file in demo1, as follows:
 
 ```protobuf
 syntax = "proto3";
@@ -108,13 +108,13 @@ service Hello {
 }
 ```
 
-2. Create the `gateway` directory in the `demo1` directory, and then execute the following command in the `demo1` directory to generate the protoDescriptor:
+2 Create the `gateway` directory in the `demo1` directory, and then execute the following command in the `demo1` directory to generate the protoDescriptor:
 
 ```bash
 $ protoc --descriptor_set_out=gateway/hello.pb hello.proto
 ```
 
-3. Generate the grpc service code by executing the following command in the `demo1` directory:
+3 Generate the grpc service code by executing the following command in the `demo1` directory:
 
 ```bash
 $ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
@@ -130,14 +130,14 @@ func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
 }
 ```
 
-4. Modify the configuration file `demo1/server/etc/hello.yaml` to read as follows:
+4 Modify the configuration file `demo1/server/etc/hello.yaml` to read as follows:
 
 ```yaml
 Name: hello.rpc
 ListenOn: 0.0.0.0:8080
 ```
 
-5. Go to the `demo1/gateway` directory, create the directory `etc`, and add the configuration file `gateway.yaml`, as follows:
+5 Go to the `demo1/gateway` directory, create the directory `etc`, and add the configuration file `gateway.yaml`, as follows:
 
 ```yaml
 Name: demo1-gateway
@@ -156,7 +156,7 @@ Upstreams:
         RpcPath: hello.Hello/Ping
 ```
 
-6. Go to the `demo1/gateway` directory and create a new `gateway.go` file with the following contents:
+6 Go to the `demo1/gateway` directory and create a new `gateway.go` file with the following contents:
 
 ```go
 package main
@@ -182,7 +182,7 @@ func main() {
 
 ```
 
-7. Open two separate terminals to start the grpc server service and the gateway service, and then visit `http://localhost:8888/ping`:
+7 Open two separate terminals to start the grpc server service and the gateway service, and then visit `http://localhost:8888/ping`:
 
 ```bash
 # Go to the demo1/server directory and start the grpc service
@@ -207,7 +207,7 @@ $ curl http://localhost:8888/ping
 
 The grpcReflection method is similar to the protoDescriptor method. Unlike the grpcReflection method does not require proto to be produced as a pb file through protoc but takes proto from the grpc server directly and then quotes the proto file for rest-grpc rule in gateway.
 
-1. We create a new project, demo2, and a new hello.proto file in demo2, as follows:
+1 We create a new project, demo2, and a new hello.proto file in demo2, as follows:
 
 ```protobuf
 syntax = "proto3";
@@ -228,9 +228,9 @@ service Hello {
 }
 ```
 
-2. Create a `gateway` directory under the `demo2` directory for backup
+2 Create a `gateway` directory under the `demo2` directory for backup
 
-3. Generate the grpc service code by executing the following command in the `demo2` directory:
+3 Generate the grpc service code by executing the following command in the `demo2` directory:
 
 ```bash
 $ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
@@ -258,7 +258,7 @@ Mode: dev
 Since the grpc reflection mode is currently only supported by the `dev` and `test` environments, you need to set `Mode` to `dev` or `test` here.
 :::
 
-4. Go to the `demo2/gateway` directory, create the directory `etc`, and add the configuration file `gateway.yaml`, as follows:
+4 Go to the `demo2/gateway` directory, create the directory `etc`, and add the configuration file `gateway.yaml`, as follows:
 
 ```yaml
 Name: demo1-gateway
@@ -274,7 +274,7 @@ Upstreams:
         RpcPath: hello.Hello/Ping
 ```
 
-5. Go to the `demo2/gateway` directory and create a new `gateway.go` file with the following contents:
+5 Go to the `demo2/gateway` directory and create a new `gateway.go` file with the following contents:
 
 ```go
 package main
@@ -300,7 +300,7 @@ func main() {
 
 ```
 
-6. Open two separate terminals to start the grpc server service and the gateway service, and then visit `http://localhost:8888/ping`:
+6 Open two separate terminals to start the grpc server service and the gateway service, and then visit `http://localhost:8888/ping`:
 
 ```bash
 # Go to the demo1/server directory and start the grpc service
