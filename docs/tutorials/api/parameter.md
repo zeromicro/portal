@@ -28,6 +28,14 @@ type Foo {
     Name string `json:"name" form:"name"`
 }
 ```
+
+go-zero 如果需要使用雪花算法，由于雪花算法长度问题，到前端可能丢失精度，此时前端需使用string，后端用int64，可以使用如下写法：
+
+```go
+type Foo {
+    Id int64 `json:"id,string"`
+}
+```
 :::
 
 ## 参数校验规则
