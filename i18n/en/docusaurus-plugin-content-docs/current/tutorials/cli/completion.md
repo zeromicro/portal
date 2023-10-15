@@ -74,7 +74,7 @@ Flags:
 
 In Linux or Mac operating systems, if you are using `cash`you can generate scripts by `goctl completion bash` , note that,`goctl completion bash` dependency `bash-completion` package support, if your operating system is not installed, it is recommended to install it yourself.
 
-1. Temporary entry into force
+1 Temporary entry into force
 
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
@@ -82,7 +82,7 @@ Temporary entry is only useful for the current terminal session and is one-time 
 $ source <(goctl completion bash)
 ```
 
-2. Permanent entry into force
+2 Permanent entry into force
 
 Permanently effective settings differ according to operating system and their setup method, need to restart terminals to take effect after setup. Currently settings for Linux and MacOS are set below：
 
@@ -130,7 +130,7 @@ Flags:
       --no-descriptions   disable completion descriptions
 ```
 
-1. Temporary entry into force
+1 Temporary entry into force
 
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
@@ -138,7 +138,7 @@ Temporary entry is only useful for the current terminal session and is one-time 
 $ goctl completion fish | source
 ```
 
-2. Permanent entry into force
+2 Permanent entry into force
 
 ```bash
 $ goctl completion fish > ~/.config/fish/completions/goctl.fish
@@ -165,7 +165,7 @@ Flags:
       --no-descriptions   disable completion descriptions
 ```
 
-1. Temporary entry into force
+1 Temporary entry into force
 
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
@@ -173,7 +173,7 @@ Temporary entry is only useful for the current terminal session and is one-time 
 $ goctl completion powershell | Out-String | Invoke-Expression
 ```
 
-2. Permanent entry into force
+2 Permanent entry into force
 
 The following output needs to be added to the power shell's profile.
 
@@ -225,7 +225,7 @@ echo "autoload -U compinit; compinit" >> ~/.zshrc
 
 :::
 
-1. Temporary entry into force
+1 Temporary entry into force
 
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
@@ -233,7 +233,7 @@ Temporary entry is only useful for the current terminal session and is one-time 
 $ source <(goctl completion zsh); compdef _goctl goctl
 ```
 
-2. Permanent entry into force
+2 Permanent entry into force
 
 Permanently effective settings differ according to operating system and their setup method, need to restart terminals to take effect after setup. Currently settings for Linux and MacOS are set below：
 

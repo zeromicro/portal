@@ -37,7 +37,7 @@ returns:
     1. *Model: coonection object
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L41" target="_blank">MustNewNodeModel</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L41" target="_blank">MustNewNodeModel</a>
 
 ```golang
 Function signature: 
@@ -55,7 +55,7 @@ retruns:
     1. *Model: connection object
 ```
 
-3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L51" target="_blank">NewModel</a>
+3 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L51" target="_blank">NewModel</a>
 
 ```golang
 Function signature: 
@@ -72,7 +72,7 @@ retruns:
     2. error: error
 ```
 
-4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L62" target="_blank">NewNodeModel</a>
+4 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L62" target="_blank">NewNodeModel</a>
 
 ```golang
 Function signature: 
@@ -90,7 +90,7 @@ returns:
     2. error: Creation error
 ```
 
-5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L31" target="_blank">NewModelWithCache</a>
+5 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L31" target="_blank">NewModelWithCache</a>
 
 ```golang
 Function signature: 
@@ -148,7 +148,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L189" target="_blank">InsertOneNoCache</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L189" target="_blank">InsertOneNoCache</a>
 
 ```golang
 Function signature: 
@@ -186,7 +186,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 
 ## Update
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateByID</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateByID</a>
 
 ```golang
 Function signature: 
@@ -221,7 +221,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L236" target="_blank">UpdateByIDNoCache</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L236" target="_blank">UpdateByIDNoCache</a>
 
 ```golang
 Function signature: 
@@ -254,7 +254,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 }
 ```
 
-3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L242" target="_blank">UpdateMany</a>
+3 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L242" target="_blank">UpdateMany</a>
 
 ```golang
 Function signature: 
@@ -294,7 +294,7 @@ func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*
 }
 ```
 
-4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L257" target="_blank">UpdateManyNoCache</a>
+4 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L257" target="_blank">UpdateManyNoCache</a>
 
 ```golang
 Function signature: 
@@ -327,7 +327,7 @@ func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*
 }
 ```
 
-5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L263" target="_blank">UpdateOne</a>
+5 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L263" target="_blank">UpdateOne</a>
 
 ```golang
 Function signature: 
@@ -364,7 +364,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 }
 ```
 
-6. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateOneNoCache</a>
+6 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateOneNoCache</a>
 
 ```golang
 Function signature: 
@@ -449,7 +449,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L115" target="_blank">FindOneNoCache</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L115" target="_blank">FindOneNoCache</a>
 
 ```golang
 Function signatures: 
@@ -532,7 +532,7 @@ func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L101" target="_blank">DeleteOneNoCache</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L101" target="_blank">DeleteOneNoCache</a>
 
 ```golang
 Input:

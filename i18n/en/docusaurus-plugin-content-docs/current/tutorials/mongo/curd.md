@@ -18,7 +18,7 @@ This section describes the relatively complex way to introduce the CURD in the m
 
 ## Create New
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L96" target="_blank">InsertMany</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L96" target="_blank">InsertMany</a>
 
 ```golang
 Function signature: 
@@ -58,7 +58,7 @@ func (m *defaultUserModel) InsertMany(ctx context.Context, data []*User) error {
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/bulkinserter.go#L22" target="_blank">BulkInserter</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/bulkinserter.go#L22" target="_blank">BulkInserter</a>
 
 ```golang
 Function signature: 
@@ -149,7 +149,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L105" target="_blank">UpdateByID</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L105" target="_blank">UpdateByID</a>
 
 ```golang
 Function signature: 
@@ -181,7 +181,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 }
 ```
 
-3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L108" target="_blank">UpdateMany</a>
+3 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L108" target="_blank">UpdateMany</a>
 
 ```golang
 Function signature: 
@@ -215,7 +215,7 @@ func (m *customUserModel) UpdateAge(ctx context.Context, name string, age int) e
 
 ## Query
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">FindOne</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">FindOne</a>
 
 ```golang
 Function signature: 
@@ -258,7 +258,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">Find</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">Find</a>
 
 ```golang
 Function signature: 
@@ -296,7 +296,7 @@ func (m *defaultUserModel) Find(ctx context.Context, id string) ([]*User, error)
 
 ## Delete
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
 
 ```golang
 Function signature: 
@@ -330,7 +330,7 @@ func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
 }
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L61" target="_blank">DeleteMany</a>
+2  <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/collection.go#L61" target="_blank">DeleteMany</a>
 
 ```golang
 Function signature: 

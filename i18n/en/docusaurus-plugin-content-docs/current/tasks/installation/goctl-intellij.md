@@ -24,8 +24,6 @@ goctl-intelij installation have 2 ways
 
 ### 1. Install from disk
 
-###
-
 <DocsCard
   className="cordova-ee-card"
   header="Goctl-1.1.3.zip"
@@ -40,8 +38,6 @@ goctl-intelij installation have 2 ways
     <DocsButton className="native-ee-detail">Click to download</DocsButton>
   </div>
 </DocsCard>
-
-###
 
 Downloaded zip files need not be unpressed, then open `Goland` | `Preferences...` | `Plugins`, find more ices <IconMoreVertical />, select `Install Plugins from Disk...`
 

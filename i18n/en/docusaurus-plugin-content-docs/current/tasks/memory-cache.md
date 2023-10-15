@@ -13,11 +13,11 @@ This section mainly describes the use of <a href="https://github.com/zeromicro/g
 
 ## Preparing
 
-1. <a href="/docs/tasks" target="_blank">Complete golang installation</a>
+1 <a href="/docs/tasks" target="_blank">Complete golang installation</a>
 
 ## Create
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L44" target="_blank">NewCache</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L44" target="_blank">NewCache</a>
 
 ```golang
 Function signature: 
@@ -36,7 +36,7 @@ return value:
 
 ## Methodological description
 
-1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L100" target="_blank">Set</a>
+1 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L100" target="_blank">Set</a>
 
 ```golang
 Function signature: 
@@ -55,7 +55,7 @@ Example:
     cache.Set("first", "first element")
 ```
 
-2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L105" target="_blank">SetWithExpire</a>
+2 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L105" target="_blank">SetWithExpire</a>
 
 ```golang
 Function signature: 
@@ -79,7 +79,7 @@ Example:
     cache.SetWithExpire("first", "first element", time.Second)
 ```
 
-3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L88" target="_blank">Get</a>
+3 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L88" target="_blank">Get</a>
 
 ```golang
 Function signature: 
@@ -111,7 +111,7 @@ Example:
     // use value
 ```
 
-4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L79" target="_blank">Del</a>
+4 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L79" target="_blank">Del</a>
 
 ```golang
 Function signature: 
@@ -130,7 +130,7 @@ Example:
     cache.Del("first")
 ```
 
-4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L123" target="_blank">Take</a>
+4 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L123" target="_blank">Take</a>
 
 ```golang
 Function signature: 

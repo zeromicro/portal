@@ -61,8 +61,6 @@ href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz">
 
 </DocsCards>
 
-###
-
 Other versions and operating systems can [to go to the official network](https://go.dev/dl/) to choose.
 
 ## 2. Installation
@@ -70,7 +68,7 @@ Other versions and operating systems can [to go to the official network](https:/
 <Tabs>
 <TabItem value="linux" label="Linux" default>
 
-1. Delete the `/usr/local/go` folder (if available) to remove any previous Go installation and then compress the just downloaded archive to `/usr/local`, Create a new Go directory in `/usr/local/go`：
+1 Delete the `/usr/local/go` folder (if available) to remove any previous Go installation and then compress the just downloaded archive to `/usr/local`, Create a new Go directory in `/usr/local/go`：
 
 ```bash
 $ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
@@ -81,7 +79,7 @@ You may need to be root or run command via sudo
 Do not extract the archive to the existing `/usr/local/go` directory.It is well known that this will cause damage to the Go installation.
 :::
 
-2. Add `/usr/local/go/bin` to the `PATH` environment.You can perform this action by adding the following lines to `$HOME/.profile` or `/etc/profile` (for the installation of the system scale)：
+2 Add `/usr/local/go/bin` to the `PATH` environment.You can perform this action by adding the following lines to `$HOME/.profile` or `/etc/profile` (for the installation of the system scale)：
 
 ```bash
 $ export PATH=$PATH:/usr/local/go/bin
@@ -91,7 +89,7 @@ $ export PATH=$PATH:/usr/local/go/bin
 changes to the configuration file may not be applied until you log in the next computer.To apply changes immediately, simply run shell commands directly or execute them from configuration files using commands such as `source $HOME/.profile`.
 :::
 
-3. Open the terminal and type the following command to verify that you are installed：
+3 Open the terminal and type the following command to verify that you are installed：
 
 ```bash
 $ go version
@@ -103,7 +101,7 @@ $ go version
 
 <TabItem value="mac" label="Mac" default>
 
-1. Open your downloaded package file and install Go as prompted.The package installed Go distribution to `/usr/local/go`.The package should put the `/usr/local/go/bin` directory into your `PATH` environment variable.You may need to restart all open terminal sessions for changes to take effect.
+1 Open your downloaded package file and install Go as prompted.The package installed Go distribution to `/usr/local/go`.The package should put the `/usr/local/go/bin` directory into your `PATH` environment variable.You may need to restart all open terminal sessions for changes to take effect.
 
 :::  2. Open the terminal and type the following command to verify that you are installed
 
@@ -111,15 +109,15 @@ $ go version
 $ go version
 ```
 
-3 . Make sure that the directive has printed the installed version of Go.
+3 Make sure that the directive has printed the installed version of Go.
 
 </TabItem>
 
 <TabItem value="windows" label="Windows" default>
 
-1. Open your downloaded MSI file and install Go as prompted.By default, the installer will install Go to the `Program Files` or ``Program Files (x86)` directory.You can change your location as needed.After installation, you will need to close and reopen all open commands so that changes to the environment made by the installer are reflected in the command prompt.
+1 Open your downloaded MSI file and install Go as prompted.By default, the installer will install Go to the `Program Files` or ``Program Files (x86)` directory.You can change your location as needed.After installation, you will need to close and reopen all open commands so that changes to the environment made by the installer are reflected in the command prompt.
 
-2. Make sure you have installed Go.
+2 Make sure you have installed Go.
 
 - In Windows, click the "Start" menu.
 - Type cmd, then press Enter in the menu search box.
@@ -129,7 +127,7 @@ $ go version
   $ go version
   ```
 
-3. Make sure that the directive has printed the installed version of Go.
+3 Make sure that the directive has printed the installed version of Go.
 
 </TabItem>
 </Tabs>

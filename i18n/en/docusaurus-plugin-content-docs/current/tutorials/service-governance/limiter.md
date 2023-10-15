@@ -39,32 +39,32 @@ RestConf struct {
 
 We use a demo to describe the use of the lower limit streamer.
 
-1. Create new directory `demo` project `rest-limit-demo`
+1 Create new directory `demo` project `rest-limit-demo`
 
 ```shell
-$ cd ~/workspace/demo
-$ mkdir rest-limit-demo && cd rest-limit-demo
-```
+     $ cd ~/workspace/demo
+     $ mkdir rest-limit-demo && cd rest-limit-demo
+  ```
 
-2. Create a `limit.api` file, copy the following to the file
+2 Create a `limit.api` file, copy the following to the file
 
 ```go title="limit.api"
-syntax = "v1"
+    syntax = "v1"
 
-service limit {
-    @handler ping
-    get /ping
-}
-```
+    service limit {
+        @handler ping
+        get /ping
+    }
+    ```
 
-3. Generate rest code
+3 Generate rest code
 
 ```shell
 $ cd ~/workspace/demo/rest-limit-demo
 $ goctl api go -api limit.api -dir .
 ```
 
-4. View directory structure
+4 View directory structure
 
 ```shell
 $ tree
@@ -91,7 +91,7 @@ We modify the configuration, limit qps to 100, and then add a logic of blocking 
 
 1. Edit configuation
 
-Change `to <code> maxConns ` in ` ~/workspace/demo/etc/limit.yaml` to 100
+    Change `to <code> maxConns ` in ` ~/workspace/demo/etc/limit.yaml` to 100
 
 2. Add Logic Code
 
@@ -269,14 +269,14 @@ If you really want to limit the flow, this can be done by grpc intermediaries, f
 
 We use one of the simplest grpc server to show.
 
-1. Create new directory `demo` project `grpc-limit-demo`
+### Create new directory `demo` project `grpc-limit-demo`
 
 ```shell
 $ cd ~/workspace/demo
 $ mkdir grpc-limit-demo && cd grpc-limit-demo
 ```
 
-2. Create a `limit.proto` file, copy the following to the file
+### Create a `limit.proto` file, copy the following to the file
 
 ```protobuf title="limit.proto"
 syntax = "proto3";
@@ -293,14 +293,14 @@ service limit{
 }
 ```
 
-3. Generate grpc code
+### Generate grpc code
 
 ```shell
 $ cd ~/workspace/demo/grpc-limit-demo
 $ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
-4. View Directory
+### View Directory
 
 ```
 $ tree
@@ -364,7 +364,7 @@ func (l *PingLogic) Ping(in *proto.PingReq) (*proto.PingResp, error) {
 
 ```
 
-5. Add middleware in `~/workspace/demo/grpc-limit-demo/limit.go` ：
+### Add middleware in `~/workspace/demo/grpc-limit-demo/limit.go` ：
 
 ```go title="limit.go" {42-57}
 package main

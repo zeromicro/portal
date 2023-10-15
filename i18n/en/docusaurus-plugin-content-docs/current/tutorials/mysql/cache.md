@@ -22,7 +22,7 @@ sqlc only supports the primary key, unique single record index.Other batch queri
 
 ## Create sqlc.CachedConn
 
-### NewConnWithCache
+### NewConnWithCache1
 
 ```go
 func NewConn(db sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option) CachedConn
@@ -49,7 +49,7 @@ func NewNodeConn(db sqlx.SqlConn, rds *redis.Redis, opts ...cache.Option) Cached
 
 We can get into a redis, initialize our CachedConn.
 
-### NewConnWithCache
+### NewConnWithCache2
 
 ```go
 func NewConnWithCache(db sqlx.SqlConn, c cache.Cache) CachedConn

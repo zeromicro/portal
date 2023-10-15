@@ -70,7 +70,7 @@ Flags:
 
 Below are examples of generating a user structure.
 
-1. Whether or not to generate code with cache
+1 Whether or not to generate code with cache
 
 ```bash
 # enter user home
@@ -256,7 +256,7 @@ type User struct {
 </TabItem>
 </Tabs>
 
-2. Generate code without cache
+2 Generate code without cache
 
 ```bash
 # enter user home
