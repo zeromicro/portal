@@ -29,8 +29,8 @@ import { Image } from '@arco-design/web-react';
 创建文件夹
 
 ```shell
-$ mkdir gitlab && cd gitlab
-$ vim docker-compose.yml
+mkdir gitlab && cd gitlab
+vim docker-compose.yml
 ```
 
 docker-compose.yml
@@ -63,14 +63,14 @@ services:
 执行
 
 ```shell
-$  docker-compose up -d
+docker-compose up -d
 ```
 
 这个执行时间可能稍微有点长，不妨你可以去泡一杯 coffee 休息一下～～
 
 ### 2.2 访问 gitlab
 
-访问 http://192.168.1.103（即http://"docker-compose中ip/域名"）
+访问 <http://192.168.1.103（即http://"docker-compose中ip/域名"）>
 
 <Image
 src={require('../../resource/tutorials/ops/image-20220209100353045.png').default}
@@ -110,12 +110,12 @@ alt='gitlab'
 
 ### 3.1 部署 harbor
 
-下载 harbo https://github.com/goharbor/harbor/releases/download/v2.2.0/harbor-offline-installer-v2.2.0.tgz，下载离线的offline安装会快点
+下载 harbo <https://github.com/goharbor/harbor/releases/download/v2.2.0/harbor-offline-installer-v2.2.0.tgz，下载离线的offline安装会快点>
 
 下载解压后进入 harbor 文件夹
 
 ```shell
-$ cd harbor && cp harbor.yml.tmpl harbor.yml
+cd harbor && cp harbor.yml.tmpl harbor.yml
 ```
 
 我们打开 harbor.yml，修改如下
@@ -145,7 +145,7 @@ log:
 
 ### 3.2 访问 harbor
 
-浏览器输入 http://192.168.1.180:8077
+浏览器输入 <http://192.168.1.180:8077>
 
 账号: admin
 
@@ -172,8 +172,8 @@ alt='gitlab'
 创建文件夹
 
 ```shell
-$ mkdir jenkins && cd jenkins
-$ vim docker-compose.yml
+mkdir jenkins && cd jenkins
+vim docker-compose.yml
 ```
 
 docker-compose.yml
@@ -235,7 +235,7 @@ esac
 执行
 
 ```shell
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 这个时间也不慢，可以再去喝一杯 coffee
@@ -247,7 +247,7 @@ $ docker-compose up -d
 ```shell
 $ docker cp $GOPATH/bin/goctl jenkins:/usr/local/bin
 $ docker exec -it jenkins /bin/sh #进入jenkins 容器
-$ goctl -v	 #验证成功
+$ goctl -v  #验证成功
 goctl version 1.3.0-20220201 linux/amd64
 ```
 
@@ -279,7 +279,7 @@ local-path-storage   Active   43m
 
 ### 4.3 访问 jenkins
 
-http://192.168.1.180:8989
+<http://192.168.1.180:8989>
 
 <Image
 src={require('../../resource/tutorials/ops/image-20220209104638510.png').default}

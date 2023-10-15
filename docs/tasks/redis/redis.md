@@ -17,14 +17,15 @@ import TabItem from '@theme/TabItem';
 2. 自行准备一个 redis server，我们以 127.0.0.1:6379 为例。
 
 ## redis 配置说明
+
 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/conf.go#L16" target="_blank">RedisConf</a> 相关介绍。
 
 ```go
 RedisConf struct {
-	Host string
-	Type string `json:",default=node,options=node|cluster"`
-	Pass string `json:",optional"`
-	Tls  bool   `json:",optional"`
+ Host string
+ Type string `json:",default=node,options=node|cluster"`
+ Pass string `json:",optional"`
+ Tls  bool   `json:",optional"`
 }
 
 Host: redis 服务地址 ip:port, 如果是 redis cluster 则为 ip1:port1,ip2:port2,ip3:port3...(暂不支持redis sentinel)
@@ -34,6 +35,7 @@ Tls: 是否开启tls
 ```
 
 初始化 redis 配置, 当然我们推荐使用 conf.MustLoad 进行配置的加载，可参考[配置文件](/docs/tasks/static/configuration)
+
 ```go
 conf := redis.RedisConf{
     Host: "127.0.0.1:6379",
@@ -49,10 +51,10 @@ conf := redis.RedisConf{
 
 ```golang
 conf := redis.RedisConf{
-	Host: "127.0.0.1:6379",
-	Type: "node",
-	Pass: "123456",
-	Tls:  false,
+ Host: "127.0.0.1:6379",
+ Type: "node",
+ Pass: "123456",
+ Tls:  false,
 }
 
 rds := redis.MustNewRedis(conf)
@@ -66,18 +68,17 @@ rds := redis.MustNewRedis(conf)
 
 ```go
     ctx := context.Background()
-	err := rds.SetCtx(ctx, "key", "hello world")
-	if err != nil {
-		logc.Error(ctx, err)
-	}
+ err := rds.SetCtx(ctx, "key", "hello world")
+ if err != nil {
+  logc.Error(ctx, err)
+ }
 
-	v, err := rds.GetCtx(ctx, "key")
-	if err != nil {
-		logc.Error(ctx, err)
-	}
-	fmt.Println(v)
+ v, err := rds.GetCtx(ctx, "key")
+ if err != nil {
+  logc.Error(ctx, err)
+ }
+ fmt.Println(v)
 ```
-
 
 ## 完整的实例如下
 
@@ -85,35 +86,35 @@ rds := redis.MustNewRedis(conf)
 package main
 
 import (
-	"context"
-	"fmt"
-	"time"
+ "context"
+ "fmt"
+ "time"
 
-	"github.com/zeromicro/go-zero/core/logc"
-	"github.com/zeromicro/go-zero/core/stores/redis"
+ "github.com/zeromicro/go-zero/core/logc"
+ "github.com/zeromicro/go-zero/core/stores/redis"
 )
 
 func main() {
-	conf := redis.RedisConf{
-		Host:        "127.0.0.1:6379",
-		Type:        "node",
-		Pass:        "",
-		Tls:         false,
-		NonBlock:    false,
-		PingTimeout: time.Second,
-	}
-	rds := redis.MustNewRedis(conf)
-	ctx := context.Background()
-	err := rds.SetCtx(ctx, "key", "hello world")
-	if err != nil {
-		logc.Error(ctx, err)
-	}
+ conf := redis.RedisConf{
+  Host:        "127.0.0.1:6379",
+  Type:        "node",
+  Pass:        "",
+  Tls:         false,
+  NonBlock:    false,
+  PingTimeout: time.Second,
+ }
+ rds := redis.MustNewRedis(conf)
+ ctx := context.Background()
+ err := rds.SetCtx(ctx, "key", "hello world")
+ if err != nil {
+  logc.Error(ctx, err)
+ }
 
-	v, err := rds.GetCtx(ctx, "key")
-	if err != nil {
-		logc.Error(ctx, err)
-	}
-	fmt.Println(v)
+ v, err := rds.GetCtx(ctx, "key")
+ if err != nil {
+  logc.Error(ctx, err)
+ }
+ fmt.Println(v)
 }
 
 ```

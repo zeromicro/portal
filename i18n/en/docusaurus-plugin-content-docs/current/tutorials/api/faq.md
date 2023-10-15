@@ -8,7 +8,7 @@ slug: /docs/tutorials/api/faq
 api New Feature is currently in the testing stage. If you want to experience a new feature, you can install the latest goctl tool by commanding, and you need to turn on `GOCTL_EXPERIMENTAL`.
 
 ```bash
-$ goctl env -w GOCTL_EXPERIMENTAL=on
+goctl env -w GOCTL_EXPERIMENTAL=on
 ```
 
 Support for API new features starting from version 1.5.1, including：
@@ -19,12 +19,12 @@ Support for API new features starting from version 1.5.1, including：
 1. api resolver migrated from antlr4 to goparser
 
 Surely 1.5.1 If new features are enabled, there are some incompatible places
-1. syntax header is required
 
+1. syntax header is required
 
 Data type is referenced <a href="/docs/tutorials/api/types#示例" target="_blank"> Type Statement • Examples</a> in goctl 1.5.1 some description
 
-## 2. goctl api generated error： multiple service names defined...
+## 2. goctl api generated error： multiple service names defined
 
 Declares multiple services are not supported in api syntax files such as writing below as unsupported：
 

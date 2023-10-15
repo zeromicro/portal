@@ -7,7 +7,7 @@ slug: /docs/tutorials/message-queue/kafka
 
 Message queues are essential for large microservice systems, mainly to address peaks, reduce coupling between services and asynchronous capabilities.
 
-go-queue 在 segmentio/kafka-go 这个包基础上，使用 go-zero 进行了上层统一封装，让开发人员更容易上手，将更多时间聚焦在开发业务上。https://github.com/zeromicro/go-queue
+go-queue 在 segmentio/kafka-go 这个包基础上，使用 go-zero 进行了上层统一封装，让开发人员更容易上手，将更多时间聚焦在开发业务上。<https://github.com/zeromicro/go-queue>
 
 ### 1.1 Config
 
@@ -55,7 +55,7 @@ type KqConf struct {
 First pull go-queue dependencies in the project
 
 ```shell
-$ go get github.com/zeromicro/go-queue@latest
+go get github.com/zeromicro/go-queue@latest
 ```
 
 Add current kafka configuration information to the etc/xxx.yaml configuration file
@@ -130,7 +130,7 @@ Also, when we initialize a kq client in svc/serviceContext.go we can pass some o
 First pull go-queue dependencies in project
 
 ```shell
-$ go get github.com/zeromicro/go-queue@latest
+go get github.com/zeromicro/go-queue@latest
 ```
 
 Add current kafka configuration information to the etc/xxx.yaml configuration file

@@ -23,20 +23,20 @@ https://example.com/sign/demo
 syntax = "v1"
 
 type (
-	SignDemoReq {
-		Msg string `json:"msg"`
-	}
-	SignDemoResp {
-		Msg string `json:"msg"`
-	}
+ SignDemoReq {
+  Msg string `json:"msg"`
+ }
+ SignDemoResp {
+  Msg string `json:"msg"`
+ }
 )
 
 @server (
-	signature: true // 通过 signature 关键字开启签名功能
+ signature: true // 通过 signature 关键字开启签名功能
 )
 service sign-api {
-	@handler SignDemo
-	post /sign/demo (SignDemoReq) returns (SignDemoResp)
+ @handler SignDemo
+ post /sign/demo (SignDemoReq) returns (SignDemoResp)
 }
 
 

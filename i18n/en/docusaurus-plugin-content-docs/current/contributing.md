@@ -15,6 +15,7 @@ import { Image } from '@arco-design/web-react';
 * <a href="https://github.com/zeromicro/go-zero/issues" target="_blank">Issues</a>
 
 ## Information for contributions
+
 The code in null request for go-Zero needs to meet some specification
 
 * Naming specification, read <a href="https://google.github.io/styleguide/go/guide.html" target="_blank">Google Go Style Guide</a>
@@ -48,14 +49,15 @@ The code in null request for go-Zero needs to meet some specification
 <Image src={require('./resource/contributing/pr_record.png').default} alt='pr_record' title="pr_record" />
 
 ## Issue
+
 In our communities, there are many partners who will be active in providing feedback on some of the problems encountered in the use of go-zero. Because of the larger number of communities, while we will be following community dynamics in real time, everyone's feedback has come random. When our team is still addressing the issues raised by one partner, other questions may also lead to easy neglect by the team and, in order to be able to address everyone's problems, we strongly recommend that we provide feedback through an issue approach, including, but not limited to, bugs, desired new functional features, etc. We will also be present in the issue when we achieve a new feature, where you will also be able to get the latest movement of go-zero, and you will be invited to participate actively in the discussion.
 
 ### How to raise issues
-* Visit <a href="https://github.com/zeromicro/go-zero/issues" target="_blank">https://github.com/zeromicro/go-zero/issues</a> 
+
+* Visit <a href="https://github.com/zeromicro/go-zero/issues" target="_blank">https://github.com/zeromicro/go-zero/issues</a>
 * Click on`New Issue`to create a new issue in the top right corner
 * Fill in issue title and content
-* Click` to submit an issue`
-
+* Click`to submit an issue`
 
 ## References
 

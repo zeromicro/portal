@@ -14,7 +14,7 @@ goctl bug is a tool used to submit goctl bugs that automatically collects goctl,
 Developers only need to enter the following command in the terminal to quickly open the browser and create an issue template：
 
 ```bash
-$ goctl bug
+goctl bug
 ```
 
 Github issue template is as follows：

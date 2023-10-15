@@ -108,7 +108,6 @@ The gateway, by definition, is a device connected to both networks. For the gate
 
 This is the same as the route for gateways in the Ethernet to relay only three layers of data packages.By contrast, there are no routing tables in the gateway, which can only be forwarded according to the different segments prescribed.The most important aspect of the gateway is port mapping, where the user in the subnet appears to be an IP address of the extranet that corresponds to different ports, which appears to protect the user in the subnet.
 
-
 For more information see <a href="https://zh.wikipedia.org/zh-sg/%E7%BD%91%E5%85%B3" target="_blank">《Wikipedia • Gateway》</a>
 
 ## SOA Governance

@@ -7,10 +7,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## 概述
+
 本章节介绍 mon 包的 CURD 相关方法的介绍。
 
 ## 准备条件
-1. <a href="/docs/tasks/mongo/connection" target="_blank">完成 mon 的链接创建。</a> 
+
+1. <a href="/docs/tasks/mongo/connection" target="_blank">完成 mon 的链接创建。</a>
 
 ## 新增
 
@@ -19,7 +21,7 @@ import TabItem from '@theme/TabItem';
 ```golang
 函数签名: 
     InsertOne func(ctx context.Context, document interface{}, opts ...*mopt.InsertOneOptions) (
-			*mongo.InsertOneResult, error) 
+   *mongo.InsertOneResult, error) 
 说明: 
     1. 新增单个文档记录。
 入参:
@@ -32,21 +34,21 @@ import TabItem from '@theme/TabItem';
 
 示例:
 type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+ ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+ // TODO: Fill your own fields
+ UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+ CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 
 func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
-	if data.ID.IsZero() {
-		data.ID = primitive.NewObjectID()
-		data.CreateAt = time.Now()
-		data.UpdateAt = time.Now()
-	}
+ if data.ID.IsZero() {
+  data.ID = primitive.NewObjectID()
+  data.CreateAt = time.Now()
+  data.UpdateAt = time.Now()
+ }
 
-	_, err := m.conn.InsertOne(ctx, data)
-	return err
+ _, err := m.conn.InsertOne(ctx, data)
+ return err
 }
 ```
 
@@ -57,7 +59,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 ```golang
 函数签名: 
     ReplaceOne func(ctx context.Context, filter, replacement interface{},
-			opts ...*mopt.ReplaceOptions) (*mongo.UpdateResult, error)
+   opts ...*mopt.ReplaceOptions) (*mongo.UpdateResult, error)
 说明: 
     1. 更新单个文档记录。
 入参:
@@ -71,20 +73,19 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 
 示例:
 type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+ ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+ // TODO: Fill your own fields
+ UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+ CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 
 func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
-	data.UpdateAt = time.Now()
+ data.UpdateAt = time.Now()
 
-	_, err := m.conn.ReplaceOne(ctx, bson.M{"_id": data.ID}, data)
-	return err
+ _, err := m.conn.ReplaceOne(ctx, bson.M{"_id": data.ID}, data)
+ return err
 }
 ```
-
 
 ## 查询
 
@@ -105,29 +106,29 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 
 示例:
 type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+ ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+ // TODO: Fill your own fields
+ UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+ CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 
 func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error) {
-	oid, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return nil, ErrInvalidObjectId
-	}
+ oid, err := primitive.ObjectIDFromHex(id)
+ if err != nil {
+  return nil, ErrInvalidObjectId
+ }
 
-	var data User
+ var data User
 
-	err = m.conn.FindOne(ctx, &data, bson.M{"_id": oid})
-	switch err {
-	case nil:
-		return &data, nil
-	case mon.ErrNotFound:
-		return nil, ErrNotFound
-	default:
-		return nil, err
-	}
+ err = m.conn.FindOne(ctx, &data, bson.M{"_id": oid})
+ switch err {
+ case nil:
+  return &data, nil
+ case mon.ErrNotFound:
+  return nil, ErrNotFound
+ default:
+  return nil, err
+ }
 }
 ```
 
@@ -148,27 +149,26 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 
 示例:
 type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+ ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+ // TODO: Fill your own fields
+ UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+ CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 
 func (m *defaultUserModel) Find(ctx context.Context, id string) ([]*User, error) {
-	oid, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return nil, ErrInvalidObjectId
-	}
+ oid, err := primitive.ObjectIDFromHex(id)
+ if err != nil {
+  return nil, ErrInvalidObjectId
+ }
 
-	var data []*User
+ var data []*User
 
-	err = m.conn.Find(ctx, &data, bson.M{"_id": oid})
-	return data, nil
+ err = m.conn.Find(ctx, &data, bson.M{"_id": oid})
+ return data, nil
 }
 ```
 
 ## 删除
-
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
 
@@ -187,20 +187,20 @@ func (m *defaultUserModel) Find(ctx context.Context, id string) ([]*User, error)
 
 示例:
 type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
+ ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+ // TODO: Fill your own fields
+ UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+ CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 
 func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
-	oid, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return ErrInvalidObjectId
-	}
+ oid, err := primitive.ObjectIDFromHex(id)
+ if err != nil {
+  return ErrInvalidObjectId
+ }
 
-	_, err = m.conn.DeleteOne(ctx, bson.M{"_id": oid})
-	return err
+ _, err = m.conn.DeleteOne(ctx, bson.M{"_id": oid})
+ return err
 }
 ```
 
@@ -210,57 +210,57 @@ func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
 package main
 
 import (
-	"time"
+ "time"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+ "go.mongodb.org/mongo-driver/bson"
+ "go.mongodb.org/mongo-driver/bson/primitive"
 
-	"github.com/zeromicro/go-zero/core/stores/mon"
+ "github.com/zeromicro/go-zero/core/stores/mon"
 )
 
 type User struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	Username string             `bson:"username,omitempty" json:"username,omitempty"`
-	Password string             `bson:"password,omitempty" json:"password,omitempty"`
-	UpdateAt time.Time          `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time          `bson:"createAt,omitempty" json:"createAt,omitempty"`
+ ID       primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+ Username string             `bson:"username,omitempty" json:"username,omitempty"`
+ Password string             `bson:"password,omitempty" json:"password,omitempty"`
+ UpdateAt time.Time          `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+ CreateAt time.Time          `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 
 func main() {
-	conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
-	ctx := context.Background()
-	u := &User{
-		ID:       primitive.ObjectID{},
-		Username: "username",
-		Password: "password",
-		UpdateAt: time.Now(),
-		CreateAt: time.Now(),
-	}
-	// insert one
-	_, err := conn.InsertOne(ctx, u)
-	if err != nil {
-		panic(err)
-	}
+ conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
+ ctx := context.Background()
+ u := &User{
+  ID:       primitive.ObjectID{},
+  Username: "username",
+  Password: "password",
+  UpdateAt: time.Now(),
+  CreateAt: time.Now(),
+ }
+ // insert one
+ _, err := conn.InsertOne(ctx, u)
+ if err != nil {
+  panic(err)
+ }
 
-	// 查询
-	var newUser User
-	err = conn.FindOne(ctx, &newUser, bson.M{"_id": u.ID})
-	if err != nil {
-		panic(err)
-	}
+ // 查询
+ var newUser User
+ err = conn.FindOne(ctx, &newUser, bson.M{"_id": u.ID})
+ if err != nil {
+  panic(err)
+ }
 
-	// 更新
-	newUser.Username = "newUsername"
-	_, err = conn.ReplaceOne(ctx, bson.M{"_id": newUser.ID}, newUser)
-	if err != nil {
-		panic(err)
-	}
+ // 更新
+ newUser.Username = "newUsername"
+ _, err = conn.ReplaceOne(ctx, bson.M{"_id": newUser.ID}, newUser)
+ if err != nil {
+  panic(err)
+ }
 
-	// 删除
-	_, err = conn.DeleteOne(ctx, bson.M{"_id": newUser.ID})
-	if err != nil {
-		panic(err)
-	}
+ // 删除
+ _, err = conn.DeleteOne(ctx, bson.M{"_id": newUser.ID})
+ if err != nil {
+  panic(err)
+ }
 }
 
 ```

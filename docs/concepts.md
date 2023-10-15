@@ -29,7 +29,6 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
       alt='架构图'
 />
 
-
 ## 1. go-zero 框架背景
 
 18 年初，我们决定从 `Java+MongoDB` 的单体架构迁移到微服务架构，经过仔细思考和对比，我们决定：
@@ -198,7 +197,6 @@ GO111MODULE=on GOPROXY=https://goproxy.cn/,direct go get -u github.com/zeromicro
       src={require('@site/static/img/ad/go-zero-practise.jpg').default}
       alt='wechat'
 />
-
 
 ## 9. 微信交流群
 

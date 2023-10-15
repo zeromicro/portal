@@ -25,7 +25,6 @@ go-Zero contains very simple API definitions and generation tools goctl. Can gen
 
 <Image width={1500} src={require('./resource/concepts/architecture.png').default} alt='架构图' />
 
-
 ## 1. go-zero framework background
 
 At the beginning of 18 years, we decided to migrate from a single architecture of `Java+MongoDB` to a microservice architecture, after careful thought and comparison, we decided to：
@@ -183,7 +182,6 @@ Write business code：
 `go-zero` related articles are displayed in `microservice practice` public sign up and welcome snippets, and can also be used by public contact me : capping_hands:
 
 <Image width={300} src={require('@site/static/img/ad/go-zero-practise.jpg').default} alt='wechat' />
-
 
 ## 9. Wechat groups
 

@@ -23,19 +23,18 @@ VScode 下载请参考 [VSCode 官网](https://code.visualstudio.com/)。
 <Image
       src={require('../../resource/tasks/create/vscode-go-extension.png').default}
       alt='install go extension'
-	  title="安装 Go 扩展"
+   title="安装 Go 扩展"
 />
 
 ## 创建 Go 工程
 
-打开 VScode，在工作区点击 `Open...`，选择指定的目录或者创建新的文件夹来作为工程目录，我这里选择新建文件夹 ` helloworld`，回车创建工程。
+打开 VScode，在工作区点击 `Open...`，选择指定的目录或者创建新的文件夹来作为工程目录，我这里选择新建文件夹 `helloworld`，回车创建工程。
 
 <Image
       src={require('../../resource/tasks/create/create-from-vscode.png').default}
       alt='create from vscode'
-	  title="从 VScode 创建工程"
+   title="从 VScode 创建工程"
 />
-
 
 ## 创建 go module
 
@@ -44,14 +43,13 @@ VScode 下载请参考 [VSCode 官网](https://code.visualstudio.com/)。
 <Image
       src={require('../../resource/tasks/create/open-vscode-terminal.png').default}
       alt='open terminal'
-	  title="打开 VScode 终端（1）"
+   title="打开 VScode 终端（1）"
 />
 <Image
       src={require('../../resource/tasks/create/create-go-module-from-vscode.png').default}
       alt='open terminal'
-	  title="打开 VScode 终端（2）"
+   title="打开 VScode 终端（2）"
 />
-
 
 ## 创建 main.go
 
@@ -63,16 +61,15 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello World!")
+ fmt.Println("Hello World!")
 }
 ```
 
 <Image
       src={require('../../resource/tasks/create/create-new-file.png').default}
       alt='create main.go'
-	  title="创建 main.go"
+   title="创建 main.go"
 />
-
 
 ## 运行程序
 
@@ -86,5 +83,5 @@ Hello World!
 <Image
       src={require('../../resource/tasks/create/run-in-vscode.png').default}
       alt='run program'
-	  title="从 VScode 运行程序"
+   title="从 VScode 运行程序"
 />

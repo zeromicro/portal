@@ -20,7 +20,7 @@ The api field feature language contains syntax versions, info blocks, structural
 
 ## Syntax Token
 
-api syntax is described using [ to extend the Bakos style(EBNF)](https://zh.m.wikipedia.org/zh-sg/%E6%89%A9%E5%B1%95%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F) and specified in the extended Bakos style.
+api syntax is described using [to extend the Bakos style(EBNF)](https://zh.m.wikipedia.org/zh-sg/%E6%89%A9%E5%B1%95%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F) and specified in the extended Bakos style.
 
 ```text
 Syntax      = { Production } .
@@ -123,7 +123,9 @@ In api language, word analysis is a process of converting characters to a dictio
    /*This is the document annotation */
    /*
    in multiple lines of document annotation
+
 */
+
    ```
 
 ##### Token
@@ -690,4 +692,4 @@ The full api syntax example can be referenced <a href="/docs/reference" target="
 
 ## References
 
-[ Wikipedia AST ](https://zh.m.wikipedia.org/zh-cn/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9) [ What are they and how to use them](https://www.twilio.com/blog/abstract-syntax-trees)
+[Wikipedia AST](https://zh.m.wikipedia.org/zh-cn/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9) [What are they and how to use them](https://www.twilio.com/blog/abstract-syntax-trees)

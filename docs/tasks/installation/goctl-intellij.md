@@ -13,7 +13,7 @@ import { IconMoreVertical } from '@arco-design/web-react/icon';
 
 goctl-intellij 是 go-zero api 描述语言的 intellij 编辑器插件，支持 api 描述语言高亮、语法检测、快速提示、创建模板特性。
 
-项目地址：https://github.com/zeromicro/goctl-intellij
+项目地址：<https://github.com/zeromicro/goctl-intellij>
 
 ## 安装
 
@@ -24,11 +24,12 @@ goctl-intellij 安装方式有 2 种
 
 ### 1. 从磁盘安装
 
-### 
+###
+
 <DocsCard
   className="cordova-ee-card"
   header="Goctl-1.1.3.zip"
-  href="https://github.com/zeromicro/goctl-intellij/releases/download/v1.1.3/Goctl-1.1.3.zip"
+  href="<https://github.com/zeromicro/goctl-intellij/releases/download/v1.1.3/Goctl-1.1.3.zip>"
 >
   <div>
     <img src="/logos/logo.svg" class="cordova-ee-img" />

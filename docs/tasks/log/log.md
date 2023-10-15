@@ -4,10 +4,11 @@ slug: /docs/tasks/log/log
 ---
 
 ## 概述
+
 logc 和 logx 是 go-zero 的日志库，我们可以轻松实现日志的打印的能力。
 
-
 ## 任务目标
+
 1. 了解 **github.com/zeromicro/go-zero/core/logc** 包的使用。
 
 ## 简单的日志打印
@@ -25,21 +26,21 @@ logc.Info(context.Background(), "hello world")
 package main
 
 import (
-	"context"
+ "context"
 
-	"github.com/zeromicro/go-zero/core/conf"
-	"github.com/zeromicro/go-zero/core/logc"
-	"github.com/zeromicro/go-zero/core/logx"
+ "github.com/zeromicro/go-zero/core/conf"
+ "github.com/zeromicro/go-zero/core/logc"
+ "github.com/zeromicro/go-zero/core/logx"
 )
 
 func main() {
-	var cfg logx.LogConf
-	_ = conf.FillDefault(&cfg)
-	cfg.Mode = "file"
+ var cfg logx.LogConf
+ _ = conf.FillDefault(&cfg)
+ cfg.Mode = "file"
 
-	logc.MustSetup(cfg)
-	defer logc.Close()
-	logc.Info(context.Background(), "hello world")
+ logc.MustSetup(cfg)
+ defer logc.Close()
+ logc.Info(context.Background(), "hello world")
 }
 
 ```
@@ -57,6 +58,7 @@ logc.Infow(context.Background(), "hello world", logc.Field("key", "value"))
 我们可以通过 logc.Filed 对我们的日志进行扩展。
 
 ## 日志带上自定义的key
+
 我们可以在所有的日志上面带上一些默认的 key和value，例如：我们希望在 api 所有链路上面都带上 路由信息，我们可以将信息注入到ctx中，这样后面的方法在打印的时候就会自动带上 kv 信息。
 例如：
 

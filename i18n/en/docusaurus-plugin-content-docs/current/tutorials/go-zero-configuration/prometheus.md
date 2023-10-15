@@ -4,6 +4,7 @@ slug: /docs/tutorials/go-zero/configuration/prometheus
 ---
 
 ## prometheus Configuration
+
 [Config](https://github.com/zeromicro/go-zero/blob/master/core/prometheus/config.go) Prometheus configuration, we will start a prometheus port in the process.
 
 ## Definition of parameters

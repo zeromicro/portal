@@ -34,7 +34,7 @@ type (
 First pull go-queue dependencies in the project
 
 ```shell
-$ go get github.com/zeromicro/go-queue@latest
+go get github.com/zeromicro/go-queue@latest
 ```
 
 Add current dq configuration information to the etc/xxx.yaml configuration file
@@ -115,7 +115,7 @@ func (l *PusherLogic) Pusher() error {
 First pull go-queue dependencies in the project
 
 ```shell
-$ go get github.com/zeromicro/go-queue@latest
+go get github.com/zeromicro/go-queue@latest
 ```
 
 Add current kafka configuration information to the etc/xxx.yaml configuration file
@@ -187,4 +187,5 @@ func (l *PusherLogic) Consumer() error {
 Write in the end, the beanstalk is not reliant on redis, but go-queue is the better we want to prevent repeated consumption in a short period of time, using redis Setnx to allow us to filter spent messages within a short period of time
 
 ## References
+
 1. <a href="https://beanstalkd.github.io/" target="_blank">Beanstalkd Introduction and Installation</a>

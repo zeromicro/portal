@@ -49,7 +49,7 @@ type ServerMiddlewaresConf struct {
 | ------------- | --------------------- |-----------------------------------------------------------------------| ------ | -------- |
 | Etcd          | EtcdConf              | 服务发现配置，当需要使用 etcd 做服务发现时配置                                            | 无     | 否       |
 | Endpoints     | string 类型数组       | RPC Server 地址列表，用于直连，当需要直连 rpc server 集群时配置                           | 无     | 否       |
-| Target        | string                | 域名解析地址，名称规则请参考 https://github.com/grpc/grpc/blob/master/doc/naming.md | 无     | 否       |
+| Target        | string                | 域名解析地址，名称规则请参考 <https://github.com/grpc/grpc/blob/master/doc/naming.md> | 无     | 否       |
 | App           | string                | rpc 认证的 app 名称，仅当 rpc server 开启认证时配置                                  | 无     | 否       |
 | Token         | string                | rpc 认证的 token，仅当 rpc server 开启认证时配置                                   | 无     | 否       |
 | NonBlock      | bool                  | 是否阻塞模式,当值为 true 时，不会阻塞 rpc 链接                                         | false  | 否       |

@@ -40,7 +40,6 @@ Reference configuration and content
 
 <TabItem value="etc/greet-client.yaml" label="etc/greet-client.yaml" default>
 
-
 ```yaml
 Target: 127.0.0.1:8080
 ```
@@ -63,6 +62,7 @@ func main() {
     log.Println(resp)
 }
 ```
+
 </TabItem>
 
 </Tabs>

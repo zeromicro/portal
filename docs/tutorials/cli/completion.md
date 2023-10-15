@@ -39,7 +39,6 @@ Use "goctl completion [command] --help" for more information about a command.
 在 Linux 或者 Mac 操作系统中，可以通过 `echo $SHELL` 来查看当前 shell，如果是 `zsh`，则选择 `goctl completion zsh` 来生成脚本，如果是 `bash`，则选择 `goctl completion bash` 来生成脚本，如果是 `fish`，则选择 `goctl completion fish` 来生成脚本。
 :::
 
-
 ### goctl completion bash 指令
 
 ```bash
@@ -51,17 +50,17 @@ If it is not installed already, you can install it via your OS's package manager
 
 To load completions in your current shell session:
 
-	source <(goctl completion bash)
+ source <(goctl completion bash)
 
 To load completions for every new session, execute once:
 
 #### Linux:
 
-	goctl completion bash > /etc/bash_completion.d/goctl
+ goctl completion bash > /etc/bash_completion.d/goctl
 
 #### macOS:
 
-	goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
+ goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
 
 You will need to start a new shell for this setup to take effect.
 
@@ -80,20 +79,19 @@ Flags:
 临时生效仅对当前终端 session 有用，是一次性的。
 
 ```bash
-$ source <(goctl completion bash)
+source <(goctl completion bash)
 ```
 
 2. 永久生效
 
 永久生效设置按照操作系统的不同，其设置方法也不同，设置后需要重新启动终端才生效，目前针对 Linux 和 MacOS 的设置方法如下：
 
-
 <Tabs>
 
 <TabItem value="Linux" label="Linux" default>
 
 ```bash
-$ goctl completion bash > /etc/bash_completion.d/goctl
+goctl completion bash > /etc/bash_completion.d/goctl
 ```
 
 </TabItem>
@@ -101,13 +99,12 @@ $ goctl completion bash > /etc/bash_completion.d/goctl
 <TabItem value="MacOS" label="MacOS" default>
 
 ```bash
-$ goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
+goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
 ```
 
 </TabItem>
 
 </Tabs>
-
 
 ### goctl completion fish 指令
 
@@ -117,11 +114,11 @@ Generate the autocompletion script for the fish shell.
 
 To load completions in your current shell session:
 
-	goctl completion fish | source
+ goctl completion fish | source
 
 To load completions for every new session, execute once:
 
-	goctl completion fish > ~/.config/fish/completions/goctl.fish
+ goctl completion fish > ~/.config/fish/completions/goctl.fish
 
 You will need to start a new shell for this setup to take effect.
 
@@ -138,13 +135,13 @@ Flags:
 临时生效仅对当前终端 session 有用，是一次性的。
 
 ```bash
-$ goctl completion fish | source
+goctl completion fish | source
 ```
 
 2. 永久生效
 
 ```bash
-$ goctl completion fish > ~/.config/fish/completions/goctl.fish
+goctl completion fish > ~/.config/fish/completions/goctl.fish
 ```
 
 ### goctl completion powershell 指令
@@ -155,7 +152,7 @@ Generate the autocompletion script for powershell.
 
 To load completions in your current shell session:
 
-	goctl completion powershell | Out-String | Invoke-Expression
+ goctl completion powershell | Out-String | Invoke-Expression
 
 To load completions for every new session, add the output of the above command
 to your powershell profile.
@@ -173,7 +170,7 @@ Flags:
 临时生效仅对当前终端 session 有用，是一次性的。
 
 ```bash
-$ goctl completion powershell | Out-String | Invoke-Expression
+goctl completion powershell | Out-String | Invoke-Expression
 ```
 
 2. 永久生效
@@ -181,9 +178,8 @@ $ goctl completion powershell | Out-String | Invoke-Expression
 需要将如下输出添加到 powershell 的配置文件中。
 
 ```bash
-$ goctl completion powershell | Out-String | Invoke-Expression
+goctl completion powershell | Out-String | Invoke-Expression
 ```
-
 
 ### goctl completion zsh 指令
 
@@ -194,21 +190,21 @@ Generate the autocompletion script for the zsh shell.
 If shell completion is not already enabled in your environment you will need
 to enable it.  You can execute the following once:
 
-	echo "autoload -U compinit; compinit" >> ~/.zshrc
+ echo "autoload -U compinit; compinit" >> ~/.zshrc
 
 To load completions in your current shell session:
 
-	source <(goctl completion zsh); compdef _goctl goctl
+ source <(goctl completion zsh); compdef _goctl goctl
 
 To load completions for every new session, execute once:
 
 #### Linux:
 
-	goctl completion zsh > "${fpath[1]}/_goctl"
+ goctl completion zsh > "${fpath[1]}/_goctl"
 
 #### macOS:
 
-	goctl completion zsh > $(brew --prefix)/share/zsh/site-functions/_goctl
+ goctl completion zsh > $(brew --prefix)/share/zsh/site-functions/_goctl
 
 You will need to start a new shell for this setup to take effect.
 
@@ -234,20 +230,19 @@ echo "autoload -U compinit; compinit" >> ~/.zshrc
 临时生效仅对当前终端 session 有用，是一次性的。
 
 ```bash
-$ source <(goctl completion zsh); compdef _goctl goctl
+source <(goctl completion zsh); compdef _goctl goctl
 ```
 
 2. 永久生效
 
 永久生效设置按照操作系统的不同，其设置方法也不同，设置后需要重新启动终端才生效，目前针对 Linux 和 MacOS 的设置方法如下：
 
-
 <Tabs>
 
 <TabItem value="Linux" label="Linux" default>
 
 ```bash
-$ goctl completion zsh > "${fpath[1]}/_goctl"
+goctl completion zsh > "${fpath[1]}/_goctl"
 ```
 
 </TabItem>
@@ -255,7 +250,7 @@ $ goctl completion zsh > "${fpath[1]}/_goctl"
 <TabItem value="MacOS" label="MacOS" default>
 
 ```bash
-$ goctl completion zsh > $(brew --prefix)/share/zsh/site-functions/_goctl
+goctl completion zsh > $(brew --prefix)/share/zsh/site-functions/_goctl
 ```
 
 </TabItem>

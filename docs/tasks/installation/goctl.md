@@ -22,7 +22,7 @@ goctl 是 go-zero 的内置脚手架，是提升开发效率的一大利器，�
 ### 1.1. 查看 go 版本
 
 ```bash
-$ go version
+go version
 ```
 
 ### 1.2. go [get, install]
@@ -30,13 +30,13 @@ $ go version
 - 如果 go 版本在 `1.16` 以前，则使用如下命令安装：
 
   ```bash
-  $ GO111MODULE=on go get -u github.com/zeromicro/go-zero/tools/goctl@latest
+  GO111MODULE=on go get -u github.com/zeromicro/go-zero/tools/goctl@latest
   ```
 
 - 如果 go 版本在 `1.16` 及以后，则使用如下命令安装：
 
   ```bash
-  $ GO111MODULE=on go install github.com/zeromicro/go-zero/tools/goctl@latest
+  GO111MODULE=on go install github.com/zeromicro/go-zero/tools/goctl@latest
   ```
 
 ### 1.3. 验证
@@ -44,7 +44,7 @@ $ go version
 打开终端输入如下命令来验证是否安装成功：
 
 ```bash
-$ goctl --version
+goctl --version
 ```
 
 ## 手动安装
@@ -53,48 +53,48 @@ $ goctl --version
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-windows-amd64.zip" >
 
 <p>Windows Intel x86-64 位处理器</p>
 <a>goctl-v1.5.6-windows-amd64.zip（14.7MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-windows-386.zip" >
 
 <p>Windows Intel x86-32 位处理器</p>
 <a>goctl-v1.5.6-windows-386.zip（14MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-darwin-arm64.tar.gz" >
 
 <p>支持 macOS Apple 64 位处理器</p>
 <a>goctl-v1.5.6-darwin-arm64.tar.gz（14.5MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-darwin-amd64.tar.gz" >
 
 <p>支持 macOS 64 位处理器</p>
 <a>goctl-v1.5.6-darwin-amd64.tar.gz（14.7MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-linux-amd64.tar.gz" >
 
 <p>支持 Linux 64 位处理器</p>
 <a>goctl-v1.5.6-linux-amd64.tar.gz（14.8MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.5.6/goctl-v1.5.6-linux-386.tar.gz" >
 
 <p>支持 Linux 32 位处理器</p>
@@ -112,7 +112,7 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 解压下载的压缩包，并将其移动到 `$GOBIN` 目录，查看 `$GOBIN` 目录：
 
 ```bash
-$ go env GOPATH
+go env GOPATH
 ```
 
 `GOBIN` 为 `$GOPATH/bin`，如果你的 `$GOPATH` 不在 `$PATH` 中，你需要将其添加到 `$PATH` 中。
@@ -122,7 +122,7 @@ $ go env GOPATH
 安装完毕后，你可以执行如下指令来验证是否安装成功：
 
 ```bash
-$ goctl --version
+goctl --version
 ```
 
 ## Docker 安装
@@ -134,8 +134,8 @@ $ goctl --version
 <TabItem value="amd64" label="amd64架构" default>
 
 ```bash
-$ docker pull kevinwan/goctl
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl goctl --help
+docker pull kevinwan/goctl
+docker run --rm -it -v `pwd`:/app kevinwan/goctl goctl --help
 ```
 
 </TabItem>
@@ -143,8 +143,8 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl goctl --help
 <TabItem value="arm64" label="arm64(M1)架构" default>
 
 ```bash
-$ docker pull kevinwan/goctl:latest-arm64
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --help
+docker pull kevinwan/goctl:latest-arm64
+docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --help
 ```
 
 </TabItem>
@@ -160,7 +160,7 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --help
 <TabItem value="amd64" label="amd64架构" default>
 
 ```bash
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
+docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
 ```
 
 </TabItem>
@@ -168,7 +168,7 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
 <TabItem value="arm64" label="arm64(M1)架构" default>
 
 ```bash
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --version
+docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --version
 ```
 
 </TabItem>

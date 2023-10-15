@@ -204,7 +204,6 @@ Middlewares:
 
 <TabItem value="main.go" label="main.go" default>
 
-
 ```go
 var restConf rest.RestConf
 conf.MustLoad("etc/config.yaml", &restConf)
@@ -233,9 +232,9 @@ server.Use(middleware)
 
 // 自定义的中间件
 func middleware(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Add("X-Middleware", "static-middleware")
-		next(w, r)
-	}
+ return func(w http.ResponseWriter, r *http.Request) {
+  w.Header().Add("X-Middleware", "static-middleware")
+  next(w, r)
+ }
 }
 ```
