@@ -8,7 +8,16 @@ import TabItem from '@theme/TabItem';
 
 ## 概述
 
-一般程序启动的时候需要通过静态配置文件加载各种配置，go-zero 目前支持各种格式的配置，本章将会演示 go-zero 如何加载静态配置。
+一般程序启动的时候需要通过静态配置文件加载各种配置，go-zero 目前支持以下四种后缀名的配置文件：
+
+- *.json
+- *.toml
+- *.yaml
+- *.yml
+
+此外，go-zero 还支持从环境变量中加载配置，且环境变量的优先级高于静态配置文件。
+
+本章将会演示 go-zero 如何加载静态配置。
 
 ## 任务目标
 
@@ -82,6 +91,7 @@ func main() {
     flag.Parse()
     var c Config
     conf.MustLoad(*f, &c)
+    // conf.MustLoad(*f, &c，conf.UseEnv()) // 额外从环境变量中加载配置
     println(c.Name)
 }
 ```
