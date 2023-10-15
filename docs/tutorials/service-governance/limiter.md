@@ -39,7 +39,6 @@ RestConf struct {
 
 我们用一个 demo 来介绍一下限流器的使用。
 
-
 1. 在 `demo` 工程中新建目录 `rest-limit-demo`
 
 ```shell
@@ -149,8 +148,6 @@ func (l *PingLogic) Ping() error {
 
 </TabItem>
 </Tabs>
-
-
 
 我们先来运行一下这个最简单的 rest 服务，我们用 <a href="https://github.com/rakyll/hey" target="_blank">hey</a> 工具来简单压测一下接口。
 
@@ -305,6 +302,7 @@ $ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 4. 查看目录
+
 ```
 $ tree
 .
@@ -492,6 +490,7 @@ Latency distribution:
 Status code distribution:
   [OK]   110 responses
 ```
+
 可以看到所有的请求都是成功的，我们再来压测 110 qps。
 
 ```shell
@@ -538,7 +537,6 @@ Error distribution:
 ```
 
 可以看到，当并发量超过 100 时，就会返回 `rpc error: code = Unavailable desc = concurrent connections over limit`。
-
 
 ## 参考文献
 

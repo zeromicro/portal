@@ -40,7 +40,6 @@ yaml 配置内容及 server.go 代码如下
 
 <TabItem value="etc/greet-server.yaml" label="etc/greet-server.yaml" default>
 
-
 ```yaml
 Name: greet.rpc
 ListenOn: 127.0.0.1:8080

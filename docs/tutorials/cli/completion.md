@@ -39,7 +39,6 @@ Use "goctl completion [command] --help" for more information about a command.
 在 Linux 或者 Mac 操作系统中，可以通过 `echo $SHELL` 来查看当前 shell，如果是 `zsh`，则选择 `goctl completion zsh` 来生成脚本，如果是 `bash`，则选择 `goctl completion bash` 来生成脚本，如果是 `fish`，则选择 `goctl completion fish` 来生成脚本。
 :::
 
-
 ### goctl completion bash 指令
 
 ```bash
@@ -87,7 +86,6 @@ $ source <(goctl completion bash)
 
 永久生效设置按照操作系统的不同，其设置方法也不同，设置后需要重新启动终端才生效，目前针对 Linux 和 MacOS 的设置方法如下：
 
-
 <Tabs>
 
 <TabItem value="Linux" label="Linux" default>
@@ -107,7 +105,6 @@ $ goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
 </TabItem>
 
 </Tabs>
-
 
 ### goctl completion fish 指令
 
@@ -184,7 +181,6 @@ $ goctl completion powershell | Out-String | Invoke-Expression
 $ goctl completion powershell | Out-String | Invoke-Expression
 ```
 
-
 ### goctl completion zsh 指令
 
 ```bash
@@ -240,7 +236,6 @@ $ source <(goctl completion zsh); compdef _goctl goctl
 2. 永久生效
 
 永久生效设置按照操作系统的不同，其设置方法也不同，设置后需要重新启动终端才生效，目前针对 Linux 和 MacOS 的设置方法如下：
-
 
 <Tabs>
 

@@ -7,13 +7,16 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
+
 Create a valid monodb database connection via monodb uri.
 
 ## Preparing
+
 1. <a href="/docs/tasks" target="_blank">Complete golang installation</a>
 2. Create a mono server on our own and we use mongodb/admin:123456@localhost as an example
 
 ## Toolkit Description
+
 go-zero contains two mongodb toolkits, <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mongo" target="_blank">mono</a> are deprecated, no longer supports maintenance, and <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mon" target="_blank">mon</a> is recommended.
 
 All presentations for this section are based on <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mon" target="_blank">mon</a> toolkits.
@@ -21,10 +24,13 @@ All presentations for this section are based on <a href="https://github.com/zero
 We also recommend using [byctl](/docs/tasks/cli/mongo) to generate mono models for business development.
 
 ## Create Database Connection
+
 Database connection creation provides two methods,<a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L40" target="_blank">MostNewModel</a> and <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L50" target="_blank">NewModel</a>.
 
 ## Methodological description
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L40" target="_blank">MustNewModel</a>
+
 ```golang
 Function signature: 
     MustaNewModel function (uri, db, collection string, opts, ..Option) *Model 
@@ -40,6 +46,7 @@ return value:
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L50" target="_blank">NewModel</a>
+
 ```golang
 Function signature: 
     NewModel func(uri, db, collection string, opts ..Option) (*Model, error)
@@ -55,6 +62,7 @@ Return value:
 ```
 
 Code Example
+
 ```go
 conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
 ```
@@ -62,4 +70,3 @@ conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "col
 ## References
 
 - <a href="/docs/tutorials/cli/model#goctl-model-mongo-%E6%8C%87%E4%BB%A4" target="_blank">goctl model mono code generation </a>
-

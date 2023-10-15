@@ -10,7 +10,6 @@ import TabItem from '@theme/TabItem';
 
 消息队列是一种应用程序间通信的方式，它可以实现异步通信，提高系统的可用性和可扩展性。在 go-zero 中，我们使用了 <a href="https://github.com/zeromicro/go-queue" target="_blank">go-queue</a>
 
-
 ## 任务目标
 
 - 了解 go-queue 的基本使用
@@ -61,6 +60,7 @@ type KqConf struct {
 	ForceCommit bool   `json:",default=true"`
 }
 ```
+
 service.ServiceConf 请参考 <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">基础服务配置</a>
 
 | <img width={100}/>参数 | <img width={100}/>类型 | <img width={100}/>是否必填 | <img width={100}/>默认值 | <img width={100}/>说明 |
@@ -80,11 +80,9 @@ service.ServiceConf 请参考 <a href="/docs/tutorials/go-zero/configuration/ser
 
 ### 代码示例
 
-
 <Tabs>
 
 <TabItem value="config.yaml" label="config.yaml" default>
-
 
 ```yaml
 Name: kq

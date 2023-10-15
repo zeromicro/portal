@@ -187,6 +187,7 @@ type Config struct {
 | env      | 当前参数从环境变量获取                                         | \`json:"mode,env=MODE"\`       |
 
 :::note range 表达式值规则
+
 1. 左开右闭区间：(min:max]，表示大于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省
 1. 左闭右开区间：[min:max)，表示大于等于 min 小于 max，当 max 缺省时，max 代表数值 0，当 min 缺省时，min 代表无穷大，min 和 max 不能同时缺省
 1. 闭区间：[min:max]，表示大于等于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省
@@ -195,8 +196,8 @@ type Config struct {
 
 更多可以参考 [unmarshaler_test.go](https://github.com/zeromicro/go-zero/blob/master/core/mapping/unmarshaler_test.go)
 
-
 ## inherit 配置继承
+
 在我们日常的配置，会出现很多重复的配置，例如 rpcClientConf 中，每个 rpc 都有一个 etcd 的配置，但是我们大部分的情况下 etcd 的配置都是一样的，我们希望可以只用配置一次etcd就可以了。
 如下的例子
 

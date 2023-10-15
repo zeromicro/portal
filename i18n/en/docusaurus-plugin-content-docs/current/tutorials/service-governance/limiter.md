@@ -39,7 +39,6 @@ RestConf struct {
 
 We use a demo to describe the use of the lower limit streamer.
 
-
 1. Create new directory `demo` project `rest-limit-demo`
 
 ```shell
@@ -302,6 +301,7 @@ $ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 4. View Directory
+
 ```
 $ tree
 .
@@ -489,6 +489,7 @@ Latency distribution:
 Status code distribution:
   [OK]   110 responses
 ```
+
 All requests can be seen to be successful, and we come back to 110 qps.
 
 ```shell
@@ -535,7 +536,6 @@ Error distribution:
 ```
 
 It can be seen, when the concurrent output exceeds 100, returns  `rpc error: code = Unavailable desc = concurrent connections over limit`.
-
 
 ## References
 

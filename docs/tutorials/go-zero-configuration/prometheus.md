@@ -5,6 +5,7 @@ slug: /docs/tutorials/go-zero/configuration/prometheus
 ---
 
 ## prometheus 配置
+
 [Config](https://github.com/zeromicro/go-zero/blob/master/core/prometheus/config.go) Prometheus 相关配置，我们会在进程中启动启动一个 prometheus 端口。
 
 ## 参数定义

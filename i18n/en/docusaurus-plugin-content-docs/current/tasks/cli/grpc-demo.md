@@ -16,7 +16,6 @@ After completing the <a href="/docs/tasks/installation/goctl" target="_blank">go
 1. Preliminary understanding of the project structure of go-zero
 1. Preliminary method of gRPC local debugging
 
-
 ## Preparing
 
 1. <a href="/docs/tasks" target="_blank">Complete golang installation</a>
@@ -31,6 +30,7 @@ $ mkdir -p ~/workspace/rpc && cd ~/workspace/rpc
 $ goctl rpc new demo
 Done.
 ```
+
 After executing the instruction, a demo directory will be generated under the current directory that contains a minimized gRPC service. We will check the directory structure of the service.
 
 ```shell
@@ -122,7 +122,7 @@ on behalf of your service has been successfully launched when you see the follow
 
 :::note NOTE
 grpcurl is a command-line tool for accessing gRPC services, for details, please refer to <a href="https://github.com/fullstorydev/grpcurl">《grpcurl》</a>
-:::  
+:::
 
 </TabItem>
 
@@ -148,7 +148,7 @@ $ grpcui -plaintext 127.0.0.1:8080
 
 :::note
 grpcui is a gRPC UI debugging tool to access gRPC services. See <a href="https://github.com/fullstorydev/grpcui">Grpcui</a>
-:::  
+:::
 
 </TabItem>
 
@@ -165,6 +165,7 @@ The service on your behalf has been successfully launched when you see the follo
     "message": "me"
 }
 ```
+
 </TabItem>
 
 </Tabs>

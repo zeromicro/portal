@@ -8,7 +8,7 @@ slug: /docs/tasks/dsl/proto
 
 Protocol buffers is Google language neutral, platform neutral, and extensible structured data serializer – but smaller, faster, and simpler than XML.You define how a data is structured and then you can easily write structured data into data streams using specially generated source codes and read structured data in various languages.
 
-::note  
+::note
 in go-Zero framework development, we use <a href="https://developers.google.com/protocol-buffers/docs/proto3" target="_blank">Language Guide (proto3)</a>.
 :::
 

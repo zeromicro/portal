@@ -204,7 +204,6 @@ Middlewares:
 
 <TabItem value="main.go" label="main.go" default>
 
-
 ```go
 var restConf rest.RestConf
 conf.MustLoad("etc/config.yaml", &restConf)

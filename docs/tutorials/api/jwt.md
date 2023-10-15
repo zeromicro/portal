@@ -17,10 +17,10 @@ import TabItem from '@theme/TabItem';
 
 JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间传递声明式信息。它是一种基于JSON的轻量级的身份验证和授权机制，用于在客户端和服务器之间安全地传输信息。
 
-更多关于 jwt 的文档请参考 
+更多关于 jwt 的文档请参考
+
 1. <a href="https://jwt.io/" target="_blank">《JSON Web Tokens》</a>
 2. <a href="/docs/tutorials/http/server/jwt" target="_blank">《JWT 认证》</a>
-
 
 我们来看一下在 api 文件中如何声明开启 jwt 认证
 
@@ -84,7 +84,7 @@ type Config struct {
 }
 ```
 
-`Config` 结构体中的 Auth 字段就是我们通过在 api 语法文件中声明的值，这是代码生成后的结果。 
+`Config` 结构体中的 Auth 字段就是我们通过在 api 语法文件中声明的值，这是代码生成后的结果。
 
 </TabItem>
 

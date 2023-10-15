@@ -24,7 +24,8 @@ goctl-intellij 安装方式有 2 种
 
 ### 1. 从磁盘安装
 
-### 
+###
+
 <DocsCard
   className="cordova-ee-card"
   header="Goctl-1.1.3.zip"

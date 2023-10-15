@@ -31,29 +31,29 @@ Go 官网概括如下：
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://go.dev/dl/go1.19.4.windows-amd64.msi" >
 <p>支持 Windows 7 及以后，Intel 64 位处理器</p>
 <a>go1.19.4.windows-amd64.msi（135MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://go.dev/dl/go1.19.4.darwin-arm64.pkg" >
 <p>支持 macOS 11 及以后，Apple 64 位处理器</p>
 <a>go1.19.4.darwin-arm64.pkg（139MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://go.dev/dl/go1.19.4.darwin-amd64.pkg" >
 <p>支持 macOS 10.13 及以后，64 位处理器</p>
 <a>go1.19.4.darwin-amd64.pkg（145MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
 <p>支持 Linux 2.6.32 及以后，Intel 64 位处理器</p>
 <a>go1.19.4.linux-amd64.tar.gz（142MB）</a>

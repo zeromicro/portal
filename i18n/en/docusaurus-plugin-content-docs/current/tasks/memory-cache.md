@@ -8,13 +8,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
+
 This section mainly describes the use of <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L30" target="_blank">cache</a>.
 
 ## Preparing
+
 1. <a href="/docs/tasks" target="_blank">Complete golang installation</a>
 
 ## Create
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L44" target="_blank">NewCache</a>
+
 ```golang
 Function signature: 
     NewCache func(expire time.Duration, opts ...CacheOption) (*Cache, error) 
@@ -31,7 +35,9 @@ return value:
 ```
 
 ## Methodological description
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L100" target="_blank">Set</a>
+
 ```golang
 Function signature: 
     Set func(key string, value interface{}) 
@@ -50,6 +56,7 @@ Example:
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L105" target="_blank">SetWithExpire</a>
+
 ```golang
 Function signature: 
     SetWithExpire func(key string, value interface{}, expire time.Duration)cache, err := NewCache(time.Second*2, WithName("any"))
@@ -73,6 +80,7 @@ Example:
 ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L88" target="_blank">Get</a>
+
 ```golang
 Function signature: 
     Get func(key string) (interface{}, bool)
@@ -104,6 +112,7 @@ Example:
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L79" target="_blank">Del</a>
+
 ```golang
 Function signature: 
     Del func(key string)
@@ -122,6 +131,7 @@ Example:
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L123" target="_blank">Take</a>
+
 ```golang
 Function signature: 
     Take funcTake(key string, fetch func() (interface{}, error)) (interface{}, error)

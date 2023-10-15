@@ -7,10 +7,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## 概述
+
 本章节介绍 mon 包的 CURD 相关方法的介绍。
 
 ## 准备条件
-1. <a href="/docs/tasks/mongo/connection" target="_blank">完成 mon 的链接创建。</a> 
+
+1. <a href="/docs/tasks/mongo/connection" target="_blank">完成 mon 的链接创建。</a>
 
 ## 新增
 
@@ -84,7 +86,6 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 	return err
 }
 ```
-
 
 ## 查询
 
@@ -168,7 +169,6 @@ func (m *defaultUserModel) Find(ctx context.Context, id string) ([]*User, error)
 ```
 
 ## 删除
-
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
 

@@ -17,11 +17,10 @@ HTTP 服务来了解 goctl 的 go-zero api 服务的概况。
 1. 学会如何使用 goctl 创建一个最小化的 HTTP 服务
 1. 初步了解 go-zero 的项目结构
 
-
 ## 准备条件
 
-1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
-1. <a href="/docs/tasks/installation/goctl" target="_blank">完成 goctl 安装</a> 
+1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
+1. <a href="/docs/tasks/installation/goctl" target="_blank">完成 goctl 安装</a>
 
 ## 代码生成
 
@@ -32,6 +31,7 @@ $ mkdir -p ~/workspace/api && cd ~/workspace/api
 $ goctl api new demo
 Done.
 ```
+
 执行完指令后，会在当前目录下生成一个 demo 目录，该目录下包含了一个最小化的 HTTP 服务，我们来查看一下该服务的目录结构。
 
 ```shell
@@ -117,8 +117,8 @@ alt='task-api-demo-postman'
     "message": "me"
 }
 ```
+
 </TabItem>
 </Tabs>
-
 
 当你按照文档步骤走到这里，恭喜你 🎉 🎉 🎉 ，你已经完成了最简单的 go-zero api 服务的创建和启动了，如需了解 `goctl` 工具的使用说明请参阅 <a href="/docs/tutorials/cli/overview" target="_blank">《CLI 工具》</a>，如需了解完整 go-zero api 服务的使用说明请参阅 <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">《HTTP Server》</a>。

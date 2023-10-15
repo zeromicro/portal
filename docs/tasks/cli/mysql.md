@@ -7,6 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <a href="/docs/tutorials/mysql/curd" target="_blank">MySQL 用法</a>
+
 ## 概述
 
 mysql 代码生成支持从 sql 文件和数据库链接生成， 且支持生成带缓存逻辑代码。

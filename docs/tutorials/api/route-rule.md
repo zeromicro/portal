@@ -13,7 +13,6 @@ slug: /docs/tutorials/api/route/rule
 
 在 api 描述语言中，路由需要满足如下规则
 
-
 1. 路由必须以 `/` 开头
 1. 路由节点必须以 `/` 分隔
 1. 路由节点中可以包含 `:`，但是 `:` 必须是路由节点的第一个字符，`:` 后面的节点值必须要在结请求体中有 `path` tag 声明，用于接收路由参数，详细规则可参考 <a href="/docs/tutorials/api/parameter" target="_blank">路由参数</a>。

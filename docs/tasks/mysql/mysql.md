@@ -4,15 +4,18 @@ slug:  /docs/tasks/mysql
 ---
 
 ## 概述
+
 数据库的相关使用, 我们一般推荐使用 goctl 直接生成 model 代码，同时会自动生成 golang 结构体，CURD操作方法，缓存等，可以参考 <a href="/docs/tasks/cli/mysql" target="_blank">goctl model</a>。
 
 但是针对特殊情况需要自行直接链接数据库的，我们也可以直接自己初始化 sql conn。
 
 ## 任务目标
+
 1. 了解 **github.com/zeromicro/go-zero/core/stores/sqlx** 包的使用。
 2. 根据 sqlx 创建一个 sql 链接。
 
 ## 创建数据库
+
 首先在的数据库中创建如下的表。
 
 ```sql
@@ -47,15 +50,14 @@ func main() {
 
 ```
 
-
 :::note 注意
 想要正确的处理 time.Time ，您需要带上 parseTime 参数， [更多参数](https://github.com/go-sql-driver/mysql#parameters) 要支持完整的 UTF-8 编码，您需要将 charset=utf8 更改为 charset=utf8mb4
 :::
 
-
 2. 自定义驱动
 
 go-zero 允许通过 DriverName 选项自定义 MySQL 驱动，例如：
+
 ```go
 package main
 
@@ -74,6 +76,7 @@ func main() {
 3. 现有的数据库连接
 
 go-zero 允许通过 现有的数据库初始化 Sql 链接，例如：
+
 ```go
 package main
 
@@ -94,6 +97,7 @@ func main() {
 ```
 
 ## 开始 CRUD
+
 1. 插入一条数据
 
 我们使用上面的创建链接的方法得到一个链接之后，我们可以开始操作数据库。
@@ -127,6 +131,7 @@ func main() {
 2. 查询数据
 
 我们需要先定义一个 User 结构体，接着在直接查询
+
 ```go
 package main
 
@@ -164,8 +169,8 @@ func main() {
 
 执行上述程序，我们会看到 我们刚刚插入进去的 user 信息
 
-
 3. 修改数据 我们继续习惯代码
+
 ```go
 package main
 
@@ -190,10 +195,10 @@ func main() {
 }
 
 ```
+
 运行上述代码，会发现数据库中的记录 type 变为 2了。
 
 4. 删除数据
-
 
 ```go
 package main

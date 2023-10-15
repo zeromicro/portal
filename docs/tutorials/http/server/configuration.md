@@ -47,4 +47,3 @@ http server主要配置项如下表：
 
 ServiceConfig 通用配置请参考 <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">《基础服务配置》</a>
 MiddlewaresConf 配置可参考 <a href="/docs/tutorials/http/server/middleware" target="_blank">《中间件》</a>
-

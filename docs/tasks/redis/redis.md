@@ -17,6 +17,7 @@ import TabItem from '@theme/TabItem';
 2. 自行准备一个 redis server，我们以 127.0.0.1:6379 为例。
 
 ## redis 配置说明
+
 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/conf.go#L16" target="_blank">RedisConf</a> 相关介绍。
 
 ```go
@@ -34,6 +35,7 @@ Tls: 是否开启tls
 ```
 
 初始化 redis 配置, 当然我们推荐使用 conf.MustLoad 进行配置的加载，可参考[配置文件](/docs/tasks/static/configuration)
+
 ```go
 conf := redis.RedisConf{
     Host: "127.0.0.1:6379",
@@ -77,7 +79,6 @@ rds := redis.MustNewRedis(conf)
 	}
 	fmt.Println(v)
 ```
-
 
 ## 完整的实例如下
 

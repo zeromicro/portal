@@ -90,7 +90,6 @@ func initConfig() {
 
 ```
 
-
 ```go title="internal/logic/hello.go"
 package logic
 
@@ -138,7 +137,6 @@ $ docker run zerok8scron:v1 hello #运行即可
 ```
 
 ### 4.3 k8s with cronjob scheduling once a minute
-
 
 ```yaml title="cronjob.yaml"
 apiVersion: batch/v1

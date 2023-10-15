@@ -5,36 +5,42 @@ slug: /docs/concepts/components
 ---
 
 ## 并发利器
- - [x] mr
- - [x] fx
+
+- [x] mr
+- [x] fx
 
 ## 服务编排
- - [x] ServiceGroup
+
+- [x] ServiceGroup
 
 ## groutines 编程
+
 - [x] RoutineGroup
 - [x] GoSafe
 - [x] RunSafe
 - [x] TaskRunner
 - [x] WorkerGroup
 
-
 ## 通讯
+
 - [x] gRPC
 - [x] http
 - [x] gRPC Gateway
 - [x] http client
 
 ## 存储
+
 - [x] MySQL
 - [x] PosgreSQL
 - [x] Mongo
 - [x] Redis
 
 ## 消息队列
+
 - [x] kafka
 
 ## 延时队列
+
 - [x] beanstalk
 
 ## 服务注册与发现

@@ -31,6 +31,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 目前如果需要实现这种格式响应，有2种做法：
+
 1. 自定义响应格式
 2. 使用 go-zero 扩展包来实现
 
@@ -43,7 +44,7 @@ $ mkdir demo && cd demo
 $ go mod init demo
 ```
 
-2.  在 demo 目录下创建一个 api 文件 `user.api`，添加如下内容
+2. 在 demo 目录下创建一个 api 文件 `user.api`，添加如下内容
 
 ```go
 syntax = "v1"
@@ -267,6 +268,6 @@ curl --location '127.0.0.1:8888/user/login' \
 
 ## 参考文献
 
--  <a href="/docs/tutorials/cli/overview" target="_blank">《goctl 代码生成工具使用》</a>
+- <a href="/docs/tutorials/cli/overview" target="_blank">《goctl 代码生成工具使用》</a>
 - https://github.com/zeromicro/x
 - <a href="/docs/tutorials/customization/template" target="_blank">《模板定制化》</a>

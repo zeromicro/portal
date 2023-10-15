@@ -6,7 +6,6 @@ slug: /docs/tasks/cli/mongo
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 ## 概述
 
 mongo 代码生成是通过 goctl 生成指定文档名称的 model 文件，mongo 不像 mysql 一样有建表语句，索引等集中有规律的约束信息，因此 mongo 代码的生成无需类似 sql 或者数据库链接一样的信息。
@@ -91,6 +90,7 @@ func NewUserModel(url, db, collection string) UserModel {
     }
 }
 ```
+
 </TabItem>
 
 <TabItem value="usermodelgen.go" label="usermodelgen.go" default>
@@ -191,6 +191,7 @@ type User struct {
     CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 ```
+
 </TabItem>
 </Tabs>
 

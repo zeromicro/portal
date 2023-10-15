@@ -39,7 +39,6 @@ Currently goctl supports `cash`,`fish`,`zsh`and`power shell` if you are Windows 
 in Linux or Mac operating systems, see the current shell, by `echo $SHELL` Effect is `zsh`, then select `goctl completion zsh` to generate script, The result is `cash`, select `goctl completion cash` to generate the script, The result is `fish`, select `goctl complete fish` to generate scripts.
 :::
 
-
 ### goctl completion bash directive
 
 ```bash
@@ -86,7 +85,6 @@ $ source <(goctl completion bash)
 2. Permanent entry into force
 
 Permanently effective settings differ according to operating system and their setup method, need to restart terminals to take effect after setup. Currently settings for Linux and MacOS are set below：
-
 
 <Tabs>
 
@@ -183,7 +181,6 @@ The following output needs to be added to the power shell's profile.
 $ goctl completion powershell | Out-String | Invoke-Expression
 ```
 
-
 ### goctl completion zsh directive
 
 ```bash
@@ -219,7 +216,7 @@ Flags:
       --no-descriptions   disable completion descriptions
 ```
 
-::tip hint  
+::tip hint
 If you are using zsh, and shell completion is not enabled, you can enable： by following instructions
 
 ```bash
@@ -239,7 +236,6 @@ $ source <(goctl completion zsh); compdef _goctl goctl
 2. Permanent entry into force
 
 Permanently effective settings differ according to operating system and their setup method, need to restart terminals to take effect after setup. Currently settings for Linux and MacOS are set below：
-
 
 <Tabs>
 

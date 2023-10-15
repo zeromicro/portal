@@ -14,9 +14,9 @@ slug: /docs/tutorials/ops/docker/deployment
 ### docker部署项目的好处
 
 1. 一致性：Docker 容器可以在不同环境中以相同的方式运行，无论是开发、测试、预生产还是生产环境。这确保了项目在不同阶段的一致性，避免了“在我这里能工作”的问题。
-2.  可移植性：容器可以在不同的云平台、操作系统和基础设施上运行，从而实现了项目的高度可移植性。这意味着你可以轻松地将应用程序从一个环境迁移到另一个环境，而不需要修改代码。 
-3.  环境隔离：Docker 容器提供了隔离的运行环境，可以将应用程序及其依赖项隔离开来。这有助于避免依赖冲突和应用程序之间的干扰。
-4. 持续集成/持续交付（CI/CD）：Docker 可以与 CI/CD 工具集成，帮助自动化构建、测试和部署过程。这样可以加速软件交付流程，提高生产力。 
+2. 可移植性：容器可以在不同的云平台、操作系统和基础设施上运行，从而实现了项目的高度可移植性。这意味着你可以轻松地将应用程序从一个环境迁移到另一个环境，而不需要修改代码。
+3. 环境隔离：Docker 容器提供了隔离的运行环境，可以将应用程序及其依赖项隔离开来。这有助于避免依赖冲突和应用程序之间的干扰。
+4. 持续集成/持续交付（CI/CD）：Docker 可以与 CI/CD 工具集成，帮助自动化构建、测试和部署过程。这样可以加速软件交付流程，提高生产力。
 5. 扩展性：Docker 容器可以根据需要动态扩展，以满足流量波动或负载增加的要求。这使得应用程序更容易实现水平扩展。
 
 ### 使用goctl构建dockerfile
@@ -24,7 +24,7 @@ slug: /docs/tutorials/ops/docker/deployment
 当我们完成一个服务的api/rpc开发的时候，我们可以使用go-zero自带的goctl工具生成相应的dockerfile文件
 
 1. cd到服务的api/rpc/mq下面
-2. 终端输入 
+2. 终端输入
 
 ```
 goctl docker -go xxx.go
@@ -99,17 +99,17 @@ CMD ["./video", "-f", "etc/video.yaml"]
    ```dockerfile
    RUN apk update --no-cache && apk add --no-cache tzdata
    ```
-   
+
    - 使用Alpine的包管理器 `apk` 来更新包索引并安装 `tzdata` 包，用于时区数据。
-   
+
 3. **设置工作目录**:
 
    ```dockerfile
    WORKDIR /build
    ```
-   
+
    - 设置工作目录为 `/build`，后续的命令将在这个目录中执行。
-   
+
 4. **复制项目文件**:
 
    ```dockerfile
@@ -191,9 +191,9 @@ CMD ["./video", "-f", "etc/video.yaml"]
 注意事项！！！
 :::
 
-* 如果你服务里面有别的配置文件，请在第一阶段和第二阶段一起拷贝进来
-* 第二阶段依靠`scratch`，这是一个最小的基础镜像，就也是没有bash这样的shell，如果你需要bash，将`scratch`换成`alpine`，镜像的体积大不了几mb
-* 如果你程序里面涉及到**泛型**，请使用`FROM golang:1.20.5-alpine AS builder`，这里使用==1.80以上==的版本都可以
+- 如果你服务里面有别的配置文件，请在第一阶段和第二阶段一起拷贝进来
+- 第二阶段依靠`scratch`，这是一个最小的基础镜像，就也是没有bash这样的shell，如果你需要bash，将`scratch`换成`alpine`，镜像的体积大不了几mb
+- 如果你程序里面涉及到**泛型**，请使用`FROM golang:1.20.5-alpine AS builder`，这里使用==1.80以上==的版本都可以
 
 ### 如何构建docker镜像并且推送至docker hub？
 
@@ -313,7 +313,7 @@ jobs:
 
    记得把 token 复制保存下来，这个界面关闭后就再也看不到token了
 
-   * Github Secret 会作为环境变量在Github Action运行中使用，不会暴露在日志中，因此特别适合存放token或者密码。
+   - Github Secret 会作为环境变量在Github Action运行中使用，不会暴露在日志中，因此特别适合存放token或者密码。
 
    <Image src={require('../../resource/tutorials/ops/docker-deployment-3.png').default} alt='docker-deployment' />
 
@@ -339,6 +339,3 @@ jobs:
 ```
 
 这之后你可以加其他的命令，比如执行一些脚本什么的，或者执行docker-compose部署容器
-
-
-
