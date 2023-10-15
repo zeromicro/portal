@@ -23,7 +23,7 @@ go-queue 生产者很简单，只需要 kafka 地址，topic 即可创建一个 
 NewPusher(addrs []string, topic string, opts ...PushOption)
 ```
 
-### 代码示例
+### 代码示例1
 
 ```go
 pusher := kq.NewPusher([]string{
@@ -78,7 +78,7 @@ service.ServiceConf 请参考 <a href="/docs/tutorials/go-zero/configuration/ser
 | Password | string | 否 |  | 密码 |
 | ForceCommit | bool | 否 | true | 是否强制提交 |
 
-### 代码示例
+### 代码示例2
 
 <Tabs>
 

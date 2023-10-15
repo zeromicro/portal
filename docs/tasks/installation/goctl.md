@@ -103,8 +103,6 @@ href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.
 
 </DocsCards>
 
-###
-
 其他版本及操作系统可 [前往 Github](https://github.com/zeromicro/go-zero/releases) 自行选择。
 
 ### 2.2 安装

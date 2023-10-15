@@ -37,67 +37,67 @@ RestConf struct {
 
 ### 示例
 
-我们用一个 demo 来介绍一下限流器的使用。
+  我们用一个 demo 来介绍一下限流器的使用。
 
 1. 在 `demo` 工程中新建目录 `rest-limit-demo`
 
-```shell
-$ cd ~/workspace/demo
-$ mkdir rest-limit-demo && cd rest-limit-demo
-```
+    ```shell
+    $ cd ~/workspace/demo
+    $ mkdir rest-limit-demo && cd rest-limit-demo
+    ```
 
 2. 新建一个 `limit.api` 文件，将如下内容拷贝到文件中
 
-```go title="limit.api"
-syntax = "v1"
+    ```go title="limit.api"
+    syntax = "v1"
 
-service limit {
-	@handler ping
-	get /ping
-}
-```
+    service limit {
+      @handler ping
+      get /ping
+    }
+    ```
 
 3. 生成 rest 代码
 
-```shell
-$ cd ~/workspace/demo/rest-limit-demo
-$ goctl api go -api limit.api -dir .
-```
+    ```shell
+    $ cd ~/workspace/demo/rest-limit-demo
+    $ goctl api go -api limit.api -dir .
+    ```
 
 4. 查看目录结构
 
-```shell
-$ tree
-.
-├── etc
-│   └── limit.yaml
-├── internal
-│   ├── config
-│   │   └── config.go
-│   ├── handler
-│   │   ├── pinghandler.go
-│   │   └── routes.go
-│   ├── logic
-│   │   └── pinglogic.go
-│   ├── svc
-│   │   └── servicecontext.go
-│   └── types
-│       └── types.go
-├── limit.api
-└── limit.go
-```
+    ```shell
+    $ tree
+    .
+    ├── etc
+    │   └── limit.yaml
+    ├── internal
+    │   ├── config
+    │   │   └── config.go
+    │   ├── handler
+    │   │   ├── pinghandler.go
+    │   │   └── routes.go
+    │   ├── logic
+    │   │   └── pinglogic.go
+    │   ├── svc
+    │   │   └── servicecontext.go
+    │   └── types
+    │       └── types.go
+    ├── limit.api
+    └── limit.go
+    ```
 
-我们修改一下配置，将 qps 限制为 100，然后逻辑中加一点阻塞逻辑。
+  我们修改一下配置，将 qps 限制为 100，然后逻辑中加一点阻塞逻辑。
 
 1. 修改配置文件
 
-将 `~/workspace/demo/rest-limit-demo/etc/limit.yaml` 中的 `maxConns` 修改为 100
+    将 `~/workspace/demo/rest-limit-demo/etc/limit.yaml` 中的 `maxConns` 修改为 100
 
 2. 添加逻辑代码
 
-将 `~/workspace/demo/rest-limit-demo/internal/logic/pinglogic.go` 中的 `Ping` 方法添加阻塞逻辑
+  将 `~/workspace/demo/rest-limit-demo/internal/logic/pinglogic.go` 中的 `Ping` 方法添加阻塞逻辑
 
-最终代码内容如下
+  最终代码内容如下
 
 <Tabs>
 <TabItem value="limit.yaml" label="limit.yaml" default>
@@ -272,98 +272,98 @@ grpc 服务属于内网服务，不对外提供服务，只对内部的其他服
 
 1. 在 `demo` 工程中新建目录 `grpc-limit-demo`
 
-```shell
-$ cd ~/workspace/demo
-$ mkdir grpc-limit-demo && cd grpc-limit-demo
-```
+    ```shell
+    $ cd ~/workspace/demo
+    $ mkdir grpc-limit-demo && cd grpc-limit-demo
+    ```
 
 2. 新建一个 `limit.proto` 文件，将如下内容拷贝到文件中
 
-```protobuf title="limit.proto"
-syntax = "proto3";
+    ```protobuf title="limit.proto"
+    syntax = "proto3";
 
-package proto;
+    package proto;
 
-option  go_package = "./proto";
+    option  go_package = "./proto";
 
-message PingReq{}
-message PingResp{}
+    message PingReq{}
+    message PingResp{}
 
-service limit{
-  rpc Ping(PingReq) returns (PingResp);
-}
-```
+    service limit{
+      rpc Ping(PingReq) returns (PingResp);
+    }
+    ```
 
 3. 生成 grpc 代码
 
-```shell
-$ cd ~/workspace/demo/grpc-limit-demo
-$ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
-```
+    ```shell
+    $ cd ~/workspace/demo/grpc-limit-demo
+    $ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
+    ```
 
 4. 查看目录
 
-```
-$ tree
-.
-├── etc
-│   └── limit.yaml
-├── internal
-│   ├── config
-│   │   └── config.go
-│   ├── logic
-│   │   └── pinglogic.go
-│   ├── server
-│   │   └── limitserver.go
-│   └── svc
-│       └── servicecontext.go
-├── limit
-│   └── limit.go
-├── limit.go
-├── limit.proto
-└── proto
-    ├── limit.pb.go
-    └── limit_grpc.pb.go
+    ```
+    $ tree
+    .
+    ├── etc
+    │   └── limit.yaml
+    ├── internal
+    │   ├── config
+    │   │   └── config.go
+    │   ├── logic
+    │   │   └── pinglogic.go
+    │   ├── server
+    │   │   └── limitserver.go
+    │   └── svc
+    │       └── servicecontext.go
+    ├── limit
+    │   └── limit.go
+    ├── limit.go
+    ├── limit.proto
+    └── proto
+        ├── limit.pb.go
+        └── limit_grpc.pb.go
 
-8 directories, 10 files
-```
+    8 directories, 10 files
+    ```
 
-我们在 `~/workspace/demo/grpc-limit-demo/internal/logic/limitlogic.go` 中实现 `Ping` 方法，代码如下：
+    我们在 `~/workspace/demo/grpc-limit-demo/internal/logic/limitlogic.go` 中实现 `Ping` 方法，代码如下：
 
-```go title="imitlogic.go"
-package logic
+    ```go title="imitlogic.go"
+    package logic
 
-import (
-	"context"
-	"time"
+    import (
+      "context"
+      "time"
 
-	"demo/grpc-limit-demo/internal/svc"
-	"demo/grpc-limit-demo/proto"
+      "demo/grpc-limit-demo/internal/svc"
+      "demo/grpc-limit-demo/proto"
 
-	"github.com/zeromicro/go-zero/core/logx"
-)
+      "github.com/zeromicro/go-zero/core/logx"
+    )
 
-type PingLogic struct {
-	ctx    context.Context
-	svcCtx *svc.ServiceContext
-	logx.Logger
-}
+    type PingLogic struct {
+      ctx    context.Context
+      svcCtx *svc.ServiceContext
+      logx.Logger
+    }
 
-func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
-	return &PingLogic{
-		ctx:    ctx,
-		svcCtx: svcCtx,
-		Logger: logx.WithContext(ctx),
-	}
-}
+    func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
+      return &PingLogic{
+        ctx:    ctx,
+        svcCtx: svcCtx,
+        Logger: logx.WithContext(ctx),
+      }
+    }
 
-func (l *PingLogic) Ping(in *proto.PingReq) (*proto.PingResp, error) {
-	time.Sleep(50*time.Millisecond)
+    func (l *PingLogic) Ping(in *proto.PingReq) (*proto.PingResp, error) {
+      time.Sleep(50*time.Millisecond)
 
-	return &proto.PingResp{}, nil
-}
+      return &proto.PingResp{}, nil
+    }
 
-```
+    ```
 
 5. 在 `~/workspace/demo/grpc-limit-demo/limit.go` 中添加中间件：
 

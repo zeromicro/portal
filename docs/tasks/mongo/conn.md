@@ -31,41 +31,41 @@ go-zero 包含两个 mongodb 工具包，其中 <a href="https://github.com/zero
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L40" target="_blank">MustNewModel</a>
 
-```golang
-函数签名: 
-    MustNewModel func(uri, db, collection string, opts ...Option) *Model 
-说明: 
-    1. 当 mongodb 连接创建存在问题时，会直接进退退出，输出错误日志。
-    2. 当 db 和 collection 不存在时，会创建 db 和 collection。
-入参:
-    1. uri: mongodb uri (example: mongodb://<user>:<password>@<host>:<port>)
-    2. db: 数据库名
-    3. collection: 集合名
-返回值:
-    1. *Model: 连接管理对象
-```
+    ```golang
+    函数签名: 
+        MustNewModel func(uri, db, collection string, opts ...Option) *Model 
+    说明: 
+        1. 当 mongodb 连接创建存在问题时，会直接进退退出，输出错误日志。
+        2. 当 db 和 collection 不存在时，会创建 db 和 collection。
+    入参:
+        1. uri: mongodb uri (example: mongodb://<user>:<password>@<host>:<port>)
+        2. db: 数据库名
+        3. collection: 集合名
+    返回值:
+        1. *Model: 连接管理对象
+    ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L50" target="_blank">NewModel</a>
 
-```golang
-函数签名: 
-    NewModel func(uri, db, collection string, opts ...Option) (*Model, error)
-说明: 
-    1. 当 db 和 collection 不存在时，会创建 db 和 collection。
-入参:
-    1. uri: mongodb uri (example: mongodb://<user>:<password>@<host>:<port>)
-    2. db: 数据库名
-    3. collection: 集合名
-返回值:
-    1. *Model: 连接管理对象
-    2. error: 创建错误
-```
+    ```golang
+    函数签名: 
+        NewModel func(uri, db, collection string, opts ...Option) (*Model, error)
+    说明: 
+        1. 当 db 和 collection 不存在时，会创建 db 和 collection。
+    入参:
+        1. uri: mongodb uri (example: mongodb://<user>:<password>@<host>:<port>)
+        2. db: 数据库名
+        3. collection: 集合名
+    返回值:
+        1. *Model: 连接管理对象
+        2. error: 创建错误
+    ```
 
-代码示例
+    代码示例
 
-```go
-conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
-```
+    ```go
+    conn := mon.MustNewModel("mongodb://<user>:<password>@<host>:<port>", "db", "collection")
+    ```
 
 ## 参考文献
 

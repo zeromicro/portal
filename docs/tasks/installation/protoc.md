@@ -74,8 +74,6 @@ href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/proto
 
 </DocsCards>
 
-###
-
 其他版本及操作系统可 [前往 Github](https://github.com/protocolbuffers/protobuf/releases) 自行选择。
 
 ### 2.2 安装

@@ -23,7 +23,7 @@ sqlc 只支持主键，唯一键的单条记录索引方式。其他批量查询
 
 ## 创建 sqlc.CachedConn
 
-### NewConnWithCache
+### NewConnWithCache1
 
 ```go
 func NewConn(db sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option) CachedConn
@@ -50,7 +50,7 @@ func NewNodeConn(db sqlx.SqlConn, rds *redis.Redis, opts ...cache.Option) Cached
 
 我们可以直接传入一个 redis，初始化我们的 CachedConn。
 
-### NewConnWithCache
+### NewConnWithCache2
 
 ```go
 func NewConnWithCache(db sqlx.SqlConn, c cache.Cache) CachedConn

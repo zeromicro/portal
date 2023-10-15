@@ -76,11 +76,11 @@ Flags:
 
 1. 临时生效
 
-临时生效仅对当前终端 session 有用，是一次性的。
+    临时生效仅对当前终端 session 有用，是一次性的。
 
-```bash
-$ source <(goctl completion bash)
-```
+    ```bash
+    $ source <(goctl completion bash)
+    ```
 
 2. 永久生效
 
@@ -108,35 +108,35 @@ $ goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
 
 ### goctl completion fish 指令
 
-```bash
-$ goctl completion fish --help
-Generate the autocompletion script for the fish shell.
+  ```bash
+  $ goctl completion fish --help
+  Generate the autocompletion script for the fish shell.
 
-To load completions in your current shell session:
+  To load completions in your current shell session:
 
-	goctl completion fish | source
+    goctl completion fish | source
 
-To load completions for every new session, execute once:
+  To load completions for every new session, execute once:
 
-	goctl completion fish > ~/.config/fish/completions/goctl.fish
+    goctl completion fish > ~/.config/fish/completions/goctl.fish
 
-You will need to start a new shell for this setup to take effect.
+  You will need to start a new shell for this setup to take effect.
 
-Usage:
-  goctl completion fish [flags]
+  Usage:
+    goctl completion fish [flags]
 
-Flags:
-  -h, --help              help for fish
-      --no-descriptions   disable completion descriptions
-```
+  Flags:
+    -h, --help              help for fish
+        --no-descriptions   disable completion descriptions
+  ```
 
 1. 临时生效
 
-临时生效仅对当前终端 session 有用，是一次性的。
+    临时生效仅对当前终端 session 有用，是一次性的。
 
-```bash
-$ goctl completion fish | source
-```
+    ```bash
+    $ goctl completion fish | source
+    ```
 
 2. 永久生效
 
@@ -167,11 +167,11 @@ Flags:
 
 1. 临时生效
 
-临时生效仅对当前终端 session 有用，是一次性的。
+    临时生效仅对当前终端 session 有用，是一次性的。
 
-```bash
-$ goctl completion powershell | Out-String | Invoke-Expression
-```
+    ```bash
+    $ goctl completion powershell | Out-String | Invoke-Expression
+    ```
 
 2. 永久生效
 
@@ -227,11 +227,11 @@ echo "autoload -U compinit; compinit" >> ~/.zshrc
 
 1. 临时生效
 
-临时生效仅对当前终端 session 有用，是一次性的。
+    临时生效仅对当前终端 session 有用，是一次性的。
 
-```bash
-$ source <(goctl completion zsh); compdef _goctl goctl
-```
+    ```bash
+    $ source <(goctl completion zsh); compdef _goctl goctl
+    ```
 
 2. 永久生效
 
