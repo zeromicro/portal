@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 2. xml 响应支持
 3. code-msg error 类型支持
 
-详情可参考 <https://github.com/zeromicro/x>
+详情可参考 https://github.com/zeromicro/x
 
 ### code-data 统一响应格式用法
 
@@ -31,7 +31,6 @@ import TabItem from '@theme/TabItem';
 ```
 
 目前如果需要实现这种格式响应，有2种做法：
-
 1. 自定义响应格式
 2. 使用 go-zero 扩展包来实现
 
@@ -40,11 +39,11 @@ import TabItem from '@theme/TabItem';
 1. 初始化一个 demo 工程
 
 ```shell
-mkdir demo && cd demo
-go mod init demo
+$ mkdir demo && cd demo
+$ go mod init demo
 ```
 
-2. 在 demo 目录下创建一个 api 文件 `user.api`，添加如下内容
+2.  在 demo 目录下创建一个 api 文件 `user.api`，添加如下内容
 
 ```go
 syntax = "v1"
@@ -78,39 +77,39 @@ Done.
 package logic
 
 import (
- "context"
+	"context"
 
- "demo/internal/svc"
- "demo/internal/types"
+	"demo/internal/svc"
+	"demo/internal/types"
 
- "github.com/zeromicro/go-zero/core/logx"
- "github.com/zeromicro/x/errors"
+	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/x/errors"
 )
 
 type LoginLogic struct {
- logx.Logger
- ctx    context.Context
- svcCtx *svc.ServiceContext
+	logx.Logger
+	ctx    context.Context
+	svcCtx *svc.ServiceContext
 }
 
 func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
- return &LoginLogic{
-  Logger: logx.WithContext(ctx),
-  ctx:    ctx,
-  svcCtx: svcCtx,
- }
+	return &LoginLogic{
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
+		svcCtx: svcCtx,
+	}
 }
 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, err error) {
     // 模拟登录逻辑
- if req.Username != "go-zero" || req.Password != "123456" {
-  return nil, errors.New(1001, "用户名或密码错误")
- }
+	if req.Username != "go-zero" || req.Password != "123456" {
+		return nil, errors.New(1001, "用户名或密码错误")
+	}
 
- resp = new(types.LoginResponse)
- resp.Name = "go-zero"
- resp.UID = 1
- return resp, nil
+	resp = new(types.LoginResponse)
+	resp.Name = "go-zero"
+	resp.UID = 1
+	return resp, nil
 }
 ```
 
@@ -149,33 +148,33 @@ code: 1001, msg: 用户名或密码错误
 package handler
 
 import (
- "net/http"
+	"net/http"
 
- "demo/internal/logic"
- "demo/internal/svc"
- "demo/internal/types"
- "github.com/zeromicro/go-zero/rest/httpx"
- xhttp "github.com/zeromicro/x/http"
+	"demo/internal/logic"
+	"demo/internal/svc"
+	"demo/internal/types"
+	"github.com/zeromicro/go-zero/rest/httpx"
+	xhttp "github.com/zeromicro/x/http"
 )
 
 func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
- return func(w http.ResponseWriter, r *http.Request) {
-  var req types.LoginRequest
-  if err := httpx.Parse(r, &req); err != nil {
-   httpx.ErrorCtx(r.Context(), w, err)
-   return
-  }
+	return func(w http.ResponseWriter, r *http.Request) {
+		var req types.LoginRequest
+		if err := httpx.Parse(r, &req); err != nil {
+			httpx.ErrorCtx(r.Context(), w, err)
+			return
+		}
 
-  l := logic.NewLoginLogic(r.Context(), svcCtx)
-  resp, err := l.Login(&req)
-  if err != nil {
-      // code-data 响应格式
-   xhttp.JsonBaseResponseCtx(r.Context(), w, err)
-  } else {
-      // code-data 响应格式
-   xhttp.JsonBaseResponseCtx(r.Context(), w, resp)
-  }
- }
+		l := logic.NewLoginLogic(r.Context(), svcCtx)
+		resp, err := l.Login(&req)
+		if err != nil {
+		    // code-data 响应格式
+			xhttp.JsonBaseResponseCtx(r.Context(), w, err)
+		} else {
+		    // code-data 响应格式
+			xhttp.JsonBaseResponseCtx(r.Context(), w, resp)
+		}
+	}
 }
 ```
 
@@ -211,33 +210,33 @@ curl --location '127.0.0.1:8888/user/login' \
 package handler
 
 import (
- "net/http"
+	"net/http"
 
- "demo/internal/logic"
- "demo/internal/svc"
- "demo/internal/types"
- "github.com/zeromicro/go-zero/rest/httpx"
- xhttp "github.com/zeromicro/x/http"
+	"demo/internal/logic"
+	"demo/internal/svc"
+	"demo/internal/types"
+	"github.com/zeromicro/go-zero/rest/httpx"
+	xhttp "github.com/zeromicro/x/http"
 )
 
 func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
- return func(w http.ResponseWriter, r *http.Request) {
-  var req types.LoginRequest
-  if err := httpx.Parse(r, &req); err != nil {
-   httpx.ErrorCtx(r.Context(), w, err)
-   return
-  }
+	return func(w http.ResponseWriter, r *http.Request) {
+		var req types.LoginRequest
+		if err := httpx.Parse(r, &req); err != nil {
+			httpx.ErrorCtx(r.Context(), w, err)
+			return
+		}
 
-  l := logic.NewLoginLogic(r.Context(), svcCtx)
-  resp, err := l.Login(&req)
-  if err != nil {
-   //xhttp.XmlBaseResponse(w,err)
-   xhttp.XmlBaseResponseCtx(r.Context(),w,err)
-  } else {
-   //xhttp.XmlBaseResponse(w,resp)
-   xhttp.XmlBaseResponseCtx(r.Context(),w,resp)
-  }
- }
+		l := logic.NewLoginLogic(r.Context(), svcCtx)
+		resp, err := l.Login(&req)
+		if err != nil {
+			//xhttp.XmlBaseResponse(w,err)
+			xhttp.XmlBaseResponseCtx(r.Context(),w,err)
+		} else {
+			//xhttp.XmlBaseResponse(w,resp)
+			xhttp.XmlBaseResponseCtx(r.Context(),w,resp)
+		}
+	}
 }
 
 
@@ -268,6 +267,6 @@ curl --location '127.0.0.1:8888/user/login' \
 
 ## 参考文献
 
-- <a href="/docs/tutorials/cli/overview" target="_blank">《goctl 代码生成工具使用》</a>
-- <https://github.com/zeromicro/x>
+-  <a href="/docs/tutorials/cli/overview" target="_blank">《goctl 代码生成工具使用》</a>
+- https://github.com/zeromicro/x
 - <a href="/docs/tutorials/customization/template" target="_blank">《模板定制化》</a>

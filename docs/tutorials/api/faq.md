@@ -8,7 +8,7 @@ slug: /docs/tutorials/api/faq
 api 新特性目前处于测试阶段，如果你想体验新特性，可以通过如下命令安装最新的 goctl 工具，且需要开启 `GOCTL_EXPERIMENTAL` 环境变量。
 
 ```bash
-goctl env -w GOCTL_EXPERIMENTAL=on
+$ goctl env -w GOCTL_EXPERIMENTAL=on
 ```
 
 从 1.5.1 版本开始内测支持 API 新特性，新特性包括：
@@ -19,12 +19,12 @@ goctl env -w GOCTL_EXPERIMENTAL=on
 1. api 解析器从 antlr4 迁移到 goparser
 
 当然 1.5.1 如果开启新特性功能，会有一些不兼容的地方
-
 1. syntax 头部变为必填
+
 
 数据类型写法可参考 <a href="/docs/tutorials/api/types#示例" target="_blank"> 《类型声明 • 示例》</a> 中 goctl 1.5.1 说明部分内容
 
-## 2. goctl api 生成报错： multiple service names defined
+## 2. goctl api 生成报错： multiple service names defined ...
 
 在 api 语法文件中，不支持声明多个 service，比如如下写法是不支持的：
 

@@ -7,11 +7,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
-
 This section presents a description of the methods associated with the mon package.
 
 ## Preparing
-
 1. <a href="/docs/tasks/mongo/connection" target="_blank">Complete mon link creation.</a>
 
 ## Create New
@@ -89,6 +87,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
     return err
 }
 ```
+
 
 ## Query
 
@@ -179,6 +178,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 ```
 
 ## Delete
+
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L120" target="_blank">DeleteOne</a>
 

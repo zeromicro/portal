@@ -152,7 +152,6 @@ func NewUserModel(url, db, collection string, c cache.CacheConf) UserModel {
     }
 }
 ```
-
 </TabItem>
 
 <TabItem value="usermodelgen.go" label="usermodelgen.go" default>
@@ -260,7 +259,6 @@ type User struct {
     CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 ```
-
 </TabItem>
 </Tabs>
 
@@ -342,7 +340,6 @@ func NewUserModel(url, db, collection string) UserModel {
     }
 }
 ```
-
 </TabItem>
 
 <TabItem value="usermodelgen.go" label="usermodelgen.go" default>
@@ -447,19 +444,17 @@ type User struct {
     CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 ```
-
 </TabItem>
 </Tabs>
 
 #### 新增自定义 model 方法示例
-
 在以上代码生成中可以看出，每张表生成都会有 4 个文件，其中 `xxmodel.go` 和 `xxmodelgen.go` 是 model 代码文件，待有 `gen.go` 文件后缀的
 代码一般都会包含 `DO NOT EDIT` 标识，因此不能在这个文件中添加自定义代码，当用户需要新增或者修改代码时，可以在 `xxmodel.go` 中进行编辑，
 在 `xxmodel.go` 中我们提供了 `customXXXModel` 结构体便于开发者进行扩展，这里接着上文生成的无缓存代码作为示例，我们给 user 表新增一个 List 方法。
 
 1. 编辑 `usermodel.go` 文件
 2. 在 `UserModel` 接口中新增方法 `List(ctx context.Context, page, limit int) ([]*User, error)`
-3. 实现 `customUserModel`
+3. 实现 `customUserModel` 
 
 最终代码如下，灰色底纹部分为新增自定义新增内容
 
@@ -467,44 +462,43 @@ type User struct {
 package nocache
 
 import (
- "context"
- "fmt"
- "github.com/zeromicro/go-zero/core/stores/sqlx"
+	"context"
+	"fmt"
+	"github.com/zeromicro/go-zero/core/stores/sqlx"
 )
 
 var _ UserModel = (*customUserModel)(nil)
 
 type (
- // UserModel is an interface to be customized, add more methods here,
- // and implement the added methods in customUserModel.
- UserModel interface {
-  userModel
-  List(ctx context.Context, page, limit int) ([]*User, error)
- }
+	// UserModel is an interface to be customized, add more methods here,
+	// and implement the added methods in customUserModel.
+	UserModel interface {
+		userModel
+		List(ctx context.Context, page, limit int) ([]*User, error)
+	}
 
- customUserModel struct {
-  *defaultUserModel
- }
+	customUserModel struct {
+		*defaultUserModel
+	}
 )
 
 func (c *customUserModel) List(ctx context.Context, page, limit int) ([]*User, error) {
- query := fmt.Sprintf("select %s from %s limit ?,?", userRows, c.table)
- var resp []*User
- err := c.conn.QueryRowsCtx(ctx, &resp, query, (page-1)*limit, limit)
- return resp, err
+	query := fmt.Sprintf("select %s from %s limit ?,?", userRows, c.table)
+	var resp []*User
+	err := c.conn.QueryRowsCtx(ctx, &resp, query, (page-1)*limit, limit)
+	return resp, err
 }
 
 // NewUserModel returns a model for the database table.
 func NewUserModel(conn sqlx.SqlConn) UserModel {
- return &customUserModel{
-  defaultUserModel: newUserModel(conn),
- }
+	return &customUserModel{
+		defaultUserModel: newUserModel(conn),
+	}
 }
 
 ```
 
 #### 忽略字段控制
-
 在 goctl 代码生成逻辑中，生成后的代码会在执行插入或者更新操作时会忽略某些字段的赋值，如 `create_time`，`Update_time` 等，目前
 goctl 默认内置了 `create_at`, `create_time`, `created_at`, `update_at`, `update_time`, `updated_at`) 字段，在某些场景下
 开发者可能不需要忽略，或者忽略的字段名称不为这些，开发者可以通过 `--ignore-columns (-i)` 进行控制，当 `--ignore-columns (-i)` 传值为空时
@@ -520,10 +514,10 @@ $ goctl model mysql ddl -src="./sql/*.sql" -dir="./sql/model/ignore_columns/cach
 ```go {6}
 ...
 var (
- studentFieldNames          = builder.RawFieldNames(&Student{})
- studentRows                = strings.Join(studentFieldNames, ",")
- studentRowsExpectAutoSet   = strings.Join(stringx.Remove(studentFieldNames), ",")
- studentRowsWithPlaceHolder = strings.Join(stringx.Remove(studentFieldNames, "`type`"), "=?,") + "=?"
+	studentFieldNames          = builder.RawFieldNames(&Student{})
+	studentRows                = strings.Join(studentFieldNames, ",")
+	studentRowsExpectAutoSet   = strings.Join(stringx.Remove(studentFieldNames), ",")
+	studentRowsWithPlaceHolder = strings.Join(stringx.Remove(studentFieldNames, "`type`"), "=?,") + "=?"
 )
 ...
 ```
@@ -533,10 +527,10 @@ var (
 ```go {6}
 ...
 var (
- studentFieldNames          = builder.RawFieldNames(&Student{})
- studentRows                = strings.Join(studentFieldNames, ",")
- studentRowsExpectAutoSet   = strings.Join(stringx.Remove(studentFieldNames, "`column1`", "`column2`"), ",")
- studentRowsWithPlaceHolder = strings.Join(stringx.Remove(studentFieldNames, "`type`", "`column1`", "`column2`"), "=?,") + "=?"
+	studentFieldNames          = builder.RawFieldNames(&Student{})
+	studentRows                = strings.Join(studentFieldNames, ",")
+	studentRowsExpectAutoSet   = strings.Join(stringx.Remove(studentFieldNames, "`column1`", "`column2`"), ",")
+	studentRowsWithPlaceHolder = strings.Join(stringx.Remove(studentFieldNames, "`type`", "`column1`", "`column2`"), "=?,") + "=?"
 )
 ...
 ```
@@ -615,6 +609,7 @@ Global Flags:
 | url | string | YES | 空字符串 | 数据库连接，格式{{username}}:{{password}}@tcp({{host_port}})/{{db}} |
 | ignore-columns | []string | NO | `nil` | 需要忽略的字段，插入或者更新时需要忽略的字段，如 `create_time` |
 | strict | boolean | NO | `false` | 是否是严格模式，如果是严格模式下，会对 `unsigned` 修饰的字段转换为对应的数据类型，主要针对数值型，例如：如果数据库中列为 `bigint` 类型，如果为`unsigned` 修饰则对应的 golang 数据类型就为 `int64`，否则为 `uint64`，如果 strict 为 false，则不关注 `unsigned` 修饰 |
+
 
 #### goctl model mysql ddl 指令
 
@@ -836,7 +831,7 @@ Flags:
       --home string     The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
       --idea            For idea plugin [optional]
       --remote string   The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                         The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
+                        	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
   -s, --schema string   The table schema (default "public")
       --strict          Generate model in strict mode
       --style string    The file naming format, see [https://github.com/zeromicro/go-zero/tree/master/tools/goctl/config/readme.md]

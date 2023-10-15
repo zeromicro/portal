@@ -5,9 +5,7 @@ slug: /docs/tutorials/mysql/local/transaction
 ---
 
 ## Overview
-
 sqlx.SqlConn provides the basic service mechanism, simple instance：
-
 ```go
     var conn sqlx.SqlConn
     err := conn.TransactCtx(context.Background(), func(ctx context.Context, session sqlx.Session) error {
@@ -21,3 +19,4 @@ sqlx.SqlConn provides the basic service mechanism, simple instance：
         }
     })
 ```
+

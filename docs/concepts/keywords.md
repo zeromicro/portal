@@ -33,7 +33,7 @@ slug: /docs/concepts/keywords
 
 ## gRPC
 
-gRPC (gRPC Remote Procedure Calls) 是Google发起的一个开源远程过程调用（Remote procedure call）系统。该系统基于HTTP/2协议传输，使用Protocol Buffers 作为接口描述语言[2]。
+gRPC (gRPC Remote Procedure Calls) 是Google发起的一个开源远程过程调用（Remote procedure call）系统。该系统基于HTTP/2协议传输，使用Protocol Buffers 作为接口描述语言[2]。 
 
 其他功能：
 
@@ -62,6 +62,7 @@ Protocol Buffers（简称：ProtoBuf）是一种开源跨平台的序列化数�
 目前在三种主流的Web服务实现方案中，因为REST模式与复杂的SOAP和XML-RPC相比更加简洁，越来越多的Web服务开始采用REST风格设计和实现。例如，Amazon.com提供接近REST风格的Web服务执行图书查询；雅虎提供的Web服务也是REST风格的。
 
 详情可参考 <a href="https://zh.wikipedia.org/zh-sg/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank">《维基百科 • 表现层状态转换》</a>
+
 
 ## ETCD
 
@@ -110,7 +111,9 @@ etcd 是一种高度一致的分布式键值存储，它提供了一种可靠的
 
 对于以太网中的网关只能转发三层以上数据包，这一点和路由是一样的。而不同的是网关中并没有路由表，他只能按照预先设定的不同网段来进行转发。网关最重要的一点就是端口映射，子网内用户在外网看来只是外网的IP地址对应着不同的端口，这样看来就会保护子网内的用户。
 
+
 详情可参考 <a href="https://zh.wikipedia.org/zh-sg/%E7%BD%91%E5%85%B3" target="_blank">《维基百科 • 网关》</a>
+
 
 ## SOA 治理
 

@@ -40,6 +40,7 @@ $ touch client.go
 
 <TabItem value="etc/greet-client.yaml" label="etc/greet-client.yaml" default>
 
+
 ```yaml
 Target: 127.0.0.1:8080
 ```
@@ -50,19 +51,18 @@ Target: 127.0.0.1:8080
 
 ```go
 func main() {
- var clientConf zrpc.RpcClientConf
- conf.MustLoad("etc/client.yaml", &clientConf)
- conn := zrpc.MustNewClient(clientConf)
- resp, err := client.Ping(context.Background(), &greet.Request{})
- if err != nil {
-  log.Fatal(err)
-  return
- }
+	var clientConf zrpc.RpcClientConf
+	conf.MustLoad("etc/client.yaml", &clientConf)
+	conn := zrpc.MustNewClient(clientConf)
+	resp, err := client.Ping(context.Background(), &greet.Request{})
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
- log.Println(resp)
+	log.Println(resp)
 }
 ```
-
 </TabItem>
 
 </Tabs>

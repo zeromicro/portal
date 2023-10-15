@@ -13,9 +13,9 @@ slug: /docs/tasks/installation/go-zero
 ## 安装
 
 ```bash
-mkdir <project name> && cd <project name> # project name 为具体值
-go mod init <module name> # module name 为具体值
-go get -u github.com/zeromicro/go-zero@latest
+$ mkdir <project name> && cd <project name> # project name 为具体值
+$ go mod init <module name> # module name 为具体值
+$ go get -u github.com/zeromicro/go-zero@latest
 ```
 
 ## 常见问题
@@ -25,6 +25,6 @@ go get -u github.com/zeromicro/go-zero@latest
 确认 `GO111MODULE` 是否开启
 
 ```shell
-go env -w GO111MODULE=on
-go env -w GOPROXY=https://goproxy.cn,direct
+$ go env -w GO111MODULE=on
+$ go env -w GOPROXY=https://goproxy.cn,direct
 ```

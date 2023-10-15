@@ -64,7 +64,7 @@ type Foo {
 1. 创建工作空间和目录
 
     ```bash
-    mkdir -p ~/workspace/api/format
+    $ mkdir -p ~/workspace/api/format
     ```
 
 1. 将上文中的 `demo.api` 文件拷贝到 `~/workspace/api/format` 目录下
@@ -72,8 +72,8 @@ type Foo {
 1. 格式化 api 文件
 
     ```bash
-    cd ~/workspace/api/format
-    goctl api format --dir demo.api
+    $ cd ~/workspace/api/format
+    $ goctl api format --dir demo.api
     ```
 
 1. 查看格式化后的 api 文件

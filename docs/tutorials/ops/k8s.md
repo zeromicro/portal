@@ -17,9 +17,9 @@ import { Image } from '@arco-design/web-react';
 登陆到 192.168.1.181
 
 ```shell
-mkdir data && cd data && vim docker-compose.yml
-docker-compose up -d
-docker-compose ps #查看确认
+$ mkdir data && cd data && vim docker-compose.yml
+$ docker-compose up -d
+$ docker-compose ps #查看确认
 ```
 
 ## 3、独立配置
@@ -34,9 +34,9 @@ docker-compose ps #查看确认
 
 独立线上仓库目录结构如下（这个结构是跟 pipline 中写法相关的）
 
-go-zero 官方 k8s 配置 demo 地址: <https://github.com/zeromicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml>
+go-zero 官方 k8s 配置 demo 地址: https://github.com/zeromicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml
 
-也可以参考配置仓库地址 ： <https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf>
+也可以参考配置仓库地址 ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf
 
 【注】1、修改配置中的中间件，数据库、redis 等都要改成 192.168.1.181 这台机器，我们把这台机器当成线上环境的中间件。
 
@@ -64,14 +64,14 @@ alt='image-20220209191757422'
 />
 
 ```sh
-docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
+$ docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
 ```
 
 ## 5、编写 jenkins 的 pipline
 
 ### 5.1 配置参数
 
-访问 <http://192.168.1.180:8989/> 打开 jenkins，进入 jenkins 首页，点击左侧菜单`新建Item`
+访问 http://192.168.1.180:8989/ 打开 jenkins，进入 jenkins 首页，点击左侧菜单`新建Item`
 
 我们先创建一个服务的流水线
 
@@ -171,7 +171,7 @@ pipeline {
 
       stage('上传到镜像仓库') {
           steps{
-             //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
+          	  //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
               sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
               sh 'docker tag  ${image} ${docker_repo}/k8scode/${image}'
               sh 'docker push ${docker_repo}/k8scode/${image}'
@@ -205,7 +205,7 @@ pipeline {
 ```
 
 :::note 非常重要
-1、构建优化：pipline 中使用"/usr/local/bin/goctl kube xxx"生 k8s yaml 的时候，我们是使用 k8s 方式部署不需要 etcd，但是这种方式部署需要为生成的 k8s yaml 中指定 serviceAccount。 原理可以看这篇文章下方 go-zero 的 k8s 服务发现讲解 ：<https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w>
+1、构建优化：pipline 中使用"/usr/local/bin/goctl kube xxx"生 k8s yaml 的时候，我们是使用 k8s 方式部署不需要 etcd，但是这种方式部署需要为生成的 k8s yaml 中指定 serviceAccount。 原理可以看这篇文章下方 go-zero 的 k8s 服务发现讲解 ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
 
 我这边已经指定好了 serviceAccount
 
@@ -278,10 +278,10 @@ Login Succeeded
 #查看上一步登陆harbor生成的凭证
 $ cat /root/.docker/config.json
 {
- "auths": {
-  "192.168.1.180:8077": {
-   "auth": "YWRtaW46SGFyYm9yMTIzNDU="
-  }
+	"auths": {
+		"192.168.1.180:8077": {
+			"auth": "YWRtaW46SGFyYm9yMTIzNDU="
+		}
 }
 ```
 

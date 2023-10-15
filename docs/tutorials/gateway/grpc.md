@@ -28,24 +28,24 @@ go-zero 中的 gRPC 网关是一个 HTTP 服务器，它将 RESTful API 转换�
 
 ```go
 type (
- GatewayConf struct {
-  rest.RestConf
-  Upstreams []Upstream
-  Timeout   time.Duration `json:",default=5s"`
- }
+	GatewayConf struct {
+		rest.RestConf
+		Upstreams []Upstream
+		Timeout   time.Duration `json:",default=5s"`
+	}
 
- RouteMapping struct {
-  Method string
-  Path string
-  RpcPath string
- }
+	RouteMapping struct {
+		Method string
+		Path string
+		RpcPath string
+	}
 
- Upstream struct {
-  Name string `json:",optional"`
-  Grpc zrpc.RpcClientConf
-  ProtoSets []string `json:",optional"`
-  Mappings []RouteMapping `json:",optional"`
- }
+	Upstream struct {
+		Name string `json:",optional"`
+		Grpc zrpc.RpcClientConf
+		ProtoSets []string `json:",optional"`
+		Mappings []RouteMapping `json:",optional"`
+	}
 )
 ```
 
@@ -111,22 +111,22 @@ service Hello {
 2. 在 `demo1` 目录下创建 `gateway` 目录，然后在 `demo1` 目录执行如下指令生成 protoDescriptor：
 
 ```bash
-protoc --descriptor_set_out=gateway/hello.pb hello.proto
+$ protoc --descriptor_set_out=gateway/hello.pb hello.proto
 ```
 
 3. 在 `demo1` 目录下执行如下指令生成 grpc 服务代码：
 
 ```bash
-goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
+$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
 ```
 
 为 `demo1/server/internal/logic/pinglogic.go` 中的 `Ping` 方法填充逻辑，代码如下：
 
 ```go
 func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
- return &hello.Response{
-  Msg: "pong",
- }, nil
+	return &hello.Response{
+		Msg: "pong",
+	}, nil
 }
 ```
 
@@ -162,22 +162,22 @@ Upstreams:
 package main
 
 import (
- "flag"
+	"flag"
 
- "github.com/zeromicro/go-zero/core/conf"
- "github.com/zeromicro/go-zero/gateway"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/gateway"
 )
 
 var configFile = flag.String("f", "etc/gateway.yaml", "config file")
 
 func main() {
- flag.Parse()
+	flag.Parse()
 
- var c gateway.GatewayConf
- conf.MustLoad(*configFile, &c)
- gw := gateway.MustNewServer(c)
- defer gw.Stop()
- gw.Start()
+	var c gateway.GatewayConf
+	conf.MustLoad(*configFile, &c)
+	gw := gateway.MustNewServer(c)
+	defer gw.Stop()
+	gw.Start()
 }
 
 ```
@@ -202,6 +202,7 @@ $ curl http://localhost:8888/ping
 ```
 
 </TabItem>
+
 
 <TabItem value="grpcReflection" label="grpcReflection" default>
 
@@ -230,19 +231,20 @@ service Hello {
 
 2. 在 `demo2` 目录下创建 `gateway` 目录备用
 
+
 3. 在 `demo2` 目录下执行如下指令生成 grpc 服务代码：
 
 ```bash
-goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
+$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
 ```
 
 为 `demo2/server/internal/logic/pinglogic.go` 中的 `Ping` 方法填充逻辑，代码如下：
 
 ```go
 func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
- return &hello.Response{
-  Msg: "pong",
- }, nil
+	return &hello.Response{
+		Msg: "pong",
+	}, nil
 }
 ```
 
@@ -280,22 +282,22 @@ Upstreams:
 package main
 
 import (
- "flag"
+	"flag"
 
- "github.com/zeromicro/go-zero/core/conf"
- "github.com/zeromicro/go-zero/gateway"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/gateway"
 )
 
 var configFile = flag.String("f", "etc/gateway.yaml", "config file")
 
 func main() {
- flag.Parse()
+	flag.Parse()
 
- var c gateway.GatewayConf
- conf.MustLoad(*configFile, &c)
- gw := gateway.MustNewServer(c)
- defer gw.Stop()
- gw.Start()
+	var c gateway.GatewayConf
+	conf.MustLoad(*configFile, &c)
+	gw := gateway.MustNewServer(c)
+	defer gw.Stop()
+	gw.Start()
 }
 
 ```

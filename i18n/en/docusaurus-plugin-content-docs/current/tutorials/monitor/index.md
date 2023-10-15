@@ -31,7 +31,6 @@ srv := rest.MustNewServer(rest.RestConf{
 ```
 
 Configuration turned on:
-
 ```yaml
 Name: user-api
 Host: 0.0.0.0
@@ -42,6 +41,7 @@ DevServer:
     Enabled: true
 
 ```
+
 
 You can modify your health check ports and Path by configuring to `8080` and `ping`
 
@@ -59,7 +59,6 @@ srv := rest.MustNewServer(rest.RestConf{
 ```
 
 Configuration turned on:
-
 ```yaml
 Name: user-api
 Host: 0.0.0.0
@@ -71,6 +70,7 @@ DevServer:
     Port: 8080
     HealthPath: "/ping"
 ```
+
 
 ## Log collection
 
@@ -86,6 +86,7 @@ type Config struct {
     Batcher  string  `json:",default=jaeger,options=jaeger|zipkin|otlpgrpc|otlphttp"`
 }
 ```
+
 
 go-zero link tracking support (Jaeger\zipkin) can only be enabled by adding a few lines to the configuration. No code needs to be modified. Example：
 
@@ -120,6 +121,7 @@ Telemetry:
   Sampler: 1.0
   Batcher: jaeger
 ```
+
 
 For more examples, refer to [tracing Examples](https://github.com/zeromicro/zero-examples/tree/main/tracing)
 

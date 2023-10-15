@@ -14,7 +14,7 @@ goctl bug 是一个用于提交 goctl bug 的工具，它会自动收集 goctl �
 开发者只需要在终端输入如下指令，即可快速打开浏览器，创建一个 issue 模板：
 
 ```bash
-goctl bug
+$ goctl bug
 ```
 
 Github issue 模板如下：

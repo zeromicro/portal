@@ -4,18 +4,15 @@ slug: /docs/tasks/mysql
 ---
 
 ## Overview
-
 Database usage, we generally recommend direct model code using goctl, and automatic golang structure, CURD operation, cache, etc. can be referenced <a href="/docs/tasks/cli/mysql" target="_blank">goctl model</a>.
 
 But we can also initialize sql conn directly, if a particular situation requires direct links to the database.
 
 ## Task Targets
-
 1. Learn about the use of **github.com/zeroicro/go-zero/core/stores/sqlx**.
 2. Create a sql link from sqlx.
 
 ## Create Database
-
 First create tables in the database as follows.
 
 ```sql
@@ -50,14 +47,15 @@ func main()
 
 ```
 
+
 ::note  
 In order to correctly process time.Time you need to take the time parameter, [more parameters](https://github.com/go-sql-driver/mysql#parameters) To support the full UTF-8 encoding, you need to change charset=utf8 to charset=utf8mb4
 :::
 
+
 2. Custom driver
 
 go-zero allows to customize MySQL drivers with the DriverName option, eg:：
-
 ```go
 package main
 
@@ -76,7 +74,6 @@ func main() {
 3. Existing database connection
 
 go-zero is allowed to initialize Sql links through existing databases, e.g.：
-
 ```go
 package main
 
@@ -97,7 +94,6 @@ func main() {
 ```
 
 ## Start CRUD
-
 1. Insert a data
 
 We can start operating the database when we get a link using the above method of creating the link.
@@ -131,7 +127,6 @@ Execute, we'll insert a record in the user.
 2. Query data
 
 We need to define a user structure before searching directly
-
 ```go
 package main
 
@@ -169,8 +164,8 @@ func main() {
 
 Execute the above program, we will see user information we just inserted into
 
-3. Modify the data we continue to use the custom code
 
+3. Modify the data we continue to use the custom code
 ```go
 package main
 
@@ -195,10 +190,10 @@ func main() {
 }
 
 ```
-
 Run the above code to find the record type in the database to 2.
 
 4. Data deletion
+
 
 ```go
 package main

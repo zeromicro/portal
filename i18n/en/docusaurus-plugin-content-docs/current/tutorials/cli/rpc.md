@@ -44,7 +44,7 @@ Use "goctl rpc [command] --help" for more information about a command.
 Example：generates proto file
 
 ```bash
-goctl rpc --o greet.proto
+$ goctl rpc --o greet.proto
 ```
 
 ### goctl rpc new
@@ -80,7 +80,7 @@ Flags:
 Example:
 
 ```bahs
-goctl rpc new greet
+$ goctl rpc new greet
 ```
 
 ### goctl rpc protoc
@@ -181,7 +181,7 @@ Flags:
 Example:
 
 ```bash
-goctl rpc template -o greet.proto
+$ goctl rpc template -o greet.proto
 ```
 
 ## References

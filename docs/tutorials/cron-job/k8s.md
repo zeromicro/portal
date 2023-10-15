@@ -12,7 +12,7 @@ import { Image } from '@arco-design/web-react';
 
 ## 2、项目地址
 
-项目地址：<https://github.com/Mikaelemmmm/zerok8scron>
+项目地址：https://github.com/Mikaelemmmm/zerok8scron
 
 我们在项目中集成了 cobra，k8s cronjob 在每次调度的时候直接执行对应 job name 即可
 
@@ -90,6 +90,7 @@ func initConfig() {
 
 ```
 
+
 ```go title="internal/logic/hello.go"
 package logic
 
@@ -125,18 +126,19 @@ func Hello(_ *cobra.Command, _ []string) error {
 ### 4.1 本地执行一次
 
 ```sh
-go run main.go hello
+$ go run main.go hello
 ```
 
 ### 4.2 docker 中执行一次
 
 ```sh
-goctl docker -go main.go #创建dockerfile，如果你用上面的项目，项目中已经创建好可以省略
-docker build -t zerok8scron:v1 . # 构建镜像，如果你用上面的项目，项目中已经创建好可以省略
-docker run zerok8scron:v1 hello #运行即可
+$ goctl docker -go main.go #创建dockerfile，如果你用上面的项目，项目中已经创建好可以省略
+$ docker build -t zerok8scron:v1 . # 构建镜像，如果你用上面的项目，项目中已经创建好可以省略
+$ docker run zerok8scron:v1 hello #运行即可
 ```
 
 ### 4.3 k8s 中使用 cronjob 调度一分钟一次
+
 
 ```yaml title="cronjob.yaml"
 apiVersion: batch/v1
@@ -160,7 +162,7 @@ spec:
 执行
 
 ```shell
-kubectl apply -f cronjob.yaml
+$ kubectl apply -f cronjob.yaml
 ```
 
 然后可以查看 cronjob 运行状态以及输出

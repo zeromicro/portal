@@ -14,7 +14,7 @@ Currently go-zero provides very strong http ability, but some features are still
 2. xml response support
 3. code-msg error type support
 
-For more information, see <https://github.com/zeroicro/x>
+For more information, see https://github.com/zeroicro/x
 
 ### code-data uniform response format usage
 
@@ -31,7 +31,6 @@ In many cases, in order to achieve a uniform response format with the front end,
 ```
 
 There are currently two approaches if this format response is required：
-
 1. Custom response format
 2. Use go-zero extension to implement
 
@@ -40,11 +39,11 @@ We show below with a go-zero extension package.
 1. Initialize a demo project
 
 ```shell
-mkdir demo && cd demo
-go mod init demo
+$ mkdir demo && cd demo
+$ go mod init demo
 ```
 
-2. Create an api file in demo directory `user.api`, add the following
+2.  Create an api file in demo directory `user.api`, add the following
 
 ```go
 syntax = "v1"
@@ -267,6 +266,6 @@ curl --location '127.0.0.1:8888/user/login' \
 
 ## References
 
-- <a href="/docs/tutorials/cli/overview" target="_blank">Use goctl code generation tool</a>
-- <https://github.com/zeromicro/x>
+-  <a href="/docs/tutorials/cli/overview" target="_blank">Use goctl code generation tool</a>
+- https://github.com/zeromicro/x
 - <a href="/docs/tutorials/customization/template" target="_blank">Template customization</a>

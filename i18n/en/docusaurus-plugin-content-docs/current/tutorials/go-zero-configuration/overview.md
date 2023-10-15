@@ -186,7 +186,6 @@ The currently supported verification rules for go-zero are as follows:
 | env           | Current parameters are taken from environmental variables                                                             | \`json:"mode,env=MODE"\`        |
 
 ::note range expressed value rule
-
 1. Left close interval：(min:max], meaning that min is less than or equal to max, when min is default, min represents value 0, max is unlimited when max is default, min and max are not allowed to default at the same time
 1. Left right interval：[min:max), which indicates that it is less than min max, when max is default, max represents a value of 0, min is large when min is missing
 1. Shutdown interval：[min:max], denotes less than min less than equals max, when min is default, min represents value 0, max is infinite when max is default, min and max are not allowed to coalesce
@@ -195,8 +194,8 @@ The currently supported verification rules for go-zero are as follows:
 
 More reference [unmarshaler_test.go](https://github.com/zeromicro/go-zero/blob/master/core/mapping/unmarshaler_test.go)
 
-## inherit 配置继承
 
+## inherit 配置继承
 In our daily configuration, there are many duplicate configurations, such as rpcClientConf where each rpc has a etcd configuration, but in most of our cases the etcd configuration is the same and we hope it can be configured only once. Examples below
 
 ```goc

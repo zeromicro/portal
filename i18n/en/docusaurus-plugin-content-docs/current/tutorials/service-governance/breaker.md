@@ -9,7 +9,7 @@ Breakers are also called smelters as a protective mechanism to protect services 
 
 More prominent smelter algorithms are Hystrix and Sentinel, all of which determine the availability of services by the success rate and response time for statistical service calls.
 
-go-zero has built-in the melting breaker component <a href="https://github.com/zeromicro/go-zero/blob/master/core/breaker/breaker.go#L29" target="_blank">breaker.Breaker</a> using a sliding window in go-zero, currently using 10 s as a window, with 40 barrels in a single window, and whether the data collected within the window is smelted using the google algorithre algorithm algorithm, refer to <https://landing.google.com/sre/sre-book/chapters/handling-overload/#eq2101>.
+go-zero has built-in the melting breaker component <a href="https://github.com/zeromicro/go-zero/blob/master/core/breaker/breaker.go#L29" target="_blank">breaker.Breaker</a> using a sliding window in go-zero, currently using 10 s as a window, with 40 barrels in a single window, and whether the data collected within the window is smelted using the google algorithre algorithm algorithm, refer to https://landing.google.com/sre/sre-book/chapters/handling-overload/#eq2101.
 
 ## Usage
 

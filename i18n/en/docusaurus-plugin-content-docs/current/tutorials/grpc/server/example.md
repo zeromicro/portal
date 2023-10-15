@@ -32,24 +32,23 @@ We're here to create a full gRPC service with a proto.
 ### 1. Create a service directory and initialize the go module project
 
 ```shell
-mkdir demo && cd demo
-go mod init demo
+$ mkdir demo && cd demo
+$ go mod init demo
 ```
 
 ### 2. 快速生成一个 proto 文件
 
 ```protobuf
-goctl rpc -o greet.proto
+$ goctl rpc -o greet.proto
 ```
 
 ### 3. Proto generate gRPC services
 
 ```shell
-goctl rpc protoc greet.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
+$ goctl rpc protoc greet.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 ::tip Tips
-
 1. goctl installation please refer to <a href="/docs/tasks/installation/goctl" target="_blank">Goctl Installation</a>
 1. rpc code generation command tutorial reference <a href="/docs/tutorials/cli/rpc" target="_blank">goctl rpc</a>
 1. Proto use related questions refer to <a href="/docs/tutorials/proto/faq" target="_blank">Proto Code Generating FAQ</a>
@@ -133,8 +132,7 @@ By contrast, using direct link mode removes the etcd configuration, go-zero auto
 Name: greet.rpc
 ListenOn: 0.0.0.0:8080
 ```
-
-</TabItem>
+</TabItem> 
 
 </Tabs>
 
@@ -280,6 +278,7 @@ In the above built-in intermediates, link tracking intermediates, indicator stat
 
 #### Custom Middleware
 
+
 ```go {21-22,28-35}
 package main
 ...
@@ -321,3 +320,4 @@ func exampleStreamInterceptor(srv interface{}, ss grpc.ServerStream, info *grpc.
 ### 10. Metadata transfer
 
 Reference <a href="https://github.com/grpc/grpc-go/blob/master/Documentation/grpc-metadata.md" target="_blank">Metata</a>
+

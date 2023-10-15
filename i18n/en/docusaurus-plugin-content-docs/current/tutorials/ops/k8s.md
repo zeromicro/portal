@@ -17,9 +17,9 @@ Deploy mysql, redis, es and others outside the k8s, simulate online independent 
 Login to 192.168.1.181
 
 ```shell
-mkdir data && cd data && vim docker-compose.yml
-docker-compose up -d
-docker-compose ps #查看确认
+$ mkdir data && cd data && vim docker-compose.yml
+$ docker-compose up -d
+$ docker-compose ps #查看确认
 ```
 
 ## 3. Independent configuration
@@ -34,9 +34,9 @@ Why not configure center?
 
 Independent online repository directory structure is as follows (this structure is related to the writing in pipline)
 
-go-zero official k8s configuration demo address: <https://github.com/zeroicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml>
+go-zero official k8s configuration demo address: https://github.com/zeroicro/zero-examples/blob/main/discovery/k8s/client/etc/k8s.yaml
 
-Also reference is made to configuration repository address ： <https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf>
+Also reference is made to configuration repository address ： https://github.com/Mikaelemmmm/go-zero-looklook-pro-conf
 
 [NOTE ] 1. Modified Middle,Database, redis etc to change to 192.168.1.181 This machine is used as an intermediate for online environments.
 
@@ -55,14 +55,14 @@ View the push command
 <Image src={require('../../resource/tutorials/ops/image-20220209191757422.png').default} alt='image-20220209191757422' />
 
 ```sh
-docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
+$ docker push 192.168.1.180:8077/k8scode/REPOSITORY[:TAG]
 ```
 
 ## 5. Write the pipline of jenkins
 
 ### 5.1 Configuration parameters
 
-Visit <http://192.168.1.1180:8989/> Open jenkins, enter jenkins homepage, click on the left menu `to create an Item`
+Visit http://192.168.1.1180:8989/ Open jenkins, enter jenkins homepage, click on the left menu `to create an Item`
 
 We first create a service pipeline
 
@@ -187,7 +187,7 @@ pipeline {
 ```
 
 :::note is very important
-when building optimization：pipline is using "/usr/local/bin/goctl kube xxxx" we're deploying using k8s yaml without etcds, but this deployment needs to be specified for the built k8s yaml. The idea is to look at the k8s service in this article below go-zero below ：<https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w>
+when building optimization：pipline is using "/usr/local/bin/goctl kube xxxx" we're deploying using k8s yaml without etcds, but this deployment needs to be specified for the built k8s yaml. The idea is to look at the k8s service in this article below go-zero below ：https://mp.weixin.qq.com/s/-WaWJaM_ePEQOf7ExNJe7w
 
 I have already specified the serviceAccount
 

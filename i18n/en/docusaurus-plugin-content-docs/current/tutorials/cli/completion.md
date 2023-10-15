@@ -39,6 +39,7 @@ Currently goctl supports `cash`,`fish`,`zsh`and`power shell` if you are Windows 
 in Linux or Mac operating systems, see the current shell, by `echo $SHELL` Effect is `zsh`, then select `goctl completion zsh` to generate script, The result is `cash`, select `goctl completion cash` to generate the script, The result is `fish`, select `goctl complete fish` to generate scripts.
 :::
 
+
 ### goctl completion bash directive
 
 ```bash
@@ -79,19 +80,20 @@ In Linux or Mac operating systems, if you are using `cash`you can generate scrip
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
 ```bash
-source <(goctl completion bash)
+$ source <(goctl completion bash)
 ```
 
 2. Permanent entry into force
 
 Permanently effective settings differ according to operating system and their setup method, need to restart terminals to take effect after setup. Currently settings for Linux and MacOS are set below：
 
+
 <Tabs>
 
 <TabItem value="Linux" label="Linux" default>
 
 ```bash
-goctl completion bash > /etc/bash_completion.d/goctl
+$ goctl completion bash > /etc/bash_completion.d/goctl
 ```
 
 </TabItem>
@@ -99,7 +101,7 @@ goctl completion bash > /etc/bash_completion.d/goctl
 <TabItem value="MacOS" label="MacOS" default>
 
 ```bash
-goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
+$ goctl completion bash > $(brew --prefix)/etc/bash_completion.d/goctl
 ```
 
 </TabItem>
@@ -135,13 +137,13 @@ Flags:
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
 ```bash
-goctl completion fish | source
+$ goctl completion fish | source
 ```
 
 2. Permanent entry into force
 
 ```bash
-goctl completion fish > ~/.config/fish/completions/goctl.fish
+$ goctl completion fish > ~/.config/fish/completions/goctl.fish
 ```
 
 ### goctl completion powershell  directive
@@ -170,7 +172,7 @@ Flags:
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
 ```bash
-goctl completion powershell | Out-String | Invoke-Expression
+$ goctl completion powershell | Out-String | Invoke-Expression
 ```
 
 2. Permanent entry into force
@@ -178,8 +180,9 @@ goctl completion powershell | Out-String | Invoke-Expression
 The following output needs to be added to the power shell's profile.
 
 ```bash
-goctl completion powershell | Out-String | Invoke-Expression
+$ goctl completion powershell | Out-String | Invoke-Expression
 ```
+
 
 ### goctl completion zsh directive
 
@@ -230,19 +233,20 @@ echo "autoload -U compinit; compinit" >> ~/.zshrc
 Temporary entry is only useful for the current terminal session and is one-time in nature.
 
 ```bash
-source <(goctl completion zsh); compdef _goctl goctl
+$ source <(goctl completion zsh); compdef _goctl goctl
 ```
 
 2. Permanent entry into force
 
 Permanently effective settings differ according to operating system and their setup method, need to restart terminals to take effect after setup. Currently settings for Linux and MacOS are set below：
 
+
 <Tabs>
 
 <TabItem value="Linux" label="Linux" default>
 
 ```bash
-goctl completion zsh > "${fpath[1]}/_goctl"
+$ goctl completion zsh > "${fpath[1]}/_goctl"
 ```
 
 </TabItem>
@@ -250,7 +254,7 @@ goctl completion zsh > "${fpath[1]}/_goctl"
 <TabItem value="MacOS" label="MacOS" default>
 
 ```bash
-goctl completion zsh > $(brew --prefix)/share/zsh/site-functions/_goctl
+$ goctl completion zsh > $(brew --prefix)/share/zsh/site-functions/_goctl
 ```
 
 </TabItem>

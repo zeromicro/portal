@@ -73,7 +73,7 @@ func Response(w http.ResponseWriter, resp interface{}, err error) {
 ### Edit `handler` template
 
 ```shell
-vim ~/.goctl/${goctl_version}/api/handler.tpl
+$ vim ~/.goctl/${goctl_version}/api/handler.tpl
 ```
 
 Replace the template with the following
@@ -184,5 +184,5 @@ func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 ## References
 
-- <a href="/docs/tutorials/cli/template" target="_blank">goctl template</a>
+-  <a href="/docs/tutorials/cli/template" target="_blank">goctl template</a>
 - <a href="https://golang.org/pkg/text/template/" target="_blank">text/template</a>

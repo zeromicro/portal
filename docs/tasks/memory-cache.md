@@ -7,17 +7,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## 概述
-
 本章节主要介绍 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L30" target="_blank">cache</a> 的使用。
 
 ## 准备条件
-
-1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
+1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
 
 ## 创建
-
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L44" target="_blank">NewCache</a>
-
 ```golang
 函数签名: 
     NewCache func(expire time.Duration, opts ...CacheOption) (*Cache, error) 
@@ -34,9 +30,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 ## 方法说明
-
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L100" target="_blank">Set</a>
-
 ```golang
 函数签名: 
     Set func(key string, value interface{}) 
@@ -48,14 +42,13 @@ import TabItem from '@theme/TabItem';
 
 示例:
     cache, err := NewCache(time.Second*2, WithName("any"))
- if err != nil {
-  log.Fatal(err)
- }
- cache.Set("first", "first element")
+	if err != nil {
+		log.Fatal(err)
+	}
+	cache.Set("first", "first element")
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L105" target="_blank">SetWithExpire</a>
-
 ```golang
 函数签名: 
     SetWithExpire func(key string, value interface{}, expire time.Duration)
@@ -68,14 +61,13 @@ import TabItem from '@theme/TabItem';
 
 示例:
     cache, err := NewCache(time.Second*2, WithName("any"))
- if err != nil {
-  log.Fatal(err)
- }
- cache.SetWithExpire("first", "first element", time.Second)
+	if err != nil {
+		log.Fatal(err)
+	}
+	cache.SetWithExpire("first", "first element", time.Second)
 ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L88" target="_blank">Get</a>
-
 ```golang
 函数签名: 
     Get func(key string) (interface{}, bool)
@@ -90,24 +82,23 @@ import TabItem from '@theme/TabItem';
 
 示例:
     cache, err := NewCache(time.Second*2, WithName("any"))
- if err != nil {
-  log.Fatal(err)
- }
- cache.Set("first", "first element")
+	if err != nil {
+		log.Fatal(err)
+	}
+	cache.Set("first", "first element")
 
- v, exist := cache.Get("first")
- if !exist {
-  // deal with not exist
- }
- value, ok := v.(string)
- if !ok {
-  // deal with type error
- }
- // use value
+	v, exist := cache.Get("first")
+	if !exist {
+		// deal with not exist
+	}
+	value, ok := v.(string)
+	if !ok {
+		// deal with type error
+	}
+	// use value
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L79" target="_blank">Del</a>
-
 ```golang
 函数签名: 
     Del func(key string)
@@ -118,14 +109,13 @@ import TabItem from '@theme/TabItem';
 
 示例:
     cache, err := NewCache(time.Second*2, WithName("any"))
- if err != nil {
-  log.Fatal(err)
- }
- cache.Del("first")
+	if err != nil {
+		log.Fatal(err)
+	}
+	cache.Del("first")
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L123" target="_blank">Take</a>
-
 ```golang
 函数签名: 
     Take funcTake(key string, fetch func() (interface{}, error)) (interface{}, error)
@@ -137,19 +127,19 @@ import TabItem from '@theme/TabItem';
 
 示例:
     cache, err := NewCache(time.Second*2, WithName("any"))
- if err != nil {
-  log.Fatal(err)
- }
+	if err != nil {
+		log.Fatal(err)
+	}
 
- v, err := cache.Take("first", func() (interface{}, error) {
-  return "first element", nil
- })
- println(v) // output: first element
- 
- cache.Set("first", "first element 2")
+	v, err := cache.Take("first", func() (interface{}, error) {
+		return "first element", nil
+	})
+	println(v) // output: first element
+	
+	cache.Set("first", "first element 2")
 
- v, err = cache.Take("first", func() (interface{}, error) {
-  return "first element", nil
- })
- println(v) // // output: first element 2
+	v, err = cache.Take("first", func() (interface{}, error) {
+		return "first element", nil
+	})
+	println(v) // // output: first element 2
 ```

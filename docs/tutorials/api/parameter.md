@@ -28,7 +28,6 @@ type Foo {
     Name string `json:"name" form:"name"`
 }
 ```
-
 :::
 
 ## 参数校验规则
@@ -43,7 +42,6 @@ type Foo {
 | range | 当前参数数值有效范围，仅对数值有效，写法规则详情见下文温馨提示 | \`json:"age,range=[0:120]"\`        |
 
 :::note range 表达式值规则
-
 1. 左开右闭区间：(min:max]，表示大于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省
 1. 左闭右开区间：[min:max)，表示大于等于 min 小于 max，当 max 缺省时，max 代表数值 0，当 min 缺省时，min 代表无穷大，min 和 max 不能同时缺省
 1. 闭区间：[min:max]，表示大于等于 min 小于等于 max，当 min 缺省时，min 代表数值 0，当 max 缺省时，max 代表无穷大，min 和 max 不能同时缺省

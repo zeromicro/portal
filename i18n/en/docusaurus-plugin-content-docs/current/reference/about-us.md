@@ -15,7 +15,7 @@ go-Zero contains very simple API definitions and generation tools goctl. Can gen
 
 [<img src="https://zeromicro.github.io/go-zero-pages/resource/author.jpeg" width="80px" height="80px" alt="kevwan" />](https://github.com/kevwan)
 
-**kevwan**, Vice President of Qiniu Cloud Technology, has 14 years of R&D team management experience, 16 years of architecture design experience, 20 years of engineering practical experience, and has been in charge of several large-scale The architecture design of the project, has partnered and started many times (acquired), Alibaba Cloud MVP, ArchSummit Global Architect Summit Star Lecturer, GopherChina Conference Host & Gold Lecturer, QCon+ Go Language Producer and Lecturer, Tencent Cloud Developer Conference Lecturer
+** kevwan **, Vice President of Qiniu Cloud Technology, has 14 years of R&D team management experience, 16 years of architecture design experience, 20 years of engineering practical experience, and has been in charge of several large-scale The architecture design of the project, has partnered and started many times (acquired), Alibaba Cloud MVP, ArchSummit Global Architect Summit Star Lecturer, GopherChina Conference Host & Gold Lecturer, QCon+ Go Language Producer and Lecturer, Tencent Cloud Developer Conference Lecturer
 
 ## go-zero community
 

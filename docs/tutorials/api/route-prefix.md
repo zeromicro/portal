@@ -24,27 +24,27 @@ https://example.com/v2/users
 syntax = "v1"
 
 type UserV1 {
- Name string `json:"name"`
+	Name string `json:"name"`
 }
 
 type UserV2 {
- Name string `json:"name"`
+	Name string `json:"name"`
 }
 
 @server (
- prefix: /v1
+	prefix: /v1
 )
 service user-api {
- @handler usersv1
- get /users returns ([]UserV1)
+	@handler usersv1
+	get /users returns ([]UserV1)
 }
 
 @server (
- prefix: /v2
+	prefix: /v2
 )
 service user-api {
- @handler usersv2
- get /users returns ([]UserV2)
+	@handler usersv2
+	get /users returns ([]UserV2)
 }
 
 
