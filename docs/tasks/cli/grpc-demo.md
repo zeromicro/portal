@@ -18,11 +18,10 @@ gRPC 服务来了解 goctl 的 go-zero  gRPC 服务的概况。
 1. 初步了解 go-zero 的项目结构
 1. 初步掌握 gRPC 本地调试的方法
 
-
 ## 准备条件
 
-1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
-1. <a href="/docs/tasks/installation/goctl" target="_blank">完成 goctl 安装</a> 
+1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
+1. <a href="/docs/tasks/installation/goctl" target="_blank">完成 goctl 安装</a>
 
 ## 代码生成
 
@@ -33,6 +32,7 @@ $ mkdir -p ~/workspace/rpc && cd ~/workspace/rpc
 $ goctl rpc new demo
 Done.
 ```
+
 执行完指令后，会在当前目录下生成一个 demo 目录，该目录下包含了一个最小化的 gRPC 服务，我们来查看一下该服务的目录结构。
 
 ```shell
@@ -149,7 +149,6 @@ src={require('../../resource/tasks/cli/task-grpc-demo-grpcui.png').default}
 alt='task-grpc-demo-grpcui'
 />
 
-
 <center> grpcui 中访问 </center>
 
 :::note 注意
@@ -174,9 +173,9 @@ alt='task-grpc-demo-grpcui'
     "message": "pong"
 }
 ```
+
 </TabItem>
 
 </Tabs>
-
 
 当你按照文档步骤走到这里，恭喜你 🎉 🎉 🎉 ，你已经完成了最简单的 go-zero gRPC 服务的创建和启动了，如需了解 `goctl` 工具的使用说明请参阅 <a href="/docs/tutorials/cli/overview" target="_blank">《CLI 工具》</a>，如需了解完整 go-zero gRPC Server 服务的使用说明请参阅 <a href="/docs/tutorials/grpc/server/configuration/service" target="_blank">《gRPC Server》</a>。

@@ -183,5 +183,5 @@ func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 ## 参考文献
 
--  <a href="/docs/tutorials/cli/template" target="_blank">《goctl template》</a>
+- <a href="/docs/tutorials/cli/template" target="_blank">《goctl template》</a>
 - <a href="https://golang.org/pkg/text/template/" target="_blank">《text/template》</a>

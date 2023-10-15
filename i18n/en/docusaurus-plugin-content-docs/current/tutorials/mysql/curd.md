@@ -5,9 +5,11 @@ slug: /docs/tutorials/mysql/curd
 ---
 
 ## Overview
-We can get a sqlx.SqlConn at [ to create a link](/docs/tutorials/mysql/connection) and then we can complete various database operations. We strongly recommend using [goctl model](/docs/tutorials/cli/model) to generate sql code automatically, without manual entry.
+
+We can get a sqlx.SqlConn at [to create a link](/docs/tutorials/mysql/connection) and then we can complete various database operations. We strongly recommend using [goctl model](/docs/tutorials/cli/model) to generate sql code automatically, without manual entry.
 
 SqlConn 基本的方法如下
+
 ```go
 type (
     // SqlConn only stands for raw connections, so Transact method can be called.
@@ -38,6 +40,7 @@ type (
 ```
 
 ## ExecCtx
+
 We have provided **ExecCtx** methods to complete various additions and deletions. Simple Example：
 
 ```go
@@ -50,6 +53,7 @@ Normally we use the input parameters placeholder ? 占位，接着通过 args �
 This method will also trigger melting if an error occurs with the sql executed.There is also a mechanism for automatic release once the service has returned to normal.See melting for details.
 
 ## QueryRowCtx
+
 We provided **QueryRowCtx** for normal query, Simple Example：
 
 ```go
@@ -72,7 +76,9 @@ _ = u
 This way we can use data from user tables that you have provided with an account id 1.Common errors can be found below **common errors**
 
 ## QueryRowPartialCtx
+
 Both QueryRowPartialCtx and QueryRowCtx provide user queries for data use. But in order to ensure that all fields defined in the User are processed with accuracy, so when QueryRowCtx is designed, the queryVerify QueryRowCtx list needs to match the defined field. For example, the definition and Sql report errors.
+
 ```go
 type User struct {
     Id   int64  `db:"id"`
@@ -88,6 +94,7 @@ if err != nil { // err == ErrNotMatchDestination
     return
 }
 ```
+
 Because our defined age is not queried in sql, this will cause inconsistency in variables.If the user does have a wide table, only some fields need to be queried. We provided  **QueryRowPartialCtx** this method is not enough for a list of timely queries.
 
 ```go
@@ -108,6 +115,7 @@ _ = u // age is default 0
 ```
 
 ## QueryRowsCtx
+
 We also provided **QueryRowsCtx** for bulk queryRowsCt, Simple Example：
 
 ```go
@@ -125,10 +133,11 @@ if err != nil {
 }
 _ = users
 ```
+
 This will make it possible to find all users named dylan.Note that we will not return ErrNotFound when there is no user in the database, this block is different from QueryRowCtx.
 
-
 ## Common Errors
+
 Some common errors in our sql statements below：
 
 ```go

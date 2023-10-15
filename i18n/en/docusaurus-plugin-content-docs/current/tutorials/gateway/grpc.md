@@ -85,7 +85,7 @@ protoDescriptor method requires proto to be a pb file via protoc and then refere
 
 :::tip
 go-zero sdk version v1.5.0 gateway configuration will cause configuration conflicts, please avoid this version, the current example is using v1.4.4 version
-:::  
+:::
 
 1. We create a new project, demo1, and a new hello.proto file in demo1, as follows:
 
@@ -203,7 +203,6 @@ $ curl http://localhost:8888/ping
 
 </TabItem>
 
-
 <TabItem value="grpcReflection" label="grpcReflection" default>
 
 The grpcReflection method is similar to the protoDescriptor method. Unlike the grpcReflection method does not require proto to be produced as a pb file through protoc but takes proto from the grpc server directly and then quotes the proto file for rest-grpc rule in gateway.
@@ -231,7 +230,6 @@ service Hello {
 
 2. Create a `gateway` directory under the `demo2` directory for backup
 
-
 3. Generate the grpc service code by executing the following command in the `demo2` directory:
 
 ```bash
@@ -258,7 +256,7 @@ Mode: dev
 
 :::tip
 Since the grpc reflection mode is currently only supported by the `dev` and `test` environments, you need to set `Mode` to `dev` or `test` here.
-:::  
+:::
 
 4. Go to the `demo2/gateway` directory, create the directory `etc`, and add the configuration file `gateway.yaml`, as follows:
 

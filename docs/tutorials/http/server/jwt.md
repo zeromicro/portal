@@ -37,6 +37,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 ## JWT传输
 
 在HTTP请求添加名为`Authorization`的header，形式如下
+
 ```html
 Authorization: Bearer <token>
 ```
@@ -59,10 +60,10 @@ func getJwtToken(secretKey string, iat, seconds int64,payload string) (string, e
 }
 ```
 
-
 ## JWT 认证失败自定义处理返回
 
 在main.go中定义一个callback即可
+
 ```go
 func main() {
 	........
@@ -78,14 +79,17 @@ func main() {
 
 :::tip
 如果 JWT 鉴权失败会出现如下类似错误：
+
 ```
 HTTP/1.1 401 Unauthorized
 Date: Mon, 08 Feb 2023 23:41:57 GMT
 Content-Length: 0
 ```
+
 :::
 
 ## JWT 过期管理
+
 jwt token 过期管理可以自己使用 redis 实现。
 
 ## 参考文献

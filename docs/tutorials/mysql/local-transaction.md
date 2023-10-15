@@ -5,7 +5,9 @@ slug: /docs/tutorials/mysql/local/transaction
 ---
 
 ## 概述
+
 sqlx.SqlConn 提供了基础的事务机制，简单实例：
+
 ```go
     var conn sqlx.SqlConn
 	err := conn.TransactCtx(context.Background(), func(ctx context.Context, session sqlx.Session) error {
@@ -19,4 +21,3 @@ sqlx.SqlConn 提供了基础的事务机制，简单实例：
 		}
 	})
 ```
-

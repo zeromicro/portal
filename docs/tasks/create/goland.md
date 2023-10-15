@@ -15,7 +15,6 @@ Goland 下载请参考 [Goland 官网](https://www.jetbrains.com/go/)。
 当前文档演示的 Goland 版本为 `GoLand 2022.1.4`，如果你的 Goland 版本不一致，可能会有所差异。
 :::
 
-
 ## 创建项目
 
 打开 Goland，点击 `New Project`，选择 `Go`，填写项目名称，点击 `Create` 创建工程。
@@ -32,7 +31,6 @@ Goland 下载请参考 [Goland 官网](https://www.jetbrains.com/go/)。
       title="从 Goland 创建（2）"
 />
 
-
 ## 新建 main.go
 
 在工程名称 `helloworld` 上右键，选择 `New`，选择 `Go File`，输入文件名称 `main`，回车。
@@ -48,7 +46,6 @@ Goland 下载请参考 [Goland 官网](https://www.jetbrains.com/go/)。
       alt='create from goland'
       title="新建 main.go（2）"
 />
-
 
 在 `main.go` 中输入以下代码：
 
@@ -68,7 +65,6 @@ func main() {
       alt='create from goland'
       title="新建 main.go（3）"
 />
-
 
 ## 运行程序
 
@@ -99,7 +95,6 @@ func main() {
       alt='create from goland'
       title="从启动按钮运行 Go 程序（2）"
 />
-
 
 1. 在 `main.go` 文件上右键，选择 `Open In`，然后选择 `Terminal`，即可打开终端，然后输入如下指令运行即可。
 

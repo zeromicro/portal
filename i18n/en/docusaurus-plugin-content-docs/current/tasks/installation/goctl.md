@@ -15,7 +15,7 @@ goctl is a go-zero's built-in handcuffle that is a major lever to increase devel
 
 ## Golang Direct
 
-::note  
+::note
 This installation method is used for `Golang`, no operating system is required.
 :::
 
@@ -53,48 +53,48 @@ $ goctl --version
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-windows-amd64.zip">
 
 <p>Windows Intel x86-64 bit processor</p>
 <a>goctl-v1.4.3-windows-amd64.zip（14.7MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-windows-386.zip">
 
 <p>Windows Intel x86-32 bit processor</p>
 <a>goctl-v1.4.3-windows-386.zip（14MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-darwin-arm64.tar.gz">
 
 <p>Support macOS Apple 64-bit processor</p>
 <a>goctl-v1.4.3-darwin-arm64.tar.gz（14.5MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.5/goctl-v1.4.5-darwin-amd64.tar.gz">
 
 <p>Support macOS 64-bit processor</p>
 <a>goctl-v1.4.3-darwin-amd64.tar.gz（14.7MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-linux-amd64.tar.gz">
 
 <p>Support Linux 64 bit processor</p>
 <a>goctl-v1.4.3-linux-amd64.tar.gz（14.8MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.4.3/goctl-v1.4.3-linux-386.tar.gz">
 
 <p>Support Linux 32 bit processor</p>

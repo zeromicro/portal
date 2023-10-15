@@ -8,14 +8,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## 概述
+
 本章节介绍 <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc" target="_blank">monc</a> 的用法。
 
 ## 准备条件
-1. <a href="/docs/tasks/mongo/connection" target="_blank">完成 mon 的链接创建。</a> 
+
+1. <a href="/docs/tasks/mongo/connection" target="_blank">完成 mon 的链接创建。</a>
 
 ## 创建链接对象
+
 数据库的连接创建提供了五个方法。
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L31" target="_blank">MustNewModel</a>
+
 ```golang
 函数签名: 
     MustNewModel func(uri, db, collection string, c cache.CacheConf, opts ...cache.Option) *Model
@@ -33,6 +38,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L41" target="_blank">MustNewNodeModel</a>
+
 ```golang
 函数签名: 
     MustNewNodeModel func(uri, db, collection string, rds *redis.Redis, opts ...cache.Option) *Model
@@ -50,6 +56,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L51" target="_blank">NewModel</a>
+
 ```golang
 函数签名: 
     NewModel func(uri, db, collection string, conf cache.CacheConf, opts ...cache.Option) (*Model, error) 
@@ -67,6 +74,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L62" target="_blank">NewNodeModel</a>
+
 ```golang
 函数签名: 
     NewNodeModel func(uri, db, collection string, rds *redis.Redis, opts ...cache.Option) (*Model, error)
@@ -84,6 +92,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L31" target="_blank">NewModelWithCache</a>
+
 ```golang
 函数签名: 
     NewModelWithCache func(uri, db, collection string, c cache.Cache) (*Model, error)
@@ -100,7 +109,9 @@ import TabItem from '@theme/TabItem';
 ```
 
 ## 新增
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L174" target="_blank">InsertOne</a>
+
 ```golang
 函数签名: 
     InsertOne func(ctx context.Context, key string, document interface{},
@@ -140,6 +151,7 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L189" target="_blank">InsertOneNoCache</a>
+
 ```golang
 函数签名: 
     InsertOneNoCache func(ctx context.Context, document interface{},
@@ -175,7 +187,9 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 ```
 
 ## 更新
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateByID</a>
+
 ```golang
 函数签名: 
     UpdateByID func(ctx context.Context, key string, id, update interface{},
@@ -212,6 +226,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L236" target="_blank">UpdateByIDNoCache</a>
+
 ```golang
 函数签名: 
     UpdateByIDNoCache func(ctx context.Context, id, update interface{},
@@ -245,6 +260,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L242" target="_blank">UpdateMany</a>
+
 ```golang
 函数签名: 
     UpdateMany func(ctx context.Context, keys []string, filter, update interface{},
@@ -286,6 +302,7 @@ func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L257" target="_blank">UpdateManyNoCache</a>
+
 ```golang
 函数签名: 
     UpdateManyNoCache func(ctx context.Context, filter, update interface{},
@@ -319,6 +336,7 @@ func (m *defaultUserModel) UpdateMany(ctx context.Context, name string, data []*
 ```
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L263" target="_blank">UpdateOne</a>
+
 ```golang
 函数签名: 
     UpdateOne func(ctx context.Context, key string, filter, update interface{},
@@ -357,6 +375,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 ```
 
 6. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L221" target="_blank">UpdateOneNoCache</a>
+
 ```golang
 函数签名: 
     UpdateOneNoCache func(ctx context.Context, filter, update interface{},
@@ -394,6 +413,7 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 ## 查询
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L107" target="_blank">FindOne</a>
+
 ```golang
 函数签名: 
     FindOne func(ctx context.Context, key string, v, filter interface{},
@@ -443,6 +463,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L115" target="_blank">FindOneNoCache</a>
+
 ```golang
 函数签名: 
     FindOneNoCache func(ctx context.Context, v, filter interface{},
@@ -489,6 +510,7 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 ## 删除
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L86" target="_blank">DeleteOne</a>
+
 ```golang
 函数签名: 
     DeleteOne func(ctx context.Context, key string, filter interface{},
@@ -528,6 +550,7 @@ func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/monc/cachedmodel.go#L101" target="_blank">DeleteOneNoCache</a>
+
 ```golang
 函数签名: 
     DeleteOneNoCache func(ctx context.Context, filter interface{},

@@ -89,6 +89,7 @@ Flags:
   -h, --help         help for doc
       --o string     The output markdown directory
 ```
+
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={200}/> 参数说明 |
 | --- | --- | --- | --- | --- |
 | dir | string | YES | 空字符串 | api 文件所在目录 |

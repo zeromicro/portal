@@ -5,10 +5,12 @@ slug: /docs/tutorials/mysql/curd
 ---
 
 ## 概述
+
 在我们通过[创建链接](/docs/tutorials/mysql/connection)可以获得一个 sqlx.SqlConn，接着我们就可以完成各种数据库操作。
 我们强烈建议使用 [goctl model](/docs/tutorials/cli/model) 自动生成 sql 代码，无需手动录入。
 
 SqlConn 基本的方法如下
+
 ```go
 type (
     // SqlConn only stands for raw connections, so Transact method can be called.
@@ -39,6 +41,7 @@ type (
 ```
 
 ## ExecCtx
+
 我们提供了 **ExecCtx** 方法来完成各种增删改的操作。
 简单示例：
 
@@ -52,6 +55,7 @@ r, err := conn.ExecCtx(context.Background(), "delete from user where `id` = ?", 
 本个方法如果执行的sql 出现错误，也将会触发熔断。并且会有一定机制在服务恢复正常之后自动放行。详情见熔断。
 
 ## QueryRowCtx
+
 我们提供了 **QueryRowCtx** 进行普通的查询操作，
 简单示例：
 
@@ -75,9 +79,11 @@ _ = u
 这样我们就可以从 user 表中查出 id 为 1 的数据。相关常见的错误可以见下方 **常见错误**
 
 ## QueryRowPartialCtx
+
 QueryRowPartialCtx 其实和 QueryRowCtx 都是提供用户查询数据使用的。
 但是我们为了保证 User 中定义的所有字段都能过准确的被查询处理，所以设计 QueryRowCtx 的时候，强制校验查询出来的列需要与定义的 field 一致。
 例如如下定义和Sql会报错。
+
 ```go
 type User struct {
 	Id   int64  `db:"id"`
@@ -93,6 +99,7 @@ if err != nil { // err == ErrNotMatchDestination
 	return
 }
 ```
+
 因为我们定义的 age ，并没有在 sql 中查询出来，会导致变量不一致的情况。如果用户确实有宽表，只需要查询部分字段，我们提供了 **QueryRowPartialCtx** 进行查询，这个方法即使查询的列不够也不会报错。
 
 ```go
@@ -113,6 +120,7 @@ _ = u // age is default 0
 ```
 
 ## QueryRowsCtx
+
 我们也提供了 **QueryRowsCtx** 进行批量查询的语句，
 简单示例：
 
@@ -131,10 +139,11 @@ if err != nil {
 }
 _ = users
 ```
+
 这样我们就可以查询所有叫 dylan 的 users。注意当数据库中没有 user 的时候，我们是不会返回 ErrNotFound 的，这块和 QueryRowCtx 是不同的。
 
-
 ## 常见的错误
+
 在我们执行 sql 语句中一些常见的错误如下：
 
 ```go

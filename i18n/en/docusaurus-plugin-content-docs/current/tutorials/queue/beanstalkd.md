@@ -187,4 +187,5 @@ func (l *PusherLogic) Consumer() error {
 Write in the end, the beanstalk is not reliant on redis, but go-queue is the better we want to prevent repeated consumption in a short period of time, using redis Setnx to allow us to filter spent messages within a short period of time
 
 ## References
+
 1. <a href="https://beanstalkd.github.io/" target="_blank">Beanstalkd Introduction and Installation</a>

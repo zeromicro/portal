@@ -4,10 +4,11 @@ slug: /docs/tasks/log/log
 ---
 
 ## Overview
+
 logc and logx are go-Zero log libraries, and we can easily implement log printing.
 
-
 ## Task Targets
+
 1. Learn about the use of the **github.com/zeroicro/go-zero/core/logc** package.
 
 ## Simple Log Printing
@@ -56,6 +57,7 @@ logc.Infow(context.Background(), "hello world", logc.Field("key", "value"))
 We can extend our log using logc.Filed.
 
 ## Custom key on log
+
 We can bring some default keys and values on all logs, such as：we want to keep routing information on all api links. We can inject the information into ctx, so the next method will automatically take kv information when printed. Example:
 
 ```go

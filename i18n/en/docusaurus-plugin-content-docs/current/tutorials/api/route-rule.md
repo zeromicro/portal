@@ -13,7 +13,6 @@ In api description, there are specific routing rules that are not fully referenc
 
 In api description, routing needs to meet the following rules
 
-
 1. Route must start with `/`
 1. Route node must be separated by `/`
 1. A router node can contain `:`but `:` must be the first character of a router node,`:` The next node value must have `path in the checkout body` tag statement, used to receive routing parameters, refer to detailed rules <a href="/docs/tutorials/api/parameter" target="_blank">routing parameters</a>.

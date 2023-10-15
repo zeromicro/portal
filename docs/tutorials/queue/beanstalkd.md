@@ -187,4 +187,5 @@ func (l *PusherLogic) Consumer() error {
 写在最后，本身 beanstalk 不依赖 redis 的，但是 go-queue 为我们想的更周到防止短时间内重复消费，便使用了 redis 的 Setnx 帮我们在短时间内过滤掉消费过的消息
 
 ## 参考文献
+
 1. <a href="https://beanstalkd.github.io/" target="_blank">《beanstalkd 介绍及安装》</a>

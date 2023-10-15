@@ -66,15 +66,19 @@ go-zero is a web and rpc framework that integrates various engineering practices
 </DocsCards>
 
 ## Architecture
+
 ![arch](/img/index/arch-cn.svg)
 
 ## Framework design
+
 Easy access to stability to support tens of millions of days of living services, end-to-timeout controls, limited flow, adaptive smelting, adaptive downloading capabilities such as microservices without configuration and extra code. Micro-service governance middleware can be seamlessly integrated into other existing frameworks, abbreviated API descriptions, one-click generation of end codes, auto-calibration of client requests parameters and a large number of microservice governance and parallel toolkits.
 
 ## Framework Features
+
 Powerful tool support, minimum code writing, very simple interfaces, fully compatible net/http, supports intermediaries, easy expansion, high performance, troubleshooting, adaptive design, internal service discovery, load balance, internal build limit flow, melting, downloading and automatic trigger, automatic recovery, API parameter auto, timebound control, auto-cache control, link tracking, statistical alert, etc., high and supported in order to stabilize daily flow peaks during the epidemic.
 
 ## Code Autogenerate
+
 go-zero contains very simple API definitions and generation tools goctl. Can generate Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript code based on defined api files and can be run directly.
 
 ```bash

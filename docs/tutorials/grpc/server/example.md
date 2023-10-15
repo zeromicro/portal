@@ -49,6 +49,7 @@ $ goctl rpc protoc greet.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 :::tip 温馨提示
+
 1. goctl 安装请参考 <a href="/docs/tasks/installation/goctl" target="_blank">《goctl 安装》</a>
 1. rpc 代码生成指令教程请参考 <a href="/docs/tutorials/cli/rpc" target="_blank">《goctl rpc》</a>
 1. proto 使用相关问题请参考 <a href="/docs/tutorials/proto/faq" target="_blank">《proto 代码生成常见问题》</a>
@@ -124,7 +125,7 @@ greet.rpc/7587870460981677828
 由于 etcd 注册的 key 都是 `greet.rpc`, 从业务表现层来看，是将一个 key 注册到了 etcd，实则 go-zero 底层是将该 key 拼上了一个 etcd
 的租户 id 来存储到 etcd 的，因此，在服务发现时，也会通过 `etcdctl get --prefix` 指令去获取所有可用的 ip 节点。
 
-</TabItem> 
+</TabItem>
 
 <TabItem value="直连模式" label="直连模式" default>
 
@@ -134,7 +135,8 @@ greet.rpc/7587870460981677828
 Name: greet.rpc
 ListenOn: 0.0.0.0:8080
 ```
-</TabItem> 
+
+</TabItem>
 
 </Tabs>
 
@@ -282,7 +284,6 @@ go-zero rpc 内置了非常丰富的中间件，详情可查看<a href="https://
 
 #### 自定义中间件
 
-
 ```go {21-22,28-35}
 package main
 ...
@@ -324,4 +325,3 @@ func exampleStreamInterceptor(srv interface{}, ss grpc.ServerStream, info *grpc.
 ### 10. metadata 传值
 
 参考 <a href="https://github.com/grpc/grpc-go/blob/master/Documentation/grpc-metadata.md" target="_blank">《Metadata》</a>
-

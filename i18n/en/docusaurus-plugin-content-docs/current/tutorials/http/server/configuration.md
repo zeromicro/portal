@@ -47,4 +47,3 @@ HTTP server primary configuration entry is set out below table：
 
 ServiceConfig General Configuration refer to <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">Basic Service Configuration</a>
 MidslewaresConf Configuration Reference <a href="/docs/tutorials/http/server/middleware" target="_blank">Middleware</a>
-

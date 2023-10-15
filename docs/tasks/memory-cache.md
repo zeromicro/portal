@@ -7,13 +7,17 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## 概述
+
 本章节主要介绍 <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L30" target="_blank">cache</a> 的使用。
 
 ## 准备条件
-1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a> 
+
+1. <a href="/docs/tasks" target="_blank">完成 golang 安装</a>
 
 ## 创建
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L44" target="_blank">NewCache</a>
+
 ```golang
 函数签名: 
     NewCache func(expire time.Duration, opts ...CacheOption) (*Cache, error) 
@@ -30,7 +34,9 @@ import TabItem from '@theme/TabItem';
 ```
 
 ## 方法说明
+
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L100" target="_blank">Set</a>
+
 ```golang
 函数签名: 
     Set func(key string, value interface{}) 
@@ -49,6 +55,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L105" target="_blank">SetWithExpire</a>
+
 ```golang
 函数签名: 
     SetWithExpire func(key string, value interface{}, expire time.Duration)
@@ -68,6 +75,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L88" target="_blank">Get</a>
+
 ```golang
 函数签名: 
     Get func(key string) (interface{}, bool)
@@ -99,6 +107,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L79" target="_blank">Del</a>
+
 ```golang
 函数签名: 
     Del func(key string)
@@ -116,6 +125,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/collection/cache.go#L123" target="_blank">Take</a>
+
 ```golang
 函数签名: 
     Take funcTake(key string, fetch func() (interface{}, error)) (interface{}, error)

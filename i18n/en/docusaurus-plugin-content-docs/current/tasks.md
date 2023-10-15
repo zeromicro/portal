@@ -31,29 +31,29 @@ Here we take the `1.19` version as an example, and it is **not recommended** to 
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://go.dev/dl/go1.19.4.windows-amd64.msi">
 <p>Supported Windows 7 and beyond, Intel 64-bit processor</p>
 <a>go1.19.4.windows-amd64.msi（135MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://go.dev/dl/go1.19.4.darwin-arm64.pkg">
 <p>Support macOS 11 and later, Apple 64 bit processor</p>
 <a>go1.19.4.darwin-arm64.pkg（139MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://go.dev/dl/go1.19.4.darwin-amd64.pkg">
 <p>Supported macOS 10.13 and later, 64 bit processor</p>
 <a>go1.19.4.darwin-amd64.pkg（145MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz">
 <p>Support Linux 2.6.32 and later, Intel 64-bit processor</p>
 <a>go1.19.4.linux-amd64.tar.gz（142MB）</a>
@@ -76,10 +76,10 @@ Other versions and operating systems can [to go to the official network](https:/
 $ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 ```
 
-::NOTE  
+::NOTE
 You may need to be root or run command via sudo
 Do not extract the archive to the existing `/usr/local/go` directory.It is well known that this will cause damage to the Go installation.
-::: 
+:::
 
 2. Add `/usr/local/go/bin` to the `PATH` environment.You can perform this action by adding the following lines to `$HOME/.profile` or `/etc/profile` (for the installation of the system scale)：
 
@@ -89,7 +89,7 @@ $ export PATH=$PATH:/usr/local/go/bin
 
 :::note
 changes to the configuration file may not be applied until you log in the next computer.To apply changes immediately, simply run shell commands directly or execute them from configuration files using commands such as `source $HOME/.profile`.
-:::  
+:::
 
 3. Open the terminal and type the following command to verify that you are installed：
 
@@ -107,10 +107,10 @@ $ go version
 
 :::  2. Open the terminal and type the following command to verify that you are installed
 
-
 ```bash
 $ go version
 ```
+
 3 . Make sure that the directive has printed the installed version of Go.
 
 </TabItem>

@@ -25,6 +25,7 @@ goctl-intelij installation have 2 ways
 ### 1. Install from disk
 
 ###
+
 <DocsCard
   className="cordova-ee-card"
   header="Goctl-1.1.3.zip"

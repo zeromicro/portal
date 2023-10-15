@@ -19,8 +19,8 @@ $ goctl env -w GOCTL_EXPERIMENTAL=on
 1. api 解析器从 antlr4 迁移到 goparser
 
 当然 1.5.1 如果开启新特性功能，会有一些不兼容的地方
-1. syntax 头部变为必填
 
+1. syntax 头部变为必填
 
 数据类型写法可参考 <a href="/docs/tutorials/api/types#示例" target="_blank"> 《类型声明 • 示例》</a> 中 goctl 1.5.1 说明部分内容
 

@@ -133,13 +133,13 @@ $ goctl rpc protoc greet.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=. -m
 multiple rpc services generate examples (rpc group) with reference <a href="/docs/tutorials/proto/services/group" target="_blank">service group</a>
 :::
 
-::tip Small skills  
+::tip Small skills
 goctl rpc protoc directives are longer and many parameters are well understood to mean the following form：
 
 goctl rpc ${protoc usage} --zrpc_out=${output directory}, e.g. directive `goctl rpc protoc greet.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=.`, of which `protoc greet.proto --go_out=./pb --go-grpc_out=./pb` is entirely the usage of protoc directives, but `--zrpc_out=.` is the parameter of the goctl rpc protoc directive.
 :::
 
-::caution Note  
+::caution Note
 goctl rpc protoc protoc generated rpc service with some information about proto：
 
 1. Proto file will not process import proto file and will need to process it manually if there are `import` statements.
@@ -151,7 +151,7 @@ goctl rpc protoc protoc generated rpc service with some information about proto�
 
 Quickly generate a proto template file that receives a proto file name parameter.
 
-::caution takes note of  
+::caution takes note of
 the directive has been deprecated, and recommends using `goctl rpc -o`.
 :::
 

@@ -203,7 +203,6 @@ $ curl http://localhost:8888/ping
 
 </TabItem>
 
-
 <TabItem value="grpcReflection" label="grpcReflection" default>
 
 grpcReflection 方式和 protoDescriptor 方式类似，不同的是，grpcReflection 方式不需要通过 protoc 将 proto 生成为 pb 文件，而是通过 grpc 的反射机制，直接从 grpc server 中获取 proto 文件，然后在 gateway 中去引用该 proto 文件做 rest-grpc 的规则映射。
@@ -230,7 +229,6 @@ service Hello {
 ```
 
 2. 在 `demo2` 目录下创建 `gateway` 目录备用
-
 
 3. 在 `demo2` 目录下执行如下指令生成 grpc 服务代码：
 

@@ -67,6 +67,6 @@ A link on play.golang.org is best.
 
 ----
 
-::note  
+::note
 in template `goctl version`,`OS`,`ARCH`,`GOCTL_VERSION`,`GO_VERN` Information will automatically fill the current developer system, Sender is not required to fill in manually.
 :::

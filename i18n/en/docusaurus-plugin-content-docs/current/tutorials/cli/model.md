@@ -148,6 +148,7 @@ func NewUserModel(url, db, collection string, c cache.CacheConf) UserModel {
     }
 }
 ```
+
 </TabItem>
 
 <TabItem value="usermodelgen.go" label="usermodelgen.go" default>
@@ -251,6 +252,7 @@ type User struct {
     CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -328,6 +330,7 @@ func NewUserModel(url, db, collection string) UserModel {
     }
 }
 ```
+
 </TabItem>
 
 <TabItem value="usermodelgen.go" label="usermodelgen.go" default>
@@ -428,6 +431,7 @@ type User struct {
     CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -498,7 +502,6 @@ Global Flags:
 | url                                                  | string                                              | YES                                            | Empty string                                       | Database connection,format{{username}}:{{password}}@tcp({{host_port}}) /{{db}}                                                                                                                                                                                                                                                                                            |
 | ignore-columns                                       | []string                                            | NO                                             | `nil`                                              | Fields that need to be ignored, inserted or updated, such as `create_time`                                                                                                                                                                                                                                                                                                |
 | strict                                               | boolean                                             | NO                                             | `false`                                            | Whether it is a strict mode and, if it is rigid, the modified field `unsigned` will be converted to the corresponding data type, primarily for numerical types, e.g.：if the name of the database indicates `bigint` type, The result is`unsigned` modifies the corresponding golang data type to `int64`, For `uint64`, if strict is false, no modification to `unsigned` |
-
 
 #### goctl model mysql ddl directive
 

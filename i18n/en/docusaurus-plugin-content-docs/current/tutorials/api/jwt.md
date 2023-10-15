@@ -18,9 +18,9 @@ Service authentication is also a frequently used feature in HTTP service develop
 JWT (JSON Web Token) is an open standard (RFC 7519) used to transmit declaratory messages between web applications.It is a lightweight JSON-based authentication and authorization mechanism for the safe transmission of information between clients and servers.
 
 For more documentation about jwt
+
 1. <a href="https://jwt.io/" target="_blank">《JSON Web Tokens》</a>
 2. <a href="/docs/tutorials/http/server/jwt" target="_blank">JWT Certification</a>
-
 
 Let's see how to declare jwt authentication in an api file
 
@@ -82,7 +82,7 @@ type Config struct {
 }
 ```
 
-The Auth field in the `Config` structure is the value we declared in the api syntax file, which is the result of code generation 
+The Auth field in the `Config` structure is the value we declared in the api syntax file, which is the result of code generation
 
 </TabItem>
 

@@ -30,43 +30,43 @@ $ goctl env check --install --verbose --force
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-win64.zip" >
     <p>Windows Intel 64 位处理器</p>
     <a>protoc-21.11-win64.zip（2.17MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-win32.zip" >
     <p>Windows Intel 32 位处理器</p>
     <a>protoc-21.11-win32.zip（2.2MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-osx-aarch_64.zip" >
     <p>支持 macOS Apple 64 位处理器</p>
     <a>protoc-21.11-osx-aarch_64.zip（1.3MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-osx-x86_64.zip" >
     <p>支持 macOS 64 位处理器</p>
     <a>protoc-21.11-osx-x86_64.zip（1.42MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-linux-x86_64.zip" >
     <p>支持 Linux 64 位处理器</p>
     <a>protoc-21.11-linux-x86_64.zip（1.51MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-linux-x86_32.zip" >
     <p>支持 Linux 32 位处理器</p>
     <a>protoc-21.11-linux-x86_32.zip（1.61MB）</a>

@@ -107,7 +107,7 @@ func {{.HandlerName}}(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 ② Custom Template Content
 
-::tip 1. If you don't have`~/.goctl/${goctl版本号}/api/handler.tpl`file you can initialize the template initialization command`goctl template format in`initialize  
+::tip 1. If you don't have`~/.goctl/${goctl版本号}/api/handler.tpl`file you can initialize the template initialization command`goctl template format in`initialize
 :
 :::
 
@@ -184,5 +184,5 @@ func GreetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 ## References
 
--  <a href="/docs/tutorials/cli/template" target="_blank">goctl template</a>
+- <a href="/docs/tutorials/cli/template" target="_blank">goctl template</a>
 - <a href="https://golang.org/pkg/text/template/" target="_blank">text/template</a>
