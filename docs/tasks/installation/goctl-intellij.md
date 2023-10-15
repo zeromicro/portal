@@ -24,8 +24,6 @@ goctl-intellij 安装方式有 2 种
 
 ### 1. 从磁盘安装
 
-###
-
 <DocsCard
   className="cordova-ee-card"
   header="Goctl-1.1.3.zip"
@@ -40,8 +38,6 @@ goctl-intellij 安装方式有 2 种
     <DocsButton className="native-ee-detail">点击下载</DocsButton>
   </div>
 </DocsCard>
-
-###
 
 下载的 zip 文件无需解压，然后打开 `Goland` | `Preferences...` | `Plugins`，找到更多图标 <IconMoreVertical />，选择 `Install Plugin from Disk...`
 

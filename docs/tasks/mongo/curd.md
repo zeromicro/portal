@@ -91,82 +91,82 @@ func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">FindOne</a>
 
-```golang
-函数签名: 
-    FindOne func(ctx context.Context, v, filter interface{}, opts ...*mopt.FindOneOptions) error 
-说明: 
-    1. 查询单个文档记录。
-入参:
-    1. ctx: context
-    2. v: 查询结果
-    2. filter: 过滤条件
-    3. opts: 操作选项
-返回值:
-    1. error: 执行结果
+ ```golang
+	函数签名: 
+		FindOne func(ctx context.Context, v, filter interface{}, opts ...*mopt.FindOneOptions) error 
+	说明: 
+		1. 查询单个文档记录。
+	入参:
+		1. ctx: context
+		2. v: 查询结果
+		2. filter: 过滤条件
+		3. opts: 操作选项
+	返回值:
+		1. error: 执行结果
 
-示例:
-type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
-}
-
-func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error) {
-	oid, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return nil, ErrInvalidObjectId
+	示例:
+	type User struct {
+		ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+		// TODO: Fill your own fields
+		UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+		CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 	}
 
-	var data User
+	func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error) {
+		oid, err := primitive.ObjectIDFromHex(id)
+		if err != nil {
+			return nil, ErrInvalidObjectId
+		}
 
-	err = m.conn.FindOne(ctx, &data, bson.M{"_id": oid})
-	switch err {
-	case nil:
-		return &data, nil
-	case mon.ErrNotFound:
-		return nil, ErrNotFound
-	default:
-		return nil, err
+		var data User
+
+		err = m.conn.FindOne(ctx, &data, bson.M{"_id": oid})
+		switch err {
+		case nil:
+			return &data, nil
+		case mon.ErrNotFound:
+			return nil, ErrNotFound
+		default:
+			return nil, err
+		}
 	}
-}
-```
+	```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/mon/model.go#L141" target="_blank">Find</a>
 
-```golang
-函数签名: 
-    Find func(ctx context.Context, v, filter interface{}, opts ...*mopt.FindOptions) error 
-说明: 
-    1. 查询单个文档记录。
-入参:
-    1. ctx: context
-    2. v: 查询结果(数组指针)
-    2. filter: 过滤条件
-    3. opts: 操作选项
-返回值:
-    1. error: 执行结果
+	```golang
+	函数签名: 
+		Find func(ctx context.Context, v, filter interface{}, opts ...*mopt.FindOptions) error 
+	说明: 
+		1. 查询单个文档记录。
+	入参:
+		1. ctx: context
+		2. v: 查询结果(数组指针)
+		2. filter: 过滤条件
+		3. opts: 操作选项
+	返回值:
+		1. error: 执行结果
 
-示例:
-type User struct {
-	ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
-	// TODO: Fill your own fields
-	UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
-	CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
-}
-
-func (m *defaultUserModel) Find(ctx context.Context, id string) ([]*User, error) {
-	oid, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return nil, ErrInvalidObjectId
+	示例:
+	type User struct {
+		ID primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+		// TODO: Fill your own fields
+		UpdateAt time.Time `bson:"updateAt,omitempty" json:"updateAt,omitempty"`
+		CreateAt time.Time `bson:"createAt,omitempty" json:"createAt,omitempty"`
 	}
 
-	var data []*User
+	func (m *defaultUserModel) Find(ctx context.Context, id string) ([]*User, error) {
+		oid, err := primitive.ObjectIDFromHex(id)
+		if err != nil {
+			return nil, ErrInvalidObjectId
+		}
 
-	err = m.conn.Find(ctx, &data, bson.M{"_id": oid})
-	return data, nil
-}
-```
+		var data []*User
+
+		err = m.conn.Find(ctx, &data, bson.M{"_id": oid})
+		return data, nil
+	}
+	```
 
 ## 删除
 

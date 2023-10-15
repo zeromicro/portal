@@ -102,10 +102,9 @@ $ cat /root/.ssh/id_rsa.pub
 配置到运行服务物理机的 /root/.ssh/authorized_keys 即可。
 
 向下滑动找到`Pipeline script`,填写脚本内容
-
+    ```shell
     pipeline {
       agent any
-
       parameters {
           gitParameter name: 'branch',
           type: 'PT_BRANCH',
@@ -149,27 +148,25 @@ $ cat /root/.ssh/id_rsa.pub
                      sh 'echo 镜像名称：${image} && docker build  -t ${image} .'
               }
           }
-
           stage('上传到镜像仓库') {
               steps{
-              	  //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
+                 //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
                   sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
                   sh 'docker tag  ${image} ${docker_repo}/apicode/${image}'
                   sh 'docker push ${docker_repo}/apicode/${image}'
               }
           }
-
           stage('Deploy') {
               steps{
                  sh 'ssh root@192.168.1.183 docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
                  sh 'ssh root@192.168.1.183 docker pull ${docker_repo}/apicode/${image}'
                  //  当然这里端口号可以选择放到配置哪里都可以
                  sh 'ssh root@192.168.1.183 docker run -d -p 8889:8889 ${docker_repo}/apicode/${image}'
-
               }
           }
       }
     }
+    ```
 
 ## 5、构建发布
 

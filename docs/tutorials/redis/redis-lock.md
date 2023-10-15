@@ -26,81 +26,81 @@ import TabItem from '@theme/TabItem';
 
 1. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L46" target="_blank">NewRedisLock</a>
 
-```golang
-函数签名: 
-    NewRedisLock func(store *Redis, key string) *RedisLock 
-说明: 
-    1. 删除单条记录，同时会清理 key 缓存
-    2. 默认过期时间 1500 ms
-入参:
-    1. store: redis 实例
-    2. key: key
-返回值:
-    1. *RedisLock: redis locker 实例
-```
+    ```golang
+    函数签名: 
+        NewRedisLock func(store *Redis, key string) *RedisLock 
+    说明: 
+        1. 删除单条记录，同时会清理 key 缓存
+        2. 默认过期时间 1500 ms
+    入参:
+        1. store: redis 实例
+        2. key: key
+    返回值:
+        1. *RedisLock: redis locker 实例
+    ```
 
 2. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L104" target="_blank">SetExpire</a>
 
-```golang
-函数签名: 
-    SetExpire func(seconds int)
-说明: 
-    1. 设置过期时间
-入参:
-    1. seconds: 过期时间，单位 秒
-```
+    ```golang
+    函数签名: 
+        SetExpire func(seconds int)
+    说明: 
+        1. 设置过期时间
+    入参:
+        1. seconds: 过期时间，单位 秒
+    ```
 
 3. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L55" target="_blank">Acquire</a>
 
-```golang
-函数签名: 
-    Acquire func() (bool, error)
-说明: 
-    1. 获取锁
-返回值:
-    1. bool: 是否拿到锁
-    2. error: 操作error
-```
+    ```golang
+    函数签名: 
+        Acquire func() (bool, error)
+    说明: 
+        1. 获取锁
+    返回值:
+        1. bool: 是否拿到锁
+        2. error: 操作error
+    ```
 
 4. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L60" target="_blank">AcquireCtx</a>
 
-```golang
-函数签名: 
-    AcquireCtx func(ctx context.Context) (bool, error)
-说明: 
-    1. 获取锁
-入参:
-    1. ctx: context
-返回值:
-    1. bool: 是否拿到锁
-    2. error: 操作error
-```
+    ```golang
+    函数签名: 
+        AcquireCtx func(ctx context.Context) (bool, error)
+    说明: 
+        1. 获取锁
+    入参:
+        1. ctx: context
+    返回值:
+        1. bool: 是否拿到锁
+        2. error: 操作error
+    ```
 
 5. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L83" target="_blank">Release</a>
 
-```golang
-函数签名: 
-    Release func() (bool, error)
-说明: 
-    1. 释放锁
-返回值:
-    1. bool: 锁是否被主动释放
-    2. error: 操作error
-```
+    ```golang
+    函数签名: 
+        Release func() (bool, error)
+    说明: 
+        1. 释放锁
+    返回值:
+        1. bool: 锁是否被主动释放
+        2. error: 操作error
+    ```
 
 6. <a href="https://github.com/zeromicro/go-zero/blob/master/core/stores/redis/redislock.go#L89" target="_blank">ReleaseCtx</a>
 
-```golang
-函数签名: 
-    ReleaseCtx func(ctx context.Context) (bool, error)
-说明: 
-    1. 释放锁
-入参:
-    1. ctx: context
-返回值:
-    1. bool: 锁是否被主动释放
-    2. error: 操作error
-```
+    ```golang
+    函数签名: 
+        ReleaseCtx func(ctx context.Context) (bool, error)
+    说明: 
+        1. 释放锁
+    入参:
+        1. ctx: context
+    返回值:
+        1. bool: 锁是否被主动释放
+        2. error: 操作error
+    ```
 
 ## 使用 demo
 

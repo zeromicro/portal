@@ -39,105 +39,105 @@ import TabItem from '@theme/TabItem';
 
 1. 初始化一个 demo 工程
 
-```shell
-$ mkdir demo && cd demo
-$ go mod init demo
-```
+ ```shell
+	$ mkdir demo && cd demo
+	$ go mod init demo
+	```
 
 2. 在 demo 目录下创建一个 api 文件 `user.api`，添加如下内容
 
-```go
-syntax = "v1"
+	```go
+	syntax = "v1"
 
-type LoginRequest {
-    Username string `json:"username"`
-    Password string `json:"password"`
-}
+	type LoginRequest {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
 
-type LoginResponse {
-    UID int64 `json:"uid"`
-    Name string `json:"name"`
-}
+	type LoginResponse {
+		UID int64 `json:"uid"`
+		Name string `json:"name"`
+	}
 
-service user {
-    @handler login
-    post /user/login (LoginRequest) returns (LoginResponse)
-}
-```
+	service user {
+		@handler login
+		post /user/login (LoginRequest) returns (LoginResponse)
+	}
+	```
 
 3. 通过 goctl 生成代码
 
-```shell
-$ goctl api go --api user.api --dir .
-Done.
-```
+	```shell
+	$ goctl api go --api user.api --dir .
+	Done.
+	```
 
 1. 添加 mock 逻辑，修改 `demo/internal/logic/loginlogic.go` 文件，使其代码变为：
 
-```go
-package logic
+	```go
+	package logic
 
-import (
-	"context"
+	import (
+		"context"
 
-	"demo/internal/svc"
-	"demo/internal/types"
+		"demo/internal/svc"
+		"demo/internal/types"
 
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/x/errors"
-)
+		"github.com/zeromicro/go-zero/core/logx"
+		"github.com/zeromicro/x/errors"
+	)
 
-type LoginLogic struct {
-	logx.Logger
-	ctx    context.Context
-	svcCtx *svc.ServiceContext
-}
-
-func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
-	return &LoginLogic{
-		Logger: logx.WithContext(ctx),
-		ctx:    ctx,
-		svcCtx: svcCtx,
-	}
-}
-
-func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, err error) {
-    // 模拟登录逻辑
-	if req.Username != "go-zero" || req.Password != "123456" {
-		return nil, errors.New(1001, "用户名或密码错误")
+	type LoginLogic struct {
+		logx.Logger
+		ctx    context.Context
+		svcCtx *svc.ServiceContext
 	}
 
-	resp = new(types.LoginResponse)
-	resp.Name = "go-zero"
-	resp.UID = 1
-	return resp, nil
-}
-```
+	func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
+		return &LoginLogic{
+			Logger: logx.WithContext(ctx),
+			ctx:    ctx,
+			svcCtx: svcCtx,
+		}
+	}
 
-至此，我们先来看一下没有修改 `demo/internal/handler/loginhandler.go` 文件前的响应格式：
+	func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, err error) {
+		// 模拟登录逻辑
+		if req.Username != "go-zero" || req.Password != "123456" {
+			return nil, errors.New(1001, "用户名或密码错误")
+		}
 
-```shell
-$ cd demo
-$ go mod tidy
-$ go run user.go
-# 正常业务逻辑响应格式演示
-curl --location '127.0.0.1:8888/user/login' \
---header 'Content-Type: application/json' \
---data '{
-    "username":"go-zero",
-    "password":"123456"
-}'
-{"uid":1,"name":"go-zero"}
+		resp = new(types.LoginResponse)
+		resp.Name = "go-zero"
+		resp.UID = 1
+		return resp, nil
+	}
+	```
 
-# 错误逻辑响应格式演示
-curl --location '127.0.0.1:8888/user/login' \
---header 'Content-Type: application/json' \
---data '{
-    "username":"go-zero",
-    "password":"111111"
-}'
-code: 1001, msg: 用户名或密码错误
-```
+	至此，我们先来看一下没有修改 `demo/internal/handler/loginhandler.go` 文件前的响应格式：
+
+	```shell
+	$ cd demo
+	$ go mod tidy
+	$ go run user.go
+	# 正常业务逻辑响应格式演示
+	curl --location '127.0.0.1:8888/user/login' \
+	--header 'Content-Type: application/json' \
+	--data '{
+		"username":"go-zero",
+		"password":"123456"
+	}'
+	{"uid":1,"name":"go-zero"}
+
+	# 错误逻辑响应格式演示
+	curl --location '127.0.0.1:8888/user/login' \
+	--header 'Content-Type: application/json' \
+	--data '{
+		"username":"go-zero",
+		"password":"111111"
+	}'
+	code: 1001, msg: 用户名或密码错误
+	```
 
 4. 接着上面步骤，我们修改一下 `demo/internal/handler/loginhandler.go` 文件，将 `loginHandler` 中的响应方法替换成扩展包中的方法
 

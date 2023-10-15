@@ -89,98 +89,98 @@ go-zero sdk 版本 v1.5.0 的 gateway 配置会造成配置冲突，请避开此
 
 1. 我们新建一个工程 demo1, 在 demo1 中新建一个 hello.proto 文件，如下：
 
-```protobuf
-syntax = "proto3";
+ ```protobuf
+	syntax = "proto3";
 
-package hello;
+	package hello;
 
-option go_package = "./hello";
+	option go_package = "./hello";
 
-message Request {
-}
+	message Request {
+	}
 
-message Response {
-  string msg = 1;
-}
+	message Response {
+	string msg = 1;
+	}
 
-service Hello {
-  rpc Ping(Request) returns(Response);
-}
-```
+	service Hello {
+	rpc Ping(Request) returns(Response);
+	}
+	```
 
 2. 在 `demo1` 目录下创建 `gateway` 目录，然后在 `demo1` 目录执行如下指令生成 protoDescriptor：
 
-```bash
-$ protoc --descriptor_set_out=gateway/hello.pb hello.proto
-```
+	```bash
+	$ protoc --descriptor_set_out=gateway/hello.pb hello.proto
+	```
 
 3. 在 `demo1` 目录下执行如下指令生成 grpc 服务代码：
 
-```bash
-$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
-```
+	```bash
+	$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
+	```
 
 为 `demo1/server/internal/logic/pinglogic.go` 中的 `Ping` 方法填充逻辑，代码如下：
 
-```go
-func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
-	return &hello.Response{
-		Msg: "pong",
-	}, nil
-}
-```
+	```go
+	func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
+		return &hello.Response{
+			Msg: "pong",
+		}, nil
+	}
+	```
 
 4. 修改配置文件 `demo1/server/etc/hello.yaml` 内容如下：
 
-```yaml
-Name: hello.rpc
-ListenOn: 0.0.0.0:8080
-```
+	```yaml
+	Name: hello.rpc
+	ListenOn: 0.0.0.0:8080
+	```
 
 5. 进入 `demo1/gateway` 目录，创建目录 `etc`，然后添加配置文件 `gateway.yaml`，如下：
 
-```yaml
-Name: demo1-gateway
-Host: localhost
-Port: 8888
-Upstreams:
-  - Grpc:
-      Target: 0.0.0.0:8080
-    # protoset mode
-    ProtoSets:
-      - hello.pb
-    # Mappings can also be written in proto options
-    Mappings:
-      - Method: get
-        Path: /ping
-        RpcPath: hello.Hello/Ping
-```
+	```yaml
+	Name: demo1-gateway
+	Host: localhost
+	Port: 8888
+	Upstreams:
+	- Grpc:
+		Target: 0.0.0.0:8080
+		# protoset mode
+		ProtoSets:
+		- hello.pb
+		# Mappings can also be written in proto options
+		Mappings:
+		- Method: get
+			Path: /ping
+			RpcPath: hello.Hello/Ping
+	```
 
 6. 进入 `demo1/gateway` 目录， 新建 `gateway.go` 文件，内容如下：
 
-```go
-package main
+	```go
+	package main
 
-import (
-	"flag"
+	import (
+		"flag"
 
-	"github.com/zeromicro/go-zero/core/conf"
-	"github.com/zeromicro/go-zero/gateway"
-)
+		"github.com/zeromicro/go-zero/core/conf"
+		"github.com/zeromicro/go-zero/gateway"
+	)
 
-var configFile = flag.String("f", "etc/gateway.yaml", "config file")
+	var configFile = flag.String("f", "etc/gateway.yaml", "config file")
 
-func main() {
-	flag.Parse()
+	func main() {
+		flag.Parse()
 
-	var c gateway.GatewayConf
-	conf.MustLoad(*configFile, &c)
-	gw := gateway.MustNewServer(c)
-	defer gw.Stop()
-	gw.Start()
-}
+		var c gateway.GatewayConf
+		conf.MustLoad(*configFile, &c)
+		gw := gateway.MustNewServer(c)
+		defer gw.Stop()
+		gw.Start()
+	}
 
-```
+	```
 
 7. 分别开两个终端启动 grpc server 服务和 gateway 服务，然后访问 `http://localhost:8888/ping`：
 
@@ -209,115 +209,115 @@ grpcReflection 方式和 protoDescriptor 方式类似，不同的是，grpcRefle
 
 1. 我们新建一个工程 demo2, 在 demo2 中新建一个 hello.proto 文件，如下：
 
-```protobuf
-syntax = "proto3";
+ ```protobuf
+	syntax = "proto3";
 
-package hello;
+	package hello;
 
-option go_package = "./hello";
+	option go_package = "./hello";
 
-message Request {
-}
+	message Request {
+	}
 
-message Response {
-  string msg = 1;
-}
+	message Response {
+	string msg = 1;
+	}
 
-service Hello {
-  rpc Ping(Request) returns(Response);
-}
-```
+	service Hello {
+	rpc Ping(Request) returns(Response);
+	}
+	```
 
 2. 在 `demo2` 目录下创建 `gateway` 目录备用
 
 3. 在 `demo2` 目录下执行如下指令生成 grpc 服务代码：
 
-```bash
-$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
-```
+	```bash
+	$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
+	```
 
-为 `demo2/server/internal/logic/pinglogic.go` 中的 `Ping` 方法填充逻辑，代码如下：
+	为 `demo2/server/internal/logic/pinglogic.go` 中的 `Ping` 方法填充逻辑，代码如下：
 
-```go
-func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
-	return &hello.Response{
-		Msg: "pong",
-	}, nil
-}
-```
+	```go
+	func (l *PingLogic) Ping(in *hello.Request) (*hello.Response, error) {
+		return &hello.Response{
+			Msg: "pong",
+		}, nil
+	}
+	```
 
-将配置文件 `demo2/server/etc/hello.yaml` 修改如下：
+	将配置文件 `demo2/server/etc/hello.yaml` 修改如下：
 
-```yaml {3}
-Name: hello.rpc
-ListenOn: 0.0.0.0:8080
-Mode: dev
-```
+	```yaml {3}
+	Name: hello.rpc
+	ListenOn: 0.0.0.0:8080
+	Mode: dev
+	```
 
-:::tip
-因为目前 grpc 反射模式只有 `dev` 和 `test` 环境支持，所以这里需要将 `Mode` 设置为 `dev` 或者 `test`。
-:::
+	:::tip
+	因为目前 grpc 反射模式只有 `dev` 和 `test` 环境支持，所以这里需要将 `Mode` 设置为 `dev` 或者 `test`。
+	:::
 
 4. 进入 `demo2/gateway` 目录，创建目录 `etc`，然后添加配置文件 `gateway.yaml`，如下：
 
-```yaml
-Name: demo1-gateway
-Host: localhost
-Port: 8888
-Upstreams:
-  - Grpc:
-      Target: 0.0.0.0:8080
-    # Mappings can also be written in proto options
-    Mappings:
-      - Method: get
-        Path: /ping
-        RpcPath: hello.Hello/Ping
-```
+ ```yaml
+	Name: demo1-gateway
+	Host: localhost
+	Port: 8888
+	Upstreams:
+	- Grpc:
+		Target: 0.0.0.0:8080
+		# Mappings can also be written in proto options
+		Mappings:
+		- Method: get
+			Path: /ping
+			RpcPath: hello.Hello/Ping
+	```
 
 5. 进入 `demo2/gateway` 目录， 新建 `gateway.go` 文件，内容如下：
 
-```go
-package main
+ ```go
+	package main
 
-import (
-	"flag"
+	import (
+		"flag"
 
-	"github.com/zeromicro/go-zero/core/conf"
-	"github.com/zeromicro/go-zero/gateway"
-)
+		"github.com/zeromicro/go-zero/core/conf"
+		"github.com/zeromicro/go-zero/gateway"
+	)
 
-var configFile = flag.String("f", "etc/gateway.yaml", "config file")
+	var configFile = flag.String("f", "etc/gateway.yaml", "config file")
 
-func main() {
-	flag.Parse()
+	func main() {
+		flag.Parse()
 
-	var c gateway.GatewayConf
-	conf.MustLoad(*configFile, &c)
-	gw := gateway.MustNewServer(c)
-	defer gw.Stop()
-	gw.Start()
-}
+		var c gateway.GatewayConf
+		conf.MustLoad(*configFile, &c)
+		gw := gateway.MustNewServer(c)
+		defer gw.Stop()
+		gw.Start()
+	}
 
-```
+	```
 
 6. 分别开两个终端启动 grpc server 服务和 gateway 服务，然后访问 `http://localhost:8888/ping`：
 
-```bash
-# 进入 demo1/server 目录下，启动 grpc 服务
-$ go run hello.go
-Starting rpc server at 0.0.0.0:8080...
-```
+	```bash
+	# 进入 demo1/server 目录下，启动 grpc 服务
+	$ go run hello.go
+	Starting rpc server at 0.0.0.0:8080...
+	```
 
-```bash
-# 进入 demo1/gateway 目录下，启动 gateway 服务
-$ go run gateway.go
-```
+	```bash
+	# 进入 demo1/gateway 目录下，启动 gateway 服务
+	$ go run gateway.go
+	```
 
-```bash
-# 新开一个终端，访问 gateway 服务
-$ curl http://localhost:8888/ping
-{"msg":"pong"}%
-```
+	```bash
+	# 新开一个终端，访问 gateway 服务
+	$ curl http://localhost:8888/ping
+	{"msg":"pong"}%
+	```
 
 </TabItem>
 </Tabs>
