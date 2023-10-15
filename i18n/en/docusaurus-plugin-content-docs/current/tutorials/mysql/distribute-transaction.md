@@ -23,7 +23,7 @@ go-zero joined [dtm](https://github.com/dtm-labs/dtm) to launch a very simple pr
 - go-zero can access dtm servers in built-in target format
 - dtm is able to recognize go-zero target format and access the service in go-zero dynamically
 
-For more information about access, see dtm document：[go-zero support](https://dtm.pub/ref/gozero.html)
+For more information about access, see dtm document：[ go-zero support](https://dtm.pub/ref/gozero.html)
 
 ## More Use Cases
 
@@ -33,4 +33,4 @@ dtm can solve not only the distribution service scenario above but also more dat
 - The second kill system： dtm is capable of securing the second kill scenario, creating orders that are exactly the same as the stock deduction, without subsequent manual calibration
 - Multiple storage combinations： dtm support multiple storages, such as databases, Redis, Mongo and others, which can be grouped into a global issue to ensure data consistency
 
-For more dtm abilities and descriptions, see[dtm](https://github.com/dtm-labs/dtm)
+For more dtm abilities and descriptions, see[ dtm ](https://github.com/dtm-labs/dtm)

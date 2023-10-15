@@ -5,42 +5,36 @@ slug: /docs/concepts/components
 ---
 
 ## Parallel Provider
-
-- [x] mr
-- [x] fx
+ - [x] mr
+ - [x] fx
 
 ## Service Organization
-
-- [x] ServiceGroup
+ - [x] ServiceGroup
 
 ## groutines
-
 - [x] RoutineGroup
 - [x] GoSafe
 - [x] RunSafe
 - [x] TaskRunner
 - [x] WorkerGroup
 
-## Communications
 
+## Communications
 - [x] gRPC
 - [x] http
 - [x] gRPC Gateway
 - [x] http client
 
 ## Storage
-
 - [x] MySQL
 - [x] PosgreSQL
 - [x] Mongo
 - [x] Redis
 
 ## Message queue
-
 - [x] kafka
 
 ## Delay Queue
-
 - [x] beanstalk
 
 ## Service Registration and Discovery

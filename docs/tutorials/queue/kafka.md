@@ -7,7 +7,7 @@ slug: /docs/tutorials/message-queue/kafka
 
 消息队列对于大型微服务系统是必不可少的，主要是用来解决削峰、降低服务之间的耦合度以及异步能力。
 
-go-queue 在 segmentio/kafka-go 这个包基础上，使用 go-zero 进行了上层统一封装，让开发人员更容易上手，将更多时间聚焦在开发业务上。<https://github.com/zeromicro/go-queue>
+go-queue 在 segmentio/kafka-go 这个包基础上，使用 go-zero 进行了上层统一封装，让开发人员更容易上手，将更多时间聚焦在开发业务上。https://github.com/zeromicro/go-queue
 
 ### 1.1 Config
 
@@ -55,7 +55,7 @@ type KqConf struct {
 项目中首先要拉取 go-queue 的依赖
 
 ```shell
-go get github.com/zeromicro/go-queue@latest
+$ go get github.com/zeromicro/go-queue@latest
 ```
 
 在 etc/xxx.yaml 配置文件中添加当前的 kafka 配置信息
@@ -130,7 +130,7 @@ func (l *PusherLogic) Pusher() error {
 项目中首先要拉取 go-queue 的依赖
 
 ```shell
-go get github.com/zeromicro/go-queue@latest
+$ go get github.com/zeromicro/go-queue@latest
 ```
 
 在 etc/xxx.yaml 配置文件中添加当前的 kafka 配置信息

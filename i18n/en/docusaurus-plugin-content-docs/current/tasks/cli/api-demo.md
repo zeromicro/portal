@@ -15,6 +15,7 @@ After completing the <a href="/docs/tasks/installation/goctl" target="_blank">go
 1. Learn how to create a minimized HTTP service using goctl
 1. Preliminary understanding of the project structure of go-zero
 
+
 ## Preparing
 
 1. <a href="/docs/tasks" target="_blank">Complete golang installation</a>
@@ -29,7 +30,6 @@ $ mkdir -p ~/workspace/api && cd ~/workspace/api
 $ goctl api new demo
 Done.
 ```
-
 After executing the instruction, a demo directory will be generated under the current directory that contains a minimized HTTP service and we will check the directory structure of the service.
 
 ```shell
@@ -89,7 +89,7 @@ When you see the following output `Starting server at 0.0.0.0.0:888...`indicates
 <TabItem value="terminal" label="Access in terminal" default>
 
 ```bash
-curl --request GET 'http://127.0.0.0.1:8888/from/me'
+$ curl --request GET 'http://127.0.0.0.1:8888/from/me'
 ``````
 
 When you see the output in the terminal `{"message":"me"}` on behalf of your service successfully started.
@@ -109,7 +109,6 @@ The service on your behalf has been successfully launched when you see the follo
     "message": "me"
 }
 ```
-
 </TabItem>
 </Tabs>
 

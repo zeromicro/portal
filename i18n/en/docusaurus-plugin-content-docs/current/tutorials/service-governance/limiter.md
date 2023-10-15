@@ -19,8 +19,8 @@ The current presentation is a single-node flow that is more appropriate than a s
 1. Create a go mod project
 
 ```shell
-mkdir -p ~/workspace/demo && cd ~/workspace/demo
-go mod init demo
+$ mkdir -p ~/workspace/demo && cd ~/workspace/demo
+$ go mod init demo
 ```
 
 ## rest service
@@ -39,11 +39,12 @@ RestConf struct {
 
 We use a demo to describe the use of the lower limit streamer.
 
+
 1. Create new directory `demo` project `rest-limit-demo`
 
 ```shell
-cd ~/workspace/demo
-mkdir rest-limit-demo && cd rest-limit-demo
+$ cd ~/workspace/demo
+$ mkdir rest-limit-demo && cd rest-limit-demo
 ```
 
 2. Create a `limit.api` file, copy the following to the file
@@ -60,8 +61,8 @@ service limit {
 3. Generate rest code
 
 ```shell
-cd ~/workspace/demo/rest-limit-demo
-goctl api go -api limit.api -dir .
+$ cd ~/workspace/demo/rest-limit-demo
+$ goctl api go -api limit.api -dir .
 ```
 
 4. View directory structure
@@ -91,7 +92,7 @@ We modify the configuration, limit qps to 100, and then add a logic of blocking 
 
 1. Edit configuation
 
-Change `to <code> maxConns` in `~/workspace/demo/etc/limit.yaml` to 100
+Change `to <code> maxConns ` in ` ~/workspace/demo/etc/limit.yaml` to 100
 
 2. Add Logic Code
 
@@ -154,8 +155,8 @@ Let's run this easiest rest service first. We use the <a href="https://github.co
 Start service
 
 ```shell
-cd ~/workspace/demo/rest-limit-demo
-go run limit.go
+$ cd ~/workspace/demo/rest-limit-demo
+$ go run limit.go
 ```
 
 Separate terminal pressure
@@ -272,8 +273,8 @@ We use one of the simplest grpc server to show.
 1. Create new directory `demo` project `grpc-limit-demo`
 
 ```shell
-cd ~/workspace/demo
-mkdir grpc-limit-demo && cd grpc-limit-demo
+$ cd ~/workspace/demo
+$ mkdir grpc-limit-demo && cd grpc-limit-demo
 ```
 
 2. Create a `limit.proto` file, copy the following to the file
@@ -296,12 +297,11 @@ service limit{
 3. Generate grpc code
 
 ```shell
-cd ~/workspace/demo/grpc-limit-demo
-goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
+$ cd ~/workspace/demo/grpc-limit-demo
+$ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 4. View Directory
-
 ```
 $ tree
 .
@@ -445,8 +445,8 @@ ListenOn: 0.0.0.0:8080
 Start service
 
 ```shell
-cd ~/workspace/demo/grpc-limit-demo
-go run limit.go
+$ cd ~/workspace/demo/grpc-limit-demo
+$ go run limit.go
 ```
 
 Now that the grpc server is available, we use <a href="https://github.com/bojand/ghz" target="_blank">ghz</a> to pressure it.
@@ -489,7 +489,6 @@ Latency distribution:
 Status code distribution:
   [OK]   110 responses
 ```
-
 All requests can be seen to be successful, and we come back to 110 qps.
 
 ```shell
@@ -536,6 +535,7 @@ Error distribution:
 ```
 
 It can be seen, when the concurrent output exceeds 100, returns  `rpc error: code = Unavailable desc = concurrent connections over limit`.
+
 
 ## References
 

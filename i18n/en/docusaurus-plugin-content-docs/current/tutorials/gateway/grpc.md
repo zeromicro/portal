@@ -111,13 +111,13 @@ service Hello {
 2. Create the `gateway` directory in the `demo1` directory, and then execute the following command in the `demo1` directory to generate the protoDescriptor:
 
 ```bash
-protoc --descriptor_set_out=gateway/hello.pb hello.proto
+$ protoc --descriptor_set_out=gateway/hello.pb hello.proto
 ```
 
 3. Generate the grpc service code by executing the following command in the `demo1` directory:
 
 ```bash
-goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
+$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
 ```
 
 Populate the logic for the `Ping` method in `demo1/server/internal/logic/pinglogic.go` with the following code:
@@ -203,6 +203,7 @@ $ curl http://localhost:8888/ping
 
 </TabItem>
 
+
 <TabItem value="grpcReflection" label="grpcReflection" default>
 
 The grpcReflection method is similar to the protoDescriptor method. Unlike the grpcReflection method does not require proto to be produced as a pb file through protoc but takes proto from the grpc server directly and then quotes the proto file for rest-grpc rule in gateway.
@@ -230,10 +231,11 @@ service Hello {
 
 2. Create a `gateway` directory under the `demo2` directory for backup
 
+
 3. Generate the grpc service code by executing the following command in the `demo2` directory:
 
 ```bash
-goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
+$ goctl rpc protoc hello.proto --go_out=server --go-grpc_out=server --zrpc_out=server
 ```
 
 Populate the logic for the `Ping` method in `demo2/server/internal/logic/pinglogic.go` with the following code:

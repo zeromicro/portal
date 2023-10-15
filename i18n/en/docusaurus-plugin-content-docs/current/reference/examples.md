@@ -8,11 +8,11 @@ import DocsCard from '@components/global/DocsCard';
 import DocsCards from '@components/global/DocsCards';
 
 <head>
-  <style>{`:root {
+  <style>{`
     :root {
       --doc-item-container-width: 60rem;
     }
-`}</style>
+  `}</style>
 </head>
 
 <DocsCards>

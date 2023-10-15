@@ -70,7 +70,7 @@ key 为固定值 `header`，value 为请求头的 key 值。
 
 ```go
 type Request struct {
- Authorization string `header:"authorization"`
+	Authorization string `header:"authorization"`
 }
 
 var req Request
@@ -144,5 +144,4 @@ err := httpx.Parse(r, &req) // 解析参数
 ```
 
 ## 参考文献
-
 - <a href="/docs/tutorials/api/parameter" target="_blank">《api | HTTP 请求参数规则》</a>

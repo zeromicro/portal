@@ -60,7 +60,6 @@ type KqConf struct {
     ForceCommit bool   `json:",default=true"`
 }
 ```
-
 service.ServiceConf reference <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">Basic Service Configuration</a>
 
 | <img width={100} />Params | <img width={100} />DataType | <img width={100} />Required? | <img width={100} />Default value | <img width={100} />Note                                  |
@@ -80,9 +79,11 @@ service.ServiceConf reference <a href="/docs/tutorials/go-zero/configuration/ser
 
 ### Code Example
 
+
 <Tabs>
 
 <TabItem value="config.yaml" label="config.yaml" default>
+
 
 ```yaml
 Name: kq

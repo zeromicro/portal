@@ -37,36 +37,36 @@ NewProducer(beanstalks []Beanstalk) Producer
 package main
 
 import (
- "fmt"
- "strconv"
- "time"
+	"fmt"
+	"strconv"
+	"time"
 
- "github.com/zeromicro/go-queue/dq"
+	"github.com/zeromicro/go-queue/dq"
 )
 
 func main() {
- producer := dq.NewProducer([]dq.Beanstalk{
-  {
-   Endpoint: "localhost:11300",
-   Tube:     "tube",
-  },
-  {
-   Endpoint: "localhost:11301",
-   Tube:     "tube",
-  },
- })
+	producer := dq.NewProducer([]dq.Beanstalk{
+		{
+			Endpoint: "localhost:11300",
+			Tube:     "tube",
+		},
+		{
+			Endpoint: "localhost:11301",
+			Tube:     "tube",
+		},
+	})
 
- // 延迟 5s 后处理
- _, err := producer.Delay([]byte("hello"), time.Second*5)
- if err != nil {
-  fmt.Println(err)
- }
+	// 延迟 5s 后处理
+	_, err := producer.Delay([]byte("hello"), time.Second*5)
+	if err != nil {
+		fmt.Println(err)
+	}
 
- // 在指定时间点处理
- _, err = producer.At([]byte("hello"), time.Now().Add(time.Second*10))
- if err != nil {
-  fmt.Println(err)
- }
+	// 在指定时间点处理
+	_, err = producer.At([]byte("hello"), time.Now().Add(time.Second*10))
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 ```
@@ -105,32 +105,32 @@ type Beanstalk struct {
 package main
 
 import (
- "fmt"
+	"fmt"
 
- "github.com/zeromicro/go-queue/dq"
- "github.com/zeromicro/go-zero/core/stores/redis"
+	"github.com/zeromicro/go-queue/dq"
+	"github.com/zeromicro/go-zero/core/stores/redis"
 )
 
 func main() {
- consumer := dq.NewConsumer(dq.DqConf{
-  Beanstalks: []dq.Beanstalk{
-   {
-    Endpoint: "localhost:11300",
-    Tube:     "tube",
-   },
-   {
-    Endpoint: "localhost:11301",
-    Tube:     "tube",
-   },
-  },
-  Redis: redis.RedisConf{
-   Host: "localhost:6379",
-   Type: redis.NodeType,
-  },
- })
- consumer.Consume(func(body []byte) {
-  fmt.Println(string(body))
- })
+	consumer := dq.NewConsumer(dq.DqConf{
+		Beanstalks: []dq.Beanstalk{
+			{
+				Endpoint: "localhost:11300",
+				Tube:     "tube",
+			},
+			{
+				Endpoint: "localhost:11301",
+				Tube:     "tube",
+			},
+		},
+		Redis: redis.RedisConf{
+			Host: "localhost:6379",
+			Type: redis.NodeType,
+		},
+	})
+	consumer.Consume(func(body []byte) {
+		fmt.Println(string(body))
+	})
 }
 ```
 

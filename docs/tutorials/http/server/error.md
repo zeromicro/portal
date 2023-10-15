@@ -15,64 +15,64 @@ slug: /docs/tutorials/http/server/error
 package main
 
 import (
- "go/types"
- "net/http"
+	"go/types"
+	"net/http"
 
- "github.com/zeromicro/go-zero/rest"
- "github.com/zeromicro/go-zero/rest/httpx"
- "github.com/zeromicro/x/errors"
- xhttp "github.com/zeromicro/x/http"
+	"github.com/zeromicro/go-zero/rest"
+	"github.com/zeromicro/go-zero/rest/httpx"
+	"github.com/zeromicro/x/errors"
+	xhttp "github.com/zeromicro/x/http"
 )
 
 func main() {
- srv := rest.MustNewServer(rest.RestConf{
-  Port: 8080,
- })
- srv.AddRoute(rest.Route{
-  Method:  http.MethodPost,
-  Path:    "/hello",
-  Handler: handle,
- })
- defer srv.Stop()
- // httpx.SetErrorHandler 仅在调用了 httpx.Error 处理响应时才有效。
- httpx.SetErrorHandler(func(err error) (int, any) {
-  switch e := err.(type) {
-  case *errors.CodeMsg:
-   return http.StatusOK, xhttp.BaseResponse[types.Nil]{
-    Code: e.Code,
-    Msg:  e.Msg,
-   }
-  default:
-   return http.StatusInternalServerError, nil
-  }
- })
- srv.Start()
+	srv := rest.MustNewServer(rest.RestConf{
+		Port: 8080,
+	})
+	srv.AddRoute(rest.Route{
+		Method:  http.MethodPost,
+		Path:    "/hello",
+		Handler: handle,
+	})
+	defer srv.Stop()
+	// httpx.SetErrorHandler 仅在调用了 httpx.Error 处理响应时才有效。
+	httpx.SetErrorHandler(func(err error) (int, any) {
+		switch e := err.(type) {
+		case *errors.CodeMsg:
+			return http.StatusOK, xhttp.BaseResponse[types.Nil]{
+				Code: e.Code,
+				Msg:  e.Msg,
+			}
+		default:
+			return http.StatusInternalServerError, nil
+		}
+	})
+	srv.Start()
 }
 
 type HelloRequest struct {
- Name string `json:"name"`
+	Name string `json:"name"`
 }
 
 type HelloResponse struct {
- Msg string `json:"msg"`
+	Msg string `json:"msg"`
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
- var req HelloRequest
- if err := httpx.Parse(r, &req); err != nil {
-  httpx.Error(w, err)
-  return
- }
+	var req HelloRequest
+	if err := httpx.Parse(r, &req); err != nil {
+		httpx.Error(w, err)
+		return
+	}
 
- if req.Name == "error" {
-  // 模拟参数错误
-  httpx.Error(w, errors.New(400, "参数错误"))
-  return
- }
+	if req.Name == "error" {
+		// 模拟参数错误
+		httpx.Error(w, errors.New(400, "参数错误"))
+		return
+	}
 
- httpx.OkJson(w, HelloResponse{
-  Msg: "hello " + req.Name,
- })
+	httpx.OkJson(w, HelloResponse{
+		Msg: "hello " + req.Name,
+	})
 }
 
 ```

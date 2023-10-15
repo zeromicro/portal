@@ -47,7 +47,7 @@ mysql generated code content with golang structure corresponding to the data tab
 1. Create workspace and directory
 
    ```bash
-   mkdir -p ~/workspace/model/mysql
+   $ mkdir -p ~/workspace/model/mysql
    ```
 
 1. Move the `user.sql` file stored above to `~/workspace/model/mysql` directory

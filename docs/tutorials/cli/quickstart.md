@@ -28,6 +28,7 @@ Flags:
 | --- | --- | --- | --- | --- |
 | service-type | string | NO | mono | 生成 demo 服务类型，mono：单体服务，micro：微服务 |
 
+
 ## 使用示例
 
 <Tabs>

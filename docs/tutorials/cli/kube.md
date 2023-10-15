@@ -99,6 +99,7 @@ Flags:
 | serviceAccount | string | NO | 空字符串 | 服务账户 |
 | targetPort | int | NO | 0 | 目标 port |
 
+
 ## 使用示例
 
 我们以 redis 镜像为例子演示如何使用 goctl kube deploy 指令生成 deployment yaml 文件。

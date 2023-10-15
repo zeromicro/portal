@@ -19,8 +19,8 @@ import TabItem from '@theme/TabItem';
 1. 创建一个 go mod 的 demo 工程
 
 ```shell
-mkdir -p ~/workspace/demo && cd ~/workspace/demo
-go mod init demo
+$ mkdir -p ~/workspace/demo && cd ~/workspace/demo
+$ go mod init demo
 ```
 
 ## rest 服务
@@ -39,11 +39,12 @@ RestConf struct {
 
 我们用一个 demo 来介绍一下限流器的使用。
 
+
 1. 在 `demo` 工程中新建目录 `rest-limit-demo`
 
 ```shell
-cd ~/workspace/demo
-mkdir rest-limit-demo && cd rest-limit-demo
+$ cd ~/workspace/demo
+$ mkdir rest-limit-demo && cd rest-limit-demo
 ```
 
 2. 新建一个 `limit.api` 文件，将如下内容拷贝到文件中
@@ -52,16 +53,16 @@ mkdir rest-limit-demo && cd rest-limit-demo
 syntax = "v1"
 
 service limit {
- @handler ping
- get /ping
+	@handler ping
+	get /ping
 }
 ```
 
 3. 生成 rest 代码
 
 ```shell
-cd ~/workspace/demo/rest-limit-demo
-goctl api go -api limit.api -dir .
+$ cd ~/workspace/demo/rest-limit-demo
+$ goctl api go -api limit.api -dir .
 ```
 
 4. 查看目录结构
@@ -117,31 +118,31 @@ MaxConns: 100
 package logic
 
 import (
- "context"
- "time"
+	"context"
+	"time"
 
- "github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 
- "demo/rest-limit-demo/internal/svc"
+	"demo/rest-limit-demo/internal/svc"
 )
 
 type PingLogic struct {
- logx.Logger
- ctx    context.Context
- svcCtx *svc.ServiceContext
+	logx.Logger
+	ctx    context.Context
+	svcCtx *svc.ServiceContext
 }
 
 func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
- return &PingLogic{
-  Logger: logx.WithContext(ctx),
-  ctx:    ctx,
-  svcCtx: svcCtx,
- }
+	return &PingLogic{
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
+		svcCtx: svcCtx,
+	}
 }
 
 func (l *PingLogic) Ping() error {
- time.Sleep(50 * time.Millisecond)
- return nil
+	time.Sleep(50 * time.Millisecond)
+	return nil
 }
 
 ```
@@ -149,13 +150,15 @@ func (l *PingLogic) Ping() error {
 </TabItem>
 </Tabs>
 
+
+
 我们先来运行一下这个最简单的 rest 服务，我们用 <a href="https://github.com/rakyll/hey" target="_blank">hey</a> 工具来简单压测一下接口。
 
 先启动服务
 
 ```shell
-cd ~/workspace/demo/rest-limit-demo
-go run limit.go
+$ cd ~/workspace/demo/rest-limit-demo
+$ go run limit.go
 ```
 
 单独开个终端压测
@@ -165,25 +168,25 @@ go run limit.go
 $ hey -z 1s -c 90 -q 1 'http://localhost:8888/ping'
 
 Summary:
-  Total: 1.1084 secs
-  Slowest: 0.1066 secs
-  Fastest: 0.0607 secs
-  Average: 0.0890 secs
-  Requests/sec: 81.1980
+  Total:	1.1084 secs
+  Slowest:	0.1066 secs
+  Fastest:	0.0607 secs
+  Average:	0.0890 secs
+  Requests/sec:	81.1980
 
 
 Response time histogram:
-  0.061 [1] |■
-  0.065 [2] |■■■
-  0.070 [8] |■■■■■■■■■■■
-  0.074 [13] |■■■■■■■■■■■■■■■■■
-  0.079 [5] |■■■■■■■
-  0.084 [0] |
-  0.088 [0] |
-  0.093 [2] |■■■
-  0.097 [23] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  0.102 [30] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  0.107 [6] |■■■■■■■■
+  0.061 [1]	|■
+  0.065 [2]	|■■■
+  0.070 [8]	|■■■■■■■■■■■
+  0.074 [13]	|■■■■■■■■■■■■■■■■■
+  0.079 [5]	|■■■■■■■
+  0.084 [0]	|
+  0.088 [0]	|
+  0.093 [2]	|■■■
+  0.097 [23]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.102 [30]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.107 [6]	|■■■■■■■■
 
 
 Latency distribution:
@@ -196,14 +199,14 @@ Latency distribution:
   0% in 0.0000 secs
 
 Details (average, fastest, slowest):
-  DNS+dialup: 0.0054 secs, 0.0607 secs, 0.1066 secs
-  DNS-lookup: 0.0000 secs, 0.0000 secs, 0.0000 secs
-  req write: 0.0002 secs, 0.0000 secs, 0.0011 secs
-  resp wait: 0.0832 secs, 0.0576 secs, 0.0942 secs
-  resp read: 0.0001 secs, 0.0000 secs, 0.0012 secs
+  DNS+dialup:	0.0054 secs, 0.0607 secs, 0.1066 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:	0.0002 secs, 0.0000 secs, 0.0011 secs
+  resp wait:	0.0832 secs, 0.0576 secs, 0.0942 secs
+  resp read:	0.0001 secs, 0.0000 secs, 0.0012 secs
 
 Status code distribution:
-  [200] 90 responses
+  [200]	90 responses
 ```
 
 从压测结果来看，90 个请求全部成功，我们来加大并发数，看看会发生什么。
@@ -213,25 +216,25 @@ Status code distribution:
 $ hey -z 1s -c 110 -q 1 'http://127.0.0.1:8888/ping'
 
 Summary:
-  Total: 1.0833 secs
-  Slowest: 0.0756 secs
-  Fastest: 0.0107 secs
-  Average: 0.0644 secs
-  Requests/sec: 101.5403
+  Total:	1.0833 secs
+  Slowest:	0.0756 secs
+  Fastest:	0.0107 secs
+  Average:	0.0644 secs
+  Requests/sec:	101.5403
 
 
 Response time histogram:
-  0.011 [1] |■
-  0.017 [9] |■■■■■■■
-  0.024 [0] |
-  0.030 [0] |
-  0.037 [0] |
-  0.043 [0] |
-  0.050 [0] |
-  0.056 [0] |
-  0.063 [2] |■■
-  0.069 [45] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  0.076 [53] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.011 [1]	|■
+  0.017 [9]	|■■■■■■■
+  0.024 [0]	|
+  0.030 [0]	|
+  0.037 [0]	|
+  0.043 [0]	|
+  0.050 [0]	|
+  0.056 [0]	|
+  0.063 [2]	|■■
+  0.069 [45]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.076 [53]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 
 Latency distribution:
@@ -244,15 +247,15 @@ Latency distribution:
   99% in 0.0756 secs
 
 Details (average, fastest, slowest):
-  DNS+dialup: 0.0040 secs, 0.0107 secs, 0.0756 secs
-  DNS-lookup: 0.0000 secs, 0.0000 secs, 0.0000 secs
-  req write: 0.0001 secs, 0.0000 secs, 0.0025 secs
-  resp wait: 0.0602 secs, 0.0064 secs, 0.0741 secs
-  resp read: 0.0000 secs, 0.0000 secs, 0.0001 secs
+  DNS+dialup:	0.0040 secs, 0.0107 secs, 0.0756 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:	0.0001 secs, 0.0000 secs, 0.0025 secs
+  resp wait:	0.0602 secs, 0.0064 secs, 0.0741 secs
+  resp read:	0.0000 secs, 0.0000 secs, 0.0001 secs
 
 Status code distribution:
-  [200] 100 responses
-  [503] 10 responses
+  [200]	100 responses
+  [503]	10 responses
 ```
 
 从压测结果来看，我们的服务只能支持 100 个并发，超过 100 个并发的请求都会被限流，返回 503 状态码。
@@ -273,8 +276,8 @@ grpc 服务属于内网服务，不对外提供服务，只对内部的其他服
 1. 在 `demo` 工程中新建目录 `grpc-limit-demo`
 
 ```shell
-cd ~/workspace/demo
-mkdir grpc-limit-demo && cd grpc-limit-demo
+$ cd ~/workspace/demo
+$ mkdir grpc-limit-demo && cd grpc-limit-demo
 ```
 
 2. 新建一个 `limit.proto` 文件，将如下内容拷贝到文件中
@@ -297,12 +300,11 @@ service limit{
 3. 生成 grpc 代码
 
 ```shell
-cd ~/workspace/demo/grpc-limit-demo
-goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
+$ cd ~/workspace/demo/grpc-limit-demo
+$ goctl rpc protoc limit.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 4. 查看目录
-
 ```
 $ tree
 .
@@ -334,33 +336,33 @@ $ tree
 package logic
 
 import (
- "context"
- "time"
+	"context"
+	"time"
 
- "demo/grpc-limit-demo/internal/svc"
- "demo/grpc-limit-demo/proto"
+	"demo/grpc-limit-demo/internal/svc"
+	"demo/grpc-limit-demo/proto"
 
- "github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type PingLogic struct {
- ctx    context.Context
- svcCtx *svc.ServiceContext
- logx.Logger
+	ctx    context.Context
+	svcCtx *svc.ServiceContext
+	logx.Logger
 }
 
 func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
- return &PingLogic{
-  ctx:    ctx,
-  svcCtx: svcCtx,
-  Logger: logx.WithContext(ctx),
- }
+	return &PingLogic{
+		ctx:    ctx,
+		svcCtx: svcCtx,
+		Logger: logx.WithContext(ctx),
+	}
 }
 
 func (l *PingLogic) Ping(in *proto.PingReq) (*proto.PingResp, error) {
- time.Sleep(50*time.Millisecond)
+	time.Sleep(50*time.Millisecond)
 
- return &proto.PingResp{}, nil
+	return &proto.PingResp{}, nil
 }
 
 ```
@@ -371,64 +373,64 @@ func (l *PingLogic) Ping(in *proto.PingReq) (*proto.PingResp, error) {
 package main
 
 import (
- "context"
- "flag"
- "fmt"
- "net/http"
+	"context"
+	"flag"
+	"fmt"
+	"net/http"
 
- "github.com/zeromicro/go-zero/core/logx"
- "github.com/zeromicro/go-zero/core/syncx"
- "google.golang.org/grpc/codes"
- "google.golang.org/grpc/status"
+	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/syncx"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
- "demo/grpc-limit-demo/internal/config"
- "demo/grpc-limit-demo/internal/server"
- "demo/grpc-limit-demo/internal/svc"
- "demo/grpc-limit-demo/proto"
+	"demo/grpc-limit-demo/internal/config"
+	"demo/grpc-limit-demo/internal/server"
+	"demo/grpc-limit-demo/internal/svc"
+	"demo/grpc-limit-demo/proto"
 
- "github.com/zeromicro/go-zero/core/conf"
- "github.com/zeromicro/go-zero/core/service"
- "github.com/zeromicro/go-zero/zrpc"
- "google.golang.org/grpc"
- "google.golang.org/grpc/reflection"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/core/service"
+	"github.com/zeromicro/go-zero/zrpc"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 var configFile = flag.String("f", "etc/limit.yaml", "the config file")
 
 func main() {
- flag.Parse()
+	flag.Parse()
 
- var c config.Config
- conf.MustLoad(*configFile, &c)
- ctx := svc.NewServiceContext(c)
+	var c config.Config
+	conf.MustLoad(*configFile, &c)
+	ctx := svc.NewServiceContext(c)
 
- s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-  proto.RegisterLimitServer(grpcServer, server.NewLimitServer(ctx))
+	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
+		proto.RegisterLimitServer(grpcServer, server.NewLimitServer(ctx))
 
-  if c.Mode == service.DevMode || c.Mode == service.TestMode {
-   reflection.Register(grpcServer)
-  }
- })
- var n = 100
- l := syncx.NewLimit(n)
- s.AddUnaryInterceptors(func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
-  if l.TryBorrow() {
-   defer func() {
-    if err := l.Return(); err != nil {
-     logx.Error(err)
-    }
-   }()
-   return handler(ctx, req)
-  } else {
-   logx.Errorf("concurrent connections over %d, rejected with code %d",
-    n, http.StatusServiceUnavailable)
-   return nil, status.Error(codes.Unavailable, "concurrent connections over limit")
-  }
- })
- defer s.Stop()
+		if c.Mode == service.DevMode || c.Mode == service.TestMode {
+			reflection.Register(grpcServer)
+		}
+	})
+	var n = 100
+	l := syncx.NewLimit(n)
+	s.AddUnaryInterceptors(func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+		if l.TryBorrow() {
+			defer func() {
+				if err := l.Return(); err != nil {
+					logx.Error(err)
+				}
+			}()
+			return handler(ctx, req)
+		} else {
+			logx.Errorf("concurrent connections over %d, rejected with code %d",
+				n, http.StatusServiceUnavailable)
+			return nil, status.Error(codes.Unavailable, "concurrent connections over limit")
+		}
+	})
+	defer s.Stop()
 
- fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
- s.Start()
+	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
+	s.Start()
 }
 
 }
@@ -446,8 +448,8 @@ ListenOn: 0.0.0.0:8080
 启动服务
 
 ```shell
-cd ~/workspace/demo/grpc-limit-demo
-go run limit.go
+$ cd ~/workspace/demo/grpc-limit-demo
+$ go run limit.go
 ```
 
 现在 grpc server 服务有了，我们用 <a href="https://github.com/bojand/ghz" target="_blank">ghz</a> 来压测一下 。
@@ -490,7 +492,6 @@ Latency distribution:
 Status code distribution:
   [OK]   110 responses
 ```
-
 可以看到所有的请求都是成功的，我们再来压测 110 qps。
 
 ```shell
@@ -537,6 +538,7 @@ Error distribution:
 ```
 
 可以看到，当并发量超过 100 时，就会返回 `rpc error: code = Unavailable desc = concurrent connections over limit`。
+
 
 ## 参考文献
 

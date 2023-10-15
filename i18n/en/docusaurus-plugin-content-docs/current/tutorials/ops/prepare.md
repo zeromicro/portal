@@ -29,8 +29,8 @@ So we need to configure the following：
 Creating folders
 
 ```shell
-mkdir gitlab && cd gitlab
-vim docker-compose.yml
+$ mkdir gitlab && cd gitlab
+$ vim docker-compose.yml
 ```
 
 docker-compose.yml
@@ -63,14 +63,14 @@ services:
 Run
 
 ```shell
-docker-compose up -d
+$  docker-compose up -d
 ```
 
 This execution may take a little long! Let's go to the cup to rest again!
 
 ### 2.2 Visit gitlab
 
-Visit <http://192.168.1.103> (i.e. http://"docker-compose")
+Visit http://192.168.1.103 (i.e. http://"docker-compose")
 
 <Image src={require('../../resource/tutorials/ops/image-20220209100353045.png').default} alt='gitlab' />
 
@@ -98,12 +98,12 @@ Click on the project, go back to the project just created and upload the k8scode
 
 ### 3.1 Deployment of harbor
 
-Download harbo harbo <https://github.com/goharbor/harbor/releases/download/v2.2.0/harbor-offline-installer-v2.2.0.tgz>
+Download harbo harbo https://github.com/goharbor/harbor/releases/download/v2.2.0/harbor-offline-installer-v2.2.0.tgz
 
 Enter the harbor folder after downloading
 
 ```shell
-cd harbor && cp harbor.yml.tmpl harbor.yml
+$ cd harbor && cp harbor.yml.tmpl harbor.yml
 ```
 
 We open harbor.yml, modify the following
@@ -133,7 +133,7 @@ Run "sudo ./install.sh" directly to wait a little longer.
 
 ### 3.2 Visit harbor
 
-Browser input <http://192.168.1.1180:8077>
+Browser input http://192.168.1.1180:8077
 
 Account: admin
 
@@ -154,8 +154,8 @@ This is our halbor build.
 Creating folders
 
 ```shell
-mkdir jenkins && cd jenkins
-vim docker-compose.yml
+$ mkdir jenkins && cd jenkins
+$ vim docker-compose.yml
 ```
 
 docker-compose.yml
@@ -217,7 +217,7 @@ esac
 Run
 
 ```shell
-docker-compose up -d
+$ docker-compose up -d
 ```
 
 This time is not slow. Can drink a cup of coffee
@@ -261,7 +261,7 @@ These 4 parts above can also be hit directly in the mirror, and I leave it to yo
 
 ### 4.3 Visit to jenkins
 
-<http://192.168.1.180:8989>
+http://192.168.1.180:8989
 
 <Image src={require('../../resource/tutorials/ops/image-20220209104638510.png').default} alt='gitlab' />
 
@@ -315,7 +315,7 @@ Suffice it.
 
 ### 4.7 Add harbor repository configuration
 
-Go to homepage, click on the menu on the left `Manage Jenkins`-> `Configure System`
+Go to homepage, click on the menu on the left `Manage Jenkins `-> `Configure System`
 
 <Image src={require('../../resource/tutorials/ops/image-20220209112756140.png').default} alt='gitlab' />
 

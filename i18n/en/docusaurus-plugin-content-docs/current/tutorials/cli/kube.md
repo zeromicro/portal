@@ -99,6 +99,7 @@ Flags:
 | serviceAccount                                       | string                                              | NO                                             | Empty string                                       | Service account                                                                                                   |
 | targetPort                                           | int                                                 | NO                                             | 0                                                  | Target port                                                                                                       |
 
+
 ## Examples
 
 We use the redis image as an example of how to generate employment yaml files using goctl kube uploy instructions.

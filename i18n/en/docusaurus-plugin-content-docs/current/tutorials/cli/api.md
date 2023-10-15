@@ -89,7 +89,6 @@ Flags:
   -h, --help         help for doc
       --o string     The output markdown directory
 ```
-
 | <img width={100} /> Parameter field | <img width={150} /> Parameter Type | <img width={200} /> Required? | <img width={200} /> Default value | <img width={200} /> Parameter Description |
 | ---------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------- |
 | dir                                                  | string                                              | YES                                            | Empty string                                       | api file directory                                         |
@@ -186,7 +185,7 @@ Flags:
 goctl api new requires a terminal parameter to specify the name of the service to be generated, output directory to the current work directory, e.g. demo service generated instructions below：
 
 ```bash
-goctl api new demo
+$ goctl api new demo
 ```
 
 :::

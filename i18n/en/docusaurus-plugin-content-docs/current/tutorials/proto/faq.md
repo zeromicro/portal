@@ -39,11 +39,11 @@ service demo{
 ## Why does the use of packages proto and service when goctl is used to generate gRPC code?
 
 For outsourced proto,goctl is not fully controlled, there are several issues goctl not resolving：
-
 1. Outgoing proto if level is deep, or in other public warehouses, goctl is unable to determine whether the outpaced proto has generated pb.go
 2. If the proto generated pb.go, with pb.go generated in which directory, whether it is in the same project, if out of the current project, pb.go works like go module etc. goctl is not known and therefore has no legal location to its true go package.
 3. If the outsourced proto is not generated, since it is public proto, whether goctl needs to be generated for each introduction, nor is it possible to resolve
 
 ## 3. goctl generation gRPC does not support `google/protocol/empty.proto` package import
-
 Answers, with 1,2
+
+

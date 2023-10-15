@@ -31,7 +31,6 @@ srv := rest.MustNewServer(rest.RestConf{
 ```
 
 对应配置开启:
-
 ```yaml
 Name: user-api
 Host: 0.0.0.0
@@ -42,6 +41,7 @@ DevServer:
     Enabled: true
 
 ```
+
 
 可以通过配置修改健康检查端口和 Path，比如把健康检查端口和 Path 修改为`8080`和`ping`
 
@@ -59,7 +59,6 @@ srv := rest.MustNewServer(rest.RestConf{
 ```
 
 对应配置开启:
-
 ```yaml
 Name: user-api
 Host: 0.0.0.0
@@ -71,6 +70,7 @@ DevServer:
     Port: 8080
     HealthPath: "/ping"
 ```
+
 
 ## 日志收集
 
@@ -86,6 +86,7 @@ type Config struct {
     Batcher  string  `json:",default=jaeger,options=jaeger|zipkin|otlpgrpc|otlphttp"`
 }
 ```
+
 
 go-zero链路追踪支持(jaeger\zipkin)只需要在配置中添加几行配置就可开启，无需修改任何代码，示例如下：
 
@@ -122,6 +123,7 @@ Telemetry:
   Sampler: 1.0
   Batcher: jaeger
 ```
+
 
 更多详细示例请参考 [tracing 示例](https://github.com/zeromicro/zero-examples/tree/main/tracing)
 

@@ -21,4 +21,5 @@ import { Image } from '@arco-design/web-react';
 
 Open `Visual Studio Code` | `Extensions`, search `goctl`, click `install`.
 
+
 <Image src={require('.././../resource/tasks/installation/vscode-goctl.png').default} alt='vscode plugin goctl' />

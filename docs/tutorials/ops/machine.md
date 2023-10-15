@@ -46,8 +46,8 @@ service apicode{
 ### 2.2、使用 goctl 生成代码
 
 ```sh
-cd apicode && goctl api go -api *.api -dir ./
-go mod tidy
+$ cd apicode && goctl api go -api *.api -dir ./
+$ go mod tidy
 ```
 
 ### 2.3、项目结构
@@ -93,10 +93,10 @@ func (l *HelloLogic) Hello(req *types.HelloReq) (resp *types.HelloResp, err erro
 启动项目
 
 ```shell
-go run apicode.go
+$ go run apicode.go
 ```
 
-浏览器输入<http://127.0.0.1:8888/hello回车访问> ，可以看到浏览器输出了我们在 logic 中添加的代码
+浏览器输入http://127.0.0.1:8888/hello回车访问 ，可以看到浏览器输出了我们在 logic 中添加的代码
 
 ```json
 {
@@ -148,7 +148,7 @@ alt='gitlab-pz-jenkins-sshkey'
 
 【注】如果看到有提示“To do so , press 'Check now' in thePlugin Manager,or restart jenkins” ，就重启一下 jenkins，配合在 pipline 中添加这个语法即可
 
-<https://github.com/jenkinsci/golang-plugin>
+https://github.com/jenkinsci/golang-plugin
 
 ### 3.1 创建 pipline
 
@@ -182,7 +182,7 @@ alt='deploy-server-pipline-3'
 查看 jenkins 所在的物理机公钥：
 
 ```shell
-cat /root/.ssh/id_rsa.pub
+$ cat /root/.ssh/id_rsa.pub
 ```
 
 配置到运行服务物理机的 /root/.ssh/authorized_keys 即可。
@@ -258,7 +258,7 @@ src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default}
 alt='deploy-server-deploy-2'
 />
 
-构建完成，最后我们来访问 <http://192.168.1.183:8889/hello?msg=mikael> ，可以看到页面上输出
+构建完成，最后我们来访问 http://192.168.1.183:8889/hello?msg=mikael ，可以看到页面上输出
 
 ```json
 {

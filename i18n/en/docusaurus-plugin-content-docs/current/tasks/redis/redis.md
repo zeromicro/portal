@@ -35,7 +35,6 @@ Tls: Turn on tls:
 ```
 
 Initialize redis configuration, we recommend loading using conf.MustLoad for configurations, reference[configuration profiles](/docs/tasks/static/configuration)
-
 ```go
 conf := redis.RedisConf{
     Host: "127.0.0.1:6379",
@@ -79,6 +78,7 @@ String values are associated to key and extracted from redis.
     }
     fmt.Println(v)
 ```
+
 
 ## Full examples below
 

@@ -13,20 +13,20 @@ golang 结构体定义：
 
 ```go
 RestConf struct {
-  service.ServiceConf
-  Host     string `json:",default=0.0.0.0"`
-  Port     int
-  CertFile string `json:",optional"`
-  KeyFile  string `json:",optional"`
-  Verbose  bool   `json:",optional"`
-  MaxConns int    `json:",default=10000"`
-  MaxBytes int64  `json:",default=1048576"`
-  // milliseconds
-  Timeout      int64         `json:",default=3000"`
-  CpuThreshold int64         `json:",default=900,range=[0:1000]"`
-  Signature    SignatureConf `json:",optional"`
-  Middlewares MiddlewaresConf
- }
+		service.ServiceConf
+		Host     string `json:",default=0.0.0.0"`
+		Port     int
+		CertFile string `json:",optional"`
+		KeyFile  string `json:",optional"`
+		Verbose  bool   `json:",optional"`
+		MaxConns int    `json:",default=10000"`
+		MaxBytes int64  `json:",default=1048576"`
+		// milliseconds
+		Timeout      int64         `json:",default=3000"`
+		CpuThreshold int64         `json:",default=900,range=[0:1000]"`
+		Signature    SignatureConf `json:",optional"`
+		Middlewares MiddlewaresConf
+	}
 ```
 
 http server主要配置项如下表：
@@ -47,3 +47,4 @@ http server主要配置项如下表：
 
 ServiceConfig 通用配置请参考 <a href="/docs/tutorials/go-zero/configuration/service" target="_blank">《基础服务配置》</a>
 MiddlewaresConf 配置可参考 <a href="/docs/tutorials/http/server/middleware" target="_blank">《中间件》</a>
+

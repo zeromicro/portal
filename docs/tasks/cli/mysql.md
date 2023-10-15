@@ -7,7 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <a href="/docs/tutorials/mysql/curd" target="_blank">MySQL 用法</a>
-
 ## 概述
 
 mysql 代码生成支持从 sql 文件和数据库链接生成， 且支持生成带缓存逻辑代码。
@@ -49,7 +48,7 @@ mysql 生成的代码内容有数据表对应的 golang 结构体、CURD 操作�
 1. 新建工作空间和目录工程
 
    ```bash
-   mkdir -p ~/workspace/model/mysql
+   $ mkdir -p ~/workspace/model/mysql
    ```
 
 1. 将上文中存储的 `user.sql` 文件移动到 `~/workspace/model/mysql` 目录下
