@@ -49,7 +49,7 @@ type ServerMiddlewaresConf struct {
 | ------------- | --------------------- | ------------------------------------------------------------------------------------------------ | ------------- | --------- |
 | Etcd          | EtcdConf              | Service finds configuration, when using etcd for service discovery                               | None          | NO        |
 | Endpoints     | String Type Array     | RPC Server address list, used for direct link, configured when required for a rpc server cluster | None          | NO        |
-| Target        | string                | Domain URL solved, please refer to https://github.com/grpc/grpc/blob/master/doc/naming.md        | None          | NO        |
+| Target        | string                | Domain URL solved, please refer to <https://github.com/grpc/grpc/blob/master/doc/naming.md>        | None          | NO        |
 | App           | string                | rpc authenticated app name, only configured when rpserver opens authentication                   | None          | NO        |
 | Token         | string                | rpc authenticated token, only configured when rpserver opens authentication                      | None          | NO        |
 | NonBlock      | bool                  | Whether to block mode, when true does not block rpc links                                        | false         | NO        |

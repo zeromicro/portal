@@ -28,24 +28,24 @@ Port: 8080
 
 ```go
 func main() {
-	var restConf rest.RestConf
-	conf.MustLoad("etc/helloworld.yaml", &restConf)
-	s, err := rest.NewServer(restConf)
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+ var restConf rest.RestConf
+ conf.MustLoad("etc/helloworld.yaml", &restConf)
+ s, err := rest.NewServer(restConf)
+ if err != nil {
+  log.Fatal(err)
+  return
+ }
 
-	s.AddRoute(rest.Route{ // 添加路由
-		Method: http.MethodGet,
-		Path:   "/hello/world",
-		Handler: func(writer http.ResponseWriter, request *http.Request) { // 处理函数
-			httpx.OkJson(writer, "Hello World!")
-		},
-	})
+ s.AddRoute(rest.Route{ // 添加路由
+  Method: http.MethodGet,
+  Path:   "/hello/world",
+  Handler: func(writer http.ResponseWriter, request *http.Request) { // 处理函数
+   httpx.OkJson(writer, "Hello World!")
+  },
+ })
 
-	defer s.Stop()
-	s.Start() // 启动服务
+ defer s.Stop()
+ s.Start() // 启动服务
 }
 ```
 

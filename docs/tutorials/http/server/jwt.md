@@ -17,26 +17,27 @@ go-zero 中内置了 JWT 的解密和验证功能，你可以通过可选参数�
 
 ```go {9}
 func main() {
-	srv := rest.MustNewServer(rest.RestConf{
-		Port: 8080,
-	})
-	srv.AddRoute(rest.Route{
-		Method:  http.MethodGet,
-		Path:    "/hello",
-		Handler: handle,
-	}, rest.WithJwt("abc123")/*开启 JWT 功能，并设置 secret 为 abc123 */)
-	defer srv.Stop()
-	srv.Start()
+ srv := rest.MustNewServer(rest.RestConf{
+  Port: 8080,
+ })
+ srv.AddRoute(rest.Route{
+  Method:  http.MethodGet,
+  Path:    "/hello",
+  Handler: handle,
+ }, rest.WithJwt("abc123")/*开启 JWT 功能，并设置 secret 为 abc123 */)
+ defer srv.Stop()
+ srv.Start()
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	httpx.OkJson(w, "hello world")
+ httpx.OkJson(w, "hello world")
 }
 ```
 
 ## JWT传输
 
 在HTTP请求添加名为`Authorization`的header，形式如下
+
 ```html
 Authorization: Bearer <token>
 ```
@@ -59,33 +60,36 @@ func getJwtToken(secretKey string, iat, seconds int64,payload string) (string, e
 }
 ```
 
-
 ## JWT 认证失败自定义处理返回
 
 在main.go中定义一个callback即可
+
 ```go
 func main() {
-	........
+ ........
 
-	server := rest.MustNewServer(c.RestConf, rest.WithUnauthorizedCallback(func(w http.ResponseWriter, r *http.Request, err error) {
-		// 自定义处理返回
-	}))
+ server := rest.MustNewServer(c.RestConf, rest.WithUnauthorizedCallback(func(w http.ResponseWriter, r *http.Request, err error) {
+  // 自定义处理返回
+ }))
 
-	.......
+ .......
 }
 
 ```
 
 :::tip
 如果 JWT 鉴权失败会出现如下类似错误：
+
 ```
 HTTP/1.1 401 Unauthorized
 Date: Mon, 08 Feb 2023 23:41:57 GMT
 Content-Length: 0
 ```
+
 :::
 
 ## JWT 过期管理
+
 jwt token 过期管理可以自己使用 redis 实现。
 
 ## 参考文献

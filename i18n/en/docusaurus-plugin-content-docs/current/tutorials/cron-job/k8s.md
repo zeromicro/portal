@@ -12,7 +12,7 @@ With regard to scheduled tasks, there are a variety of options such as third-par
 
 ## 2. Project address
 
-Project address：https://github.com/Mikaelemmm/zerok8scron
+Project address：<https://github.com/Mikaelemmm/zerok8scron>
 
 We've integrated cobra,k8s cronjob directly executes job name at each schedule
 
@@ -90,7 +90,6 @@ func initConfig() {
 
 ```
 
-
 ```go title="internal/logic/hello.go"
 package logic
 
@@ -126,19 +125,18 @@ We use the default profile as etc/cron.yaml
 ### 4.1 Local execution once
 
 ```sh
-$ go run main.go hello
+go run main.go hello
 ```
 
 ### 4.2 Executed once in docker
 
 ```sh
-$ goctl docker -go main.go #创建dockerfile，如果你用上面的项目，项目中已经创建好可以省略
-$ docker build -t zerok8scron:v1 . # 构建镜像，如果你用上面的项目，项目中已经创建好可以省略
-$ docker run zerok8scron:v1 hello #运行即可
+goctl docker -go main.go #创建dockerfile，如果你用上面的项目，项目中已经创建好可以省略
+docker build -t zerok8scron:v1 . # 构建镜像，如果你用上面的项目，项目中已经创建好可以省略
+docker run zerok8scron:v1 hello #运行即可
 ```
 
 ### 4.3 k8s with cronjob scheduling once a minute
-
 
 ```yaml title="cronjob.yaml"
 apiVersion: batch/v1
@@ -162,7 +160,7 @@ spec:
 Run
 
 ```shell
-$ kubectl apply -f cronjob.yaml
+kubectl apply -f cronjob.yaml
 ```
 
 Then you can view the cronjob state and output

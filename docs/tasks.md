@@ -31,29 +31,29 @@ Go 官网概括如下：
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://go.dev/dl/go1.19.4.windows-amd64.msi" >
 <p>支持 Windows 7 及以后，Intel 64 位处理器</p>
 <a>go1.19.4.windows-amd64.msi（135MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://go.dev/dl/go1.19.4.darwin-arm64.pkg" >
 <p>支持 macOS 11 及以后，Apple 64 位处理器</p>
 <a>go1.19.4.darwin-arm64.pkg（139MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://go.dev/dl/go1.19.4.darwin-amd64.pkg" >
 <p>支持 macOS 10.13 及以后，64 位处理器</p>
 <a>go1.19.4.darwin-amd64.pkg（145MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
 <p>支持 Linux 2.6.32 及以后，Intel 64 位处理器</p>
 <a>go1.19.4.linux-amd64.tar.gz（142MB）</a>
@@ -73,7 +73,7 @@ href="https://go.dev/dl/go1.19.4.linux-amd64.tar.gz" >
 1. 删除 `/usr/local/go` 文件夹（如果存在）来删除任何以前的 Go 安装，然后将刚刚下载的存档解压缩到 `/usr/local`，在 `/usr/local/go` 中创建一个新的 Go 目录：
 
 ```bash
-$ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 ```
 
 :::note 注意
@@ -84,7 +84,7 @@ $ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz
 2. 将 `/usr/local/go/bin` 添加到 `PATH` 环境变量。您可以通过将以下行添加到 `$HOME/.profile` 或 `/etc/profile`（对于系统范围的安装）来执行此操作：
 
 ```bash
-$ export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
 ```
 
 :::note 注意
@@ -94,7 +94,7 @@ $ export PATH=$PATH:/usr/local/go/bin
 3. 打开终端并键入以下命令来验证您是否已安装：
 
 ```bash
-$ go version
+go version
 ```
 
 4. 确认该指令已经打印了已安装的 Go 版本。
@@ -108,7 +108,7 @@ $ go version
 2. 打开终端并键入以下命令来验证您是否已安装：
 
 ```bash
-$ go version
+go version
 ```
 
 3. 确认该指令已经打印了已安装的 Go 版本。
@@ -126,7 +126,7 @@ $ go version
 - 在出现的命令提示符窗口中，键入以下命令：
 
   ```bash
-  $ go version
+  go version
   ```
 
 3. 确认该指令已经打印了已安装的 Go 版本。
@@ -141,13 +141,13 @@ $ go version
 在 go 1.11 以后建议将 `GO111MODULE` 值显式设置为 `on`，以免后续拉取依赖出现一些不必要的错误。
 
 ```bash
-$ go env -w GO111MODULE=on
+go env -w GO111MODULE=on
 ```
 
 ### 3.2 配置 Proxy
 
 ```bash
-$ go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GOPROXY=https://goproxy.cn,direct
 ```
 
 ### 3.3 查看配置

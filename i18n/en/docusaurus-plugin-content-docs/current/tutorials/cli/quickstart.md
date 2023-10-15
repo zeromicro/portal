@@ -29,7 +29,6 @@ Flags:
 | ---------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------------- |
 | service-type                                         | string                                              | NO                                             | mono                                               | Generate demo service type, mono：mono service, micro：microservice |
 
-
 ## Examples
 
 <Tabs>
@@ -39,6 +38,7 @@ Flags:
 If the `mono` type is selected, goctl generates a minimized HTTP service and starts the HTTP service.
 
 1. Generate code
+
 ```bash
 # enter user home
 $ cd ~

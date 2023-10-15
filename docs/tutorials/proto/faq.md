@@ -39,11 +39,11 @@ service demo{
 ## 2. 为什么使用 goctl 生成 gRPC 代码时 proto 不支持使用包外 proto 和 service?
 
 对于包外的 proto，goctl 没法完全控制，有几个问题 goctl 没法解决：
+
 1. 包外的 proto 如果层级很深，亦或在其他公共仓库中，goctl 没法确定包外 proto 是否已经生成了 pb.go
 2. 如果包外的 proto 生成了 pb.go，那些 pb.go 生成在哪些目录下，是否在同一个工程中，如果在当前工程外，pb.go 所在工程是否使用了 go module 等等，goctl 没法得知，因此没法定位到其真正的 go package。
 3. 如果包外的 proto 没有生成，既然其属于公共 proto，那么 goctl 是否需要针对每次引入都要生成，这个也无从解决
 
 ## 3. goctl 生成 gRPC 不支持 `google/protobuf/empty.proto` 包的 import
+
 答案，同 1，2
-
-

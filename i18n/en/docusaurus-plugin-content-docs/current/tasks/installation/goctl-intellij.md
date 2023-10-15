@@ -13,7 +13,7 @@ import { IconMoreVertical } from '@arco-design/web-react/icon';
 
 goctl-intelij is an intelij editor plugin for go-zero api describing language that supports api describing language highlighting, syntax detection, quick hint and creating template features.
 
-Project address：https://github.com/zeroicro/goctl-intelij
+Project address：<https://github.com/zeroicro/goctl-intelij>
 
 ## Installation
 
@@ -25,10 +25,11 @@ goctl-intelij installation have 2 ways
 ### 1. Install from disk
 
 ###
+
 <DocsCard
   className="cordova-ee-card"
   header="Goctl-1.1.3.zip"
-  href="https://github.com/zeromicro/goctl-intellij/releases/download/v1.1.3/Goctl-1.1.3.zip"
+  href="<https://github.com/zeromicro/goctl-intellij/releases/download/v1.1.3/Goctl-1.1.3.zip>"
 >
   <div>
     <img src="/logos/logo.svg" class="cordova-ee-img" />

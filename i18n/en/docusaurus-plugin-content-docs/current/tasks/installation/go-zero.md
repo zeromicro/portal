@@ -13,9 +13,9 @@ It is recommended that `GOPROXY`be set up at Golang installation. See <a href="/
 ## Installation
 
 ```bash
-$ mkdir <project name> && cd <project name> # project name is specific value
-$ go mod init <module name> # module name is specific value
-$ github.com/zeromicro/go-zero@latest
+mkdir <project name> && cd <project name> # project name is specific value
+go mod init <module name> # module name is specific value
+github.com/zeromicro/go-zero@latest
 ```
 
 ## FAQ
@@ -25,6 +25,6 @@ $ github.com/zeromicro/go-zero@latest
 Confirm whether `GO111MODULE` is on
 
 ```shell
-$ go env -w GO111MODULE=on
-$ go env -w GOPROXY=https://goproxy.cn,direct
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
 ```

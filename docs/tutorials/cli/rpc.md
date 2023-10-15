@@ -28,7 +28,7 @@ Flags:
       --home string     The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
       --o string        Output a sample proto file
       --remote string   The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                        	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
+                         The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
 
 
 Use "goctl rpc [command] --help" for more information about a command.
@@ -44,7 +44,7 @@ Use "goctl rpc [command] --help" for more information about a command.
 示例：生成 proto 文件
 
 ```bash
-$ goctl rpc --o greet.proto
+goctl rpc --o greet.proto
 ```
 
 ### goctl rpc new
@@ -64,7 +64,7 @@ Flags:
       --home string     The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
       --idea            Whether the command execution environment is from idea plugin.
       --remote string   The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                        	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
+                         The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
       --style string    The file naming format, see [https://github.com/zeromicro/go-zero/tree/master/tools/goctl/config/readme.md] (default "gozero")
   -v, --verbose         Enable log output
 ```
@@ -80,7 +80,7 @@ Flags:
 示例：
 
 ```bahs
-$ goctl rpc new greet
+goctl rpc new greet
 ```
 
 ### goctl rpc protoc
@@ -103,7 +103,7 @@ Flags:
       --home string       The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
   -m, --multiple          Generated in multiple rpc service mode
       --remote string     The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                          	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
+                           The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
       --style string      The file naming format, see [https://github.com/zeromicro/go-zero/tree/master/tools/goctl/config/readme.md] (default "gozero")
   -v, --verbose           Enable log output
       --zrpc_out string   The zrpc output directory
@@ -169,7 +169,7 @@ Flags:
       --home string     The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
       --o string        Output a sample proto file
       --remote string   The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                        	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
+                         The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
 ```
 
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明           |
@@ -182,7 +182,7 @@ Flags:
 示例：
 
 ```bash
-$ goctl rpc template -o greet.proto
+goctl rpc template -o greet.proto
 ```
 
 ## 参考文献

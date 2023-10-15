@@ -19,7 +19,7 @@ docker 部署我们要使用到 harbor 镜像象仓库了，本地代码编写�
 在 apicode 项目根目录下执行如下命令生成 Dockerfile
 
 ```sh
-$ goctl docker -go apicode.go
+goctl docker -go apicode.go
 ```
 
 ### 2.1、上传代码
@@ -57,7 +57,7 @@ alt='gitlab-pz-jenkins-sshkey'
 />
 
 ```sh
-$ docker push 192.168.1.180:8077/apicode/REPOSITORY[:TAG]
+docker push 192.168.1.180:8077/apicode/REPOSITORY[:TAG]
 ```
 
 ## 4、Jenkins 发布
@@ -96,7 +96,7 @@ alt='gitlab-pz-jenkins-sshkey'
 查看 jenkins 所在的物理机公钥：
 
 ```shell
-$ cat /root/.ssh/id_rsa.pub
+cat /root/.ssh/id_rsa.pub
 ```
 
 配置到运行服务物理机的 /root/.ssh/authorized_keys 即可。
@@ -152,7 +152,7 @@ $ cat /root/.ssh/id_rsa.pub
 
           stage('上传到镜像仓库') {
               steps{
-              	  //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
+                 //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
                   sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
                   sh 'docker tag  ${image} ${docker_repo}/apicode/${image}'
                   sh 'docker push ${docker_repo}/apicode/${image}'
@@ -187,7 +187,7 @@ src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default}
 alt='gitlab-pz-jenkins-sshkey'
 />
 
-构建完成，最后我们来访问http://192.168.1.183:8889/hello?msg=mikael ，可以看到页面上输出
+构建完成，最后我们来访问<http://192.168.1.183:8889/hello?msg=mikael> ，可以看到页面上输出
 
 ```json
 {

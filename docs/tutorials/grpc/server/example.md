@@ -32,23 +32,24 @@ go-zero 提供了 gRPC server 能力，其提供了：
 ### 1. 创建服务目录，初始化 go module 工程
 
 ```shell
-$ mkdir demo && cd demo
-$ go mod init demo
+mkdir demo && cd demo
+go mod init demo
 ```
 
 ### 2. 快速生成一个 proto 文件
 
 ```protobuf
-$ goctl rpc -o greet.proto
+goctl rpc -o greet.proto
 ```
 
 ### 3. 根据 proto 生成 gRPC 服务
 
 ```shell
-$ goctl rpc protoc greet.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
+goctl rpc protoc greet.proto --go_out=.  --go-grpc_out=.  --zrpc_out=.
 ```
 
 :::tip 温馨提示
+
 1. goctl 安装请参考 <a href="/docs/tasks/installation/goctl" target="_blank">《goctl 安装》</a>
 1. rpc 代码生成指令教程请参考 <a href="/docs/tutorials/cli/rpc" target="_blank">《goctl rpc》</a>
 1. proto 使用相关问题请参考 <a href="/docs/tutorials/proto/faq" target="_blank">《proto 代码生成常见问题》</a>
@@ -124,7 +125,7 @@ greet.rpc/7587870460981677828
 由于 etcd 注册的 key 都是 `greet.rpc`, 从业务表现层来看，是将一个 key 注册到了 etcd，实则 go-zero 底层是将该 key 拼上了一个 etcd
 的租户 id 来存储到 etcd 的，因此，在服务发现时，也会通过 `etcdctl get --prefix` 指令去获取所有可用的 ip 节点。
 
-</TabItem> 
+</TabItem>
 
 <TabItem value="直连模式" label="直连模式" default>
 
@@ -134,7 +135,8 @@ greet.rpc/7587870460981677828
 Name: greet.rpc
 ListenOn: 0.0.0.0:8080
 ```
-</TabItem> 
+
+</TabItem>
 
 </Tabs>
 
@@ -149,27 +151,27 @@ ListenOn: 0.0.0.0:8080
 package server
 
 import (
-	"context"
+ "context"
 
-	"demo/greet"
-	"demo/internal/logic"
-	"demo/internal/svc"
+ "demo/greet"
+ "demo/internal/logic"
+ "demo/internal/svc"
 )
 
 type GreetServer struct {
-	svcCtx *svc.ServiceContext
-	greet.UnimplementedGreetServer
+ svcCtx *svc.ServiceContext
+ greet.UnimplementedGreetServer
 }
 
 func NewGreetServer(svcCtx *svc.ServiceContext) *GreetServer {
-	return &GreetServer{
-		svcCtx: svcCtx,
-	}
+ return &GreetServer{
+  svcCtx: svcCtx,
+ }
 }
 
 func (s *GreetServer) Ping(ctx context.Context, in *greet.Request) (*greet.Response, error) {
-	l := logic.NewPingLogic(ctx, s.svcCtx)
-	return l.Ping(in)
+ l := logic.NewPingLogic(ctx, s.svcCtx)
+ return l.Ping(in)
 }
 
 ```
@@ -182,32 +184,32 @@ func (s *GreetServer) Ping(ctx context.Context, in *greet.Request) (*greet.Respo
 package logic
 
 import (
-	"context"
+ "context"
 
-	"demo/greet"
-	"demo/internal/svc"
+ "demo/greet"
+ "demo/internal/svc"
 
-	"github.com/zeromicro/go-zero/core/logx"
+ "github.com/zeromicro/go-zero/core/logx"
 )
 
 type PingLogic struct {
-	ctx    context.Context
-	svcCtx *svc.ServiceContext
-	logx.Logger
+ ctx    context.Context
+ svcCtx *svc.ServiceContext
+ logx.Logger
 }
 
 func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
-	return &PingLogic{
-		ctx:    ctx,
-		svcCtx: svcCtx,
-		Logger: logx.WithContext(ctx),
-	}
+ return &PingLogic{
+  ctx:    ctx,
+  svcCtx: svcCtx,
+  Logger: logx.WithContext(ctx),
+ }
 }
 
 func (l *PingLogic) Ping(in *greet.Request) (*greet.Response, error) {
-	return &greet.Response{
-		Pong: "pong",
-	}, nil
+ return &greet.Response{
+  Pong: "pong",
+ }, nil
 }
 
 ```
@@ -225,20 +227,20 @@ gRPC 提供了调试功能，以便于我们可以通过 <a href="https://github
 package main
 ...
 func main() {
-	flag.Parse()
+ flag.Parse()
 
-	var c config.Config
-	conf.MustLoad(*configFile, &c)
-	ctx := svc.NewServiceContext(c)
+ var c config.Config
+ conf.MustLoad(*configFile, &c)
+ ctx := svc.NewServiceContext(c)
 
-	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		greet.RegisterGreetServer(grpcServer, server.NewGreetServer(ctx))
+ s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
+  greet.RegisterGreetServer(grpcServer, server.NewGreetServer(ctx))
 
-		if c.Mode == service.DevMode || c.Mode == service.TestMode {
-			reflection.Register(grpcServer)
-		}
-	})
-	...
+  if c.Mode == service.DevMode || c.Mode == service.TestMode {
+   reflection.Register(grpcServer)
+  }
+ })
+ ...
 }
 
 ```
@@ -282,46 +284,44 @@ go-zero rpc 内置了非常丰富的中间件，详情可查看<a href="https://
 
 #### 自定义中间件
 
-
 ```go {21-22,28-35}
 package main
 ...
 var configFile = flag.String("f", "etc/greet.yaml", "the config file")
 
 func main() {
-	flag.Parse()
+ flag.Parse()
 
-	var c config.Config
-	conf.MustLoad(*configFile, &c)
-	ctx := svc.NewServiceContext(c)
+ var c config.Config
+ conf.MustLoad(*configFile, &c)
+ ctx := svc.NewServiceContext(c)
 
-	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		greet.RegisterGreetServer(grpcServer, server.NewGreetServer(ctx))
+ s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
+  greet.RegisterGreetServer(grpcServer, server.NewGreetServer(ctx))
 
-		if c.Mode == service.DevMode || c.Mode == service.TestMode {
-			reflection.Register(grpcServer)
-		}
-	})
-	defer s.Stop()
+  if c.Mode == service.DevMode || c.Mode == service.TestMode {
+   reflection.Register(grpcServer)
+  }
+ })
+ defer s.Stop()
 
-	s.AddUnaryInterceptors(exampleUnaryInterceptor)
-	s.AddStreamInterceptors(exampleStreamInterceptor)
+ s.AddUnaryInterceptors(exampleUnaryInterceptor)
+ s.AddStreamInterceptors(exampleStreamInterceptor)
 
-	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
-	s.Start()
+ fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
+ s.Start()
 }
 
 func exampleUnaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
-	// TODO: fill your logic here
-	return handler(ctx, req)
+ // TODO: fill your logic here
+ return handler(ctx, req)
 }
 func exampleStreamInterceptor(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
-	// TODO: fill your logic here
-	return handler(srv, ss)
+ // TODO: fill your logic here
+ return handler(srv, ss)
 }
 ```
 
 ### 10. metadata 传值
 
 参考 <a href="https://github.com/grpc/grpc-go/blob/master/Documentation/grpc-metadata.md" target="_blank">《Metadata》</a>
-

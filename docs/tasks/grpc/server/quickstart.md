@@ -40,7 +40,6 @@ yaml 配置内容及 server.go 代码如下
 
 <TabItem value="etc/greet-server.yaml" label="etc/greet-server.yaml" default>
 
-
 ```yaml
 Name: greet.rpc
 ListenOn: 127.0.0.1:8080
@@ -52,23 +51,23 @@ ListenOn: 127.0.0.1:8080
 
 ```go
 func main() {
-	var serverConf zrpc.RpcServerConf
-	conf.MustLoad("etc/greet-server.yaml", &serverConf)
-	s := zrpc.MustNewServer(serverConf, func(server *grpc.Server) {
-		greet.RegisterGreetServer(server, &exampleServer{})
-	})
-	
-	defer s.Stop()
-	s.Start()
+ var serverConf zrpc.RpcServerConf
+ conf.MustLoad("etc/greet-server.yaml", &serverConf)
+ s := zrpc.MustNewServer(serverConf, func(server *grpc.Server) {
+  greet.RegisterGreetServer(server, &exampleServer{})
+ })
+ 
+ defer s.Stop()
+ s.Start()
 }
 
 type exampleServer struct {
-	greet.UnimplementedGreetServer
+ greet.UnimplementedGreetServer
 }
 
 func (e *exampleServer) Ping(ctx context.Context, request *greet.Request) (*greet.Response, error) {
-	// fill your logic here
-	return &greet.Response{}, nil
+ // fill your logic here
+ return &greet.Response{}, nil
 }
 ```
 

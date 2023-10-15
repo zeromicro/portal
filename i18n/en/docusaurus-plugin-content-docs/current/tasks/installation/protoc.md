@@ -15,7 +15,7 @@ import DocsCards from '@components/global/DocsCards';
 You can install with `goctl` one click installation `protocol`,`protocol-gen-go`,`protocol-gen-go-grpc` related components, you can execute the following command：
 
 ```bash
-$ goctl env check --install --verbose --force
+goctl env check --install --verbose --force
 ```
 
 For more information about `goctl env` instructions, refer to <a href="/docs/tutorials/cli/env" target="_blank">goctl env</a>
@@ -30,43 +30,43 @@ Here we take the `21.11` version as an example, and it is **not recommended** to
 
 <DocsCards>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-win64.zip">
     <p>Windows Intel x86-64 bit processor</p>
     <a>protoc-21.11-win64.zip（2.17MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Microsoft Windows" 
+<DocsCard
+header="Microsoft Windows"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-win32.zip">
     <p>Windows Intel x86-32 bit processor</p>
     <a>protoc-21.11-win32.zip（2.2MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（ARM64）" 
+<DocsCard
+header="Apple macOS（ARM64）"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-osx-aarch_64.zip">
     <p>Support macOS Apple 64-bit processor</p>
     <a>protoc-21.11-osx-aarch_64.zip（1.3MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Apple macOS（x86-64）" 
+<DocsCard
+header="Apple macOS（x86-64）"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-osx-x86_64.zip">
     <p>Support macOS 64-bit processor</p>
     <a>protoc-21.11-osx-x86_64.zip（1.42MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-linux-x86_64.zip">
     <p>Support Linux 64 bit processor</p>
     <a>protoc-21.11-linux-x86_64.zip（1.51MB）</a>
 </DocsCard>
 
-<DocsCard 
-header="Linux" 
+<DocsCard
+header="Linux"
 href="https://github.com/protocolbuffers/protobuf/releases/download/v21.11/protoc-21.11-linux-x86_32.zip">
     <p>Support Linux 32 bit processor</p>
     <a>protoc-21.11-linux-x86_32.zip（1.61MB）</a>
@@ -83,7 +83,7 @@ Other versions and operating systems can [to go to Github](https://github.com/pr
 Extract downloads and move them to `$GOBIN` directory, see `$GOBIN` directory：
 
 ```bash
-$ go env GOPATH
+go env GOPATH
 ```
 
 `GOBIN` is `$GOPATH/bin`, if you `$GOPATH` do not `$PATH` you need to add it to `$PATH`.

@@ -51,35 +51,35 @@ syntax = "v1"
 import "base.api"
 
 type UserInfoReq {
-	Id int64 `path:"id"`
+ Id int64 `path:"id"`
 }
 
 type UserInfo {
-	Id   int64  `path:"id"`
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+ Id   int64  `path:"id"`
+ Name string `json:"name"`
+ Age  int    `json:"age"`
 }
 
 type UserInfoResp {
-	Base // Base 为 base.api 中的公共结构体，在 api 描述语言中，没有 package 的概念
-	Data UserInfo `json:"data"`
+ Base // Base 为 base.api 中的公共结构体，在 api 描述语言中，没有 package 的概念
+ Data UserInfo `json:"data"`
 }
 
 type UserInfoUpdateReq {
-	Id int64 `json:"id"`
-	UserInfo
+ Id int64 `json:"id"`
+ UserInfo
 }
 
 type UserInfoUpdateResp {
-	Base
+ Base
 }
 
 service user {
-	@handler userInfo
-	get /user/info/:id (UserInfoReq) returns (UserInfoResp)
+ @handler userInfo
+ get /user/info/:id (UserInfoReq) returns (UserInfoResp)
 
-	@handler userInfoUpdate
-	post /user/info/update (UserInfoUpdateReq) returns (UserInfoUpdateResp)
+ @handler userInfoUpdate
+ post /user/info/update (UserInfoUpdateReq) returns (UserInfoUpdateResp)
 }
 
 

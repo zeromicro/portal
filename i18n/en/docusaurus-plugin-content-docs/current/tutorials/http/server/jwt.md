@@ -48,10 +48,10 @@ func getJwtToken(secretKey string, iat, seconds int64,payload string) (string, e
 }
 ```
 
-
 ## JWT Auth Failed Custom Handling Return
 
 Define a callback in main.go
+
 ```go
 func main() {
     ........
@@ -67,14 +67,17 @@ func main() {
 
 :::tip
 If the JWT authentication fails, an error similar to the following will occur：
+
 ```
 HTTP/1.1 401 Unauthorized
 Date: Mon, 08 Feb 2023 23:41:57 GMT
 Content-Length: 0
 ```
+
 :::
 
 ## JWT Expired Management
+
 The jwt token expired management can be implemented on its own with redis.
 
 ## References

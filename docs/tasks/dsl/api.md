@@ -30,31 +30,31 @@ service foo {
 syntax = "v1"
 
 type (
-	// 定义登录接口的请求体
-	LoginReq {
-		Username string `json:"username"`
-		Password string `json:"password"`
-	}
-	// 定义登录接口的响应体
-	LoginResp {
-		Id       int64  `json:"id"`
-		Name     string `json:"name"`
-		Token    string `json:"token"`
-		ExpireAt string `json:"expireAt"`
-	}
+ // 定义登录接口的请求体
+ LoginReq {
+  Username string `json:"username"`
+  Password string `json:"password"`
+ }
+ // 定义登录接口的响应体
+ LoginResp {
+  Id       int64  `json:"id"`
+  Name     string `json:"name"`
+  Token    string `json:"token"`
+  ExpireAt string `json:"expireAt"`
+ }
 )
 
 // 定义 HTTP 服务
 // 微服务名称为 user，生成的代码目录和配置文件将和 user 值相关
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法
-	@handler Login
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/login
-	// 请求体为 LoginReq
-	// 响应体为 LoginResp，响应体必须有 returns 关键字修饰
-	post /user/login (LoginReq) returns (LoginResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法
+ @handler Login
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/login
+ // 请求体为 LoginReq
+ // 响应体为 LoginResp，响应体必须有 returns 关键字修饰
+ post /user/login (LoginReq) returns (LoginResp)
 }
 
 
@@ -66,37 +66,37 @@ service user {
 syntax = "v1"
 
 type (
-	// 定义登录接口的 json 请求体
-	LoginReq {
-		Username string `json:"username"`
-		Password string `json:"password"`
-	}
-	// 定义登录接口的 json 响应体
-	LoginResp {
-		Id       int64  `json:"id"`
-		Name     string `json:"name"`
-		Token    string `json:"token"`
-		ExpireAt string `json:"expireAt"`
-	}
+ // 定义登录接口的 json 请求体
+ LoginReq {
+  Username string `json:"username"`
+  Password string `json:"password"`
+ }
+ // 定义登录接口的 json 响应体
+ LoginResp {
+  Id       int64  `json:"id"`
+  Name     string `json:"name"`
+  Token    string `json:"token"`
+  ExpireAt string `json:"expireAt"`
+ }
 )
 
 type (
-	// 定义获取用户信息的 json 请求体
-	GetUserInfoReq {
-		Id int64 `json:"id"`
-	}
-	// 定义获取用户信息的 json 响应体
-	GetUserInfoResp {
-		Id   int64  `json:"id"`
-		Name string `json:"name"`
-		Desc string `json:"desc"`
-	}
-	// 定义更新用户信息的 json 请求体
-	UpdateUserInfoReq {
-		Id   int64  `json:"id"`
-		Name string `json:"name"`
-		Desc string `json:"desc"`
-	}
+ // 定义获取用户信息的 json 请求体
+ GetUserInfoReq {
+  Id int64 `json:"id"`
+ }
+ // 定义获取用户信息的 json 响应体
+ GetUserInfoResp {
+  Id   int64  `json:"id"`
+  Name string `json:"name"`
+  Desc string `json:"desc"`
+ }
+ // 定义更新用户信息的 json 请求体
+ UpdateUserInfoReq {
+  Id   int64  `json:"id"`
+  Name string `json:"name"`
+  Desc string `json:"desc"`
+ }
 )
 
 // 定义 HTTP 服务
@@ -108,21 +108,21 @@ type (
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 代表当前 service 代码块下的路由生成代码时都会被放到 login 目录下
-	group: login
-	// 定义路由前缀为 "/v1"
-	prefix: /v1
+ // 代表当前 service 代码块下的路由生成代码时都会被放到 login 目录下
+ group: login
+ // 定义路由前缀为 "/v1"
+ prefix: /v1
 )
 // 微服务名称为 user，生成的代码目录和配置文件将和 user 值相关
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler login
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/login
-	// 请求体为 LoginReq
-	// 响应体为 LoginResp，响应体必须有 returns 关键字修饰
-	post /user/login (LoginReq) returns (LoginResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler login
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/login
+ // 请求体为 LoginReq
+ // 响应体为 LoginResp，响应体必须有 returns 关键字修饰
+ post /user/login (LoginReq) returns (LoginResp)
 }
 
 // @server 语法块主要用于控制对 HTTP 服务生成时 meta 信息，目前支持功能有：
@@ -133,36 +133,36 @@ service user {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 代表当前 service 代码块下的所有路由均需要 jwt 鉴权
-	// goctl 生成代码时会将当前 service 代码块下的接口
-	// 信息添加上 jwt 相关代码，Auth 值为 jwt 密钥，过期
-	// 等信息配置的 golang 结构体名称
-	jwt: Auth
-	// 代表当前 service 代码块下的路由生成代码时都会被放到 user 目录下
-	group: user
-	// 定义路由前缀为 "/v1"
-	prefix: /v1
+ // 代表当前 service 代码块下的所有路由均需要 jwt 鉴权
+ // goctl 生成代码时会将当前 service 代码块下的接口
+ // 信息添加上 jwt 相关代码，Auth 值为 jwt 密钥，过期
+ // 等信息配置的 golang 结构体名称
+ jwt: Auth
+ // 代表当前 service 代码块下的路由生成代码时都会被放到 user 目录下
+ group: user
+ // 定义路由前缀为 "/v1"
+ prefix: /v1
 )
 // 注意，定义多个 service 代码块时，服务名称必须一致，因此这里的服务名称必须
 // 和上文的 service 名称一样，为 user 服务。
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler getUserInfo
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/info
-	// 请求体为 GetUserInfoReq
-	// 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
-	post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler getUserInfo
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/info
+ // 请求体为 GetUserInfoReq
+ // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+ post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler updateUserInfo
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/info/update
-	// 请求体为 UpdateUserInfoReq
-	// 由于不需要响应体，因此可以忽略不写
-	post /user/info/update (UpdateUserInfoReq)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler updateUserInfo
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/info/update
+ // 请求体为 UpdateUserInfoReq
+ // 由于不需要响应体，因此可以忽略不写
+ post /user/info/update (UpdateUserInfoReq)
 }
 
 
@@ -174,13 +174,13 @@ service user {
 syntax = "v1"
 
 type GetUserInfoReq {
-	Id int64 `json:"id"`
+ Id int64 `json:"id"`
 }
 
 type GetUserInfoResp {
-	Id   int64  `json:"id"`
-	Name string `json:"name"`
-	Desc string `json:"desc"`
+ Id   int64  `json:"id"`
+ Name string `json:"name"`
+ Desc string `json:"desc"`
 }
 
 // @server 语法块主要用于控制对 HTTP 服务生成时 meta 信息，目前支持功能有：
@@ -191,19 +191,19 @@ type GetUserInfoResp {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 定义一个鉴权控制的中间件，多个中间件以英文逗号,分割，如 Middleware1,Middleware2,中间件按声明顺序执行
-	middleware: AuthInterceptor
+ // 定义一个鉴权控制的中间件，多个中间件以英文逗号,分割，如 Middleware1,Middleware2,中间件按声明顺序执行
+ middleware: AuthInterceptor
 )
 // 定义一个名称为 user 的服务
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler getUserInfo
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/info
-	// 请求体为 GetUserInfoReq
-	// 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
-	post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler getUserInfo
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/info
+ // 请求体为 GetUserInfoReq
+ // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+ post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 }
 
 ```
@@ -214,13 +214,13 @@ service user {
 syntax = "v1"
 
 type GetUserInfoReq {
-	Id int64 `json:"id"`
+ Id int64 `json:"id"`
 }
 
 type GetUserInfoResp {
-	Id   int64  `json:"id"`
-	Name string `json:"name"`
-	Desc string `json:"desc"`
+ Id   int64  `json:"id"`
+ Name string `json:"name"`
+ Desc string `json:"desc"`
 }
 
 // @server 语法块主要用于控制对 HTTP 服务生成时 meta 信息，目前支持功能有：
@@ -231,20 +231,20 @@ type GetUserInfoResp {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 定义一个超时时长为 3 秒的超时配置，这里可填写为 time.Duration 的字符串形式，详情可参考 
-	// https://pkg.go.dev/time#Duration.String
-	timeout: 3s
+ // 定义一个超时时长为 3 秒的超时配置，这里可填写为 time.Duration 的字符串形式，详情可参考 
+ // https://pkg.go.dev/time#Duration.String
+ timeout: 3s
 )
 // 定义一个名称为 user 的服务
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler getUserInfo
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/info
-	// 请求体为 GetUserInfoReq
-	// 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
-	post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler getUserInfo
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/info
+ // 请求体为 GetUserInfoReq
+ // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+ post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 }
 
 
@@ -256,36 +256,36 @@ service user {
 syntax = "v1"
 
 type Base {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
+ Code int    `json:"code"`
+ Msg  string `json:"msg"`
 }
 
 type UserInfo {
-	Id   int64  `json:"id"`
-	Name string `json:"name"`
-	Desc string `json:"desc"`
+ Id   int64  `json:"id"`
+ Name string `json:"name"`
+ Desc string `json:"desc"`
 }
 
 type GetUserInfoReq {
-	Id int64 `json:"id"`
+ Id int64 `json:"id"`
 }
 
 type GetUserInfoResp {
-	// api 支持匿名结构体嵌套，也支持结构体引用
-	Base
-	Data UserInfo `json:"data"`
+ // api 支持匿名结构体嵌套，也支持结构体引用
+ Base
+ Data UserInfo `json:"data"`
 }
 
 // 定义一个名称为 user 的服务
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler getUserInfo
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/info
-	// 请求体为 GetUserInfoReq
-	// 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
-	post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler getUserInfo
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/info
+ // 请求体为 GetUserInfoReq
+ // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+ post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 }
 
 ```
@@ -296,13 +296,13 @@ service user {
 syntax = "v1"
 
 type GetUserInfoReq {
-	Id int64 `json:"id"`
+ Id int64 `json:"id"`
 }
 
 type GetUserInfoResp {
-	Id   int64  `json:"id"`
-	Name string `json:"name"`
-	Desc string `json:"desc"`
+ Id   int64  `json:"id"`
+ Name string `json:"name"`
+ Desc string `json:"desc"`
 }
 
 // @server 语法块主要用于控制对 HTTP 服务生成时 meta 信息，目前支持功能有：
@@ -313,19 +313,19 @@ type GetUserInfoResp {
 // 5. jwt 鉴权开关
 // 所有声明仅对当前 service 中的路由有效
 @server (
-	// 定义一个请求体限制在 1MB 以内的请求，goctl >= 1.5.0 版本支持
-	maxBytes: 1048576
+ // 定义一个请求体限制在 1MB 以内的请求，goctl >= 1.5.0 版本支持
+ maxBytes: 1048576
 )
 // 定义一个名称为 user 的服务
 service user {
-	// 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
-	@handler getUserInfo
-	// 定义接口
-	// 请求方法为 post
-	// 路由为 /user/info
-	// 请求体为 GetUserInfoReq
-	// 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
-	post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+ // 定义 http.HandleFunc 转换的 go 文件名称及方法，每个接口都会跟一个 handler
+ @handler getUserInfo
+ // 定义接口
+ // 请求方法为 post
+ // 路由为 /user/info
+ // 请求体为 GetUserInfoReq
+ // 响应体为 GetUserInfoResp，响应体必须有 returns 关键字修饰
+ post /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 }
 ```
 

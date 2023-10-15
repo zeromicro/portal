@@ -9,7 +9,7 @@ slug: /docs/tutorials/service/governance/breaker
 
 比较知名的熔断器算法有 Hystrix 和 Sentinel，它们都是通过统计服务调用的成功率和响应时间来判断服务是否可用，从而实现熔断的功能。
 
-go-zero 已经内置了熔断器组件 <a href="https://github.com/zeromicro/go-zero/blob/master/core/breaker/breaker.go#L29" target="_blank">breaker.Breaker</a> ，go-zero 中采用滑动窗口来进行数据采集，目前是以 10s 为一个窗口，单个窗口有40个桶，然后将窗口内采集的数据采用的是 google sre 算法计算是否开启熔断，详情可参考 https://landing.google.com/sre/sre-book/chapters/handling-overload/#eq2101。
+go-zero 已经内置了熔断器组件 <a href="https://github.com/zeromicro/go-zero/blob/master/core/breaker/breaker.go#L29" target="_blank">breaker.Breaker</a> ，go-zero 中采用滑动窗口来进行数据采集，目前是以 10s 为一个窗口，单个窗口有40个桶，然后将窗口内采集的数据采用的是 google sre 算法计算是否开启熔断，详情可参考 <https://landing.google.com/sre/sre-book/chapters/handling-overload/#eq2101。>
 
 ## 使用
 
@@ -22,33 +22,33 @@ Do 方法默认按照错误率来判断服务是否可用，不支持指标自�
 
 ```go
 type mockError struct {
-	status int
+ status int
 }
 
 func (e mockError) Error() string {
-	return fmt.Sprintf("HTTP STATUS: %d", e.status)
+ return fmt.Sprintf("HTTP STATUS: %d", e.status)
 }
 
 func main() {
-	for i := 0; i < 1000; i++ {
-		if err := breaker.Do("test", func() error {
-			return mockRequest()
-		}); err != nil {
-			println(err.Error())
-		}
-	}
+ for i := 0; i < 1000; i++ {
+  if err := breaker.Do("test", func() error {
+   return mockRequest()
+  }); err != nil {
+   println(err.Error())
+  }
+ }
 }
 
 func mockRequest() error {
-	source := rand.NewSource(time.Now().UnixNano())
-	r := rand.New(source)
-	num := r.Intn(100)
-	if num%4 == 0 {
-		return nil
-	} else if num%5 == 0 {
-		return mockError{status: 500}
-	}
-	return errors.New("dummy")
+ source := rand.NewSource(time.Now().UnixNano())
+ r := rand.New(source)
+ num := r.Intn(100)
+ if num%4 == 0 {
+  return nil
+ } else if num%5 == 0 {
+  return mockError{status: 500}
+ }
+ return errors.New("dummy")
 }
 ```
 
@@ -58,39 +58,39 @@ DoWithAcceptable 支持自定义的采集指标，可以自主控制哪些情况
 
 ```go
 type mockError struct {
-	status int
+ status int
 }
 
 func (e mockError) Error() string {
-	return fmt.Sprintf("HTTP STATUS: %d", e.status)
+ return fmt.Sprintf("HTTP STATUS: %d", e.status)
 }
 
 func main() {
-	for i := 0; i < 1000; i++ {
-		if err := breaker.DoWithAcceptable("test", func() error {
-			return mockRequest()
-		}, func(err error) bool { // 当 mock 的http 状态码部位500时都会被认为是正常的，否则加入错误窗口
-			me, ok := err.(mockError)
-			if ok {
-				return me.status != 500
-			}
-			return false
-		}); err != nil {
-			println(err.Error())
-		}
-	}
+ for i := 0; i < 1000; i++ {
+  if err := breaker.DoWithAcceptable("test", func() error {
+   return mockRequest()
+  }, func(err error) bool { // 当 mock 的http 状态码部位500时都会被认为是正常的，否则加入错误窗口
+   me, ok := err.(mockError)
+   if ok {
+    return me.status != 500
+   }
+   return false
+  }); err != nil {
+   println(err.Error())
+  }
+ }
 }
 
 func mockRequest() error {
-	source := rand.NewSource(time.Now().UnixNano())
-	r := rand.New(source)
-	num := r.Intn(100)
-	if num%4 == 0 {
-		return nil
-	} else if num%5 == 0 {
-		return mockError{status: 500}
-	}
-	return errors.New("dummy")
+ source := rand.NewSource(time.Now().UnixNano())
+ r := rand.New(source)
+ num := r.Intn(100)
+ if num%4 == 0 {
+  return nil
+ } else if num%5 == 0 {
+  return mockError{status: 500}
+ }
+ return errors.New("dummy")
 }
 ```
 
@@ -102,45 +102,45 @@ DoWithFallback 默认采用错误率来判断服务是否可用，不支持指�
 package main
 
 import (
-	"errors"
-	"fmt"
-	"math/rand"
-	"time"
+ "errors"
+ "fmt"
+ "math/rand"
+ "time"
 
-	"github.com/zeromicro/go-zero/core/breaker"
+ "github.com/zeromicro/go-zero/core/breaker"
 )
 
 type mockError struct {
-	status int
+ status int
 }
 
 func (e mockError) Error() string {
-	return fmt.Sprintf("HTTP STATUS: %d", e.status)
+ return fmt.Sprintf("HTTP STATUS: %d", e.status)
 }
 
 func main() {
-	for i := 0; i < 1000; i++ {
-		if err := breaker.DoWithFallback("test", func() error {
-			return mockRequest()
-		}, func(err error) error {
-			// 发生了熔断，这里可以自定义熔断错误转换
-			return errors.New("当前服务不可用，请稍后再试")
-		}); err != nil {
-			println(err.Error())
-		}
-	}
+ for i := 0; i < 1000; i++ {
+  if err := breaker.DoWithFallback("test", func() error {
+   return mockRequest()
+  }, func(err error) error {
+   // 发生了熔断，这里可以自定义熔断错误转换
+   return errors.New("当前服务不可用，请稍后再试")
+  }); err != nil {
+   println(err.Error())
+  }
+ }
 }
 
 func mockRequest() error {
-	source := rand.NewSource(time.Now().UnixNano())
-	r := rand.New(source)
-	num := r.Intn(100)
-	if num%4 == 0 {
-		return nil
-	} else if num%5 == 0 {
-		return mockError{status: 500}
-	}
-	return errors.New("dummy")
+ source := rand.NewSource(time.Now().UnixNano())
+ r := rand.New(source)
+ num := r.Intn(100)
+ if num%4 == 0 {
+  return nil
+ } else if num%5 == 0 {
+  return mockError{status: 500}
+ }
+ return errors.New("dummy")
 }
 
 ```
@@ -153,51 +153,51 @@ DoWithFallbackAcceptable 支持采集指标自定义，也支持熔断回调。
 package main
 
 import (
-	"errors"
-	"fmt"
-	"math/rand"
-	"time"
+ "errors"
+ "fmt"
+ "math/rand"
+ "time"
 
-	"github.com/zeromicro/go-zero/core/breaker"
+ "github.com/zeromicro/go-zero/core/breaker"
 )
 
 type mockError struct {
-	status int
+ status int
 }
 
 func (e mockError) Error() string {
-	return fmt.Sprintf("HTTP STATUS: %d", e.status)
+ return fmt.Sprintf("HTTP STATUS: %d", e.status)
 }
 
 func main() {
-	for i := 0; i < 1000; i++ {
-		if err := breaker.DoWithFallbackAcceptable("test", func() error {
-			return mockRequest()
-		}, func(err error) error {
-			//发生了熔断，这里可以自定义熔断错误转换
-			return errors.New("当前服务不可用，请稍后再试")
-		}, func(err error) bool { // 当 mock 的http 状态码部位500时都会被认为是正常的，否则加入错误窗口
-			me, ok := err.(mockError)
-			if ok {
-				return me.status != 500
-			}
-			return false
-		}); err != nil {
-			println(err.Error())
-		}
-	}
+ for i := 0; i < 1000; i++ {
+  if err := breaker.DoWithFallbackAcceptable("test", func() error {
+   return mockRequest()
+  }, func(err error) error {
+   //发生了熔断，这里可以自定义熔断错误转换
+   return errors.New("当前服务不可用，请稍后再试")
+  }, func(err error) bool { // 当 mock 的http 状态码部位500时都会被认为是正常的，否则加入错误窗口
+   me, ok := err.(mockError)
+   if ok {
+    return me.status != 500
+   }
+   return false
+  }); err != nil {
+   println(err.Error())
+  }
+ }
 }
 
 func mockRequest() error {
-	source := rand.NewSource(time.Now().UnixNano())
-	r := rand.New(source)
-	num := r.Intn(100)
-	if num%4 == 0 {
-		return nil
-	} else if num%5 == 0 {
-		return mockError{status: 500}
-	}
-	return errors.New("dummy")
+ source := rand.NewSource(time.Now().UnixNano())
+ r := rand.New(source)
+ num := r.Intn(100)
+ if num%4 == 0 {
+  return nil
+ } else if num%5 == 0 {
+  return mockError{status: 500}
+ }
+ return errors.New("dummy")
 }
 
 ```

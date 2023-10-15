@@ -5,6 +5,7 @@ slug: /docs/tutorials/go-zero/configuration/prometheus
 ---
 
 ## prometheus 配置
+
 [Config](https://github.com/zeromicro/go-zero/blob/master/core/prometheus/config.go) Prometheus 相关配置，我们会在进程中启动启动一个 prometheus 端口。
 
 ## 参数定义
@@ -12,9 +13,9 @@ slug: /docs/tutorials/go-zero/configuration/prometheus
 ```go
 // A Config is a prometheus config.
 type Config struct {
-	Host string `json:",optional"`
-	Port int    `json:",default=9101"`
-	Path string `json:",default=/metrics"`
+ Host string `json:",optional"`
+ Port int    `json:",default=9101"`
+ Path string `json:",default=/metrics"`
 }
 
 ```

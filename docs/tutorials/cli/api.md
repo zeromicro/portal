@@ -89,6 +89,7 @@ Flags:
   -h, --help         help for doc
       --o string     The output markdown directory
 ```
+
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={200}/> 参数说明 |
 | --- | --- | --- | --- | --- |
 | dir | string | YES | 空字符串 | api 文件所在目录 |
@@ -170,7 +171,7 @@ Flags:
   -h, --help            help for new
       --home string     The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
       --remote string   The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                        	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
+                         The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
       --style string    The file naming format, see [https://github.com/zeromicro/go-zero/blob/master/tools/goctl/config/readme.md] (default "gozero")
 ```
 
@@ -185,7 +186,7 @@ Flags:
 goctl api new 需要一个终端参数来指定需要生成的服务名称，输出目录为当前工作目录，如 demo 服务生成的指令示例如下：
 
 ```bash
-$ goctl api new demo
+goctl api new demo
 ```
 
 :::

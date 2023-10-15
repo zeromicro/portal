@@ -17,10 +17,10 @@ import TabItem from '@theme/TabItem';
 
 JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间传递声明式信息。它是一种基于JSON的轻量级的身份验证和授权机制，用于在客户端和服务器之间安全地传输信息。
 
-更多关于 jwt 的文档请参考 
+更多关于 jwt 的文档请参考
+
 1. <a href="https://jwt.io/" target="_blank">《JSON Web Tokens》</a>
 2. <a href="/docs/tutorials/http/server/jwt" target="_blank">《JWT 认证》</a>
-
 
 我们来看一下在 api 文件中如何声明开启 jwt 认证
 
@@ -28,34 +28,34 @@ JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应�
 syntax = "v1"
 
 type LoginReq {
-	Username string `json:"username"`
-	Password string `json:"password"`
+ Username string `json:"username"`
+ Password string `json:"password"`
 }
 
 type LoginResp {
     ID string `json:"id"`
-	Name string `json:"name"`
+ Name string `json:"name"`
 }
 
 type UserInfoReq {
-	ID string `json:"id"`
+ ID string `json:"id"`
 }
 
 type UserInfoResp {
-	Name string `json:"name"`
+ Name string `json:"name"`
 }
 
 service user-api {
-	@handler login
-	post /user/login (LoginReq) returns (LoginResp)
+ @handler login
+ post /user/login (LoginReq) returns (LoginResp)
 }
 
 @server (
     jwt: Auth // 开启 jwt 认证
 )
 service user-api {
-	@handler userInfo
-	post /user/info (UserInfoReq) returns (UserInfoResp)
+ @handler userInfo
+ post /user/info (UserInfoReq) returns (UserInfoResp)
 }
 
 ```
@@ -76,15 +76,15 @@ package config
 import "github.com/zeromicro/go-zero/rest"
 
 type Config struct {
-	rest.RestConf
-	Auth struct {// JWT 认证需要的密钥和过期时间配置
-		AccessSecret string
-		AccessExpire int64
-	}
+ rest.RestConf
+ Auth struct {// JWT 认证需要的密钥和过期时间配置
+  AccessSecret string
+  AccessExpire int64
+ }
 }
 ```
 
-`Config` 结构体中的 Auth 字段就是我们通过在 api 语法文件中声明的值，这是代码生成后的结果。 
+`Config` 结构体中的 Auth 字段就是我们通过在 api 语法文件中声明的值，这是代码生成后的结果。
 
 </TabItem>
 
@@ -95,34 +95,34 @@ type Config struct {
 package handler
 
 import (
-	"net/http"
+ "net/http"
 
-	"go-zero-demo/user/internal/svc"
+ "go-zero-demo/user/internal/svc"
 
-	"github.com/zeromicro/go-zero/rest"
+ "github.com/zeromicro/go-zero/rest"
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
-	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodPost,
-				Path:    "/user/login",
-				Handler: loginHandler(serverCtx),
-			},
-		},
-	)
+ server.AddRoutes(
+  []rest.Route{
+   {
+    Method:  http.MethodPost,
+    Path:    "/user/login",
+    Handler: loginHandler(serverCtx),
+   },
+  },
+ )
 
-	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodPost,
-				Path:    "/user/info",
-				Handler: userInfoHandler(serverCtx),
-			},
-		},
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-	)
+ server.AddRoutes(
+  []rest.Route{
+   {
+    Method:  http.MethodPost,
+    Path:    "/user/info",
+    Handler: userInfoHandler(serverCtx),
+   },
+  },
+  rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+ )
 }
 ```
 
@@ -144,7 +144,7 @@ jwt 通常可以携带一些自定义信息，比如 server 端生成 jwt key �
 ```go
 func (l *UserInfoLogic) UserInfo(req *types.UserInfoReq) (resp *types.UserInfoResp, err error) {
     // 获取 jwt 载体信息
-	value:=l.ctx.Value("custom-key")
-	return
+ value:=l.ctx.Value("custom-key")
+ return
 }
 ```

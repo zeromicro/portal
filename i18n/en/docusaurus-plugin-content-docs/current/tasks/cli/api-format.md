@@ -64,7 +64,7 @@ This api file is not read. We can use `goctl api format` to format api files.
 1. Create workspace and directory
 
     ```bash
-    $ mkdir -p ~/workspace/api/format
+    mkdir -p ~/workspace/api/format
     ```
 
 1. Copy the above `demo.api` files to `~/workspace/api/format under directory`
@@ -72,8 +72,8 @@ This api file is not read. We can use `goctl api format` to format api files.
 1. Format api file
 
     ```bash
-    $ cd ~/workspace/api/format
-    $ goctl api format --dir demo.api
+    cd ~/workspace/api/format
+    goctl api format --dir demo.api
     ```
 
 1. View formatted api files

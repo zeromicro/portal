@@ -19,7 +19,7 @@ This section code is consistent with a section code deployed by the physical mac
 Execute the following command to generate Dockerfile at the root of the apicode project
 
 ```sh
-$ goctl docker -go apicode.go
+goctl docker -go apicode.go
 ```
 
 ### 2.1 Upload code
@@ -45,7 +45,7 @@ View the push command
 <Image src={require('../../resource/tutorials/ops/image-20220209191757422_newnew.png').default} alt='gitlab-pz-jenkins-sshkey' />
 
 ```sh
-$ docker push 192.168.1.180:8077/apicode/REPOSITORY[:TAG]
+docker push 192.168.1.180:8077/apicode/REPOSITORY[:TAG]
 ```
 
 ## 4. Jenkins deployment
@@ -75,7 +75,7 @@ Save directly.
 View jenkins host public key：
 
 ```shell
-$ cat /root/.ssh/id_rsa.pub
+cat /root/.ssh/id_rsa.pub
 ```
 
 Configure to the /root/.ssh/authorized_keys running the service physics.
@@ -160,7 +160,7 @@ Tap Build with Parameters, select the corresponding "branch" to "Service" to sta
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default} alt='gitlab-pz-jenkins-sshkey' />
 
-Build finished, we go to http://192.168.1.183:8889/hello?msg=mikael to see output on page
+Build finished, we go to <http://192.168.1.183:8889/hello?msg=mikael> to see output on page
 
 ```json
 {

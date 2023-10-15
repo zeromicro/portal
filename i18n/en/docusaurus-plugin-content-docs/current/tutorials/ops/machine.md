@@ -46,8 +46,8 @@ service apicode{
 ### 2.2 Use goctl to generate code
 
 ```sh
-$ cd apicode && goctl api go -api *.api -dir ./
-$ go mod tidy
+cd apicode && goctl api go -api *.api -dir ./
+go mod tidy
 ```
 
 ### 2.3 Project structure
@@ -93,7 +93,7 @@ func (l *HelloLogic) Hello(req *types.HelloReq) (resp *types.HelloResp, err erro
 Start Project
 
 ```shell
-$ go run apicode.go
+go run apicode.go
 ```
 
 Browser input http:///127.0.0.1:8888/hello return visit to see your browser output the code we added in the logic
@@ -145,7 +145,7 @@ We click on a new Go, installing gos from golang.org by default. You can also ch
 
 'To do so, press 'check now' in the thePlugin Manager, or start jenkins', reboot jenkins with the addition of this syntax in pipline
 
-https://github.com/jenkinsci/golang-plugin
+<https://github.com/jenkinsci/golang-plugin>
 
 ### 3.1 Create pipline
 
@@ -170,7 +170,7 @@ Save directly.
 View jenkins host public key：
 
 ```shell
-$ cat /root/.ssh/id_rsa.pub
+cat /root/.ssh/id_rsa.pub
 ```
 
 Configure to the /root/.ssh/authorized_keys running the service physics.
@@ -240,7 +240,7 @@ Tap Build with Parameters, select the corresponding "branch" to "Service" to sta
 
 <Image src={require('../../resource/tutorials/ops/deploy-server-deploy-2.jpg').default} alt='deploy-server-deploy-2' />
 
-Build finished, we go to http://192.168.1.183:8889/hello?msg=mikael to see output on page
+Build finished, we go to <http://192.168.1.183:8889/hello?msg=mikael> to see output on page
 
 ```json
 {

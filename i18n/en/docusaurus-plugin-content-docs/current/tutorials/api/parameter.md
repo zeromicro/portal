@@ -28,6 +28,7 @@ type Foo {
     Name string `json:"name" form:"name"`
 }
 ```
+
 :::
 
 ## Parameter verification rules
@@ -42,6 +43,7 @@ In the api description language, we can state the acceptance rules for parameter
 | range                            | The valid range of the current parameter value, only valid for the value. Details of the writing rule are given below | \`json:"age,range=[0:120]"\`      |
 
 ::note range expressed value rule
+
 1. Left close interval：(min:max], meaning that min is less than or equal to max, when min is default, min represents value 0, max is unlimited when max is default, min and max are not allowed to default at the same time
 1. Left right interval：[min:max), which indicates that it is less than min max, when max is default, max represents a value of 0, min is large when min is missing
 1. Shutdown interval：[min:max], denotes less than min less than equals max, when min is default, min represents value 0, max is infinite when max is default, min and max are not allowed to coalesce
