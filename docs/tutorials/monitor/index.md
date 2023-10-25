@@ -17,11 +17,11 @@ Content-Type: text/plain; charset=utf-8
 OK
 ```
 
-禁用健康检查配置如下：
+启用健康检查配置如下：
 
 ```go
 srv := rest.MustNewServer(rest.RestConf{
-    Port: 8080,
+    Port: 8002,
     ServiceConf: service.ServiceConf{
         DevServer: devserver.Config{
             Enabled:       true,
@@ -47,7 +47,7 @@ DevServer:
 
 ```go
 srv := rest.MustNewServer(rest.RestConf{
-    Port: 8080,
+    Port: 8002,
     ServiceConf: service.ServiceConf{
         DevServer: devserver.Config{
             Enabled:       true,
