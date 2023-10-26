@@ -149,7 +149,7 @@ go_goroutines 12
 
 ```go
 srv := rest.MustNewServer(rest.RestConf{
-    Port: 8080,
+    Port: 8002,
     ServiceConf: service.ServiceConf{
         DevServer: devserver.Config{
             Enabled:       true,
@@ -159,6 +159,22 @@ srv := rest.MustNewServer(rest.RestConf{
         },
     },
 })
+```
+
+对应配置:
+
+```yaml
+Name: user-api
+Host: 0.0.0.0
+Port: 8002
+Mode: dev
+......
+
+DevServer:
+    Enabled: true
+    Port: 6470
+    MetricsPath: /metrics
+    EnableMetrics: false
 ```
 
 go-zero 默认集成的 prometheus 指标如下：
