@@ -94,29 +94,29 @@ Generate grpc code
 Usage:
   goctl rpc protoc [flags]
 
-Examples:
-goctl rpc protoc xx.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=.
-
-Flags:
       --branch string     The branch of the remote repo, it does work with --remote
+  -c, --client            Whether to generate rpc client (default true)
   -h, --help              help for protoc
-      --home string       The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
+      --home string       The goctl home path of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher
+ priority
   -m, --multiple          Generated in multiple rpc service mode
-      --remote string     The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher priority
-                          	The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure
-      --style string      The file naming format, see [https://github.com/zeromicro/go-zero/tree/master/tools/goctl/config/readme.md] (default "gozero")
+      --remote string     The remote git repo of the template, --home and --remote cannot be set at the same time, if they are, --remote has higher
+ priority
+                          The git repo directory must be consistent with the https://github.com/zeromicro/go-zero-template directory structure     
+      --style string      The file naming format, see [https://github.com/zeromicro/go-zero/blob/master/tools/goctl/config/readme.md]
   -v, --verbose           Enable log output
       --zrpc_out string   The zrpc output directory
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明                                                               |
-| --------------------------- | --------------------------- | --------------------------- | ------------------------- | ----------------------------------------------------------------------------------------- |
-| branch                      | string                      | NO                          | 空字符串                  | 模板仓库分支，配合 --remote 使用                                                          |
-| home                        | string                      | NO                          | `~/.goctl`                | 模板仓库本地路径，优先级高于 --remote                                                     |
-| multiple                    | bool                        | NO                          | false                     | 是否生成多个 rpc 服务                                                                     |
-| remote                      | string                      | NO                          | 空字符串                  | 模板仓库远程路径                                                                          |
-| style                       | string                      | NO                          | gozero                    | 文件命名风格，详情可参考 <a href="/docs/tutorials/cli/style" target="_blank">文件风格</a> |
-| zrpc_out                    | string                      | NO                          | 空字符串                  | 输出目录                                                                                  |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型     | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明                                                   |
+|-------------------------|-----------------------------| --------------------------- |------------------------|---------------------------------------------------------------------------|
+| branch                  | string                      | NO                          | 空字符串                   | 模板仓库分支，配合 --remote 使用                                                     |
+| home                    | string                      | NO                          | `~/.goctl`             | 模板仓库本地路径，优先级高于 --remote                                                   |
+| client                  | bool                        | NO                          | true                   | 是否生成客户端代码                                                                 |
+| multiple                | bool                        | NO                          | false                  | 是否生成多个 rpc 服务                                                             |
+| remote                  | string                      | NO                          | 空字符串                   | 模板仓库远程路径                                                                  |
+| style                   | string                      | NO                          | gozero                 | 文件命名风格，详情可参考 <a href="/docs/tutorials/cli/style" target="_blank">文件风格</a> |
+| zrpc_out                | string                      | NO                          | 空字符串                   | 输出目录                                                                      |
 
 除了上述参数外，还有支持 protoc 指令的原生参数，详情可参考 <a href="https://developers.google.com/protocol-buffers/docs/reference/go-generated#invocation" target="_blank"> Go Generated Code Guide</a>。
 
@@ -124,9 +124,9 @@ Flags:
 
 ```bash
 # 单个 rpc 服务生成示例指令
-$ goctl rpc protoc greet.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=.
+$ goctl rpc protoc greet.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=. --client=true 
 # 多个 rpc 服务生成示例指令
-$ goctl rpc protoc greet.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=. -m
+$ goctl rpc protoc greet.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=. --client=true -m
 ```
 
 :::tip
