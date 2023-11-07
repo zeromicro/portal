@@ -90,7 +90,7 @@ const (
 logc.Close()
 ```
 
-备注，我们在 zrpc，reset 已经操作了日志的关闭.
+备注，我们在 zrpc，rest 已经操作了日志的关闭.
 
 ## 重置日志
 
