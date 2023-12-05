@@ -53,6 +53,7 @@ func main() {
 	var clientConf zrpc.RpcClientConf
 	conf.MustLoad("etc/client.yaml", &clientConf)
 	conn := zrpc.MustNewClient(clientConf)
+	client := greet.NewGreetClient(conn.Conn())
 	resp, err := client.Ping(context.Background(), &greet.Request{})
 	if err != nil {
 		log.Fatal(err)
