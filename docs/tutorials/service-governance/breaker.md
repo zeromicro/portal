@@ -239,7 +239,7 @@ b := breaker.NewBreaker(opt)
 
 ## HTTP & gRPC 中使用
 
-在 go-zero 中，开发者不需要对请求单独进行熔断处理，该功能已经集成到了框架中，因此开发者无需关系。
+在 go-zero 中，开发者不需要对请求单独进行熔断处理，该功能已经集成到了框架中，因此开发者无需关心。
 
 HTTP 以请求方法+路由作为统计维度，用 HTTP 状态码 500 作为错误采集指标进行统计，详情可参考 <a href="https://github.com/zeromicro/go-zero/blob/master/rest/handler/breakerhandler.go" target="_blank">breakerhandler.go</a>
 
