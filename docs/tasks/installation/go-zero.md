@@ -20,7 +20,7 @@ $ go get -u github.com/zeromicro/go-zero@latest
 
 ## 常见问题
 
-### 1. 设置了 GOROXY 后，依赖还是拉不下来？
+### 1. 设置了 GOPROXY 后，依赖还是拉不下来？
 
 确认 `GO111MODULE` 是否开启
 
