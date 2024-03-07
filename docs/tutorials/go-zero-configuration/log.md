@@ -9,10 +9,9 @@ slug: /docs/tutorials/go-zero/configuration/log
 [LogConf](https://github.com/zeromicro/go-zero/blob/master/core/logx/config.go#L4) 用于我们 log 相关的配置，**logx.MustSetup**提供了我们日志的基础配置能力，简单使用方式如下：
 
 ```go
-var c logc.LogConf
-logc.MustSetup(c)
-
-logc.Info(context.Background(), "log")
+var c logx.LogConf
+logx.MustSetup(c)
+logx.Info(context.Background(), "log")
 // do your job
 ```
 
