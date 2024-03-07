@@ -11,7 +11,6 @@ slug: /docs/tutorials/go-zero/configuration/log
 ```go
 var c logx.LogConf
 logx.MustSetup(c)
-
 logx.Info(context.Background(), "log")
 // do your job
 ```
