@@ -113,7 +113,7 @@ func main() {
 
 	func main() {
 		// 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
-		// 需要自行将 dsn 中的 host，账号 密码配置正确
+		// 需要自行确保 dsn 中的 host 账号 密码都配置正确
 		dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 		conn := sqlx.NewMysql(dsn)
 
@@ -130,7 +130,7 @@ func main() {
 
 2. 查询数据
 
-	我们需要先定义一个 User 结构体，接着在直接查询
+	我们需要先定义一个 User 结构体，接着再查询
 
 	```go
 	package main
@@ -153,7 +153,7 @@ func main() {
 
 	func main() {
 		// 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
-		// 需要自行将 dsn 中的 host，账号 密码配置正确
+		// 需要自行确保 dsn 中的 host 账号 密码都配置正确
 		dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 		conn := sqlx.NewMysql(dsn)
 
@@ -169,7 +169,7 @@ func main() {
 
 	执行上述程序，我们会看到 我们刚刚插入进去的 user 信息
 
-3. 修改数据 我们继续习惯代码
+3. 修改数据 我们继续修改代码
 
 	```go
 	package main
@@ -183,7 +183,7 @@ func main() {
 
 	func main() {
 		// 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
-		// 需要自行将 dsn 中的 host，账号 密码配置正确
+		// 需要自行确保 dsn 中的 host 账号 密码都配置正确
 		dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 		conn := sqlx.NewMysql(dsn)
 
@@ -212,7 +212,7 @@ func main() {
 
 	func main() {
 		// 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
-		// 需要自行将 dsn 中的 host，账号 密码配置正确
+		// 需要自行确保 dsn 中的 host 账号 密码都配置正确
 		dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 		conn := sqlx.NewMysql(dsn)
 
