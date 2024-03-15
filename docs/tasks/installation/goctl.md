@@ -36,7 +36,7 @@ $ go version
 - 如果 go 版本在 `1.16` 及以后，则使用如下命令安装：
 
   ```bash
-  $ GO111MODULE=on go install github.com/zeromicro/go-zero/tools/goctl@latest
+  $ go install github.com/zeromicro/go-zero/tools/goctl@latest
   ```
 
 ### 1.3. 验证
