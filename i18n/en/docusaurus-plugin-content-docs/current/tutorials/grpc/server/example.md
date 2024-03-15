@@ -36,7 +36,7 @@ $ mkdir demo && cd demo
 $ go mod init demo
 ```
 
-### 2. 快速生成一个 proto 文件
+### 2. Quickly generate a proto file
 
 ```protobuf
 $ goctl rpc -o greet.proto
