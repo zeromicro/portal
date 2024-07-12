@@ -133,7 +133,7 @@ $ goctl --version
 
 ```bash
 $ docker pull kevinwan/goctl
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl goctl --help
+$ docker run --rm -it -v `pwd`:/app kevinwan/goctl --help
 ```
 
 </TabItem>
@@ -142,7 +142,7 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl goctl --help
 
 ```bash
 $ docker pull kevinwan/goctl:latest-arm64
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --help
+$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 --help
 ```
 
 </TabItem>
@@ -158,7 +158,7 @@ Open the terminal input with the following instructions to verify the installati
 <TabItem value="amd64" label="amd64架构" default>
 
 ```bash
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
+$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest --version
 ```
 
 </TabItem>
@@ -166,7 +166,7 @@ $ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest goctl --version
 <TabItem value="arm64" label="arm64(M1)架构" default>
 
 ```bash
-$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 goctl --version
+$ docker run --rm -it -v `pwd`:/app kevinwan/goctl:latest-arm64 --version
 ```
 
 </TabItem>
