@@ -238,3 +238,18 @@ func middleware(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 ```
+
+# 注意事项
+
+内置中间件的默认值`true`仅在使用`conf.Load`相关方法进行初始化时生效
+
+如果在代码里直接为配置结构体赋值，其默认值为go默认的bool类型默认值`false`
+
+```go
+// 这个示例中中间件开启状态默认值为false
+var restConf rest.RestConf
+restConf.Host = "127.0.0.1"
+restConf.Port = 8080
+srv := rest.MustNewServer(restConf)
+```
+

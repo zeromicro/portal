@@ -131,7 +131,7 @@ Re-request `http:///127.0.0.1:8080/hello`to view link request information by ope
 
 ### LogHandler
 
-默认每次 http 请求都会输出对应的请求日志，格式如下：
+By default, each HTTP request will output the corresponding request log, with the format as follows:
 
 ```json
 {
@@ -173,7 +173,7 @@ srv := rest.MustNewServer(restConf)
 
 ### PrometheusHandler
 
-http server 默认集成了 prometheus 指标监控，指标分别如下：
+The HTTP server integrates Prometheus metrics monitoring by default, and the monitored metrics are as follows:
 
 Requested time-consuming indicator type is Histogram, default label has path,buckets defined as 5, 10, 25, 50, 100, 250, 500, 1000
 
@@ -238,3 +238,17 @@ func middleware(next http.HandlerFunc) http.HandlerFunc {
     }
 }
 ```
+
+### Notes
+
+- The default value of the built-in middleware is `true` only when using the `conf.Load` related methods for initialization.
+- If you directly assign values to the configuration struct in the code, its default value will be the default value of the Go `bool` type, which is `false`.
+
+```go
+// In this example, the default value for the middleware status is false.
+var restConf rest.RestConf
+restConf.Host = "127.0.0.1"
+restConf.Port = 8080
+srv := rest.MustNewServer(restConf)
+```
+
