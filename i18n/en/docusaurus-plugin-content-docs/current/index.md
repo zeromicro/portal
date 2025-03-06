@@ -65,7 +65,7 @@ go-zero is a web and rpc framework that integrates various engineering practices
 
 ## Architecture
 
-![arch](/img/index/arch-cn.svg)
+![arch](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture-en.png)
 
 ## Framework design
 
