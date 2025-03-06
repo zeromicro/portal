@@ -65,7 +65,7 @@ go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹�
 
 ## 架构图
 
-![arch](/img/index/arch-cn.svg)
+![arch](https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/architecture.png)
 
 ## 框架设计
 
