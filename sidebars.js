@@ -224,6 +224,7 @@ module.exports = {
                 'tutorials/http/server/response-body',
                 'tutorials/http/server/middleware',
                 'tutorials/http/server/jwt',
+                'tutorials/http/server/sse',
                 'tutorials/http/server/error',
                 'tutorials/http/server/response-ext',
             ],
