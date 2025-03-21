@@ -25,3 +25,5 @@ goctl api 提供了 plugin 命令来支持对 api 进行功能扩展，当 goctl
 
 - [goctl-proto](https://github.com/liferod/goctl-proto)
   通过 api 文件生成 protobuf 文件，使用该文件生成 rpc 代码，参考[这里](https://go-zero.dev/docs/tutorials/cli/rpc#goctl-rpc-protoc)
+- [goctl-validate](https://github.com/linabellbiu/goctl-validate)
+  一个go-zero请求参数验证的插件，用于在生成的types.go文件中使用validatioin/Validator接口自动添加请求验证逻辑
