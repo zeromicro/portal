@@ -12,7 +12,7 @@ import AppWizard from '@components/page/intro/AppWizard';
 import Customers from "@components/global/Customers"
 
 <head>
-  <title>go-zero shorten the distance from demand to offline</title>
+  <title>go-zero shorten the distance from demand to online</title>
   <meta
     name="description"
     content="go-zero is a web and rpc framework that integrates various engineering practices.Flexible design guarantees stability at the same end and undergoes a full operational test."
@@ -29,7 +29,7 @@ go-zero is a web and rpc framework that integrates various engineering practices
 
 <DocsCard
   className="cordova-ee-card"
-  header="go-zero shorten the distance from demand to offline"
+  header="go-zero shorten the distance from demand to online"
   href="/docs/tasks"
 >
   <div>
