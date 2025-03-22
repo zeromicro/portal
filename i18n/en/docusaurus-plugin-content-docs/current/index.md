@@ -29,7 +29,7 @@ go-zero is a web and rpc framework that integrates various engineering practices
 
 <DocsCard
   className="cordova-ee-card"
-  header="Accelerate development from requirements to deployment"
+  header="go-zero accelerates development from requirements to deployment"
   href="/docs/tasks"
 >
   <div>
