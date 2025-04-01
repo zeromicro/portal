@@ -21,7 +21,7 @@ go-zero 包含两个 mongodb 工具包，其中 <a href="https://github.com/zero
 
 本章节的所有介绍都是基于 <a href="https://github.com/zeromicro/go-zero/tree/master/core/stores/mon" target="_blank">mon</a> 工具包。
 
-同时我们建议使用 [byctl](/docs/tasks/cli/mongo) 来生成 mongo model，进行业务开发。
+同时我们建议使用 [goctl](/docs/tasks/cli/mongo) 来生成 mongo model，进行业务开发。
 
 ## 创建数据库连接
 
