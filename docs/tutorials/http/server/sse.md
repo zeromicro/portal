@@ -131,7 +131,7 @@ func main() {
 	}, rest.WithTimeout(0))
 
 	// for go-zero versions > v1.8.1
-    server.AddRoute(rest.Route{
+	server.AddRoute(rest.Route{
 		Method:  http.MethodGet,
 		Path:    "/sse",
 		Handler: sseHandler.Serve,
