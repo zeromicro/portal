@@ -187,6 +187,7 @@ module.exports = {
             items: [
                 'tutorials/cli/overview',
                 'tutorials/cli/style',
+                'tutorials/cli/swagger',
                 'tutorials/cli/api',
                 'tutorials/cli/bug',
                 'tutorials/cli/completion',

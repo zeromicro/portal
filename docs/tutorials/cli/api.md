@@ -5,7 +5,11 @@ slug: /docs/tutorials/cli/api
 
 ## 概述
 
-goctl api 是 goctl 中的核心模块之一，其可以通过 .api 文件一键快速生成一个 api 服务，如果仅仅是启动一个 go-zero 的 api 演示项目， 你甚至都不用编码，就可以完成一个 api 服务开发及正常运行。在传统的 api 项目中，我们要创建各级目录，编写结构体， 定义路由，添加 logic 文件，这一系列操作，如果按照一条协议的业务需求计算，整个编码下来大概需要 5 ～ 6 分钟才能真正进入业务逻辑的编写， 这还不考虑编写过程中可能产生的各种错误，而随着服务的增多，随着协议的增多，这部分准备工作的时间将成正比上升， 而 goctl api 则可以完全替代你去做这一部分工作，不管你的协议要定多少个，最终来说，只需要花费 10 秒不到即可完成。
+goctl api 是 goctl 中的核心模块之一，其可以通过 .api 文件一键快速生成一个 api 服务，如果仅仅是启动一个 go-zero 的 api
+演示项目， 你甚至都不用编码，就可以完成一个 api 服务开发及正常运行。在传统的 api 项目中，我们要创建各级目录，编写结构体，
+定义路由，添加 logic 文件，这一系列操作，如果按照一条协议的业务需求计算，整个编码下来大概需要 5 ～ 6 分钟才能真正进入业务逻辑的编写，
+这还不考虑编写过程中可能产生的各种错误，而随着服务的增多，随着协议的增多，这部分准备工作的时间将成正比上升， 而 goctl api
+则可以完全替代你去做这一部分工作，不管你的协议要定多少个，最终来说，只需要花费 10 秒不到即可完成。
 
 ## goctl api 指令
 
@@ -25,6 +29,7 @@ Available Commands:
   kt          Generate kotlin code for provided api file
   new         Fast create api service
   plugin      Custom file generator
+  swagger     Generate swagger file from api
   ts          Generate ts files for provided api in api file
   validate    Validate api file
 
@@ -40,12 +45,12 @@ Flags:
 Use "goctl api [command] --help" for more information about a command.
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 |<img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| branch | string | NO | 空字符串 | 模板仓库分支，配合 --remote 使用 |
-| home | string | NO | `~/.goctl` | 模板仓库本地路径，优先级低于 --remote |
-| o | string | NO | 空字符串 | 输出 api 文件 |
-| remote | string | NO | 空字符串 | 模板仓库远程路径 |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
+|-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
+| branch                  | string                  | NO                      | 空字符串                   | 模板仓库分支，配合 --remote 使用   |
+| home                    | string                  | NO                      | `~/.goctl`             | 模板仓库本地路径，优先级低于 --remote |
+| o                       | string                  | NO                      | 空字符串                   | 输出 api 文件               |
+| remote                  | string                  | NO                      | 空字符串                   | 模板仓库远程路径                |
 
 ### dart
 
@@ -66,12 +71,12 @@ Flags:
       --legacy            Legacy generator for flutter v1
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 |<img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| api | string | YES | 空字符串 | api 文件 |
-| dir | string | YES | 空字符串 | 生成代码输出目录 |
-| hostname | string | NO | `go-zero.dev` | host 值 |
-| legacy | boolean | NO | `false` | 是否旧版本 |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
+|-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
+| api                     | string                  | YES                     | 空字符串                   | api 文件                  |
+| dir                     | string                  | YES                     | 空字符串                   | 生成代码输出目录                |
+| hostname                | string                  | NO                      | `go-zero.dev`          | host 值                  |
+| legacy                  | boolean                 | NO                      | `false`                | 是否旧版本                   |
 
 ### doc
 
@@ -91,9 +96,9 @@ Flags:
 ```
 
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={200}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| dir | string | YES | 空字符串 | api 文件所在目录 |
-| o | string | NO | 当前 work dir | 文档输出目录 |
+|-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
+| dir                     | string                  | YES                     | 空字符串                   | api 文件所在目录              |
+| o                       | string                  | NO                      | 当前 work dir            | 文档输出目录                  |
 
 ### format
 
@@ -115,11 +120,11 @@ Flags:
 ```
 
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| declare | boolean | NO | `false` | 是否检测上下文 |
-| dir | string | YES | 空字符串 | api 所在目录 |
-| iu | - | - | - | 未使用字段，待移出 |
-| stdin | boolean | NO | `false` | 是否格式化终端输入的 api 内容 |
+|-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
+| declare                 | boolean                 | NO                      | `false`                | 是否检测上下文                 |
+| dir                     | string                  | YES                     | 空字符串                   | api 所在目录                |
+| iu                      | -                       | -                       | -                      | 未使用字段，待移出               |
+| stdin                   | boolean                 | NO                      | `false`                | 是否格式化终端输入的 api 内容       |
 
 ### go
 
@@ -143,14 +148,14 @@ Flags:
       --style string    The file naming format, see [https://github.com/zeromicro/go-zero/blob/master/tools/goctl/config/readme.md] (default "gozero")
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| api | string | YES |  空字符串 | api 文件路径 |
-| branch | string | NO | 空字符串 | 远程模板所在 git 分支名称，仅当 `remote` 有值时使用 |
-| dir | string | NO | 当前工作目录 | 代码输出目录 |
-| home | string | NO | `${HOME}/.goctl` | 本地模板文件目录 |
-| remote | string | NO | 空字符串 | 远程模板所在 git 仓库地址，当此字段传值时，优先级高于 `home` 字段值 |
-| style | string | NO | `gozero` | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明                                                            |
+|-------------------------|-------------------------|-------------------------|------------------------|------------------------------------------------------------------------------------|
+| api                     | string                  | YES                     | 空字符串                   | api 文件路径                                                                           |
+| branch                  | string                  | NO                      | 空字符串                   | 远程模板所在 git 分支名称，仅当 `remote` 有值时使用                                                  |
+| dir                     | string                  | NO                      | 当前工作目录                 | 代码输出目录                                                                             |
+| home                    | string                  | NO                      | `${HOME}/.goctl`       | 本地模板文件目录                                                                           |
+| remote                  | string                  | NO                      | 空字符串                   | 远程模板所在 git 仓库地址，当此字段传值时，优先级高于 `home` 字段值                                           |
+| style                   | string                  | NO                      | `gozero`               | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
 
 ### new
 
@@ -175,12 +180,12 @@ Flags:
       --style string    The file naming format, see [https://github.com/zeromicro/go-zero/blob/master/tools/goctl/config/readme.md] (default "gozero")
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| branch | string | NO | 空字符串 | 远程模板所在 git 分支名称，仅当 `remote` 有值时使用 |
-| home | string | NO | `${HOME}/.goctl` | 本地模板文件目录 |
-| remote | string | NO | 空字符串 | 远程模板所在 git 仓库地址，当此字段传值时，优先级高于 `home` 字段值 |
-| style | string | NO | `gozero` | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明                                                            |
+|-------------------------|-------------------------|-------------------------|------------------------|------------------------------------------------------------------------------------|
+| branch                  | string                  | NO                      | 空字符串                   | 远程模板所在 git 分支名称，仅当 `remote` 有值时使用                                                  |
+| home                    | string                  | NO                      | `${HOME}/.goctl`       | 本地模板文件目录                                                                           |
+| remote                  | string                  | NO                      | 空字符串                   | 远程模板所在 git 仓库地址，当此字段传值时，优先级高于 `home` 字段值                                           |
+| style                   | string                  | NO                      | `gozero`               | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
 
 :::note 温馨提示
 goctl api new 需要一个终端参数来指定需要生成的服务名称，输出目录为当前工作目录，如 demo 服务生成的指令示例如下：
@@ -210,14 +215,48 @@ Flags:
       --style string    The file naming format, see [https://github.com/zeromicro/go-zero/tree/master/tools/goctl/config/readme.md]
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| api | string | YES | 空字符串 | api 文件路径 |
-| dir | string | NO | 当前工作目录 | api 文件路径 |
-| plugin | string | YES | 空字符串 | 插件可执行文件所在路径，支持本地和 http 文件 |
-| style | string | NO | `gozero` | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明                                                            |
+|-------------------------|-------------------------|-------------------------|------------------------|------------------------------------------------------------------------------------|
+| api                     | string                  | YES                     | 空字符串                   | api 文件路径                                                                           |
+| dir                     | string                  | NO                      | 当前工作目录                 | api 文件路径                                                                           |
+| plugin                  | string                  | YES                     | 空字符串                   | 插件可执行文件所在路径，支持本地和 http 文件                                                          |
+| style                   | string                  | NO                      | `gozero`               | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
 
 插件资源请参考 <a href="/docs/reference/goctl/plugins" target="_blank"> goctl 插件资源 </a>
+
+### swagger
+
+根据 api 文件生成 swagger 文档，详情可参考 <a href="/docs/tutorials/cli/swagger"> swagger 生成 </a>
+
+
+:::note 温馨提示
+当前功能处于实验性阶段，要求：
+1. goctl 版本大于等于1.8.2
+2. 开启实验性功能
+```bash
+goctl env -w GOCTL_EXPERIMENTAL=on
+```
+
+
+```bash
+goctl api swagger -h
+Generate swagger file from api
+
+Usage:
+  goctl api swagger [flags]
+
+Flags:
+      --api string   The api file
+      --dir string   The target dir
+  -h, --help         help for swagger
+      --yaml         Generate swagger yaml file, default to json
+```
+
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
+|-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
+| api                     | string                  | YES                     | 空字符串                   | api 文件路径                |
+| dir                     | string                  | NO                      | 当前工作目录                 | 输出目录                    |
+| yaml                    | bool                    | NO                      | false                  | 输出 swagger 为 yaml 格式    
 
 ### ts
 
@@ -239,13 +278,13 @@ Flags:
       --webapi string   The web api file path
 ```
 
-| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| api | string | YES | 空字符串 | api 文件路径 |
-| dir | string | NO | 当前工作目录 | api 文件路径 |
-| caller | string | NO | `webapi` |  web caller， |
-| plugin | string | YES | 空字符串 | 插件可执行文件所在路径，支持本地和 http 文件 |
-| style | string | NO | `gozero` | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
+| <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明                                                            |
+|-------------------------|-------------------------|-------------------------|------------------------|------------------------------------------------------------------------------------|
+| api                     | string                  | YES                     | 空字符串                   | api 文件路径                                                                           |
+| dir                     | string                  | NO                      | 当前工作目录                 | api 文件路径                                                                           |
+| caller                  | string                  | NO                      | `webapi`               | web caller，                                                                        |
+| plugin                  | string                  | YES                     | 空字符串                   | 插件可执行文件所在路径，支持本地和 http 文件                                                          |
+| style                   | string                  | NO                      | `gozero`               | 输出文件和目录的命名风格格式化符号，详情见<a href="/docs/tutorials/cli/style" target="_blank"> 文件风格</a> |
 
 ### validate
 
@@ -264,5 +303,5 @@ Flags:
 ```
 
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
-| --- | --- | --- | --- | --- |
-| api | string | YES | 空字符串 | api 文件路径 |
+|-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
+| api                     | string                  | YES                     | 空字符串                   | api 文件路径                |

@@ -25,6 +25,7 @@ Available Commands:
   kt          Generate kotlin code for provided api file
   new         Fast create api service
   plugin      Custom file generator
+  swagger     Generate swagger file from api
   ts          Generate ts files for provided api in api file
   validate    Validate api file
 
@@ -218,6 +219,41 @@ Flags:
 | style                                                | string                                              | NO                                             | `gozero`                                           | Named style symbols for output files and directories, see<a href="/docs/tutorials/cli/style" target="_blank"> file style</a> |
 
 Plugin resource reference <a href="/docs/reference/goctl/plugins" target="_blank"> goctl plugin resource </a>
+
+
+### swagger
+
+Generate swagger file from api file, for details please see <a href="/docs/tutorials/cli/swagger"> swagger 生成 </a>
+
+:::note Tips
+The current function is in the experimental stage, and the requirements are:
+1. The version of goctl is greater than or equal to 1.8.2.
+2. Enable the experimental function.
+```bash
+goctl env -w GOCTL_EXPERIMENTAL=on
+```
+:::
+
+```bash
+goctl api swagger -h
+Generate swagger file from api
+
+Usage:
+  goctl api swagger [flags]
+
+Flags:
+      --api string   The api file
+      --dir string   The target dir
+  -h, --help         help for swagger
+      --yaml         Generate swagger yaml file, default to json
+```
+
+| <img width={100}/> Parameter field | <img width={150}/> Parameter Type | <img width={200}/> Required? | <img width={200}/> Default value | <img width={800}/> Parameter Description |
+|-------------------------|-------------------------|------------------------------|----------------------------------|------------------------------------------|
+| api                     | string                  | YES                          | empty string                     | api filename                             |
+| dir                     | string                  | NO                           | work directory                   | output dir                               |
+| yaml                    | bool                    | NO                           | false                            |format to yaml file
+
 
 ### ts
 
