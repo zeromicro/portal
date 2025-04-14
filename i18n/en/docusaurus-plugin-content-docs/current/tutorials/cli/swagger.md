@@ -9,7 +9,7 @@ Generate Swagger documents based on API files, and support the generation of doc
 
 :::note Tips
 The current function is in the experimental stage, and the requirements are:
-1. The version of goctl is greater than or equal to 1.8.2.
+1. The version of goctl is greater than 1.8.2.
 2. Enable the experimental function.
 ```bash
 goctl env -w GOCTL_EXPERIMENTAL=on
