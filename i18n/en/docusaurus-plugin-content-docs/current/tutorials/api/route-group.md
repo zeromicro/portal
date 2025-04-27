@@ -298,8 +298,8 @@ Let's look again at the code-generation directory structure after grouping：
 │   │   │   ├── userclassaddlogic.go
 │   │   │   ├── userclassdeletelogic.go
 │   │   │   ├── userclassinfologic.go
-│   │   │   ├── userclassupdatelogic.go
-│   │   │   └── usersclaslistlogic.go
+│   │   │   ├── userclasslistlogic.go
+│   │   │   └── userclassupdatelogic.go
 │   │   ├── role
 │   │   │   ├── userroleaddlogic.go
 │   │   │   ├── userroledeletelogic.go
@@ -314,11 +314,13 @@ Let's look again at the code-generation directory structure after grouping：
 │   ├── svc
 │   │   └── servicecontext.go
 │   └── types
-│       └── types.go
-├── user.api
+│       ├── class.go
+│       ├── role.go
+│       ├── types.go
+│       └── user.go
 └── user.go
 
-13 directories, 35 files
+14 directories, 37 files
 ```
 
 By clustering we can easily group different business logic into different directories so that different business logic can be managed easily.

@@ -7,7 +7,7 @@ slug: /docs/tutorials/api/route/group
 
 在 go-zero 中，我们通过 api 语言来声明 HTTP 服务，然后通过 goctl 生成 HTTP 服务代码，在之前我们系统性的介绍了 <a href="/docs/tutorials" target="_blank">API 规范</a>。
 
-在 HTTP 服务开发中，随着业务的发展，我们的服务接口会越来越多，生成的代码文件(handler，logic 文件等)也会越来越多，这时候我们需要将一些生成的代码文件按照一定维度进行文件夹聚合，以便于开发和维护。
+在 HTTP 服务开发中，随着业务的发展，我们的服务接口会越来越多，生成的代码文件(handler，logic，types 文件等)也会越来越多，这时候我们需要将一些生成的代码文件按照一定维度进行文件夹聚合，以便于开发和维护。
 
 ## 服务分组
 
@@ -166,7 +166,7 @@ service user-api {
 
 ```
 
-由于我们没有进行分组，所以生成的代码中handler 和 logic 目录下的文件是全部揉在一起的，这样的目录结构在项目中不太好管理和阅读，接下来我们按照 `user`，`role`，`class` 来进行分组，在 api 语言中，我们可以通过在 `@server` 语句块中使用 `group` 关键字来进行分组，分组的语法如下：
+由于我们没有进行分组，所以生成的代码中handler 和 logic 还有 types 结构体目录下的文件是全部揉在一起的，这样的目录结构在项目中不太好管理和阅读，接下来我们按照 `user`，`role`，`class` 来进行分组，在 api 语言中，我们可以通过在 `@server` 语句块中使用 `group` 关键字来进行分组，分组的语法如下：
 
 ```go {36,54,75}
 syntax = "v1"
@@ -298,8 +298,8 @@ service user-api {
 │   │   │   ├── userclassaddlogic.go
 │   │   │   ├── userclassdeletelogic.go
 │   │   │   ├── userclassinfologic.go
-│   │   │   ├── userclassupdatelogic.go
-│   │   │   └── usersclaslistlogic.go
+│   │   │   ├── userclasslistlogic.go
+│   │   │   └── userclassupdatelogic.go
 │   │   ├── role
 │   │   │   ├── userroleaddlogic.go
 │   │   │   ├── userroledeletelogic.go
@@ -314,11 +314,15 @@ service user-api {
 │   ├── svc
 │   │   └── servicecontext.go
 │   └── types
-│       └── types.go
-├── user.api
+│       ├── class.go
+│       ├── role.go
+│       ├── types.go
+│       └── user.go
 └── user.go
 
-13 directories, 35 files
+14 directories, 37 files
 ```
 
 通过分组，我们可以很方便的将不同的业务逻辑分组到不同的目录下，这样可以很方便的管理不同的业务逻辑。
+
+注意：当前版本版本只会对路由中的结构体进行分组，非路由中的结构体或者路由中间接引用的结构体还是会被默认放在 types.go 文件中。
