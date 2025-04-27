@@ -64,22 +64,22 @@ Flags:
 syntax = "v1"
 
 info (
-	title:          "演示 API" // 对应 swagger 的 title
-	description:    "演示 api 生成 swagger 文件的 api 完整写法" // 对应 swagger 的 description
-	version:        "v1" // 对应 swagger 的 version
-	termsOfService: "https://github.com/zeromicro/go-zero" // 对应 swagger 的 termsOfService
-	contactName:    "keson.an" // 对应 swagger 的 contactName
-	contactURL:     "https://github.com/zeromicro/go-zero" // 对应 swagger 的 contactURL
-	contactEmail:   "example@gmail.com" // 对应 swagger 的 contactEmail
-	licenseName:    "MIT" // 对应 swagger 的 licenseName
-	licenseURL:     "https://github.com/zeromicro/go-zero" // 对应 swagger 的 licenseURL
-	consumes:       "application/json" // 对应 swagger 的 consumes,不填默认为 application/json
-	produces:       "application/json" // 对应 swagger 的 produces,不填默认为 application/json
-	schemes:        "https" // 对应 swagger 的 schemes,不填默认为 https
-	host:           "example.com" // 对应 swagger 的 host,不填默认为 127.0.0.1
-	basePath:       "/v1" // 对应 swagger 的 basePath,不填默认为 /
-	wrapCodeMsg:    "true" // 是否用 code-msg 通用响应体，如果开启，则以格式 {"code":0,"msg":"OK","data":$data} 包括响应体
-	bizCodeEnumDescription: "1001-未登录<br>1002-无权限操作"// 业务错误码枚举描述，json 格式,key 为业务错误码，value 为该错误码的描述，仅当 wrapCodeMsg 为 true 时生效
+	title:                  "演示 API" // 对应 swagger 的 title
+	description:            "演示 api 生成 swagger 文件的 api 完整写法" // 对应 swagger 的 description
+	version:                "v1" // 对应 swagger 的 version
+	termsOfService:         "https://github.com/zeromicro/go-zero" // 对应 swagger 的 termsOfService
+	contactName:            "keson.an" // 对应 swagger 的 contactName
+	contactURL:             "https://github.com/zeromicro/go-zero" // 对应 swagger 的 contactURL
+	contactEmail:           "example@gmail.com" // 对应 swagger 的 contactEmail
+	licenseName:            "MIT" // 对应 swagger 的 licenseName
+	licenseURL:             "https://github.com/zeromicro/go-zero" // 对应 swagger 的 licenseURL
+	consumes:               "application/json" // 对应 swagger 的 consumes,不填默认为 application/json
+	produces:               "application/json" // 对应 swagger 的 produces,不填默认为 application/json
+	schemes:                "https" // 对应 swagger 的 schemes,不填默认为 https
+	host:                   "example.com" // 对应 swagger 的 host,不填默认为 127.0.0.1
+	basePath:               "/v1" // 对应 swagger 的 basePath,不填默认为 /
+	wrapCodeMsg:            "true" // 是否用 code-msg 通用响应体，如果开启，则以格式 {"code":0,"msg":"OK","data":$data} 包括响应体
+	bizCodeEnumDescription: "1001-未登录<br>1002-无权限操作" // 业务错误码枚举描述，json 格式,key 为业务错误码，value 为该错误码的描述，仅当 wrapCodeMsg 为 true 时生效
 )
 
 type (
@@ -105,6 +105,8 @@ type (
 @server (
 	tags:    "query 演示" // 对应 swagger 的 tags,可以对 swagger 中的 api 进行分组
 	summary: "query 类型接口集合" // 对应 swagger 的 summary
+	prefix: v1
+	jwt: Auth
 )
 service Swagger {
 	@doc (
@@ -206,6 +208,8 @@ type (
 		MapMapNumber  map[string]map[string]float64 `json:"mapMapNumber"`
 		MapMapBoolean map[string]map[string]bool    `json:"mapMapBoolean"`
 		MapMapString  map[string]map[string]string  `json:"mapMapString"`
+		MapMapObject  map[string]map[string]ComplexJsonLevel1  `json:"mapMapObject"`
+		MapMapPointerObject  map[string]map[string]*ComplexJsonLevel1  `json:"mapMapPointerObject"`
 		// Object
 		Object        ComplexJsonLevel1  `json:"object"`
 		PointerObject *ComplexJsonLevel1 `json:"pointerObject"`
@@ -256,6 +260,8 @@ type (
 		MapMapNumber  map[string]map[string]float64 `json:"mapMapNumber"`
 		MapMapBoolean map[string]map[string]bool    `json:"mapMapBoolean"`
 		MapMapString  map[string]map[string]string  `json:"mapMapString"`
+		MapMapObject  map[string]map[string]ComplexJsonLevel1  `json:"mapMapObject"`
+		MapMapPointerObject  map[string]map[string]*ComplexJsonLevel1  `json:"mapMapPointerObject"`
 		// Object
 		Object        ComplexJsonLevel1  `json:"object"`
 		PointerObject *ComplexJsonLevel1 `json:"pointerObject"`
@@ -294,6 +300,7 @@ service Swagger {
 	@handler jsonComplex
 	post /json/complex (ComplexJsonReq) returns (ComplexJsonResp)
 }
+
 ```
 
 ## swagger 渲染示例
