@@ -26,10 +26,11 @@ Usage:
   goctl api swagger [flags]
 
 Flags:
-      --api string   api 文件
-      --dir string   输出目录
-  -h, --help         help for swagger
-      --yaml         是否生成 yaml 格式
+      --api string        api 文件
+      --dir string        输出目录
+      --filename string   生成的 swagger 文件名（不包括扩展名）
+  -h, --help              help for swagger
+      --yaml              是否生成 yaml 格式
 ```
 
 ## api 写法示例

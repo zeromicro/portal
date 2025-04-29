@@ -246,17 +246,19 @@ Usage:
   goctl api swagger [flags]
 
 Flags:
-      --api string   The api file
-      --dir string   The target dir
-  -h, --help         help for swagger
-      --yaml         Generate swagger yaml file, default to json
+      --api string        The api file
+      --dir string        The target dir
+      --filename string   The generated swagger file name without the extension
+  -h, --help              help for swagger
+      --yaml              Generate swagger yaml file, default to json
 ```
 
 | <img width={100}/> 参数字段 | <img width={150}/> 参数类型 | <img width={200}/> 是否必填 | <img width={200}/> 默认值 | <img width={800}/> 参数说明 |
 |-------------------------|-------------------------|-------------------------|------------------------|-------------------------|
 | api                     | string                  | YES                     | 空字符串                   | api 文件路径                |
 | dir                     | string                  | NO                      | 当前工作目录                 | 输出目录                    |
-| yaml                    | bool                    | NO                      | false                  | 输出 swagger 为 yaml 格式    
+| filename                | string                  | NO                      | api 文件名                | 生成的 swagger 文件名（不包括扩展名） |
+| yaml                    | bool                    | NO                      | false                  | 输出 swagger 为 yaml 格式    |
 
 ### ts
 
