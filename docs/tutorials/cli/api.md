@@ -230,12 +230,8 @@ Flags:
 
 
 :::note 温馨提示
-当前功能处于实验性阶段，要求：
-1. goctl 版本大于1.8.2
-2. 开启实验性功能
-```bash
-goctl env -w GOCTL_EXPERIMENTAL=on
-```
+要求 goctl 版本大等于1.8.3
+:::
 
 
 ```bash

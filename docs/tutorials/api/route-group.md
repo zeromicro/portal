@@ -314,15 +314,20 @@ service user-api {
 │   ├── svc
 │   │   └── servicecontext.go
 │   └── types
-│       ├── class.go
-│       ├── role.go
-│       ├── types.go
-│       └── user.go
+│       ├── class
+│       │   └── class.go
+│       ├── role
+│       │   └── role.go
+│       └── user
+│           └── user.go
 └── user.go
 
-14 directories, 37 files
+17 directories, 36 files
 ```
 
 通过分组，我们可以很方便的将不同的业务逻辑分组到不同的目录下，这样可以很方便的管理不同的业务逻辑。
 
-注意：当前版本版本只会对路由中的结构体进行分组，非路由中的结构体或者路由中间接引用的结构体还是会被默认放在 types.go 文件中。
+
+:::note 注意
+types 分组需要 goctl 大于等于 `1.8.4-beta` 版本
+:::

@@ -8,12 +8,7 @@ import { Image } from '@arco-design/web-react';
 根据 api 文件生成 swagger 文档，支持生成 json 和 yaml 格式的文档。
 
 :::note 温馨提示
-当前功能处于实验性阶段，要求：
-1. goctl 版本大于1.8.2
-2. 开启实验性功能
-```bash
-goctl env -w GOCTL_EXPERIMENTAL=on
-```
+要求 goctl 版本大于1.8.2
 :::
 
 ## 指令
@@ -32,282 +27,271 @@ Flags:
       --yaml         是否生成 yaml 格式
 ```
 
-## api 写法示例
+## 主要特性说明
 
-1. swagger 的标题，描述，版本，协议，联系人，许可证，host，basePath等信息全部在 api info 里面编写，可参考下文 api 示例
-2. 如果生成的 swagger 需要用 code-msg 包裹，可以在 info 描述中开启 wrapCodeMsg，设置为 true 字符串，生成的响应体示例和模型将会有 code-msg 包裹，格式模板如下:
-```json
-{
-  "code": $code,
-  "msg": $msg,
-  "data": $responseData
+### 基础信息配置
+
+在 info 中可以通过 `title`, `description`, `version` 等信息对 swagger 基本信息进行描述
+
+```go
+info (
+    title: "演示 API"                        // 对应 swagger 中的标题
+    description: "演示 api 生成 swagger..."  // 对应 swagger 中的描述
+    version: "v1"                            // 对应 swagger 中的版本
+)
+```
+
+<Image
+src={require('../../resource/tutorials/cli/info_basic.png').default}
+alt='swagger info'
+/>
+
+### 服务条款与联系人
+
+在 info 中可以通过 `termsOfService`, `contactName`, `contactURL`, `contactEmail` 等信息对 swagger 服务条款与联系人信息进行说明
+
+```go
+info (
+    termsOfService: "https://github.com/zeromicro/go-zero"  // API服务条款URL
+    contactName: "keson.an"                                // 技术支持联系人姓名
+    contactURL: "https://github.com/zeromicro/go-zero"     // 联系人相关链接
+    contactEmail: "example@gmail.com"                      // 联系人邮箱
+)
+```
+
+### 许可证信息
+
+在 info 中可以通过 `licenseName`, `licenseURL` 等信息对 swagger 许可证信息进行说明
+
+```go
+info (
+    licenseName: "MIT"  // 许可证类型(如 MIT/Apache 2.0/GPL等)
+    licenseURL: "https://github.com/zeromicro/go-zero/blob/master/LICENSE"  // 许可证详情URL
+)
+```
+
+<Image
+src={require('../../resource/tutorials/cli/info_contact.png').default}
+alt='swagger info'
+/>
+
+### 协议与主机配置
+
+在 info 中可以通过 `schemes`, `host`, `basePath` 等信息对 swagger 协议与主机进行配置
+
+```go
+info (
+    consumes: "application/json"  // 默认请求内容类型，可配置多个用逗号分隔
+    produces: "application/json"  // 默认响应内容类型，可配置多个用逗号分隔
+    schemes: "https"              // 支持协议(http/https/ws/wss)，可配置多个
+    host: "example.com"           // API服务主机地址(不带协议头)
+    basePath: "/v1"               // API基础路径，所有接口都会添加此前缀
+)
+```
+
+### 业务错误码定义
+
+支持全局和接口级别的业务错误码定义：
+前提是开启了 wrapCodeMsg，业务错误码说明是基于 code-msg 中 code 字段进行额外说明的。
+
+```go
+// 全局错误码描述定义
+info (
+    wrapCodeMsg: "true"
+    bizCodeEnumDescription: "1001-未登录<br>1002-无权限操作"
+)
+
+// 接口级别错误码描述定义
+service Swagger {
+	@doc (
+		bizCodeEnumDescription: " 1003-用不存在<br>1004-非法操作" // 接口级别业务错误码枚举描述，会覆盖全局的业务错误码，json 格式,key 为业务错误码，value 为该错误码的描述，仅当 wrapCodeMsg 为 true 时生效
+	)
+	@handler login
+	post /user/login (UserLoginReq) returns (UserLoginResp)
 }
 ```
 
-示例
+<Image
+src={require('../../resource/tutorials/cli/biz_code.png').default}
+alt='swagger info'
+/>
+
+### code-msg 格式生成
+
+在 info 中设置 wrapCodeMsg: "true" 后，所有响应体会被包装为 code-msg 格式，此格式仅对 swagger 生成有效，且字段名称为固定值，不可变更，和 go-zero 实际响应体无关联。
+
+```go
+// 开启 swagger 生成时使用 code-msg 格式包裹
+info (
+    wrapCodeMsg: "true"
+)
+```
+
+生成的 code-msg 参考格式：
 
 ```json
 {
   "code": 0,
-  "msg": "ok",
-  "data": {
-    "id": 1,
-    "name": "keson.an"
-  }
+  "msg": "OK",
+  "data": {原响应体}
 }
 ```
-3. 自定义业务错误码，当 wrapCodeMsg 开启后，可在 api info 中 通过 bizCodeEnumDescription 字段针对业务错误码进行枚举说明，方便生成 swagger 时将枚举信息渲染到 swagger 文档中，写法可参考下列示例。
-4. api 分组，对应 swagger 的 tags，可以在@server 中通过 tags 字段进行分组，tags 字段支持多个分组，多个分组用逗号隔开。
-5. 其他的 swagger 说明可参考下文示例
-
-```go
-syntax = "v1"
-
-info (
-	title:                  "演示 API" // 对应 swagger 的 title
-	description:            "演示 api 生成 swagger 文件的 api 完整写法" // 对应 swagger 的 description
-	version:                "v1" // 对应 swagger 的 version
-	termsOfService:         "https://github.com/zeromicro/go-zero" // 对应 swagger 的 termsOfService
-	contactName:            "keson.an" // 对应 swagger 的 contactName
-	contactURL:             "https://github.com/zeromicro/go-zero" // 对应 swagger 的 contactURL
-	contactEmail:           "example@gmail.com" // 对应 swagger 的 contactEmail
-	licenseName:            "MIT" // 对应 swagger 的 licenseName
-	licenseURL:             "https://github.com/zeromicro/go-zero" // 对应 swagger 的 licenseURL
-	consumes:               "application/json" // 对应 swagger 的 consumes,不填默认为 application/json
-	produces:               "application/json" // 对应 swagger 的 produces,不填默认为 application/json
-	schemes:                "https" // 对应 swagger 的 schemes,不填默认为 https
-	host:                   "example.com" // 对应 swagger 的 host,不填默认为 127.0.0.1
-	basePath:               "/v1" // 对应 swagger 的 basePath,不填默认为 /
-	wrapCodeMsg:            "true" // 是否用 code-msg 通用响应体，如果开启，则以格式 {"code":0,"msg":"OK","data":$data} 包括响应体
-	bizCodeEnumDescription: "1001-未登录<br>1002-无权限操作" // 业务错误码枚举描述，json 格式,key 为业务错误码，value 为该错误码的描述，仅当 wrapCodeMsg 为 true 时生效
-)
-
-type (
-	QueryReq {
-		Id     int    `form:"id,range=[1:10000],example=10"`
-		Name   string `form:"name,example=keson.an"`
-		Avatar string `form:"avatar,optional,example=https://example.com/avatar.png"`
-	}
-	QueryResp {
-		Id   int    `json:"id,example=10"`
-		Name string `json:"name,example=keson.an"`
-	}
-	PathQueryReq {
-		Id   int    `path:"id,range=[1:10000],example=10"`
-		Name string `form:"name,example=keson.an"`
-	}
-	PathQueryResp {
-		Id   int    `json:"id,example=10"`
-		Name string `json:"name,example=keson.an"`
-	}
-)
-
-@server (
-	tags:    "query 演示" // 对应 swagger 的 tags,可以对 swagger 中的 api 进行分组
-	summary: "query 类型接口集合" // 对应 swagger 的 summary
-	prefix: v1
-	jwt: Auth
-)
-service Swagger {
-	@doc (
-		description: "query 接口"
-	)
-	@handler query
-	get /query (QueryReq) returns (QueryResp)
-
-	@doc (
-		description: "query path 中包含 id 字段接口"
-	)
-	@handler queryPath
-	get /query/:id (PathQueryReq) returns (PathQueryResp)
-}
-
-type (
-	FormReq {
-		Id   int    `form:"id,range=[1:10000],example=10"`
-		Name string `form:"name,example=keson.an"`
-	}
-	FormResp {
-		Id   int    `json:"id,example=10"`
-		Name string `json:"name,example=keson.an"`
-	}
-)
-
-@server (
-	tags:    "form 表单 api 演示" // 对应 swagger 的 tags,可以对 swagger 中的 api 进行分组
-	summary: "form 表单类型接口集合" // 对应 swagger 的 summary
-)
-service Swagger {
-	@doc (
-		description: "form 接口"
-	)
-	@handler form
-	post /form (FormReq) returns (FormResp)
-}
-
-type (
-	JsonReq {
-		Id       int    `json:"id,range=[1:10000],example=10"`
-		Name     string `json:"name,example=keson.an"`
-		Avatar   string `json:"avatar,optional"`
-		Language string `json:"language,options=golang|java|python|typescript|rust"`
-		Gender   string `json:"gender,default=male,options=male|female,example=male"`
-	}
-	JsonResp {
-		Id       int    `json:"id"`
-		Name     string `json:"name"`
-		Avatar   string `json:"avatar"`
-		Language string `json:"language"`
-		Gender   string `json:"gender"`
-	}
-	ComplexJsonLevel2 {
-		// basic
-		Integer int     `json:"integer,example=1"`
-		Number  float64 `json:"number,example=1.1"`
-		Boolean bool    `json:"boolean,options=true|false,example=true"`
-		String  string  `json:"string,example=some text"`
-	}
-	ComplexJsonLevel1 {
-		// basic
-		Integer int     `json:"integer,example=1"`
-		Number  float64 `json:"number,example=1.1"`
-		Boolean bool    `json:"boolean,options=true|false,example=true"`
-		String  string  `json:"string,example=some text"`
-		// Object
-		Object        ComplexJsonLevel2  `json:"object"`
-		PointerObject *ComplexJsonLevel2 `json:"pointerObject"`
-	}
-	ComplexJsonReq {
-		// basic
-		Integer int     `json:"integer,example=1"`
-		Number  float64 `json:"number,example=1.1"`
-		Boolean bool    `json:"boolean,options=true|false,example=true"`
-		String  string  `json:"string,example=some text"`
-		// basic array
-		ArrayInteger []int     `json:"arrayInteger"`
-		ArrayNumber  []float64 `json:"arrayNumber"`
-		ArrayBoolean []bool    `json:"arrayBoolean"`
-		ArrayString  []string  `json:"arrayString"`
-		// basic array array
-		ArrayArrayInteger [][]int     `json:"arrayArrayInteger"`
-		ArrayArrayNumber  [][]float64 `json:"arrayArrayNumber"`
-		ArrayArrayBoolean [][]bool    `json:"arrayArrayBoolean"`
-		ArrayArrayString  [][]string  `json:"arrayArrayString"`
-		// basic map
-		MapInteger map[string]int     `json:"mapInteger"`
-		MapNumber  map[string]float64 `json:"mapNumber"`
-		MapBoolean map[string]bool    `json:"mapBoolean"`
-		MapString  map[string]string  `json:"mapString"`
-		// basic map array
-		MapArrayInteger map[string][]int     `json:"mapArrayInteger"`
-		MapArrayNumber  map[string][]float64 `json:"mapArrayNumber"`
-		MapArrayBoolean map[string][]bool    `json:"mapArrayBoolean"`
-		MapArrayString  map[string][]string  `json:"mapArrayString"`
-		// basic map map
-		MapMapInteger map[string]map[string]int     `json:"mapMapInteger"`
-		MapMapNumber  map[string]map[string]float64 `json:"mapMapNumber"`
-		MapMapBoolean map[string]map[string]bool    `json:"mapMapBoolean"`
-		MapMapString  map[string]map[string]string  `json:"mapMapString"`
-		MapMapObject  map[string]map[string]ComplexJsonLevel1  `json:"mapMapObject"`
-		MapMapPointerObject  map[string]map[string]*ComplexJsonLevel1  `json:"mapMapPointerObject"`
-		// Object
-		Object        ComplexJsonLevel1  `json:"object"`
-		PointerObject *ComplexJsonLevel1 `json:"pointerObject"`
-		// Object array
-		ArrayObject        []ComplexJsonLevel1  `json:"arrayObject"`
-		ArrayPointerObject []*ComplexJsonLevel1 `json:"arrayPointerObject"`
-		// Object map
-		MapObject        map[string]ComplexJsonLevel1  `json:"mapObject"`
-		MapPointerObject map[string]*ComplexJsonLevel1 `json:"mapPointerObject"`
-		// Object array array
-		ArrayArrayObject        [][]ComplexJsonLevel1  `json:"arrayArrayObject"`
-		ArrayArrayPointerObject [][]*ComplexJsonLevel1 `json:"arrayArrayPointerObject"`
-		// Object array map
-		ArrayMapObject        []map[string]ComplexJsonLevel1  `json:"arrayMapObject"`
-		ArrayMapPointerObject []map[string]*ComplexJsonLevel1 `json:"arrayMapPointerObject"`
-		// Object map array
-		MapArrayObject        map[string][]ComplexJsonLevel1  `json:"mapArrayObject"`
-		MapArrayPointerObject map[string][]*ComplexJsonLevel1 `json:"mapArrayPointerObject"`
-	}
-	ComplexJsonResp {
-		// basic
-		Integer int     `json:"integer,example=1"`
-		Number  float64 `json:"number,example=1.1"`
-		Boolean bool    `json:"boolean,options=true|false,example=true"`
-		String  string  `json:"string,example=some text"`
-		// basic array
-		ArrayInteger []int     `json:"arrayInteger"`
-		ArrayNumber  []float64 `json:"arrayNumber"`
-		ArrayBoolean []bool    `json:"arrayBoolean"`
-		ArrayString  []string  `json:"arrayString"`
-		// basic array array
-		ArrayArrayInteger [][]int     `json:"arrayArrayInteger"`
-		ArrayArrayNumber  [][]float64 `json:"arrayArrayNumber"`
-		ArrayArrayBoolean [][]bool    `json:"arrayArrayBoolean"`
-		ArrayArrayString  [][]string  `json:"arrayArrayString"`
-		// basic map
-		MapInteger map[string]int     `json:"mapInteger"`
-		MapNumber  map[string]float64 `json:"mapNumber"`
-		MapBoolean map[string]bool    `json:"mapBoolean"`
-		MapString  map[string]string  `json:"mapString"`
-		// basic map array
-		MapArrayInteger map[string][]int     `json:"mapArrayInteger"`
-		MapArrayNumber  map[string][]float64 `json:"mapArrayNumber"`
-		MapArrayBoolean map[string][]bool    `json:"mapArrayBoolean"`
-		MapArrayString  map[string][]string  `json:"mapArrayString"`
-		// basic map map
-		MapMapInteger map[string]map[string]int     `json:"mapMapInteger"`
-		MapMapNumber  map[string]map[string]float64 `json:"mapMapNumber"`
-		MapMapBoolean map[string]map[string]bool    `json:"mapMapBoolean"`
-		MapMapString  map[string]map[string]string  `json:"mapMapString"`
-		MapMapObject  map[string]map[string]ComplexJsonLevel1  `json:"mapMapObject"`
-		MapMapPointerObject  map[string]map[string]*ComplexJsonLevel1  `json:"mapMapPointerObject"`
-		// Object
-		Object        ComplexJsonLevel1  `json:"object"`
-		PointerObject *ComplexJsonLevel1 `json:"pointerObject"`
-		// Object array
-		ArrayObject        []ComplexJsonLevel1  `json:"arrayObject"`
-		ArrayPointerObject []*ComplexJsonLevel1 `json:"arrayPointerObject"`
-		// Object map
-		MapObject        map[string]ComplexJsonLevel1  `json:"mapObject"`
-		MapPointerObject map[string]*ComplexJsonLevel1 `json:"mapPointerObject"`
-		// Object array array
-		ArrayArrayObject        [][]ComplexJsonLevel1  `json:"arrayArrayObject"`
-		ArrayArrayPointerObject [][]*ComplexJsonLevel1 `json:"arrayArrayPointerObject"`
-		// Object array map
-		ArrayMapObject        []map[string]ComplexJsonLevel1  `json:"arrayMapObject"`
-		ArrayMapPointerObject []map[string]*ComplexJsonLevel1 `json:"arrayMapPointerObject"`
-		// Object map array
-		MapArrayObject        map[string][]ComplexJsonLevel1  `json:"mapArrayObject"`
-		MapArrayPointerObject map[string][]*ComplexJsonLevel1 `json:"mapArrayPointerObject"`
-	}
-)
-
-@server (
-	tags:    "post json api 演示" // 对应 swagger 的 tags,可以对 swagger 中的 api 进行分组
-	summary: "json 请求类型接口集合" // 对应 swagger 的 summary
-)
-service Swagger {
-	@doc (
-		description: "简单的 json 请求体接口"
-	)
-	@handler jsonSimple
-	post /json/simple (JsonReq) returns (JsonResp)
-
-	@doc (
-		description: "复杂的 json 请求体接口"
-	)
-	@handler jsonComplex
-	post /json/complex (ComplexJsonReq) returns (ComplexJsonResp)
-}
-
-```
-
-## swagger 渲染示例
 
 <Image
-src={require('../../resource/tutorials/cli/swagger-ui-cn-example.png').default}
-alt='swagger ui'
+src={require('../../resource/tutorials/cli/code_msg.png').default}
+alt='swagger info'
 />
 
 
+### 自定义鉴权类型
+
+通过 securityDefinitionsFromJson 定义多种鉴权方式，然后在 @server 中通过 `authType` 字段类声明该分组下的所有路由的鉴权方式。
+api 鉴权 json 格式请参考 open api spec 标准说明，详情见 https://swagger.io/specification/v2/#security-definitions-object
+
+```go
+info (
+    securityDefinitionsFromJson: `{"apiKey":{"type":"apiKey","name":"x-api-key","in":"header"},"petstore_auth":{"type":"oauth2","authorizationUrl":"http://swagger.io/api/oauth/dialog","flow":"implicit","scopes":{"write:pets":"modify pets in your account","read:pets":"read your pets"}}}`
+)
+
+@server (
+    authType: apiKey // 声明/user/info 使用 apiKey 鉴权类型
+)
+service Swagger {
+	@handler userInfo
+	post /user/info (UserInfoReq) returns (UserInfoResp)
+}
+```
+
+<Image
+src={require('../../resource/tutorials/cli/auth_type_definition.png').default}
+alt='swagger info'
+/>
+
+<Image
+src={require('../../resource/tutorials/cli/auth_type_check.png').default}
+alt='swagger info'
+/>
+
+### tags 分组
+
+在 @server 中使用 tags 属性可在 swagger 中对路由进行分组：
+
+```go
+@server (
+    tags: "用户操作"
+)
+service Swagger {
+	@handler login
+	post /user/login (UserLoginReq) returns (UserLoginResp)
+}
+
+@server (
+    tags: "用户操作"
+)
+service Swagger {
+	@handler userInfo
+	post /user/info (UserInfoReq) returns (UserInfoResp)
+}
+```
+
+以上路由 `/user/login` 和 `/user/info`  都会被放在 swagger 的 `用户操作` 分组下。
+
+<Image
+src={require('../../resource/tutorials/cli/tags.png').default}
+alt='swagger info'
+/>
+
+### 响应体示例展示
+
+在结构体中通过 example 标签为字段可为响应体添加示例值，example 示例也支持 json 请求体。
+
+```go
+type UserInfoResp {
+    Id int `json:"id,example=10"`
+    Name string `json:"name,example=keson.an"`
+}
+```
+
+<Image
+src={require('../../resource/tutorials/cli/example.png').default}
+alt='swagger info'
+/>
+
+### 参数控制
+
+结构体支持 go-zero 参数标签：
+
+- range: 数值范围限制，如 range=[1:10000]
+- options: 枚举值限制，如 options=golang|java|python
+- default: 默认值，如 default=male
+- optional: 可选参数
+
+```go
+type  DemoReq {
+    Id int `json:"id,range=[1:10000],example=10"`// 有效范围值
+    Language string `json:"language,options=golang|java|python|typescript|rust"`// 枚举
+    Gender string `json:"gender,default=male,options=male|female,example=male"`// 默认值
+    Name string `json:"name,optional"` // 非必填
+}
+```
+
+<Image
+src={require('../../resource/tutorials/cli/parameter.png').default}
+alt='swagger info'
+/>
+
+### 丰富的结构体类型
+
+- 支持复杂嵌套结构体，包括：
+- 基本类型及其数组、map
+- 对象及其指针
+- 多层嵌套结构
+- 数组的数组、map 的 map 等复杂组合
+
+```go
+type ComplexJsonLevel2 {}
+type ComplexJsonLevel1 {
+    Integer int `json:"integer,example=1"`
+    Object ComplexJsonLevel2 `json:"object"`
+    PointerObject *ComplexJsonLevel2 `json:"pointerObject"`
+}
+
+type ComplexJsonReq {
+    ArrayArrayInteger [][]int `json:"arrayArrayInteger"`
+    MapMapObject map[string]map[string]ComplexJsonLevel1 `json:"mapMapObject"`
+    ArrayPointerObject []*ComplexJsonLevel1 `json:"arrayPointerObject"`
+}
+```
+
+<Image
+src={require('../../resource/tutorials/cli/complex.png').default}
+alt='swagger info'
+/>
+
+### path 参数
+
+Path 参数是指直接嵌入在 URL 路径中的变量参数，在 API 定义中使用 path:"参数名" 标签声明，在生成 swagger 时会自动将 path 参数转化为 {$path} 这样的形式。
+
+```go
+type UserInfoReq {
+    Id int `path:"id"`  // 定义 path 参数 id
+}
+
+type UserInfoResp{
+    Id int `json:"id,example=10"`
+    Name string `json:"name,example=keson.an"`
+}
+
+@server(
+    prefix: /api
+)
+service Swagger {
+    @handler userInfo
+    get /user/info/:id (UserInfoReq) returns (UserInfoResp)  // URL 中使用 :id 匹配
+}
+```
+
+<Image
+src={require('../../resource/tutorials/cli/path_parameter.png').default}
+alt='swagger info'
+/>
