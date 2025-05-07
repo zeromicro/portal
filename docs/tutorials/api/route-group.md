@@ -329,5 +329,6 @@ service user-api {
 
 
 :::note 注意
-types 分组需要 goctl 大于等于 `1.8.4-beta` 版本
+types 分组需要 goctl 大于等于 `1.8.3` 版本
+该功能处于实验性阶段，如果兼容问题请执行命令 `goctl env -w GOCTL_EXPERIMENTAL=off` 关闭实验性功能即可
 :::
