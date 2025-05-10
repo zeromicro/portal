@@ -166,7 +166,7 @@ service user-api {
 
 ```
 
-由于我们没有进行分组，所以生成的代码中handler 和 logic 还有 types 结构体目录下的文件是全部揉在一起的，这样的目录结构在项目中不太好管理和阅读，接下来我们按照 `user`，`role`，`class` 来进行分组，在 api 语言中，我们可以通过在 `@server` 语句块中使用 `group` 关键字来进行分组，分组的语法如下：
+由于我们没有进行分组，所以生成的代码中handler 和 logic 结构体目录下的文件是全部揉在一起的，这样的目录结构在项目中不太好管理和阅读，接下来我们按照 `user`，`role`，`class` 来进行分组，在 api 语言中，我们可以通过在 `@server` 语句块中使用 `group` 关键字来进行分组，分组的语法如下：
 
 ```go {36,54,75}
 syntax = "v1"
@@ -314,21 +314,24 @@ service user-api {
 │   ├── svc
 │   │   └── servicecontext.go
 │   └── types
-│       ├── class
-│       │   └── class.go
-│       ├── role
-│       │   └── role.go
-│       └── user
-│           └── user.go
+│       ├── class.go
+│       ├── role.go
+│       └── user.go
 └── user.go
 
-17 directories, 36 files
+14 directories, 36 files
+
 ```
 
 通过分组，我们可以很方便的将不同的业务逻辑分组到不同的目录下，这样可以很方便的管理不同的业务逻辑。
 
 
 :::note 注意
+通过命令行参数 `--types-group` 可开启 types 分组，types 分组会按照 group 名称生成不同的文件，而不是按照目录分组，生成示例如下
+```shell
+goctl api go --api $api --dir $output --types-group
+```
 types 分组需要 goctl 大于等于 `1.8.3` 版本
 该功能处于实验性阶段，如果兼容问题请执行命令 `goctl env -w GOCTL_EXPERIMENTAL=off` 关闭实验性功能即可
+请注意，实验功能非稳定版本，有存在调整的可能。
 :::

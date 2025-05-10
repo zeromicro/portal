@@ -97,14 +97,17 @@ info (
 ```go
 // 全局错误码描述定义
 info (
-    wrapCodeMsg: "true"
+    wrapCodeMsg: true // 注意：布尔值语法在 goctl 1.8.4 版本支持，老版本可写成 wrapCodeMsg: "true"
     bizCodeEnumDescription: "1001-未登录<br>1002-无权限操作"
 )
 
 // 接口级别错误码描述定义
 service Swagger {
 	@doc (
-		bizCodeEnumDescription: " 1003-用不存在<br>1004-非法操作" // 接口级别业务错误码枚举描述，会覆盖全局的业务错误码，json 格式,key 为业务错误码，value 为该错误码的描述，仅当 wrapCodeMsg 为 true 时生效
+	    // 接口级别业务错误码枚举描述，会覆盖全局的业务错误码，json 格式,key 为业务错误码，value 为该错误码的描述，
+	    // 仅当 wrapCodeMsg 为 true 时生效
+	    // 注意，如果声明了 useDefinitions 为 true 时，方法级别业务错误码不会生效，因为对于复用的结构体在多个方法下如果业务不一样，无法都兼顾生成。
+		bizCodeEnumDescription: " 1003-用不存在<br>1004-非法操作" 
 	)
 	@handler login
 	post /user/login (UserLoginReq) returns (UserLoginResp)
@@ -123,7 +126,7 @@ alt='swagger info'
 ```go
 // 开启 swagger 生成时使用 code-msg 格式包裹
 info (
-    wrapCodeMsg: "true"
+    wrapCodeMsg: true // 注意：布尔值语法在 goctl 1.8.4 版本支持，老版本可写成 wrapCodeMsg: "true"
 )
 ```
 
@@ -174,7 +177,7 @@ alt='swagger info'
 
 ### tags 分组
 
-在 @server 中使用 tags 属性可在 swagger 中对路由进行分组：
+在 @server 中使用 tags 属性可在 swagger 中对路由进行分组，也兼容从 summary 关键字中获取，tags 声明的优先级高于 summary。
 
 ```go
 @server (
@@ -293,5 +296,26 @@ service Swagger {
 
 <Image
 src={require('../../resource/tutorials/cli/path_parameter.png').default}
+alt='swagger info'
+/>
+
+### 生成 definitions 格式
+
+如果你想对响应体或者 json 请求体生成为引用类型，即所有结构体都存放在 model 模型中，在使用到相关结构体时使用 `ref` 去关联，可以在 api info 中声明。
+声明写法 `useDefinitions: true`， 写法示例：
+
+```go
+syntax = "v1"
+
+info(
+    ...
+    useDefinitions: true // 注意：布尔值语法在 goctl 1.8.4 版本支持，老版本可写成 useDefinitions: "true"
+    ...
+)
+...
+```
+
+<Image
+src={require('../../resource/tutorials/cli/definitions.png').default}
 alt='swagger info'
 />
