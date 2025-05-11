@@ -329,7 +329,7 @@ service user-api {
 :::note 注意
 通过命令行参数 `--types-group` 可开启 types 分组，types 分组会按照 group 名称生成不同的文件，而不是按照目录分组，生成示例如下
 ```shell
-goctl api go --api $api --dir $output --types-group
+goctl api go --api $api --dir $output --type-group
 ```
 types 分组需要 goctl 大于等于 `1.8.3` 版本
 该功能处于实验性阶段，如果兼容问题请执行命令 `goctl env -w GOCTL_EXPERIMENTAL=off` 关闭实验性功能即可
