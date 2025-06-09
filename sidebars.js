@@ -363,6 +363,14 @@ module.exports = {
         },
         {
             type: 'category',
+            label: 'MCP',
+            collapsed: false,
+            items: [
+                'tutorials/mcp/servers'
+            ]
+        },
+        {
+            type: 'category',
             label: '定制化',
             collapsed: false,
             items: [
