@@ -4,12 +4,6 @@ sidebar_label: MCP Servers
 slug: /docs/tutorials/mcp/servers
 ---
 
----
-title: MCP
-sidebar_label: MCP Servers
-slug: /docs/tutorials/mcp/servers
----
-
 # Model Context Protocol (MCP) 实现
 
 ## 概述
