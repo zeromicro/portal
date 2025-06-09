@@ -4,65 +4,71 @@ sidebar_label: MCP Servers
 slug: /docs/tutorials/mcp/servers
 ---
 
-# Model Context Protocol (MCP) Implementation
+---
+title: MCP
+sidebar_label: MCP Servers
+slug: /docs/tutorials/mcp/servers
+---
 
-## Overview
-This package implements the Model Context Protocol (MCP) server specification in Go, providing a framework for real-time communication between AI models and clients using Server-Sent Events (SSE). The implementation follows the standardized protocol for building AI-assisted applications with bidirectional communication capabilities.
+# Model Context Protocol (MCP) 实现
 
-## Core Components
+## 概述
+该包在 Go 中实现了 Model Context Protocol (MCP) 服务器规范，提供了一个使用 Server-Sent Events (SSE) 在 AI 模型和客户端之间进行实时通信的框架。该实现遵循标准化协议，用于构建具有双向通信能力的 AI 辅助应用程序。
 
-### Server-Sent Events (SSE) Communication
-- **Real-time Communication**: Robust SSE-based communication system that maintains persistent connections with clients
-- **Connection Management**: Client registration, message broadcasting, and client cleanup mechanisms
-- **Event Handling**: Event types for tools, prompts, and resources changes
+## 核心组件
 
-### JSON-RPC Implementation
-- **Request Processing**: Complete JSON-RPC request processor for handling MCP protocol methods
-- **Response Formatting**: Proper response formatting according to JSON-RPC specifications
-- **Error Handling**: Comprehensive error handling with appropriate error codes
+### Server-Sent Events (SSE) 通信
+- **实时通信**：基于 SSE 的强大通信系统，与客户端保持持久连接
+- **连接管理**：客户端注册、消息广播和客户端清理机制
+- **事件处理**：用于工具、提示和资源变更的事件类型
 
-### Tool Management
-- **Tool Registration**: System to register custom tools with handlers
-- **Tool Execution**: Mechanism to execute tool functions with proper timeout handling
-- **Result Handling**: Flexible result handling supporting various return types (string, JSON, images)
+### JSON-RPC 实现
+- **请求处理**：完整的 JSON-RPC 请求处理器，用于处理 MCP 协议方法
+- **响应格式化**：根据 JSON-RPC 规范进行适当的响应格式化
+- **错误处理**：具有适当错误代码的全面错误处理
 
-### Prompt System
-- **Prompt Registration**: System for registering both static and dynamic prompts
-- **Argument Validation**: Validation for required arguments and default values for optional ones
-- **Message Generation**: Handlers that generate properly formatted conversation messages
+### 工具管理
+- **工具注册**：用于注册带有处理器的自定义工具的系统
+- **工具执行**：执行工具函数的机制，具有适当的超时处理
+- **结果处理**：支持各种返回类型（字符串、JSON、图像）的灵活结果处理
 
-### Resource Management
-- **Resource Registration**: System for managing and accessing external resources
-- **Content Delivery**: Handlers for delivering resource content to clients on demand
-- **Resource Subscription**: Mechanisms for clients to subscribe to resource updates
+### 提示系统
+- **提示注册**：用于注册静态和动态提示的系统
+- **参数验证**：对必需参数的验证和可选参数的默认值
+- **消息生成**：生成格式正确的对话消息的处理器
 
-### Protocol Features
-- **Initialization Sequence**: Proper handshaking with capability negotiation
-- **Notification Handling**: Support for both standard and client-specific notifications
-- **Message Routing**: Intelligent routing of requests to appropriate handlers
+### 资源管理
+- **资源注册**：用于管理和访问外部资源的系统
+- **内容交付**：按需向客户端交付资源内容的处理器
+- **资源订阅**：客户端订阅资源更新的机制
 
-## Technical Highlights
+### 协议特性
+- **初始化序列**：通过能力协商进行适当的握手
+- **通知处理**：支持标准和客户端特定的通知
+- **消息路由**：将请求智能路由到适当处理器
 
-### Configuration System
-- **Flexible Configuration**: Configuration system with sensible defaults and customization options
-- **CORS Support**: Configurable CORS settings for cross-origin requests
-- **Server Information**: Proper server identification and versioning
+## 技术亮点
 
-### Client Session Management
-- **Session Tracking**: Client session tracking with unique identifiers
-- **Connection Health**: Ping/pong mechanism to maintain connection health
-- **Initialization State**: Client initialization state tracking
+### 配置系统
+- **灵活配置**：具有合理默认值和自定义选项的配置系统
+- **CORS 支持**：针对跨域请求的可配置 CORS 设置
+- **服务器信息**：适当的服务器标识和版本控制
 
-### Content Handling
-- **Multi-format Content**: Support for text, code, and binary content
-- **MIME Type Support**: Proper MIME type identification for various content types
-- **Audience Annotations**: Content audience annotations for user/assistant targeting
+### 客户端会话管理
+- **会话跟踪**：具有唯一标识符的客户端会话跟踪
+- **连接健康**：Ping/pong 机制以维护连接健康
+- **初始化状态**：客户端初始化状态跟踪
 
-## Usage
+### 内容处理
+- **多格式内容**：支持文本、代码和二进制内容
+- **MIME 类型支持**：对各种内容类型的适当 MIME 类型识别
+- **受众注释**：针对用户/助手目标的内容受众注释
 
-### Setting Up an MCP Server
+## 使用方法
 
-To create and start an MCP server:
+### 设置 MCP 服务器
+
+要创建并启动 MCP 服务器：
 
 ```go
 package main
@@ -74,25 +80,25 @@ import (
 )
 
 func main() {
-	// Load configuration from YAML file
+	// 从 YAML 文件加载配置
 	var c mcp.McpConf
 	conf.MustLoad("config.yaml", &c)
 
-	// Optional: Disable stats logging
+	// 可选：禁用统计日志
 	logx.DisableStat()
 
-	// Create MCP server
+	// 创建 MCP 服务器
 	server := mcp.NewMcpServer(c)
 
-	// Register tools, prompts, and resources (examples below)
+	// 注册工具、提示和资源（下面的示例）
 
-	// Start the server and ensure it's stopped on exit
+	// 启动服务器并确保在退出时停止
 	defer server.Stop()
 	server.Start()
 }
 ```
 
-Sample configuration file (config.yaml):
+示例配置文件 (config.yaml)：
 
 ```yaml
 name: mcp-server
@@ -100,31 +106,31 @@ host: localhost
 port: 8080
 mcp:
   name: my-mcp-server
-  messageTimeout: 30s # Timeout for tool calls
+  messageTimeout: 30s # 工具调用的超时时间
   cors:
-    - http://localhost:3000 # Optional CORS configuration
+    - http://localhost:3000 # 可选的 CORS 配置
 ```
 
-### Registering Tools
+### 注册工具
 
-Tools allow AI models to execute custom code through the MCP protocol.
+工具允许 AI 模型通过 MCP 协议执行自定义代码。
 
-#### Basic Tool Example:
+#### 基本工具示例：
 
 ```go
-// Register a simple echo tool
+// 注册一个简单的回显工具
 echoTool := mcp.Tool{
 	Name:        "echo",
-	Description: "Echoes back the message provided by the user",
+	Description: "回显用户提供的消息",
 	InputSchema: mcp.InputSchema{
 		Properties: map[string]any{
 			"message": map[string]any{
 				"type":        "string",
-				"description": "The message to echo back",
+				"description": "要回显的消息",
 			},
 			"prefix": map[string]any{
 				"type":        "string",
-				"description": "Optional prefix to add to the echoed message",
+				"description": "可选的前缀，添加到回显消息前",
 				"default":     "Echo: ",
 			},
 		},
@@ -152,18 +158,18 @@ echoTool := mcp.Tool{
 server.RegisterTool(echoTool)
 ```
 
-#### Tool with Different Response Types:
+#### 具有不同响应类型的工具：
 
 ```go
-// Tool returning JSON data
+// 返回 JSON 数据的工具
 dataTool := mcp.Tool{
 	Name:        "data.generate",
-	Description: "Generates sample data in various formats",
+	Description: "生成各种格式的示例数据",
 	InputSchema: mcp.InputSchema{
 		Properties: map[string]any{
 			"format": map[string]any{
 				"type":        "string",
-				"description": "Format of data (json, text)",
+				"description": "数据格式 (json, text)",
 				"enum":        []string{"json", "text"},
 			},
 		},
@@ -178,7 +184,7 @@ dataTool := mcp.Tool{
 		}
 
 		if req.Format == "json" {
-			// Return structured data
+			// 返回结构化数据
 			return map[string]any{
 				"items": []map[string]any{
 					{"id": 1, "name": "Item 1"},
@@ -188,34 +194,34 @@ dataTool := mcp.Tool{
 			}, nil
 		}
 
-		// Default to text
-		return "Sample text data", nil
+		// 默认为文本
+		return "示例文本数据", nil
 	},
 }
 
 server.RegisterTool(dataTool)
 ```
 
-#### Image Generation Tool Example:
+#### 图像生成工具示例：
 
 ```go
-// Tool returning image content
+// 返回图像内容的工具
 imageTool := mcp.Tool{
 	Name:        "image.generate",
-	Description: "Generates a simple image",
+	Description: "生成一个简单的图像",
 	InputSchema: mcp.InputSchema{
 		Properties: map[string]any{
 			"type": map[string]any{
 				"type":        "string",
-				"description": "Type of image to generate",
+				"description": "要生成的图像类型",
 				"default":     "placeholder",
 			},
 		},
 	},
 	Handler: func(ctx context.Context, params map[string]any) (any, error) {
-		// Return image content directly
+		// 直接返回图像内容
 		return mcp.ImageContent{
-			Data:     "base64EncodedImageData...", // Base64 encoded image data
+			Data:     "base64EncodedImageData...", // Base64 编码的图像数据
 			MimeType: "image/png",
 		}, nil
 	},
@@ -224,13 +230,13 @@ imageTool := mcp.Tool{
 server.RegisterTool(imageTool)
 ```
 
-#### Using ToolResult for Custom Outputs:
+#### 使用 ToolResult 进行自定义输出：
 
 ```go
-// Tool that returns a custom ToolResult type
+// 返回自定义 ToolResult 类型的工具
 customResultTool := mcp.Tool{
 	Name:        "custom.result",
-	Description: "Returns a custom formatted result",
+	Description: "返回自定义格式的结果",
 	InputSchema: mcp.InputSchema{
 		Properties: map[string]any{
 			"resultType": map[string]any{
@@ -258,10 +264,10 @@ customResultTool := mcp.Tool{
 			}, nil
 		}
 
-		// Default to text
+		// 默认为文本
 		return mcp.ToolResult{
 			Type:    mcp.ContentTypeText,
-			Content: "This is a text result from ToolResult",
+			Content: "这是来自 ToolResult 的文本结果",
 		}, nil
 	},
 }
@@ -269,44 +275,44 @@ customResultTool := mcp.Tool{
 server.RegisterTool(customResultTool)
 ```
 
-### Registering Prompts
+### 注册提示
 
-Prompts are reusable conversation templates for AI models.
+提示是 AI 模型的可重用对话模板。
 
-#### Static Prompt Example:
+#### 静态提示示例：
 
 ```go
-// Register a simple static prompt with placeholders
+// 注册一个带有占位符的简单静态提示
 server.RegisterPrompt(mcp.Prompt{
 	Name:        "hello",
-	Description: "A simple hello prompt",
+	Description: "一个简单的问候提示",
 	Arguments: []mcp.PromptArgument{
 		{
 			Name:        "name",
-			Description: "The name to greet",
+			Description: "要问候的姓名",
 			Required:    false,
 		},
 	},
-	Content: "Say hello to {{name}} and introduce yourself as an AI assistant.",
+	Content: "向 {{name}} 问好，并介绍自己是一个 AI 助手。",
 })
 ```
 
-#### Dynamic Prompt with Handler Function:
+#### 带有处理器函数的动态提示：
 
 ```go
-// Register a prompt with a dynamic handler function
+// 注册一个使用处理器函数生成动态内容的提示
 server.RegisterPrompt(mcp.Prompt{
 	Name:        "dynamic-prompt",
-	Description: "A prompt that uses a handler to generate dynamic content",
+	Description: "使用处理器生成动态内容的提示",
 	Arguments: []mcp.PromptArgument{
 		{
 			Name:        "username",
-			Description: "User's name for personalized greeting",
+			Description: "用于个性化问候的用户姓名",
 			Required:    true,
 		},
 		{
 			Name:        "topic",
-			Description: "Topic of expertise",
+			Description: "专业领域话题",
 			Required:    true,
 		},
 	},
@@ -320,46 +326,46 @@ server.RegisterPrompt(mcp.Prompt{
 			return nil, fmt.Errorf("failed to parse args: %w", err)
 		}
 
-		// Create a user message
+		// 创建用户消息
 		userMessage := mcp.PromptMessage{
 			Role: mcp.RoleUser,
 			Content: mcp.TextContent{
-				Text: fmt.Sprintf("Hello, I'm %s and I'd like to learn about %s.", req.Username, req.Topic),
+				Text: fmt.Sprintf("你好，我是 %s，我想了解 %s。", req.Username, req.Topic),
 			},
 		}
 
-		// Create an assistant response with current time
+		// 创建带有当前时间的助手响应
 		currentTime := time.Now().Format(time.RFC1123)
 		assistantMessage := mcp.PromptMessage{
 			Role: mcp.RoleAssistant,
 			Content: mcp.TextContent{
-				Text: fmt.Sprintf("Hello %s! I'm an AI assistant and I'll help you learn about %s. The current time is %s.",
+				Text: fmt.Sprintf("你好 %s！我是一个 AI 助手，我会帮助你学习 %s。当前时间是 %s。",
 					req.Username, req.Topic, currentTime),
 			},
 		}
 
-		// Return both messages as a conversation
+		// 返回两条消息作为对话
 		return []mcp.PromptMessage{userMessage, assistantMessage}, nil
 	},
 })
 ```
 
-#### Multi-Message Prompt with Code Examples:
+#### 带有代码示例的多消息提示：
 
 ```go
-// Register a prompt that provides code examples in different programming languages
+// 注册一个在不同编程语言中提供代码示例的提示
 server.RegisterPrompt(mcp.Prompt{
 	Name:        "code-example",
-	Description: "Provides code examples in different programming languages",
+	Description: "提供不同编程语言的代码示例",
 	Arguments: []mcp.PromptArgument{
 		{
 			Name:        "language",
-			Description: "Programming language for the example",
+			Description: "示例的编程语言",
 			Required:    true,
 		},
 		{
 			Name:        "complexity",
-			Description: "Complexity level (simple, medium, advanced)",
+			Description: "复杂度级别 (simple, medium, advanced)",
 		},
 	},
 	Handler: func(ctx context.Context, args map[string]string) ([]mcp.PromptMessage, error) {
@@ -372,13 +378,13 @@ server.RegisterPrompt(mcp.Prompt{
 			return nil, fmt.Errorf("failed to parse args: %w", err)
 		}
 
-		// Validate language
+		// 验证语言
 		supportedLanguages := map[string]bool{"go": true, "python": true, "javascript": true, "rust": true}
 		if !supportedLanguages[req.Language] {
 			return nil, fmt.Errorf("unsupported language: %s", req.Language)
 		}
 
-		// Generate code example based on language and complexity
+		// 根据语言和复杂度生成代码示例
 		var codeExample string
 
 		switch req.Language {
@@ -407,7 +413,7 @@ func main() {
 }`
 			}
 		case "python":
-			// Python example code
+			// Python 示例代码
 			if req.Complexity == "simple" {
 				codeExample = `
 def greet(name):
@@ -428,24 +434,24 @@ print(greet("World", include_time=True))`
 			}
 		}
 
-		// Create messages array according to MCP spec
+		// 根据 MCP 规范创建消息数组
 		messages := []mcp.PromptMessage{
 			{
 				Role: mcp.RoleAssistant,
 				Content: mcp.TextContent{
-					Text: fmt.Sprintf("You are a helpful coding assistant specialized in %s programming.", req.Language),
+					Text: fmt.Sprintf("您是一个专门从事 %s 编程的有用编程助手。", req.Language),
 				},
 			},
 			{
 				Role: mcp.RoleUser,
 				Content: mcp.TextContent{
-					Text: fmt.Sprintf("Show me a %s example of a Hello World program in %s.", req.Complexity, req.Language),
+					Text: fmt.Sprintf("给我展示一个 %s 级别的 %s Hello World 程序示例。", req.Complexity, req.Language),
 				},
 			},
 			{
 				Role: mcp.RoleAssistant,
 				Content: mcp.TextContent{
-					Text: fmt.Sprintf("Here's a %s example in %s:\n\n```%s%s\n```\n\nHow can I help you implement this?",
+					Text: fmt.Sprintf("以下是一个 %s 级别的 %s 示例：\n\n```%s%s\n```\n\n我如何帮助您实现这个？",
 						req.Complexity, req.Language, req.Language, codeExample),
 				},
 			},
@@ -456,40 +462,40 @@ print(greet("World", include_time=True))`
 })
 ```
 
-### Registering Resources
+### 注册资源
 
-Resources provide access to external content such as files or generated data.
+资源提供对外部内容（如文件或生成的数据）的访问。
 
-#### Basic Resource Example:
+#### 基本资源示例：
 
 ```go
-// Register a static resource
+// 注册一个静态资源
 server.RegisterResource(mcp.Resource{
 	Name:        "example-document",
 	URI:         "file:///example/document.txt",
-	Description: "An example document",
+	Description: "一个示例文档",
 	MimeType:    "text/plain",
 	Handler: func(ctx context.Context) (mcp.ResourceContent, error) {
 		return mcp.ResourceContent{
 			URI:      "file:///example/document.txt",
 			MimeType: "text/plain",
-			Text:     "This is an example document content.",
+			Text:     "这是示例文档内容。",
 		}, nil
 	},
 })
 ```
 
-#### Dynamic Resource with Code Example:
+#### 带有代码示例的动态资源：
 
 ```go
-// Register a Go code resource with dynamic handler
+// 注册一个带有动态处理器的 Go 代码资源
 server.RegisterResource(mcp.Resource{
 	Name:        "go-example",
 	URI:         "file:///project/src/main.go",
-	Description: "A simple Go example with multiple files",
+	Description: "一个带有多个文件的简单 Go 示例",
 	MimeType:    "text/x-go",
 	Handler: func(ctx context.Context) (mcp.ResourceContent, error) {
-		// Return ResourceContent with all required fields
+		// 返回包含所有必需字段的 ResourceContent
 		return mcp.ResourceContent{
 			URI:      "file:///project/src/main.go",
 			MimeType: "text/x-go",
@@ -498,11 +504,11 @@ server.RegisterResource(mcp.Resource{
 	},
 })
 
-// Register a companion file for the above example
+// 为上述示例注册一个配套文件
 server.RegisterResource(mcp.Resource{
 	Name:        "go-greeting",
 	URI:         "file:///project/src/greeting/greeting.go",
-	Description: "A greeting package for the Go example",
+	Description: "Go 示例的问候包",
 	MimeType:    "text/x-go",
 	Handler: func(ctx context.Context) (mcp.ResourceContent, error) {
 		return mcp.ResourceContent{
@@ -514,41 +520,41 @@ server.RegisterResource(mcp.Resource{
 })
 ```
 
-#### Binary Resource Example:
+#### 二进制资源示例：
 
 ```go
-// Register a binary resource (like an image)
+// 注册一个二进制资源（如图像）
 server.RegisterResource(mcp.Resource{
 	Name:        "example-image",
 	URI:         "file:///example/image.png",
-	Description: "An example image",
+	Description: "一个示例图像",
 	MimeType:    "image/png",
 	Handler: func(ctx context.Context) (mcp.ResourceContent, error) {
-		// Read image from file or generate it
-		imageData := "base64EncodedImageData..." // Base64 encoded image data
+		// 从文件读取图像或生成图像
+		imageData := "base64EncodedImageData..." // Base64 编码的图像数据
 
 		return mcp.ResourceContent{
 			URI:      "file:///example/image.png",
 			MimeType: "image/png",
-			Blob:     imageData, // For binary data
+			Blob:     imageData, // 用于二进制数据
 		}, nil
 	},
 })
 ```
 
-### Using Resources in Prompts
+### 在提示中使用资源
 
-You can embed resources in prompt responses to create rich interactions with proper MCP-compliant structure:
+您可以在提示响应中嵌入资源，以创建符合 MCP 规范的丰富交互：
 
 ```go
-// Register a prompt that embeds a resource
+// 注册一个嵌入资源的提示
 server.RegisterPrompt(mcp.Prompt{
 	Name:        "resource-example",
-	Description: "A prompt that embeds a resource",
+	Description: "嵌入资源的提示",
 	Arguments: []mcp.PromptArgument{
 		{
 			Name:        "file_type",
-			Description: "Type of file to show (rust or go)",
+			Description: "要显示的文件类型 (rust 或 go)",
 			Required:    true,
 		},
 	},
@@ -572,12 +578,12 @@ server.RegisterPrompt(mcp.Prompt{
 			fileContent = "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, world!\")\n}"
 		}
 
-		// Create message with embedded resource using proper MCP format
+		// 使用适当的 MCP 格式创建带有嵌入资源的消息
 		return []mcp.PromptMessage{
 			{
 				Role: mcp.RoleUser,
 				Content: mcp.TextContent{
-					Text: fmt.Sprintf("Can you explain this %s code?", req.FileType),
+					Text: fmt.Sprintf("您能解释这个 %s 代码吗？", req.FileType),
 				},
 			},
 			{
@@ -599,7 +605,7 @@ server.RegisterPrompt(mcp.Prompt{
 			{
 				Role: mcp.RoleAssistant,
 				Content: mcp.TextContent{
-					Text: fmt.Sprintf("Above is a simple Hello World example in %s. Let me explain how it works.", req.FileType),
+					Text: fmt.Sprintf("上面是一个简单的 %s Hello World 示例。让我解释它是如何工作的。", req.FileType),
 				},
 			},
 		}, nil
@@ -607,17 +613,17 @@ server.RegisterPrompt(mcp.Prompt{
 })
 ```
 
-### Multiple File Resources Example
+### 多文件资源示例
 
 ```go
-// Register a prompt that demonstrates embedding multiple resource files
+// 注册一个演示嵌入多个资源文件的提示
 server.RegisterPrompt(mcp.Prompt{
 	Name:        "go-code-example",
-	Description: "A prompt that correctly embeds multiple resource files",
+	Description: "正确嵌入多个资源文件的提示",
 	Arguments: []mcp.PromptArgument{
 		{
 			Name:        "format",
-			Description: "How to format the code display",
+			Description: "如何格式化代码显示",
 		},
 	},
 	Handler: func(ctx context.Context, args map[string]string) ([]mcp.PromptMessage, error) {
@@ -629,22 +635,22 @@ server.RegisterPrompt(mcp.Prompt{
 			return nil, fmt.Errorf("failed to parse args: %w", err)
 		}
 
-		// Get the Go code for multiple files
+		// 获取多个文件的 Go 代码
 		var mainGoText string = "package main\n\nimport (\n\t\"fmt\"\n\t\"./greeting\"\n)\n\nfunc main() {\n\tfmt.Println(greeting.Hello(\"world\"))\n}"
 		var greetingGoText string = "package greeting\n\nfunc Hello(name string) string {\n\treturn \"Hello, \" + name + \"!\"\n}"
 
-		// Create message with properly formatted embedded resource per MCP spec
+		// 按照 MCP 规范创建格式正确的嵌入资源消息
 		messages := []mcp.PromptMessage{
 			{
 				Role: mcp.RoleUser,
 				Content: mcp.TextContent{
-					Text: "Show me a simple Go example with proper imports.",
+					Text: "给我展示一个带有正确导入的简单 Go 示例。",
 				},
 			},
 			{
 				Role: mcp.RoleAssistant,
 				Content: mcp.TextContent{
-					Text: "Here's a simple Go example project:",
+					Text: "这里是一个简单的 Go 示例项目：",
 				},
 			},
 			{
@@ -665,16 +671,16 @@ server.RegisterPrompt(mcp.Prompt{
 			},
 		}
 
-		// Add explanation and additional file if requested
+		// 如果需要，添加解释和其他文件
 		if req.Format == "with_explanation" {
 			messages = append(messages, mcp.PromptMessage{
 				Role: mcp.RoleAssistant,
 				Content: mcp.TextContent{
-					Text: "This example demonstrates a simple Go application with modular structure. The main.go file imports from a local 'greeting' package that provides the Hello function.",
+					Text: "这个示例演示了一个具有模块化结构的简单 Go 应用程序。main.go 文件从本地的 'greeting' 包导入，该包提供了 Hello 函数。",
 				},
 			})
 
-			// Also show the greeting.go file with correct resource format
+			// 也以正确的资源格式显示 greeting.go 文件
 			messages = append(messages, mcp.PromptMessage{
 				Role: mcp.RoleAssistant,
 				Content: mcp.EmbeddedResource{
@@ -698,9 +704,9 @@ server.RegisterPrompt(mcp.Prompt{
 })
 ```
 
-### Complete Application Example
+### 完整应用示例
 
-Here's a complete example demonstrating all the components:
+以下是演示所有组件的完整示例：
 
 ```go
 package main
@@ -717,20 +723,20 @@ import (
 )
 
 func main() {
-	// Load configuration
+	// 加载配置
 	var c mcp.McpConf
 	if err := conf.Load("config.yaml", &c); err != nil {
 		log.Fatalf("Failed to load config: %v", err)
 	}
 
-	// Set up logging
+	// 设置日志
 	logx.DisableStat()
 
-	// Create MCP server
+	// 创建 MCP 服务器
 	server := mcp.NewMcpServer(c)
 	defer server.Stop()
 
-	// Register a simple echo tool
+	// 注册一个简单的回显工具
 	echoTool := mcp.Tool{
 		Name:        "echo",
 		Description: "Echoes back the message provided by the user",
@@ -768,7 +774,7 @@ func main() {
 	}
 	server.RegisterTool(echoTool)
 
-	// Register a static prompt
+	// 注册一个静态 prompt
 	server.RegisterPrompt(mcp.Prompt{
 		Name:        "greeting",
 		Description: "A simple greeting prompt",
@@ -782,7 +788,7 @@ func main() {
 		Content: "Hello {{name}}! How can I assist you today?",
 	})
 
-	// Register a dynamic prompt
+	// 注册一个动态 prompt
 	server.RegisterPrompt(mcp.Prompt{
 		Name:        "dynamic-prompt",
 		Description: "A prompt that uses a handler to generate dynamic content",
@@ -808,7 +814,7 @@ func main() {
 				return nil, fmt.Errorf("failed to parse args: %w", err)
 			}
 
-			// Create messages with current time
+			// 创建包含当前时间的消息
 			currentTime := time.Now().Format(time.RFC1123)
 			return []mcp.PromptMessage{
 				{
@@ -828,7 +834,7 @@ func main() {
 		},
 	})
 
-	// Register a resource
+	// 注册一个资源
 	server.RegisterResource(mcp.Resource{
 		Name:        "example-doc",
 		URI:         "file:///example/doc.txt",
@@ -843,34 +849,34 @@ func main() {
 		},
 	})
 
-	// Start the server
+	// 启动服务器
 	fmt.Printf("Starting MCP server on %s:%d\n", c.Host, c.Port)
 	server.Start()
 }
 ```
 
-## Error Handling
+## 错误处理
 
-The MCP implementation provides comprehensive error handling:
+MCP 实现提供了全面的错误处理机制：
 
-- Tool execution errors are properly reported back to clients
-- Missing or invalid parameters are detected and reported with appropriate error codes
-- Resource and prompt lookup failures are handled gracefully
-- Timeout handling for long-running tool executions using context
-- Panic recovery to prevent server crashes
+- 工具执行错误被正确报告给客户端
+- 缺失或无效的参数会被检测并使用适当的错误代码报告
+- 资源和 prompt 查找失败会得到优雅处理
+- 使用 context 为长时间运行的工具执行提供超时处理
+- Panic 恢复机制防止服务器崩溃
 
-## Advanced Features
+## 高级功能
 
-- **Annotations**: Add audience and priority metadata to content
-- **Content Types**: Support for text, images, audio, and other content formats
-- **Embedded Resources**: Include file resources directly in prompt responses
-- **Context Awareness**: All handlers receive context.Context for timeout and cancellation support
-- **Progress Tokens**: Support for tracking progress of long-running operations
-- **Customizable Timeouts**: Configure execution timeouts for tools and operations
+- **Annotations**：为内容添加受众和优先级元数据
+- **Content Types**：支持文本、图像、音频和其他内容格式
+- **Embedded Resources**：直接在 prompt 响应中包含文件资源
+- **Context Awareness**：所有处理器都接收 context.Context 以便进行超时和取消支持
+- **Progress Tokens**：支持跟踪长时间运行操作的进度
+- **可定制超时**：为工具和操作配置执行超时
 
-## Performance Considerations
+## 性能考虑
 
-- Tool execution runs with configurable timeouts to prevent blocking
-- Efficient client tracking and cleanup to prevent resource leaks
-- Proper concurrency handling with mutex protection for shared resources
-- Buffered message channels to prevent blocking on client message delivery
+- 工具执行使用可配置的超时运行，防止阻塞
+- 高效的客户端跟踪和清理，防止资源泄露
+- 使用 mutex 保护共享资源的适当并发处理
+- 缓冲消息通道防止客户端消息传递阻塞
