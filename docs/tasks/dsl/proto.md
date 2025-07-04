@@ -119,11 +119,6 @@ service Greet {
   rpc PushMessage(stream SendMessageReq) returns (stream GetMessageResp);
 }
 
-// 定义 Greet 服务
-service Greet {
-  rpc SayHello(SayHelloReq) returns (SayHelloResp);
-}
-
 // 定义 Message 服务
 service Message {
   // 定义客户端流式 rpc
