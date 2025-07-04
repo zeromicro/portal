@@ -38,7 +38,7 @@ Use "goctl rpc [command] --help" for more information about a command.
 | --------------------------- | --------------------------- | --------------------------- | ------------------------- | ------------------------------------- |
 | branch                      | string                      | NO                          | 空字符串                  | 模板仓库分支，配合 --remote 使用      |
 | home                        | string                      | NO                          | `~/.goctl`                | 模板仓库本地路径，优先级低于 --remote |
-| o                           | string                      | NO                          | 空字符串                  | 输出 api 文件                         |
+| o                           | string                      | NO                          | 空字符串                  | 输出 proto 文件                         |
 | remote                      | string                      | NO                          | 空字符串                  | 模板仓库远程路径                      |
 
 示例：生成 proto 文件
