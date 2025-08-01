@@ -14,7 +14,6 @@ package main
 import (
         "github.com/zeromicro/go-zero/core/configcenter"
         "github.com/zeromicro/go-zero/core/configcenter/subscriber"
-        "github.com/zeromicro/go-zero/core/discov"
 )
 
 // 配置结构定义
