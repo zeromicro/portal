@@ -58,10 +58,6 @@ module.exports = {
                     title: "友情链接",
                     items: [
                         {
-                            label: "开发路线图",
-                            href: "https://github.com/zeromicro/go-zero/blob/master/ROADMAP.md",
-                        },
-                        {
                             html: `
                 <a href="https://landscape.cncf.io/?selected=go-zero" target="_blank" rel="noreferrer noopener" aria-label="CNCF">
                   <img src="https://landscape.cncf.io/images/cncf-landscape-horizontal-color.svg" alt="CNCF" width="100" height="50" />

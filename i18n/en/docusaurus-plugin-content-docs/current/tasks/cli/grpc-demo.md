@@ -170,4 +170,4 @@ The service on your behalf has been successfully launched when you see the follo
 
 </Tabs>
 
-When you come here following the steps in the document, congratulations, you have completed the creation and startup of the simplest go-zero api service. For instructions on using the `goctl` tool, please refer to <a href ="/docs/tutorials/cli/overview" target="_blank">"CLI Tools"</a>, for a complete description of the go-zero api service, please refer to <a href ="/docs/tutorials/http/server/configuration/service" target="_blank">《HTTP Server》</a>.
+When you come here following the steps in the document, congratulations, you have completed the creation and startup of the simplest go-zero api service. For instructions on using the `goctl` tool, please refer to <a href ="/docs/tutorials/cli/overview" target="_blank">"CLI Tools"</a>, for a complete description of the go-zero api service, please refer to <a href ="/docs/tutorials/grpc/server/example" target="_blank">《HTTP Server》</a>.
