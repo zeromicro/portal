@@ -42,6 +42,11 @@ const logos: CustomerLogo[] = [
     filter: false,
   },
   {
+    src: require("@site/static/customers/chinamobile.png").default,
+    alt: "中国移动上海产业研究院",
+    filter: false,
+  },
+  {
     src: require("@site/static/customers/lenovo.png").default,
     alt: "lenovo",
     filter: false,
@@ -253,4 +258,124 @@ const logos: CustomerLogo[] = [
     alt: "安徽寻梦投资发展集团",
     filter: false,
   },
+  {
+    src: require("@site/static/customers/tensee.gif").default,
+    alt: "广州腾思信息科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/gizwits.png").default,
+    alt: "广州机智云物联网科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/yealink.png").default,
+    alt: "厦门亿联网络技术股份有限公司",
+    filter: true,
+  },
+  {
+    src: require("@site/static/customers/maiyatian.png").default,
+    alt: "北京麦芽田网络科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/fszlkj.png").default,
+    alt: "佛山市振联科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/smart-speech.png").default,
+    alt: "苏州智言信息科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/tssldc.png").default,
+    alt: "天枢数链（浙江）科技有限公司",
+    filter: true,
+  },
+  {
+    src: require("@site/static/customers/kupu.webp").default,
+    alt: "北京数智方科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/youngwind.png").default,
+    alt: "宁波甬风信息科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/wanjiaan.png").default,
+    alt: "深圳市万佳安物联科技股份有限公司",
+    filter: true,
+  },
+  {
+    src: require("@site/static/customers/ai4energy.svg").default,
+    alt: "西安交通大学智慧能源与碳中和研究中心",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/teamsfy.png").default,
+    alt: "成都创软科技有限责任公司",
+    filter: true,
+  },
+  {
+    src: require("@site/static/customers/sonderbase.png").default,
+    alt: "Sonderbase Technologies",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/glorytime.webp").default,
+    alt: "上海荣时信息科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/tongxi.jpg").default,
+    alt: "上海同犀智能科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/h3c.png").default,
+    alt: "新华三技术有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/emarkdigital.png").default,
+    alt: "上海邑脉科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/xh-iot.png").default,
+    alt: "深圳市兴海物联科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/axera-tech.png").default,
+    alt: "爱芯元智半导体股份有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/shinevai.png").default,
+    alt: "杭州升恒科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/kunlun.png").default,
+    alt: "昆仑万维科技股份有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/purecompute.png").default,
+    alt: "无锡盛算信息技术有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/jht.png").default,
+    alt: "深圳市聚货通信息科技有限公司",
+    filter: false,
+  },
+  {
+    src: require("@site/static/customers/liandanxia.png").default,
+    alt: "浙江银盾云科技有限公司",
+    filter: false,
+  }
 ]
