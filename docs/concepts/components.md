@@ -31,7 +31,7 @@ slug: /docs/concepts/components
 ## 存储
 
 - [x] MySQL
-- [x] PosgreSQL
+- [x] PostgreSQL
 - [x] Mongo
 - [x] Redis
 
