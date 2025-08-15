@@ -3,6 +3,8 @@ title: Server-Sent Events (SSE)
 slug: /docs/tutorials/http/server/sse
 ---
 
+import { Image } from '@arco-design/web-react';
+
 在现代 Web 开发中，实时数据推送是一个常见需求。比如，股票价格更新或聊天消息通知。Server-Sent Events (SSE) 是一种基于 HTTP 的轻量级技术，特别适合服务器主动向客户端推送更新的场景。今天，我们将结合 **go-zero**，带你一步步实现一个简单的 SSE 服务，并附上完整代码和运行步骤。
 
 ## 什么是 SSE？
@@ -244,6 +246,70 @@ event: update\ndata: Hello\nid: 1\n\n
 - **自定义事件**：在 `SimulateEvents` 中添加不同类型的事件，客户端用 `source.addEventListener` 监听。
 - **认证**：在 `Serve` 中检查请求头或参数，实现权限控制。
 - **更多数据**：推送 JSON 格式数据，客户端解析后渲染复杂 UI。
+
+## sse 代码生成
+
+### 示例
+
+在 goctl 1.8.6 版本，已经内置了 sse 示例代码生成，如下为 sse 代码生成步骤。
+
+1. 在 api 文件中声明接口，接口必须要包含返回体，否则代码生成会报错，类似
+
+```plaintext
+syntax error: sse-demo.api 20:7 missing response type 
+```
+
+2. 在 @server 注解中声明 `sse: true`，下列为 api 示例，文件名为 sse-demo.api
+
+```go 
+syntax = "v1"
+
+type (
+	SseReq {
+		Body string `json:"body"`
+	}
+	SseResp {
+		Msg string `json:"msg"`
+	}
+)
+
+@server (
+	sse: true
+)
+service sse {
+	@handler sse
+	post /sse/with/req (SseReq) returns (SseResp)
+
+	@handler sseresp
+	post /sse/without/resp returns (*SseResp)
+}
+```
+
+3. 生成 api go 代码，就会得到一个支持 sse 的 http 服务。
+
+```bash
+goctl api go --api sse-demo.api --dir .
+```
+
+### 模板说明
+
+sse 的 handler 和 logic 模板与普通的 http 接口服务的 handler 模板存在不同，sse 的 handler 的模板中是一个以 `chan` 来传递事件的 channel，而不是直接返回一个响应体。
+
+如下声明了相似路由 声明了 sse 和没有声明 sse 的 handler、logic 区别
+
+**handler diff**
+
+<Image
+src={require('../../../resource/tutorials/http/sse_http_handler_diff.png').default}
+alt='goctl'
+/>
+
+**logic diff**
+
+<Image
+src={require('../../../resource/tutorials/http/sse_http_logic_diff.png').default}
+alt='goctl'
+/>
 
 ## 总结
 

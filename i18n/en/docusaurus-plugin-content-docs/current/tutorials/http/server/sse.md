@@ -217,6 +217,73 @@ Since the HTML is served from the same server (`/static`), we avoid CORS issues�
 - **Security**: Add authentication (e.g., check headers in `Serve`) if exposing this publicly.
 - **Custom Events**: Extend the SSE format with `event: type\ndata: value\n\n` for richer updates.
 
+
+
+## sse generation
+
+### example
+
+In version 1.8.6 of goctl ，SSE sample code generation is already built in, here are the SSE code generation steps.
+
+1. Declare the interface in the api file, the interface must include the return body, otherwise the code generation will report an error, similar to
+
+```plaintext
+syntax error: sse-demo.api 20:7 missing response type 
+```
+
+2. Declare `sse: true` in the @server annotation, the following is an api example, the file name is sse-demo.api
+
+```go 
+syntax = "v1"
+
+type (
+	SseReq {
+		Body string `json:"body"`
+	}
+	SseResp {
+		Msg string `json:"msg"`
+	}
+)
+
+@server (
+	sse: true
+)
+service sse {
+	@handler sse
+	post /sse/with/req (SseReq) returns (SseResp)
+
+	@handler sseresp
+	post /sse/without/resp returns (*SseResp)
+}
+```
+
+3. Generate the api go code and you will get an HTTP service that supports SSE.
+
+```bash
+goctl api go --api sse-demo.api --dir .
+```
+
+### template description
+
+The handler and logic templates of SSE are different from the handler templates of ordinary HTTP interface services. The handler template of SSE is a channel that passes events as'chan ', rather than directly returning a response body.
+
+The similar routes are declared as follows, and the handler and logic differences between sse and no sse are declared
+
+**handler diff**
+
+<Image
+src={require('../../../resource/tutorials/http/sse_http_handler_diff.png').default}
+alt='goctl'
+/>
+
+**logic diff**
+
+<Image
+src={require('../../../resource/tutorials/http/sse_http_logic_diff.png').default}
+alt='goctl'
+/>
+
+
 ## Why go-zero?
 
 go-zero shines here with its minimalist routing, built-in static file serving, and performance optimizations. It abstracts away boilerplate while giving you full control over the HTTP layer—perfect for SSE’s quirks like long connections.
