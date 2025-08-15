@@ -251,7 +251,7 @@ event: update\ndata: Hello\nid: 1\n\n
 
 ### 示例
 
-在 goctl 1.8.6 版本，已经内置了 sse 示例代码生成，如下为 sse 代码生成步骤。
+在 goctl 1.9.0-alpha 版本，已经内置了 sse 示例代码生成，如下为 sse 代码生成步骤。
 
 1. 在 api 文件中声明接口，接口必须要包含返回体，否则代码生成会报错，类似
 

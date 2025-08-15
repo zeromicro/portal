@@ -223,7 +223,7 @@ Since the HTML is served from the same server (`/static`), we avoid CORS issues�
 
 ### example
 
-In version 1.8.6 of goctl ，SSE sample code generation is already built in, here are the SSE code generation steps.
+In version 1.9.0-alpha of goctl ，SSE sample code generation is already built in, here are the SSE code generation steps.
 
 1. Declare the interface in the api file, the interface must include the return body, otherwise the code generation will report an error, similar to
 
