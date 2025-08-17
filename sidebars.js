@@ -409,6 +409,14 @@ module.exports = {
         }
     ],
     reference: [
+        {
+            type: 'category',
+            label: 'Release Notes',
+            collapsed: false,
+            items: [
+                'reference/releases/v1.9.0.md'
+            ]
+        },
         'reference',
         'reference/proto',
         'reference/examples',
