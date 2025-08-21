@@ -6,8 +6,7 @@ slug: /docs/tasks/installation/goctl
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import DocsCard from '@components/global/DocsCard';
-import DocsCards from '@components/global/DocsCards';
+import Release from '@components/global/Release';
 
 ## Overview
 
@@ -51,57 +50,7 @@ $ goctl --version
 
 ### 2.1 Downloads
 
-<DocsCards>
-
-<DocsCard
-header="Microsoft Windows"
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.7.3/goctl-v1.7.3-windows-amd64.zip" >
-
-<p>Windows Intel x86-64 bit processor</p>
-<a>goctl-v1.7.3-windows-amd64.zip（21.7MB）</a>
-</DocsCard>
-
-<DocsCard
-header="Microsoft Windows"
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.7.3/goctl-v1.7.3-windows-386.zip" >
-
-<p>Windows Intel x86-32 bit processor</p>
-<a>goctl-v1.7.3-windows-386.zip（20.6MB）</a>
-</DocsCard>
-
-<DocsCard
-header="Apple macOS（ARM64）"
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.7.3/goctl-v1.7.3-darwin-arm64.tar.gz" >
-
-<p>Support macOS Apple 64-bit processor</p>
-<a>goctl-v1.7.3-darwin-arm64.tar.gz（21.3MB）</a>
-</DocsCard>
-
-<DocsCard
-header="Apple macOS（x86-64）"
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.7.3/goctl-v1.7.3-darwin-amd64.tar.gz" >
-
-<p>Support macOS 64-bit processor</p>
-<a>goctl-v1.7.3-darwin-amd64.tar.gz（21.7MB）</a>
-</DocsCard>
-
-<DocsCard
-header="Linux"
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.7.3/goctl-v1.7.3-linux-amd64.tar.gz" >
-
-<p>Support Linux 64 bit processor</p>
-<a>goctl-v1.7.3-linux-amd64.tar.gz（21.7MB）</a>
-</DocsCard>
-
-<DocsCard
-header="Linux"
-href="https://github.com/zeromicro/go-zero/releases/download/tools%2Fgoctl%2Fv1.7.3/goctl-v1.7.3-linux-386.tar.gz" >
-
-<p>Support Linux 32 bit processor</p>
-<a>goctl-v1.7.3-linux-386.tar.gz（20.3MB）</a>
-</DocsCard>
-
-</DocsCards>
+<Release />
 
 Other versions and operating systems can [to go to Github](https://github.com/zeromicro/go-zero/releases) to choose.
 
