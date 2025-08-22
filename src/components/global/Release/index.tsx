@@ -32,7 +32,7 @@ const PLATFORM_MAPPING: Record<string, { header: string; description: string }> 
     'windows-386': { header: 'Microsoft Windows', description: 'Windows Intel x86-32 bit' },
     'linux-amd64': { header: 'Linux', description: 'Linux 64bit' },
     'linux-386': { header: 'Linux', description: 'Linux 32bit' },
-    'darwin-arm': { header: 'Apple macOS (ARM)', description: 'macOS Apple 64bit' },
+    'darwin-arm': { header: 'Apple macOS (Apple)', description: 'macOS Apple 64bit' },
     'darwin-amd': { header: 'Apple macOS (Intel)', description: 'macOS Intel 64bit' },
 };
 
