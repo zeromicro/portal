@@ -200,3 +200,27 @@ iframe {
   flex: 1;
   border: 0;
 }
+
+.navbar__logo {
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+@media (max-width: 565px) {
+  .navbar__logo .portal-nav-logo {
+    width: 15em;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  .theme-announcement-bar {
+    font-size: 0.95rem !important;
+    padding: 0.5rem 0.5rem !important;
+  }
+}
+
+@media (min-width: 997px) {
+  .theme-doc-sidebar-container .portal-nav-logo {
+    height: auto;
+  }
+}
