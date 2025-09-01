@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run build:${VERCEL_ENV:-preview}",
     "build:preview": "docusaurus build --locale zh",
-    "build:production": "docusaurus build",
+    "build:production": "node -v && docusaurus build",
     "clear": "docusaurus clear",
     "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download",
     "deploy": "docusaurus deploy",
