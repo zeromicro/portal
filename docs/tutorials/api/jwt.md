@@ -144,7 +144,7 @@ jwt 通常可以携带一些自定义信息，比如 server 端生成 jwt key �
 ```go
 func (l *UserInfoLogic) UserInfo(req *types.UserInfoReq) (resp *types.UserInfoResp, err error) {
     // 获取 jwt 载体信息
-	value:=l.ctx.Value("custom-key")
+	value := l.ctx.Value("custom-key")
 	return
 }
 ```
