@@ -5,7 +5,7 @@ module.exports = {
   title: "go-zero Documentation",
   tagline:
     "go-zero is a web and rpc framework with lots of builtin engineering practices. It’s born to ensure the stability of the busy services with resilience design and has been serving sites with tens of millions of users for years.",
-  url: "https://go-zero.dev",
+  url: "https://legacy.go-zero.dev",
   baseUrl: `/`,
   i18n: {
     defaultLocale: "zh",
