@@ -97,7 +97,7 @@ import (
 func main() {
 	conf := redis.RedisConf{
 		Host:        "127.0.0.1:6379",
-		Type:        "node",
+		Type:        redis.NodeType, // or use redis.ClusterType, also use "node" or "cluster" string
 		Pass:        "",
 		Tls:         false,
 		NonBlock:    false,
