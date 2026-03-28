@@ -50,11 +50,22 @@ ListenOn: 127.0.0.1:8080
 <TabItem value="server.go" label="server.go" default>
 
 ```go
+package main
+
+import (
+	"context"
+	"helloworld/greet"
+
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/zrpc"
+	"google.golang.org/grpc"
+)
+
 func main() {
 	var serverConf zrpc.RpcServerConf
 	conf.MustLoad("etc/greet-server.yaml", &serverConf)
-	s := zrpc.MustNewServer(serverConf, func(server *grpc.Server) {
-		greet.RegisterGreetServer(server, &exampleServer{})
+	s := zrpc.MustNewServer(serverConf, func(s *grpc.Server) {
+		greet.RegisterGreetServer(s, &exampleServer{})
 	})
 	
 	defer s.Stop()
