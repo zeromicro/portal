@@ -137,6 +137,7 @@ func main() {
 
 	import (
 		"context"
+ 		"fmt"
 		"database/sql"
 		"time"
 
@@ -163,6 +164,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+ 		fmt.Println(u)
 	}
 
 	```
